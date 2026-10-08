@@ -1,0 +1,20 @@
+{
+  "name": "@nexusai/web",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "node dev.mjs",
+    "build": "next build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0"
+  }
+}

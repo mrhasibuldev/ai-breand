@@ -1,0 +1,16 @@
+{
+  "name": "@nexusai/worker",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@nexusai/policy": "workspace:*",
+    "@nexusai/worker-core": "workspace:*"
+  }
+}

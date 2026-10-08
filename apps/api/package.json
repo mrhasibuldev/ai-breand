@@ -1,0 +1,19 @@
+{
+  "name": "@nexusai/api",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@nexusai/app-core": "workspace:*",
+    "@nexusai/auth-core": "workspace:*",
+    "@nexusai/config": "workspace:*",
+    "@nexusai/contracts": "workspace:*",
+    "fastify": "^5.12.5"
+  }
+}
