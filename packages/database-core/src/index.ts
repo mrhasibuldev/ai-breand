@@ -42,3 +42,5 @@ export class UnconfiguredDatabaseClient implements DatabaseClient {
 
   async close(): Promise<void> {}
 }
+
+export { PostgresClient } from './postgres-client.js';
