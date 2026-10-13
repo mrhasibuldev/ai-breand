@@ -29,9 +29,9 @@ export class PostgresClient implements DatabaseClient, TransactionManager {
 
   async query<Row>(statement: string, values?: QueryValues): Promise<QueryResult<Row>> {
     if (!this.pool) throw new Error('Database not connected');
-    const result = await this.pool.query(statement, values);
+    const result = await this.pool.query(statement, values as unknown[]);
     return {
-      rows: result.rows,
+      rows: result.rows as Row[],
       rowCount: result.rowCount ?? 0,
     };
   }
@@ -43,13 +43,13 @@ export class PostgresClient implements DatabaseClient, TransactionManager {
       await client.query('BEGIN');
       const session: DatabaseSession = {
         query: async <Row>(statement: string, values?: QueryValues) => {
-          const result = await client.query(statement, values);
+          const result = await client.query(statement, values as unknown[]);
           return {
-            rows: result.rows,
+            rows: result.rows as Row[],
             rowCount: result.rowCount ?? 0,
           };
         },
-      };
+      } as DatabaseSession;
       const result = await work(session);
       await client.query('COMMIT');
       return result;
