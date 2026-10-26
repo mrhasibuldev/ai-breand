@@ -11,11 +11,10 @@
  * <Home />
  */
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import MainContent from './components/MainContent';
 import AuthModal from './components/AuthModal';
-import ProfileEdit from './components/ProfileEdit';
 import { AuthProvider, useAuth } from './components/AuthContext';
 import { getProfile, createProfile, updateProfile } from '../lib/backend-profile';
 import { loadAvatarFromLocalStorage } from '../lib/avatar-service';
@@ -34,8 +33,7 @@ function HomeContent() {
   const [profileName, setProfileName] = useState('Guest');
   const [profileEmail, setProfileEmail] = useState('');
   const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
-  const [isProfileEditOpen, setIsProfileEditOpen] = useState(false);
-  const { user, isAuthenticated, loading, initialized } = useAuth();
+  const { user, isAuthenticated, initialized } = useAuth();
 
   // Update profile when auth state changes
   useEffect(() => {
@@ -55,12 +53,13 @@ function HomeContent() {
       }).catch((error) => {
         console.error('[Profile] Failed to load profile:', error);
       });
-    } else {
+    } else if (initialized) {
+      // Only reset to Guest if initialization is complete and not authenticated
       setProfileName('Guest');
       setProfileEmail('');
       setProfilePhoto(null);
     }
-  }, [isAuthenticated, user]);
+  }, [isAuthenticated, user, initialized]);
 
   /**
    * Handle navigation change
@@ -105,9 +104,8 @@ function HomeContent() {
   const handleProfileClick = () => {
     if (!isAuthenticated) {
       setShowAuthModal(true);
-    } else {
-      setIsProfileEditOpen(true);
     }
+    // Profile edit will be handled by MainContent
   };
 
   /**
@@ -121,8 +119,8 @@ function HomeContent() {
 
   return (
     <div className="app-container">
-      {/* Loading Overlay */}
-      {!initialized && (
+      {/* Loading Overlay - only for authenticated users during session restoration */}
+      {!initialized && isAuthenticated && (
         <div className="loading-overlay">
           <div className="loading-spinner">
             <div className="spinner"></div>

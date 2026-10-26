@@ -35,7 +35,7 @@ export default function ChatInterface() {
   const [guestActiveConversationId, setGuestActiveConversationId] = useState<string | null>(null);
 
   // Auth and conversation manager
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
   const {
     activeConversationId,
     createConversation,
@@ -57,9 +57,8 @@ export default function ChatInterface() {
       
       // For guest users, submit immediately (no conversation needed)
       if (!isAuthenticated) {
-        setTimeout(() => {
-          handleGuestMessage(pendingMessage);
-        }, 100);
+        // Remove delay for instant response
+        handleGuestMessage(pendingMessage);
       } else {
         // Authenticated flow - set input and it will auto-submit when ready
         setInputValue(pendingMessage);
@@ -77,11 +76,9 @@ export default function ChatInterface() {
     // Don't submit if already typing (means we already started processing)
     if (isTyping) return;
     
-    // Submit the pending message after a short delay to ensure component is ready
-    setTimeout(() => {
-      const formEvent = new Event('submit', { cancelable: true }) as any;
-      handleSubmit(formEvent);
-    }, 200);
+    // Submit immediately when ready (removed delay)
+    const formEvent = new Event('submit', { cancelable: true, bubbles: true });
+    handleSubmit(formEvent as unknown as React.FormEvent);
   }, [isAuthenticated, inputValue, conversationLoading, isTyping]);
 
   // Get active conversation (guest if not authenticated)

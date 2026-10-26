@@ -202,6 +202,7 @@ export default function ProfileEdit({
             onClick={handleSave}
             disabled={!name.trim() || isUploading}
             type="button"
+            style={{ opacity: (!name.trim() || isUploading) ? 0.5 : 1 }}
           >
             <Save size={16} />
             Save Changes

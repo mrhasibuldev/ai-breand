@@ -9,6 +9,7 @@
 import { useState } from 'react';
 import { X, Mail, Lock } from 'lucide-react';
 import { signUp, signIn } from '../../lib/backend-auth';
+import { useAuth } from './AuthContext';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -22,6 +23,7 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }: Au
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const { forceRefresh } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,11 +37,13 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }: Au
         await signIn(email, password);
       }
 
-      // Success - close modal and let auth context handle session
+      // Success - close modal and refresh session
       onClose();
-      window.location.reload(); // Refresh to trigger auth state check
-    } catch (err: any) {
-      setError(err.message || 'Authentication failed');
+      // Note: forceRefresh happens, but loading state is already cleared
+      // The AuthContext will handle the session restoration
+      await forceRefresh();
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Authentication failed');
     } finally {
       setLoading(false);
     }
@@ -105,7 +109,7 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }: Au
                 placeholder="•••••••••"
                 required
                 disabled={loading}
-                minLength={6}
+                minLength={8}
               />
             </div>
 

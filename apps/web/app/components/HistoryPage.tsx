@@ -15,9 +15,16 @@ import { useConversationManager } from './useConversationManager';
 export interface Conversation {
   id: string;
   title: string;
-  messages: any[];
+  messages: ConversationMessage[];
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface ConversationMessage {
+  id: string;
+  role: string;
+  content: string;
+  timestamp: Date;
 }
 
 export default function HistoryPage({

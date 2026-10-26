@@ -17,6 +17,7 @@ interface AuthContextType {
   isAuthenticated: boolean;
   signOut: () => Promise<void>;
   refreshUser: () => Promise<void>;
+  forceRefresh: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -86,12 +87,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Get initial session
     refreshUser();
 
-    // Poll for session changes periodically (for demo purposes)
-    // In production, this could use server-sent events or websockets
-    const interval = setInterval(refreshUser, 30000); // Check every 30 seconds
+    // Refresh session when page becomes visible (user returns to tab)
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        refreshUser();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
-      clearInterval(interval);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
       }
@@ -107,6 +113,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  // Function to force refresh session (called after login/signup)
+  const forceRefresh = async () => {
+    await refreshUser();
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -116,6 +127,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         isAuthenticated: !!user,
         signOut: handleSignOut,
         refreshUser,
+        forceRefresh,
       }}
     >
       {children}

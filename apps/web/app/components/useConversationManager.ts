@@ -121,7 +121,6 @@ export function useConversationManager() {
       setActiveConversationId(null);
       localStorage.removeItem(LAST_ACTIVE_CONV_KEY);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
 
   /**
