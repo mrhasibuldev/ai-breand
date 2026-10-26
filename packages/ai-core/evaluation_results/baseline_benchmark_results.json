@@ -1,0 +1,94 @@
+{
+  "total_tests": 26,
+  "successful": 26,
+  "failed": 0,
+  "categories": {
+    "greetings": {
+      "total": 5,
+      "successful": 5,
+      "failed": 0
+    },
+    "general_knowledge": {
+      "total": 5,
+      "successful": 5,
+      "failed": 0
+    },
+    "instruction_following": {
+      "total": 4,
+      "successful": 4,
+      "failed": 0
+    },
+    "reasoning": {
+      "total": 3,
+      "successful": 3,
+      "failed": 0
+    },
+    "context": {
+      "total": 2,
+      "successful": 2,
+      "failed": 0
+    },
+    "bengali": {
+      "total": 3,
+      "successful": 3,
+      "failed": 0
+    },
+    "banglish": {
+      "total": 2,
+      "successful": 2,
+      "failed": 0
+    },
+    "unknown": {
+      "total": 2,
+      "successful": 2,
+      "failed": 0
+    }
+  },
+  "latency_ms": [
+    33.620595932006836,
+    3.0775070190429688,
+    3.962278366088867,
+    6.452083587646484,
+    1802.3571968078613,
+    1154.3667316436768,
+    1231.3690185546875,
+    1199.361801147461,
+    1373.9304542541504,
+    1303.476333618164,
+    1499.4771480560303,
+    1266.493558883667,
+    1263.1523609161377,
+    1207.1573734283447,
+    1227.8478145599365,
+    1281.3236713409424,
+    1466.440200805664,
+    1365.9255504608154,
+    1670.5946922302246,
+    3.62396240234375,
+    4.137516021728516,
+    2.775907516479492,
+    3.5550594329833984,
+    1407.1385860443115,
+    1388.7741565704346,
+    1498.4376430511475
+  ],
+  "response_sources": {
+    "DETERMINISTIC_HANDLER": 8,
+    "FALLBACK": 13,
+    "NEURAL_MODEL": 5
+  },
+  "response_quality": {
+    "deterministic": 0,
+    "generated": 0,
+    "fallback": 0,
+    "empty": 0,
+    "repetitive": 0,
+    "DETERMINISTIC": 8,
+    "FALLBACK": 13,
+    "GENERATED": 5
+  },
+  "avg_latency_ms": 948.8011231789222,
+  "min_latency_ms": 2.775907516479492,
+  "max_latency_ms": 1802.3571968078613,
+  "success_rate": 100.0
+}

@@ -1,6 +1,8 @@
 {
   "extends": "../../tsconfig.base.json",
-  "compilerOptions": { "rootDir": "src", "outDir": "dist" },
-  "compilerOptions": { "rootDir": "src", "outDir": "dist" },
-  "include": ["src/**/*.ts"]
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "dist"
+  },
+  "include": ["src/**/*.ts", "core/**/*.ts", "model-registry/**/*.ts", "model-adapter/**/*.ts", "inference/**/*.ts", "model-router/**/*.ts", "orchestrator/**/*.ts", "context/**/*.ts", "memory/**/*.ts", "tools/**/*.ts", "evaluation/**/*.ts", "safety/**/*.ts", "versioning/**/*.ts", "observability/**/*.ts", "bridge/**/*.ts"]
 }

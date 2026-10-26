@@ -1,0 +1,26 @@
+{
+  "document_id": "clean_20261017_7d355c36c90e",
+  "raw_document_id": "raw_20261017_ce06be0887f1",
+  "text": "A neural network is a computational model inspired by the biological neural networks in the human brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches.",
+  "language": "en",
+  "quality_score": 0.7000000000000001,
+  "trust_level": "TIER_1",
+  "information_lifetime": "SLOW_CHANGING",
+  "word_count": 32,
+  "char_count": 227,
+  "processed_at": "2026-10-17T10:43:49.948207",
+  "processing_metadata": {
+    "extraction_method": "file_reader",
+    "deduplication_status": "unique",
+    "quality_flags": [],
+    "processing_time_ms": 1.689,
+    "document_hash": "7d355c36c90e2230af5dfaacf5465b57bb96836cb329c64fe06c626ae9e73823"
+  },
+  "source": {
+    "url": "https://example.com/neural-networks",
+    "source_type": "documentation",
+    "license": null,
+    "author": "Neural Science",
+    "publish_date": "2024-01-09"
+  }
+}

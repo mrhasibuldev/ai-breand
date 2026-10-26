@@ -1,0 +1,28 @@
+{
+  "document_id": "clean_20261017_6ff4d5d4fa56",
+  "raw_document_id": "raw_20261017_c406bcd205bf",
+  "text": "স্বাস্থ্য সুরক্ষা মানুষের জীবনের অন্যতম গুরুত্বপূর্ণ দিক। নিয়মিত ব্যায়াম, সুষম খাদ্যাভ্যাস এবং পর্যাপ্ত ঘুম স্বাস্থ্য ভালো রাখতে সাহায্য করে।",
+  "language": "bn",
+  "quality_score": 0.5,
+  "trust_level": "TIER_2",
+  "information_lifetime": "SLOW_CHANGING",
+  "word_count": 19,
+  "char_count": 143,
+  "processed_at": "2026-10-17T10:43:49.930146",
+  "processing_metadata": {
+    "extraction_method": "file_reader",
+    "deduplication_status": "unique",
+    "quality_flags": [
+      "too_short"
+    ],
+    "processing_time_ms": 2.827,
+    "document_hash": "6ff4d5d4fa5607a7e6dee160a28a3f4ecf53b4e2bcba83094cf53413660372b4"
+  },
+  "source": {
+    "url": "https://example.com/health-bangla",
+    "source_type": "article",
+    "license": null,
+    "author": "Health Guide",
+    "publish_date": "2024-01-12"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "document_id": "clean_20261017_cbdb8fde9d57",
+  "raw_document_id": "raw_20261017_47105b39380a",
+  "text": "NexusAI is a personal AI health and wellness companion. It helps users track their wellness goals, provide health information, and offer personalized recommendations based on user preferences and health data.",
+  "language": "en",
+  "quality_score": 0.7000000000000001,
+  "trust_level": "TIER_1",
+  "information_lifetime": "SLOW_CHANGING",
+  "word_count": 30,
+  "char_count": 208,
+  "processed_at": "2026-10-17T10:43:49.907573",
+  "processing_metadata": {
+    "extraction_method": "file_reader",
+    "deduplication_status": "unique",
+    "quality_flags": [],
+    "processing_time_ms": 2.437,
+    "document_hash": "cbdb8fde9d57634d672a5d910d59a6e725e45b64f5a0dc71164d4f995d9af999"
+  },
+  "source": {
+    "url": "https://nexusai.example.com/about",
+    "source_type": "documentation",
+    "license": null,
+    "author": "NexusAI Team",
+    "publish_date": "2024-01-01"
+  }
+}

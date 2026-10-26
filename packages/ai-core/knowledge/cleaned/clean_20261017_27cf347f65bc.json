@@ -1,0 +1,26 @@
+{
+  "document_id": "clean_20261017_27cf347f65bc",
+  "raw_document_id": "raw_20261017_1a8b32922038",
+  "text": "Computer science is the study of computation, information, and automation. Computer science spans theoretical disciplines (such as algorithms, theory of computation, and information theory) to practical disciplines (including the design and implementation of hardware and software). Computer science is generally considered an area of academic research and distinct from computer programming. Algorithms and data structures have been called the heart of computer science. Programming language theory considers approaches to the description of computational processes, while computer programming involves the use of them to create complex systems. Computer architecture describes construction of computer components and computer-operated equipment.",
+  "language": "en",
+  "quality_score": 0.6,
+  "trust_level": "TIER_3",
+  "information_lifetime": "SLOW_CHANGING",
+  "word_count": 96,
+  "char_count": 747,
+  "processed_at": "2026-10-17T11:21:43.094983",
+  "processing_metadata": {
+    "extraction_method": "file_reader",
+    "deduplication_status": "unique",
+    "quality_flags": [],
+    "processing_time_ms": 21.025,
+    "document_hash": "27cf347f65bcb2aaaeb105e29d3cab22992bb5b4ec1f237f2f7b1ca5b1c60f82"
+  },
+  "source": {
+    "url": "https://en.wikipedia.org/wiki/Computer_science",
+    "source_type": "web",
+    "license": null,
+    "author": null,
+    "publish_date": null
+  }
+}

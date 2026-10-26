@@ -10,10 +10,17 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@fastify/cookie": "^11.1.3",
+    "@fastify/cors": "^11.3.1",
     "@nexusai/app-core": "workspace:*",
     "@nexusai/auth-core": "workspace:*",
     "@nexusai/config": "workspace:*",
     "@nexusai/contracts": "workspace:*",
+    "@nexusai/database-core": "workspace:*",
+    "@nexusai/repositories": "workspace:*",
+    "@types/bcrypt": "^6.0.0",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^18.0.8",
     "fastify": "^5.12.5"
   }
 }

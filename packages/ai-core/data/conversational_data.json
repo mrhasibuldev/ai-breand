@@ -1,0 +1,150 @@
+[
+  {
+    "messages": [
+      {"role": "user", "content": "Hello"},
+      {"role": "assistant", "content": "Hi there! How can I help you today?"}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "content": "Hi"},
+      {"role": "assistant", "content": "Hello! What can I do for you?"}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "content": "How are you?"},
+      {"role": "assistant", "content": "I'm doing well, thank you for asking! How about you?"}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "content": "What is your name?"},
+      {"role": "assistant", "content": "I am NexusAI, an AI assistant designed to help you."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "content": "Who are you?"},
+      {"role": "assistant", "content": "I'm NexusAI, your personal AI assistant."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "content": "What can you do?"},
+      {"role": "assistant", "content": "I can help you with conversations, answer questions, and assist with various tasks."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "content": "Can you help me?"},
+      {"role": "assistant", "content": "Of course! What do you need help with?"}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "content": "Thank you"},
+      {"role": "assistant", "content": "You're welcome! Is there anything else I can help with?"}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "content": "Thanks"},
+      {"role": "assistant", "content": "Happy to help! Let me know if you need anything else."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "content": "Goodbye"},
+      {"role": "assistant", "content": "Goodbye! Feel free to come back anytime you need assistance."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "content": "Bye"},
+      {"role": "assistant", "content": "See you later! Take care."}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "content": "হ্যালো"},
+      {"role": "assistant", "content": "হ্যালো! আমি কীভাবে সাহায্য করতে পারি?"}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "content": "আসসালামু আলাইকুম"},
+      {"role": "assistant", "content": "ওয়া আলাইকুম আস সালাম! আমি কীভাবে সাহায্য করতে পারি?"}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "content": "কেমন আছো?"},
+      {"role": "assistant", "content": "আমি ভালো আছি, ধন্যবাদ! তুমি কেমন আছো?"}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "content": "তোমার নাম কী?"},
+      {"role": "assistant", "content": "আমার নাম NexusAI। আমি একটি AI সহকারী।"}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "content": "তুমি কী করতে পারো?"},
+      {"role": "assistant", "content": "আমি কথোপকথন করতে পারি, প্রশ্নের উত্তর দিতে পারি এবং সাহায্য করতে পারি।"}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "content": "ধন্যবাদ"},
+      {"role": "assistant", "content": "স্বাগতম! আর কী সাহায্য করতে পারি?"}
+    ]
+  },
+  {
+    "messages": [
+      {"role": "user", "content": "বিদায়"},
+      {"role": "assistant", "content": "বিদায়! যখনই প্রয়োজন হবে ফিরে আসবেন।"}
+    ]
+  },
+  {
+    "question": "What is the capital of Bangladesh?",
+    "answer": "The capital of Bangladesh is Dhaka."
+  },
+  {
+    "question": "Where is Bangladesh located?",
+    "answer": "Bangladesh is located in South Asia."
+  },
+  {
+    "question": "What is the population of Bangladesh?",
+    "answer": "Bangladesh has a population of over 160 million people."
+  },
+  {
+    "question": "What language do people speak in Bangladesh?",
+    "answer": "The official language of Bangladesh is Bengali (Bangla)."
+  },
+  {
+    "question": "What is the currency of Bangladesh?",
+    "answer": "The currency of Bangladesh is the Taka (BDT)."
+  },
+  {
+    "question": "বাংলাদেশের রাজধানী কোথায়?",
+    "answer": "বাংলাদেশের রাজধানী ঢাকা।"
+  },
+  {
+    "question": "বাংলাদেশ কোথায় অবস্থিত?",
+    "answer": "বাংলাদেশ দক্ষিণ এশিয়ায় অবস্থিত।"
+  },
+  {
+    "question": "বাংলাদেশের জনসংখ্যা কত?",
+    "answer": "বাংলাদেশের জনসংখ্যা প্রায় ১৬ কোটি।"
+  },
+  {
+    "question": "বাংলাদেশের ভাষা কী?",
+    "answer": "বাংলাদেশের রাষ্ট্রভাষা বাংলা।"
+  },
+  {
+    "question": "বাংলাদেশের মুদ্রা কী?",
+    "answer": "বাংলাদেশের মুদ্রা টাকা।"
+  }
+]

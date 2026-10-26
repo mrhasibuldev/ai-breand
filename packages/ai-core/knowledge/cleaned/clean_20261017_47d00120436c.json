@@ -1,0 +1,26 @@
+{
+  "document_id": "clean_20261017_47d00120436c",
+  "raw_document_id": "raw_20261017_a52b76745c11",
+  "text": "Python is a high-level, interpreted programming language known for its simplicity and readability. It is widely used for web development, data science, artificial intelligence, and automation.",
+  "language": "en",
+  "quality_score": 0.7000000000000001,
+  "trust_level": "TIER_1",
+  "information_lifetime": "SLOW_CHANGING",
+  "word_count": 26,
+  "char_count": 192,
+  "processed_at": "2026-10-17T10:43:49.934691",
+  "processing_metadata": {
+    "extraction_method": "file_reader",
+    "deduplication_status": "unique",
+    "quality_flags": [],
+    "processing_time_ms": 2.275,
+    "document_hash": "47d00120436c9525c984ac0c19a3c0902004852222c3eb13ccbd56ec2b03d742"
+  },
+  "source": {
+    "url": "https://example.com/python",
+    "source_type": "documentation",
+    "license": null,
+    "author": "Python Foundation",
+    "publish_date": "2024-01-03"
+  }
+}

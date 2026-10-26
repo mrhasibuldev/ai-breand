@@ -1,0 +1,26 @@
+{
+  "document_id": "clean_20261017_aa02c3964f03",
+  "raw_document_id": "raw_20261017_2c1c715681d3",
+  "text": "Philosophy is the systematic study of general and fundamental questions concerning topics like existence, reason, knowledge, value, mind, and language. It is a rational and critical inquiry that reflects on its own methods and assumptions. Philosophical methods include questioning, critical discussion, rational argument, and systematic presentation. Classic philosophical questions include: Is it possible to know anything and to prove it? What is most real? Philosophers also pose more practical and concrete questions such as: Is there a best way to live? Is it better to be just or unjust? Do humans have free will?",
+  "language": "en",
+  "quality_score": 0.6,
+  "trust_level": "TIER_3",
+  "information_lifetime": "SLOW_CHANGING",
+  "word_count": 94,
+  "char_count": 620,
+  "processed_at": "2026-10-17T11:21:43.211068",
+  "processing_metadata": {
+    "extraction_method": "file_reader",
+    "deduplication_status": "unique",
+    "quality_flags": [],
+    "processing_time_ms": 18.919999999999998,
+    "document_hash": "aa02c3964f0386806b21acfa2a9fbd5faf096dc3ef37fddd2a22ce78ee4ce0ff"
+  },
+  "source": {
+    "url": "https://en.wikipedia.org/wiki/Philosophy",
+    "source_type": "web",
+    "license": null,
+    "author": null,
+    "publish_date": null
+  }
+}

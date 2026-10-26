@@ -1,0 +1,26 @@
+{
+  "document_id": "clean_20261017_b5d9ec67c4ee",
+  "raw_document_id": "raw_20261017_01e8e6e0f41a",
+  "text": "Economics is a social science that studies the production, distribution, and consumption of goods and services. Economics focuses on the behaviour and interactions of economic agents and how economies work. Microeconomics analyzes what's viewed as basic elements in the economy, including individual agents and markets, their interactions, and the outcomes of interactions. Individual agents may include, for example, households, firms, buyers, and sellers. Macroeconomics analyzes the economy as a system where production, consumption, saving, and investment interact, and factors affecting it: employment of the resources of labour, capital, and land, currency inflation, economic growth, and public policies that have impact on these elements.",
+  "language": "en",
+  "quality_score": 0.7000000000000001,
+  "trust_level": "TIER_3",
+  "information_lifetime": "SLOW_CHANGING",
+  "word_count": 103,
+  "char_count": 746,
+  "processed_at": "2026-10-17T11:21:43.230933",
+  "processing_metadata": {
+    "extraction_method": "file_reader",
+    "deduplication_status": "unique",
+    "quality_flags": [],
+    "processing_time_ms": 15.903,
+    "document_hash": "b5d9ec67c4ee0680a97ed4b8d7cb8645d8c5dc5a4afad6fa1e1a794cb4067853"
+  },
+  "source": {
+    "url": "https://en.wikipedia.org/wiki/Economics",
+    "source_type": "web",
+    "license": null,
+    "author": null,
+    "publish_date": null
+  }
+}

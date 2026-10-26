@@ -1,0 +1,26 @@
+{
+  "document_id": "clean_20261017_0d536f54f5b1",
+  "raw_document_id": "raw_20261017_62e8c66db8fa",
+  "text": "History is the study and the documentation of the past. Events before the invention of writing systems are considered prehistory. \"History\" is an umbrella term comprising past events as well as the memory, discovery, collection, organization, presentation, and interpretation of information about these events. Historians place the past in context using historical sources such as written documents, oral accounts, art and material artifacts, and ecological markers. History is also an academic discipline which uses narrative to describe, examine, question, and analyze past events, and investigate their patterns of cause and effect.",
+  "language": "en",
+  "quality_score": 0.6,
+  "trust_level": "TIER_3",
+  "information_lifetime": "SLOW_CHANGING",
+  "word_count": 91,
+  "char_count": 635,
+  "processed_at": "2026-10-17T11:21:43.189333",
+  "processing_metadata": {
+    "extraction_method": "file_reader",
+    "deduplication_status": "unique",
+    "quality_flags": [],
+    "processing_time_ms": 22.895,
+    "document_hash": "0d536f54f5b10e27491e5a85ada9425eb37dd9d1325f6c8188f4d72db0f78a47"
+  },
+  "source": {
+    "url": "https://en.wikipedia.org/wiki/History",
+    "source_type": "web",
+    "license": null,
+    "author": null,
+    "publish_date": null
+  }
+}

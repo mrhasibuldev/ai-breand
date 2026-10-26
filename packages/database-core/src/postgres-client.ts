@@ -6,24 +6,25 @@ import type {
   QueryValues,
   TransactionManager,
 } from './index.js';
+import type { DatabaseConfig } from './config.js';
 
 const { Pool } = pg;
 
 export class PostgresClient implements DatabaseClient, TransactionManager {
   private pool: pg.Pool | null = null;
-  private readonly connectionString: string;
+  private readonly config: DatabaseConfig;
 
-  constructor(connectionString: string) {
-    this.connectionString = connectionString;
+  constructor(config: DatabaseConfig) {
+    this.config = config;
   }
 
   async connect(): Promise<void> {
     if (this.pool) return;
     this.pool = new Pool({
-      connectionString: this.connectionString,
-      max: 20,
+      connectionString: this.config.connectionString,
+      max: this.config.poolSize,
       idleTimeoutMillis: 30000,
-      connectionTimeoutMillis: 2000,
+      connectionTimeoutMillis: 10000, // Increased from 2000ms to 10000ms for Neon
     });
   }
 
@@ -61,13 +62,13 @@ export class PostgresClient implements DatabaseClient, TransactionManager {
     }
   }
 
-  async healthCheck(): Promise<{ readonly ready: boolean }> {
-    if (!this.pool) return { ready: false };
+  async healthCheck(): Promise<{ readonly ready: boolean; readonly error?: string }> {
+    if (!this.pool) return { ready: false, error: 'Pool not initialized' };
     try {
       await this.pool.query('SELECT 1');
       return { ready: true };
-    } catch {
-      return { ready: false };
+    } catch (error) {
+      return { ready: false, error: error instanceof Error ? error.message : String(error) };
     }
   }
 

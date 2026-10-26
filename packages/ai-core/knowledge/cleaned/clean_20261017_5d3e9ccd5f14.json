@@ -1,0 +1,26 @@
+{
+  "document_id": "clean_20261017_5d3e9ccd5f14",
+  "raw_document_id": "raw_20261017_8652d3797e53",
+  "text": "Geography is the study of places and the relationships between people and their environments. Geographers examine both the physical properties of Earth's surface and the human societies spread across it. They also examine how human culture interacts with the natural environment and the way that locations and places can have an impact on people. Geography seeks to understand where things are found, why they are there, and how they develop and change over time. Physical geography focuses on the study of natural processes and features such as landforms, climate, water bodies, soils, and vegetation. Human geography focuses on the study of human activities and their spatial organization.",
+  "language": "en",
+  "quality_score": 0.7000000000000001,
+  "trust_level": "TIER_3",
+  "information_lifetime": "SLOW_CHANGING",
+  "word_count": 107,
+  "char_count": 691,
+  "processed_at": "2026-10-17T11:21:43.298334",
+  "processing_metadata": {
+    "extraction_method": "file_reader",
+    "deduplication_status": "unique",
+    "quality_flags": [],
+    "processing_time_ms": 63.61600000000001,
+    "document_hash": "5d3e9ccd5f147fd008dc74f28d5f8542db8d2a2d637fa3e4994c7f0d9803cb80"
+  },
+  "source": {
+    "url": "https://en.wikipedia.org/wiki/Geography",
+    "source_type": "web",
+    "license": null,
+    "author": null,
+    "publish_date": null
+  }
+}

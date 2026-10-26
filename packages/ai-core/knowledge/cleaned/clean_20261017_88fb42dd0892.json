@@ -1,0 +1,26 @@
+{
+  "document_id": "clean_20261017_88fb42dd0892",
+  "raw_document_id": "raw_20261017_76af65cb1c9d",
+  "text": "Natural Language Processing (NLP) is a branch of AI that helps computers understand, interpret, and manipulate human language. It enables applications like translation, sentiment analysis, and chatbots.",
+  "language": "en",
+  "quality_score": 0.6,
+  "trust_level": "TIER_2",
+  "information_lifetime": "SLOW_CHANGING",
+  "word_count": 27,
+  "char_count": 202,
+  "processed_at": "2026-10-17T10:43:49.954001",
+  "processing_metadata": {
+    "extraction_method": "file_reader",
+    "deduplication_status": "unique",
+    "quality_flags": [],
+    "processing_time_ms": 3.5309999999999997,
+    "document_hash": "88fb42dd089235cf2742eb57d0635554c8d33cd1b1ed335fcbcd4f7f0670eb7d"
+  },
+  "source": {
+    "url": "https://example.com/nlp",
+    "source_type": "article",
+    "license": null,
+    "author": "NLP Research",
+    "publish_date": "2024-01-06"
+  }
+}

@@ -9,7 +9,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.117.3",
+    "@nexusai/ai-core": "workspace:*",
     "lucide-react": "^1.55.0",
     "next": "^15.0.0",
     "react": "^19.0.0",

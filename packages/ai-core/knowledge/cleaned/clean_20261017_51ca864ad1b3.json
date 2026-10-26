@@ -1,0 +1,28 @@
+{
+  "document_id": "clean_20261017_51ca864ad1b3",
+  "raw_document_id": "raw_20261017_8cda565f8faa",
+  "text": "বাংলাদেশ দক্ষিণ এশিয়ার একটি স্বাধীন রাষ্ট্র। এর রাজধানী ঢাকা এবং এটি বিশ্বের অন্যতম জনবহুল শহর। বাংলাদেশের সরকারি ভাষা বাংলা।",
+  "language": "bn",
+  "quality_score": 0.5,
+  "trust_level": "TIER_2",
+  "information_lifetime": "SLOW_CHANGING",
+  "word_count": 19,
+  "char_count": 126,
+  "processed_at": "2026-10-17T10:43:49.912247",
+  "processing_metadata": {
+    "extraction_method": "file_reader",
+    "deduplication_status": "unique",
+    "quality_flags": [
+      "too_short"
+    ],
+    "processing_time_ms": 2.2439999999999998,
+    "document_hash": "51ca864ad1b33ad4bf32b2c47df9ee16574a2ef8812677346b03a0b805d7c11f"
+  },
+  "source": {
+    "url": "https://example.com/bangladesh",
+    "source_type": "article",
+    "license": null,
+    "author": "Wikipedia",
+    "publish_date": "2024-01-10"
+  }
+}

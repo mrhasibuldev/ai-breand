@@ -1,0 +1,26 @@
+{
+  "document_id": "clean_20261017_d0c17ca81716",
+  "raw_document_id": "raw_20261017_9a9b67505500",
+  "text": "Chemistry is the scientific study of the properties and behavior of matter. It is a physical science within natural sciences that studies the chemical elements that make up matter and compounds made of atoms, molecules and ions: their composition, structure, properties, behavior and the changes they undergo during a reaction with other substances. Chemistry also addresses the nature of chemical bonds in chemical compounds. In the scope of its subject, chemistry occupies an intermediate position between physics and biology. It is sometimes called the central science because it provides a foundation for understanding both basic and applied scientific disciplines at a fundamental level.",
+  "language": "en",
+  "quality_score": 0.7000000000000001,
+  "trust_level": "TIER_3",
+  "information_lifetime": "SLOW_CHANGING",
+  "word_count": 103,
+  "char_count": 692,
+  "processed_at": "2026-10-17T11:21:43.163773",
+  "processing_metadata": {
+    "extraction_method": "file_reader",
+    "deduplication_status": "unique",
+    "quality_flags": [],
+    "processing_time_ms": 22.029,
+    "document_hash": "d0c17ca8171663f57e61015e79315799aee3636991f215eb796d9e4b5bf271fe"
+  },
+  "source": {
+    "url": "https://en.wikipedia.org/wiki/Chemistry",
+    "source_type": "web",
+    "license": null,
+    "author": null,
+    "publish_date": null
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "document_id": "clean_20261017_db469c7f3319",
+  "raw_document_id": "raw_20261017_ba0466cde35e",
+  "text": "The transformer is a deep learning architecture introduced in 2017. It uses self-attention mechanisms to process sequential data and has become the foundation for modern language models like GPT and BERT.",
+  "language": "en",
+  "quality_score": 0.7000000000000001,
+  "trust_level": "TIER_1",
+  "information_lifetime": "SLOW_CHANGING",
+  "word_count": 31,
+  "char_count": 204,
+  "processed_at": "2026-10-17T10:43:49.925051",
+  "processing_metadata": {
+    "extraction_method": "file_reader",
+    "deduplication_status": "unique",
+    "quality_flags": [],
+    "processing_time_ms": 2.2880000000000003,
+    "document_hash": "db469c7f331902ea5b37ae1b0f1a124af78709628ae54a108af74c8ee2202208"
+  },
+  "source": {
+    "url": "https://example.com/transformer-architecture",
+    "source_type": "documentation",
+    "license": null,
+    "author": "AI Research",
+    "publish_date": "2024-01-08"
+  }
+}

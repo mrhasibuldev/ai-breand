@@ -1,0 +1,26 @@
+{
+  "document_id": "clean_20261017_ec9d1dc4ac72",
+  "raw_document_id": "raw_20261017_c4daa55cc71b",
+  "text": "Mathematics is the study of topics such as quantity (numbers), structure, space, and change. There is a range of views among mathematicians and philosophers as to the exact scope and definition of mathematics. Mathematicians seek out patterns and use them to formulate new conjectures. Mathematicians resolve the truth or falsity of conjectures by mathematical proof. When mathematical structures are good models of real phenomena, mathematical reasoning can be used to provide insight or predictions about nature. Through the use of abstraction and logic, mathematics developed from counting, calculation, measurement, and the systematic study of the shapes and motions of physical objects. Practical mathematics has been a human activity for as far back as written records exist.",
+  "language": "en",
+  "quality_score": 0.7000000000000001,
+  "trust_level": "TIER_3",
+  "information_lifetime": "SLOW_CHANGING",
+  "word_count": 116,
+  "char_count": 781,
+  "processed_at": "2026-10-17T11:21:43.071454",
+  "processing_metadata": {
+    "extraction_method": "file_reader",
+    "deduplication_status": "unique",
+    "quality_flags": [],
+    "processing_time_ms": 20.192,
+    "document_hash": "ec9d1dc4ac7291d85db5df654e674eee82c899b2825c60c949d6fa889d9cc4ec"
+  },
+  "source": {
+    "url": "https://en.wikipedia.org/wiki/Mathematics",
+    "source_type": "web",
+    "license": null,
+    "author": null,
+    "publish_date": null
+  }
+}

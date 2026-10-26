@@ -7,10 +7,11 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./bridge": {
+      "types": "./bridge/index.d.ts",
+      "import": "./bridge/index.ts"
     }
-  },
-  "dependencies": {
-    "@nexusai/policy": "workspace:*"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",

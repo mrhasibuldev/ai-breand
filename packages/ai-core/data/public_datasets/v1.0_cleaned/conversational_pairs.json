@@ -1,0 +1,70 @@
+[
+  {
+    "question": "ঢাকা কী?",
+    "answer": "আমার নাম NexusAI।"
+  },
+  {
+    "question": "আমার নাম NexusAI।",
+    "answer": "কেমন আছ?"
+  },
+  {
+    "question": "কেমন আছ?",
+    "answer": "I can have conversations, answer questions, and assist you with various tasks."
+  },
+  {
+    "question": "I can have conversations, answer questions, and assist you with various tasks.",
+    "answer": "You're welcome! Is there anything else I can help you with?"
+  },
+  {
+    "question": "You're welcome! Is there anything else I can help you with?",
+    "answer": "What is the capital of Bangladesh?"
+  },
+  {
+    "question": "What is the capital of Bangladesh?",
+    "answer": "বাংলাদেশ কোথায়?"
+  },
+  {
+    "question": "বাংলাদেশ কোথায়?",
+    "answer": "বাংলায় কথা বলতে পারো?"
+  },
+  {
+    "question": "বাংলায় কথা বলতে পারো?",
+    "answer": "আমি তোমার সঙ্গে কথোপকথন করতে পারি, প্রশ্নের উত্তর দিতে পারি এবং সাহায্য করতে পারি।"
+  },
+  {
+    "question": "আমি তোমার সঙ্গে কথোপকথন করতে পারি, প্রশ্নের উত্তর দিতে পারি এবং সাহায্য করতে পারি।",
+    "answer": "ঢাকা বাংলাদেশের রাজধানী।"
+  },
+  {
+    "question": "ঢাকা বাংলাদেশের রাজধানী।",
+    "answer": "বাংলাদেশ দক্ষিণ এশিয়ায় অবস্থিত।"
+  },
+  {
+    "question": "বাংলাদেশ দক্ষিণ এশিয়ায় অবস্থিত।",
+    "answer": "ধন্যবাদ"
+  },
+  {
+    "question": "ধন্যবাদ",
+    "answer": "My name is NexusAI."
+  },
+  {
+    "question": "My name is NexusAI.",
+    "answer": "আমি সময়সূচী সম্পর্কে সাহায্য করতে পারি।"
+  },
+  {
+    "question": "আমি সময়সূচী সম্পর্কে সাহায্য করতে পারি।",
+    "answer": "তুমি কী করতে পারো?"
+  },
+  {
+    "question": "তুমি কী করতে পারো?",
+    "answer": "What is your name?"
+  },
+  {
+    "question": "What is your name?",
+    "answer": "তোমার নাম কি?"
+  },
+  {
+    "question": "তোমার নাম কি?",
+    "answer": "হ্যাঁ, আমি বাংলায় কথা বলতে পারি।"
+  }
+]

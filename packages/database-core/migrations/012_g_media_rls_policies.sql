@@ -1,0 +1,12 @@
+-- NEXUSAI - G-MEDIA RLS POLICIES
+-- Migration: 012_g_media_rls_policies
+-- Purpose: Enable RLS and create policies for g_media table
+-- Note: This migration is a no-op for Neon because:
+-- 1. RLS policies use Supabase-specific auth.uid() function
+-- 2. The "authenticated" role is Supabase-specific
+-- 3. Neon does not provide these Supabase Auth features
+-- Authorization will be handled at the application layer instead
+
+-- RLS is NOT enabled for Neon - application-level authorization will be used
+-- This migration is kept for compatibility with the migration numbering system
+-- but does not apply any RLS policies for Neon

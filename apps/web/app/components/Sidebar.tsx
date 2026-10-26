@@ -46,6 +46,18 @@ interface SidebarProps {
   activeNav: string;
   /** Callback function when navigation changes */
   onNavChange: (nav: string) => void;
+  /** Profile name */
+  profileName?: string;
+  /** Profile email */
+  profileEmail?: string;
+  /** Profile photo URL */
+  profilePhoto?: string | null;
+  /** Whether user is authenticated */
+  isAuthenticated?: boolean;
+  /** Callback when profile card is clicked */
+  onProfileClick?: () => void;
+  /** Callback when logout is requested */
+  onLogout?: () => void;
 }
 
 /**
@@ -65,7 +77,16 @@ const NAV_ITEMS: NavItem[] = [
  * Main navigation sidebar for the application.
  * Contains logo, search, navigation menu, and user profile.
  */
-export default function Sidebar({ activeNav, onNavChange }: SidebarProps) {
+export default function Sidebar({ 
+  activeNav, 
+  onNavChange,
+  profileName = 'Guest',
+  profileEmail = '',
+  profilePhoto = null,
+  isAuthenticated = false,
+  onProfileClick,
+  onLogout,
+}: SidebarProps) {
   // State for search input
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -87,7 +108,7 @@ export default function Sidebar({ activeNav, onNavChange }: SidebarProps) {
     <aside className="sidebar">
       {/* Logo Section */}
       <div className="sidebar-header">
-        <div className="logo">N</div>
+        <img src="/images/logo.png" alt="Nexus AI Logo" className="logo-image" />
         <span className="brand-name">Nexus AI</span>
       </div>
 
@@ -148,21 +169,39 @@ export default function Sidebar({ activeNav, onNavChange }: SidebarProps) {
       </nav>
 
       {/* User Profile Card */}
-      <div className="profile-card">
+      <div 
+        className="profile-card"
+        onClick={isAuthenticated ? undefined : onProfileClick}
+        style={isAuthenticated ? {} : { cursor: 'pointer' }}
+        title={isAuthenticated ? 'Profile' : 'Click to sign in'}
+      >
         <div className="profile-header">
           <div className="profile-avatar" aria-label="User avatar">
-            JM
+            {profilePhoto ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={profilePhoto} alt={profileName} className="profile-photo-image" />
+            ) : (
+              profileName.charAt(0).toUpperCase()
+            )}
           </div>
           <div className="profile-info">
-            <div className="profile-name">Judha Maygustya</div>
-            <div className="profile-email">judha.design@gmail.com</div>
+            <div className="profile-name">{profileName}</div>
+            <div className="profile-email">{profileEmail || (isAuthenticated ? 'Logged in' : 'Click to sign in')}</div>
           </div>
-          <button
-            className="profile-action"
-            aria-label="Profile settings"
-          >
-            <ChevronDown size={16} />
-          </button>
+          <div className="profile-action">
+            {isAuthenticated ? (
+              <button 
+                onClick={(e) => { e.stopPropagation(); onLogout?.(); }}
+                aria-label="Logout"
+                title="Logout"
+                style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px' }}
+              >
+                <X size={16} />
+              </button>
+            ) : (
+              <ChevronDown size={16} />
+            )}
+          </div>
         </div>
       </div>
     </aside>

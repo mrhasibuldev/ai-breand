@@ -1,0 +1,28 @@
+{
+  "document_id": "clean_20261017_f1edd2fa55a6",
+  "raw_document_id": "raw_20261017_c134a98c42cd",
+  "text": "ঢাকা বাংলাদেশের রাজধানী এবং বৃহত্তম শহর। এটি বুড়িগঙ্গা নদীর তীরে অবস্থিত এবং একটি প্রধান সাংস্কৃতিক ও অর্থনৈতিক কেন্দ্র।",
+  "language": "bn",
+  "quality_score": 0.5,
+  "trust_level": "TIER_2",
+  "information_lifetime": "SLOW_CHANGING",
+  "word_count": 18,
+  "char_count": 121,
+  "processed_at": "2026-10-17T10:43:49.944766",
+  "processing_metadata": {
+    "extraction_method": "file_reader",
+    "deduplication_status": "unique",
+    "quality_flags": [
+      "too_short"
+    ],
+    "processing_time_ms": 2.117,
+    "document_hash": "f1edd2fa55a6e1243fb48d0fff24b16b707b370f79d2a6faadceefd9d73b92ec"
+  },
+  "source": {
+    "url": "https://example.com/dhaka",
+    "source_type": "article",
+    "license": null,
+    "author": "City Guide",
+    "publish_date": "2024-01-11"
+  }
+}

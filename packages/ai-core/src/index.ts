@@ -106,3 +106,27 @@ export async function runIntelligencePipeline(
   await pipeline.action.dispatch(plan, validated);
   return { response: validated, memoryCandidate: await pipeline.memory.build(input, validated) };
 }
+
+// NEW AI Brain Architecture exports
+export * from '../core/types.js';
+export { modelRegistry } from '../model-registry/index.js';
+export { cpuRuntime } from '../inference/cpu-runtime.js';
+export { modelRouter } from '../model-router/index.js';
+export { aiOrchestrator } from '../orchestrator/index.js';
+export { contextManager } from '../context/index.js';
+export { memory } from '../memory/index.js';
+export { toolRegistry } from '../tools/index.js';
+export { toolPermissionSystem } from '../tools/permission.js';
+export { aiEvaluation } from '../evaluation/index.js';
+export { aiSafetyLayer } from '../safety/index.js';
+export { modelVersioning } from '../versioning/index.js';
+export { aiObservability } from '../observability/index.js';
+export { createLocalModelAdapter } from '../model-adapter/local-adapter.js';
+export {
+  BrainServiceClient,
+  brainServiceClient,
+  InferenceRequest,
+  InferenceResponse,
+  HealthResponse,
+} from '../bridge/index.js';
+export type { ModelStatus as BrainModelStatus } from '../bridge/types.js';

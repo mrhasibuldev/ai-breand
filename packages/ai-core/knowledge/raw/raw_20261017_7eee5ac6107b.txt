@@ -1,0 +1,1 @@
+A neural network is a computational model inspired by the biological neural networks in the human brain. It consists of interconnected nodes (neurons) organized in layers that process information using connectionist approaches.

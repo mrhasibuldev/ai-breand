@@ -1,0 +1,26 @@
+{
+  "document_id": "clean_20261017_9f628b0aab98",
+  "raw_document_id": "raw_20261017_f8be3d215563",
+  "text": "Machine Learning is a subset of AI that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and learn from it.",
+  "language": "en",
+  "quality_score": 0.6,
+  "trust_level": "TIER_2",
+  "information_lifetime": "SLOW_CHANGING",
+  "word_count": 33,
+  "char_count": 205,
+  "processed_at": "2026-10-17T10:43:49.939287",
+  "processing_metadata": {
+    "extraction_method": "file_reader",
+    "deduplication_status": "unique",
+    "quality_flags": [],
+    "processing_time_ms": 2.076,
+    "document_hash": "9f628b0aab9824a6ca0aa074cab9f03c763181e9fc74829e9bcf6fd468f952d4"
+  },
+  "source": {
+    "url": "https://example.com/machine-learning",
+    "source_type": "article",
+    "license": null,
+    "author": "ML Guide",
+    "publish_date": "2024-01-07"
+  }
+}

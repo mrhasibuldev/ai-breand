@@ -1,4 +1,6 @@
 import Fastify, { type FastifyInstance, type FastifyReply, type FastifyRequest } from 'fastify';
+import cookie from '@fastify/cookie';
+import cors from '@fastify/cors';
 import { randomUUID } from 'node:crypto';
 import { API_PREFIX, INTERNAL_PREFIX, apiError, apiSuccess } from '@nexusai/contracts';
 import { readRuntimeConfig } from '@nexusai/config';
@@ -26,13 +28,13 @@ import {
   type IdempotentResult,
 } from './idempotency.js';
 
-export function buildApp(
+export async function buildApp(
   options: {
     readonly identity?: SessionIdentityAdapter;
     readonly env?: NodeJS.ProcessEnv;
     readonly rateLimit?: RateLimitBoundary;
   } = {},
-): FastifyInstance {
+): Promise<FastifyInstance> {
   const config = readRuntimeConfig(options.env ?? process.env);
   if (config.nodeEnv === 'production') {
     throw new Error(
@@ -41,6 +43,19 @@ export function buildApp(
   }
   const store = new SliceStore(config.nodeEnv);
   const app = Fastify({ logger: false, genReqId: () => randomUUID() });
+
+  // Register CORS for frontend credentials
+  await app.register(cors, {
+    origin: config.webOrigin || 'http://localhost:3000',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  });
+
+  // Register cookie plugin for HTTP-only session cookies
+  await app.register(cookie, {
+    secret: options.env?.COOKIE_SECRET || process.env.COOKIE_SECRET || 'nexus-cookie-secret-change-in-production',
+  });
   const idempotency = new InMemoryIdempotencyStore();
   const rateLimit = options.rateLimit ?? new InMemoryAuthRateLimit();
   const devAuth = new DevAuthService(store, config.nodeEnv);
@@ -204,7 +219,6 @@ export function buildApp(
   });
 
   app.get('/health/live', async () => ({ status: 'ok', service: 'api' }));
-  app.options('*', async (_request, reply) => reply.code(204).send());
   app.get('/health/ready', async (_request, reply) =>
     config.ready
       ? { status: 'ready', service: 'api' }
@@ -213,90 +227,110 @@ export function buildApp(
   app.get(API_PREFIX, async (request) =>
     apiSuccess({ status: 'ok', api: API_PREFIX, phase: 'phase13-part2' }, request.id),
   );
-  app.post(`${API_PREFIX}/auth/register`, async (request, reply) => {
-    const body = authBody(request.body);
-    await enforceAuthLimit(request, 'register', body.email);
-    const result = await runIdempotent({
-      request,
-      scope: 'unauthenticated',
-      operation: 'POST /api/v1/auth/register',
-      normalizedRequest: body,
-      run: async () => {
-        try {
-          const auth = requireDevAuth();
-          const principal = await auth.register(body);
-          return {
-            statusCode: 201,
-            data: { account_id: principal.accountId, authenticated: true },
-            headers: { 'set-cookie': sessionCookie(auth.sessionToken(principal)) },
-          };
-        } catch (error) {
-          if (error instanceof SliceValidationError) throw error;
-          throw new FoundationHttpError(409, 'conflict', 'Unable to create account');
-        }
-      },
+  // Register auth routes
+  // Use database-backed routes when DATABASE_URL is configured, otherwise use DevAuthService
+  if (process.env.DATABASE_URL) {
+    try {
+      const { authRoutes } = await import('./routes/auth.js');
+      const { profileRoutes } = await import('./routes/profile.js');
+      const { conversationRoutes } = await import('./routes/conversations.js');
+      const { aiRoutes } = await import('./routes/ai.js');
+      authRoutes(app);
+      profileRoutes(app);
+      conversationRoutes(app);
+      aiRoutes(app);
+      console.log('[API] Database-backed auth routes registered');
+    } catch (error) {
+      console.log('[API] Database-backed routes not available:', error);
+    }
+  } else {
+    // Use DevAuthService when no database is configured
+    app.post(`${API_PREFIX}/auth/register`, async (request, reply) => {
+      const body = authBody(request.body);
+      await enforceAuthLimit(request, 'register', body.email);
+      const result = await runIdempotent({
+        request,
+        scope: 'unauthenticated',
+        operation: 'POST /api/v1/auth/register',
+        normalizedRequest: body,
+        run: async () => {
+          try {
+            const auth = requireDevAuth();
+            const principal = await auth.register(body);
+            return {
+              statusCode: 201,
+              data: { account_id: principal.accountId, authenticated: true },
+              headers: { 'set-cookie': sessionCookie(auth.sessionToken(principal)) },
+            };
+          } catch (error) {
+            if (error instanceof SliceValidationError) throw error;
+            throw new FoundationHttpError(409, 'conflict', 'Unable to create account');
+          }
+        },
+      });
+      return sendIdempotent(reply, request, result);
     });
-    return sendIdempotent(reply, request, result);
-  });
-  app.post(`${API_PREFIX}/auth/login`, async (request, reply) => {
-    const body = authBody(request.body);
-    await enforceAuthLimit(request, 'login', body.email);
-    const result = await runIdempotent({
-      request,
-      scope: 'unauthenticated',
-      operation: 'POST /api/v1/auth/login',
-      normalizedRequest: body,
-      run: async () => {
-        try {
-          const auth = requireDevAuth();
-          const principal = await auth.login(body);
-          return {
-            statusCode: 200,
-            data: { account_id: principal.accountId, authenticated: true },
-            headers: { 'set-cookie': sessionCookie(auth.sessionToken(principal)) },
-          };
-        } catch {
-          throw new FoundationHttpError(401, 'invalid_auth_proof', 'Invalid sign-in details');
-        }
-      },
+    app.post(`${API_PREFIX}/auth/login`, async (request, reply) => {
+      const body = authBody(request.body);
+      await enforceAuthLimit(request, 'login', body.email);
+      const result = await runIdempotent({
+        request,
+        scope: 'unauthenticated',
+        operation: 'POST /api/v1/auth/login',
+        normalizedRequest: body,
+        run: async () => {
+          try {
+            const auth = requireDevAuth();
+            const principal = await auth.login(body);
+            return {
+              statusCode: 200,
+              data: { account_id: principal.accountId, authenticated: true },
+              headers: { 'set-cookie': sessionCookie(auth.sessionToken(principal)) },
+            };
+          } catch {
+            throw new FoundationHttpError(401, 'invalid_auth_proof', 'Invalid sign-in details');
+          }
+        },
+      });
+      return sendIdempotent(reply, request, result);
     });
-    return sendIdempotent(reply, request, result);
-  });
-  app.post(`${API_PREFIX}/auth/logout`, async (request, reply) => {
-    const body = logoutBody(request.body);
-    const scope = await identity.logoutReplayScope(request).catch(() => {
-      throw new FoundationHttpError(503, 'auth_dependency_unavailable', 'Request failed');
+    app.post(`${API_PREFIX}/auth/logout`, async (request, reply) => {
+      const body = logoutBody(request.body);
+      const scope = await identity.logoutReplayScope(request).catch(() => {
+        throw new FoundationHttpError(503, 'auth_dependency_unavailable', 'Request failed');
+      });
+      if (!scope) throw new FoundationHttpError(401, 'unauthenticated', 'Authentication is required');
+      await enforceRateBuckets([
+        { key: `auth:logout:ip:${request.ip}`, maximumAttempts: 20, windowSeconds: 60 },
+        { key: `auth:logout:session:${scope}`, maximumAttempts: 20, windowSeconds: 60 },
+      ]);
+      const result = await runIdempotent({
+        request,
+        scope: `session:${scope}`,
+        operation: 'POST /api/v1/auth/logout',
+        normalizedRequest: body,
+        run: async () => {
+          try {
+            const principal = await requireUser(request);
+            if (!principal.sessionId)
+              throw new FoundationHttpError(401, 'unauthenticated', 'Authentication is required');
+            const result = await identity.logout(principal);
+            return {
+              statusCode: 204,
+              ...(result?.clearSessionCookie
+                ? { headers: { 'set-cookie': result.clearSessionCookie } }
+                : {}),
+            };
+          } catch (error) {
+            if (error instanceof FoundationHttpError) throw error;
+            throw new FoundationHttpError(503, 'auth_dependency_unavailable', 'Request failed');
+          }
+        },
+      });
+      return sendIdempotent(reply, request, result);
     });
-    if (!scope) throw new FoundationHttpError(401, 'unauthenticated', 'Authentication is required');
-    await enforceRateBuckets([
-      { key: `auth:logout:ip:${request.ip}`, maximumAttempts: 20, windowSeconds: 60 },
-      { key: `auth:logout:session:${scope}`, maximumAttempts: 20, windowSeconds: 60 },
-    ]);
-    const result = await runIdempotent({
-      request,
-      scope: `session:${scope}`,
-      operation: 'POST /api/v1/auth/logout',
-      normalizedRequest: body,
-      run: async () => {
-        try {
-          const principal = await requireUser(request);
-          if (!principal.sessionId)
-            throw new FoundationHttpError(401, 'unauthenticated', 'Authentication is required');
-          const result = await identity.logout(principal);
-          return {
-            statusCode: 204,
-            ...(result?.clearSessionCookie
-              ? { headers: { 'set-cookie': result.clearSessionCookie } }
-              : {}),
-          };
-        } catch (error) {
-          if (error instanceof FoundationHttpError) throw error;
-          throw new FoundationHttpError(503, 'auth_dependency_unavailable', 'Request failed');
-        }
-      },
-    });
-    return sendIdempotent(reply, request, result);
-  });
+    console.log('[API] DevAuthService routes registered');
+  }
   app.get(`${API_PREFIX}/me`, async (request, reply) => {
     const principal = await requireUser(request);
     return sendSuccess(reply, request, {
@@ -440,6 +474,7 @@ export function buildApp(
     },
     { prefix: INTERNAL_PREFIX },
   );
+
   return app;
 }
 

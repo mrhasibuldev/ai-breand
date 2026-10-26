@@ -1,0 +1,26 @@
+{
+  "document_id": "clean_20261017_2e495036679b",
+  "raw_document_id": "raw_20261017_96392c6a7fcc",
+  "text": "Physics is the natural science that studies matter, its fundamental constituents, its motion and behavior through space and time, and the related entities of energy and force. Physics is one of the most fundamental scientific disciplines, with its main goal being to understand how the universe behaves. A scientist who specializes in the field of physics is called a physicist. Physics can be described as the study of matter, energy, and the interaction between them. It encompasses many subfields, including classical mechanics, thermodynamics, electromagnetism, quantum mechanics, and relativity. Physics has applications in many fields, including engineering, medicine, and technology.",
+  "language": "en",
+  "quality_score": 0.6,
+  "trust_level": "TIER_3",
+  "information_lifetime": "SLOW_CHANGING",
+  "word_count": 99,
+  "char_count": 690,
+  "processed_at": "2026-10-17T11:21:43.117008",
+  "processing_metadata": {
+    "extraction_method": "file_reader",
+    "deduplication_status": "unique",
+    "quality_flags": [],
+    "processing_time_ms": 18.463,
+    "document_hash": "2e495036679bd7cc1a116c5e3d88a299bc180467c4084340f43367457a0e6b03"
+  },
+  "source": {
+    "url": "https://en.wikipedia.org/wiki/Physics",
+    "source_type": "web",
+    "license": null,
+    "author": null,
+    "publish_date": null
+  }
+}

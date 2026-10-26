@@ -15,9 +15,11 @@
  * <MainContent activeNav="home" onNavChange={(nav) => console.log(nav)} />
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Zap, Image, FileText, Send, Home, Compass, Library, MessageSquare } from 'lucide-react';
 import ChatInterface from './ChatInterface';
+import HistoryPage from './HistoryPage';
+import ProfileEdit from './ProfileEdit';
 
 /**
  * Action pill configuration for input field
@@ -51,6 +53,18 @@ interface MainContentProps {
   activeNav: string;
   /** Callback function when navigation changes */
   onNavChange: (nav: string) => void;
+  /** Profile name */
+  profileName: string;
+  /** Profile email */
+  profileEmail: string;
+  /** Profile photo URL */
+  profilePhoto: string | null;
+  /** Callback to save profile */
+  onProfileSave: (name: string, email: string, photoUrl: string | null) => void;
+  /** Whether user is authenticated */
+  isAuthenticated: boolean;
+  /** Callback to open auth modal */
+  onAuthRequired: () => void;
 }
 
 /**
@@ -78,13 +92,33 @@ const MOBILE_NAV_ITEMS: MobileNavItem[] = [
  * Main content area for the application.
  * Contains greeting, input field, chat interface, and mobile navigation.
  */
-export default function MainContent({ activeNav, onNavChange }: MainContentProps) {
+export default function MainContent({
+  activeNav,
+  onNavChange,
+  profileName: propProfileName,
+  profileEmail: propProfileEmail,
+  profilePhoto: propProfilePhoto,
+  onProfileSave,
+  isAuthenticated,
+  onAuthRequired,
+}: MainContentProps) {
   // State for input field value
   const [inputValue, setInputValue] = useState('');
-  // State for message to pass to chat
-  const [pendingMessage, setPendingMessage] = useState<string | null>(null);
   // State for active action pill
   const [activePill, setActivePill] = useState<string | null>(null);
+  // State for profile edit dialog
+  const [isProfileEditOpen, setIsProfileEditOpen] = useState(false);
+  // Local state for profile data
+  const [localProfileName, setLocalProfileName] = useState(propProfileName);
+  const [localProfileEmail, setLocalProfileEmail] = useState(propProfileEmail);
+  const [localProfilePhoto, setLocalProfilePhoto] = useState(propProfilePhoto);
+
+  // Sync local profile state with props
+  useEffect(() => {
+    setLocalProfileName(propProfileName);
+    setLocalProfileEmail(propProfileEmail);
+    setLocalProfilePhoto(propProfilePhoto);
+  }, [propProfileName, propProfileEmail, propProfilePhoto]);
 
   /**
    * Handle form submission - redirect to chat with message
@@ -92,10 +126,30 @@ export default function MainContent({ activeNav, onNavChange }: MainContentProps
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (inputValue.trim()) {
-      setPendingMessage(inputValue);
+      // Store message in localStorage for ChatInterface to pick up (functional fix)
+      localStorage.setItem('nexusai_pending_message', inputValue);
       onNavChange('chat');
       setInputValue('');
     }
+  };
+
+  /**
+   * Handle profile edit open
+   */
+  const handleProfileClick = () => {
+    if (!isAuthenticated) {
+      onAuthRequired();
+    } else {
+      setIsProfileEditOpen(true);
+    }
+  };
+
+  /**
+   * Handle profile save
+   */
+  const handleProfileSave = (name: string, email: string, photoUrl: string | null) => {
+    onProfileSave(name, email, photoUrl);
+    setIsProfileEditOpen(false);
   };
 
   /**
@@ -105,10 +159,57 @@ export default function MainContent({ activeNav, onNavChange }: MainContentProps
     return (
       <main className="main-content">
         <div className="content-area chat-mode">
-          <ChatInterface {...(pendingMessage ? { initialMessage: pendingMessage } : {})} />
+          <ChatInterface />
         </div>
         {/* Mobile Navigation */}
-        <MobileNavigation activeNav={activeNav} onNavChange={onNavChange} />
+        <MobileNavigation
+          activeNav={activeNav}
+          onNavChange={onNavChange}
+          profileName={localProfileName}
+          profilePhoto={localProfilePhoto}
+          onProfileClick={handleProfileClick}
+        />
+
+        {/* Profile Edit Dialog */}
+        {isProfileEditOpen && (
+          <ProfileEdit
+            initialName={localProfileName}
+            initialEmail={localProfileEmail}
+            initialPhotoUrl={localProfilePhoto}
+            onSave={handleProfileSave}
+            onClose={() => setIsProfileEditOpen(false)}
+          />
+        )}
+      </main>
+    );
+  }
+
+  /**
+   * Render History page
+   */
+  if (activeNav === 'history') {
+    return (
+      <main className="main-content">
+        <HistoryPage onNavChange={onNavChange} />
+        {/* Mobile Navigation */}
+        <MobileNavigation
+          activeNav={activeNav}
+          onNavChange={onNavChange}
+          profileName={localProfileName}
+          profilePhoto={localProfilePhoto}
+          onProfileClick={handleProfileClick}
+        />
+
+        {/* Profile Edit Dialog */}
+        {isProfileEditOpen && (
+          <ProfileEdit
+            initialName={localProfileName}
+            initialEmail={localProfileEmail}
+            initialPhotoUrl={localProfilePhoto}
+            onSave={handleProfileSave}
+            onClose={() => setIsProfileEditOpen(false)}
+          />
+        )}
       </main>
     );
   }
@@ -128,7 +229,24 @@ export default function MainContent({ activeNav, onNavChange }: MainContentProps
           </div>
         </div>
         {/* Mobile Navigation */}
-        <MobileNavigation activeNav={activeNav} onNavChange={onNavChange} />
+        <MobileNavigation
+          activeNav={activeNav}
+          onNavChange={onNavChange}
+          profileName={localProfileName}
+          profilePhoto={localProfilePhoto}
+          onProfileClick={handleProfileClick}
+        />
+
+        {/* Profile Edit Dialog */}
+        {isProfileEditOpen && (
+          <ProfileEdit
+            initialName={localProfileName}
+            initialEmail={localProfileEmail}
+            initialPhotoUrl={localProfilePhoto}
+            onSave={handleProfileSave}
+            onClose={() => setIsProfileEditOpen(false)}
+          />
+        )}
       </main>
     );
   }
@@ -150,7 +268,24 @@ export default function MainContent({ activeNav, onNavChange }: MainContentProps
       </div>
 
       {/* Mobile Navigation */}
-      <MobileNavigation activeNav={activeNav} onNavChange={onNavChange} />
+      <MobileNavigation
+        activeNav={activeNav}
+        onNavChange={onNavChange}
+        profileName={localProfileName}
+        profilePhoto={localProfilePhoto}
+        onProfileClick={handleProfileClick}
+      />
+
+      {/* Profile Edit Dialog */}
+      {isProfileEditOpen && (
+        <ProfileEdit
+          initialName={localProfileName}
+          initialEmail={localProfileEmail}
+          initialPhotoUrl={localProfilePhoto}
+          onSave={handleProfileSave}
+          onClose={() => setIsProfileEditOpen(false)}
+        />
+      )}
     </main>
   );
 }
@@ -265,9 +400,18 @@ function InputSection({
 interface MobileNavigationProps {
   activeNav: string;
   onNavChange: (nav: string) => void;
+  profileName: string;
+  profilePhoto: string | null;
+  onProfileClick: () => void;
 }
 
-function MobileNavigation({ activeNav, onNavChange }: MobileNavigationProps) {
+function MobileNavigation({
+  activeNav,
+  onNavChange,
+  profileName,
+  profilePhoto,
+  onProfileClick,
+}: MobileNavigationProps) {
   return (
     <nav className="mobile-nav" aria-label="Mobile navigation">
       <div className="mobile-nav-items">
@@ -287,9 +431,20 @@ function MobileNavigation({ activeNav, onNavChange }: MobileNavigationProps) {
           );
         })}
       </div>
-      <div className="mobile-nav-profile" aria-label="User profile">
-        <div className="mobile-nav-avatar">JM</div>
-      </div>
+      <button
+        className="mobile-nav-profile"
+        onClick={onProfileClick}
+        aria-label="User profile"
+      >
+        <div className="mobile-nav-avatar">
+          {profilePhoto ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={profilePhoto} alt={profileName} className="mobile-nav-avatar-img" />
+          ) : (
+            profileName.charAt(0).toUpperCase()
+          )}
+        </div>
+      </button>
     </nav>
   );
 }

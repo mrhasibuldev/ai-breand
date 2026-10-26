@@ -1,0 +1,26 @@
+{
+  "document_id": "clean_20261017_be6a4e9d7508",
+  "raw_document_id": "raw_20261017_1abaa67c3d5a",
+  "text": "Artificial Intelligence (AI) is the simulation of human intelligence processes by machines, especially computer systems. These processes include learning, reasoning, and self-correction.",
+  "language": "en",
+  "quality_score": 0.6,
+  "trust_level": "TIER_2",
+  "information_lifetime": "SLOW_CHANGING",
+  "word_count": 22,
+  "char_count": 186,
+  "processed_at": "2026-10-17T10:43:49.916709",
+  "processing_metadata": {
+    "extraction_method": "file_reader",
+    "deduplication_status": "unique",
+    "quality_flags": [],
+    "processing_time_ms": 2.002,
+    "document_hash": "be6a4e9d7508b6849fe78e3f6ca3ad7a67d613e239675010d167a819c32209c8"
+  },
+  "source": {
+    "url": "https://example.com/ai-definition",
+    "source_type": "article",
+    "license": null,
+    "author": "Tech Encyclopedia",
+    "publish_date": "2024-01-05"
+  }
+}

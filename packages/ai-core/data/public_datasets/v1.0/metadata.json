@@ -1,0 +1,15 @@
+{
+  "source": "NexusAI sample dataset",
+  "languages": [
+    "Bengali",
+    "English",
+    "Mixed"
+  ],
+  "created": "2025",
+  "license": "Internal",
+  "version": "v1.0",
+  "train_samples": 19,
+  "val_samples": 2,
+  "test_samples": 3,
+  "total_samples": 24
+}

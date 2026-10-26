@@ -1,0 +1,26 @@
+{
+  "document_id": "clean_20261017_10a30facda53",
+  "raw_document_id": "raw_20261017_600b5f4914ec",
+  "text": "Biology is the scientific study of life. It is a natural science with a broad scope but has several unifying themes that tie it together as a single, coherent field. For instance, all organisms are made up of cells that process hereditary information encoded in genes, which can be transmitted to future generations. Another major theme is evolution, which explains the unity and diversity of life. Energy processing is also important to life as it allows organisms to move, grow, and reproduce. Finally, all organisms are able to regulate their internal environments. Biologists study the structure, function, growth, origin, evolution, and distribution of living organisms.",
+  "language": "en",
+  "quality_score": 0.7000000000000001,
+  "trust_level": "TIER_3",
+  "information_lifetime": "SLOW_CHANGING",
+  "word_count": 105,
+  "char_count": 675,
+  "processed_at": "2026-10-17T11:21:43.139224",
+  "processing_metadata": {
+    "extraction_method": "file_reader",
+    "deduplication_status": "unique",
+    "quality_flags": [],
+    "processing_time_ms": 19.438,
+    "document_hash": "10a30facda537069043d0d2e4cef0b22e98cd46cbc45cc7be7633f5830fc6b25"
+  },
+  "source": {
+    "url": "https://en.wikipedia.org/wiki/Biology",
+    "source_type": "web",
+    "license": null,
+    "author": null,
+    "publish_date": null
+  }
+}

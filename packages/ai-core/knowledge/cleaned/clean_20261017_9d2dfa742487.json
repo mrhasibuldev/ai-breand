@@ -1,0 +1,26 @@
+{
+  "document_id": "clean_20261017_9d2dfa742487",
+  "raw_document_id": "raw_20261017_4aed21127ddc",
+  "text": "Science is a systematic enterprise that builds and organizes knowledge in the form of testable explanations and predictions about the universe. Modern science is typically divided into three major branches: natural science (e.g., biology, chemistry, physics), which studies the natural world; social science (e.g., economics, psychology, sociology), which studies individuals and societies; and formal science (e.g., logic, mathematics, theoretical computer science), which studies abstract systems. There is disagreement whether the formal sciences are science disciplines, because they do not rely on empirical evidence. Applied science is the use of scientific processes and knowledge as the means to achieve a particular practical or useful result. This includes a broad range of applied science-related fields, including engineering and medicine.",
+  "language": "en",
+  "quality_score": 0.7000000000000001,
+  "trust_level": "TIER_3",
+  "information_lifetime": "SLOW_CHANGING",
+  "word_count": 117,
+  "char_count": 851,
+  "processed_at": "2026-10-17T11:21:43.046259",
+  "processing_metadata": {
+    "extraction_method": "file_reader",
+    "deduplication_status": "unique",
+    "quality_flags": [],
+    "processing_time_ms": 49.674,
+    "document_hash": "9d2dfa74248742e9f41dba7dfc1389865fc805833228412ed163b18b48675530"
+  },
+  "source": {
+    "url": "https://en.wikipedia.org/wiki/Science",
+    "source_type": "web",
+    "license": null,
+    "author": null,
+    "publish_date": null
+  }
+}

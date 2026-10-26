@@ -1,0 +1,184 @@
+{
+  "basic_generation": [
+    {
+      "prompt": "The sky is",
+      "generated": "the sky is",
+      "success": true
+    },
+    {
+      "prompt": "I love",
+      "generated": "i love",
+      "success": true
+    },
+    {
+      "prompt": "Hello",
+      "generated": "",
+      "success": true
+    },
+    {
+      "prompt": "What is",
+      "generated": "what is",
+      "success": true
+    }
+  ],
+  "unseen_prompts": [
+    {
+      "prompt": "The weather today is",
+      "generated": "the is",
+      "success": true
+    },
+    {
+      "prompt": "Can you help me with",
+      "generated": "can you help me",
+      "success": true
+    },
+    {
+      "prompt": "What is the meaning of",
+      "generated": "what is the of",
+      "success": true
+    },
+    {
+      "prompt": "I want to learn about",
+      "generated": "i to learn",
+      "success": true
+    },
+    {
+      "prompt": "Tell me a story about",
+      "generated": "tell me a",
+      "success": true
+    }
+  ],
+  "question_answering": [
+    {
+      "question": "What is the capital of France?",
+      "answer": "what is the capital of france?",
+      "success": true
+    },
+    {
+      "question": "What is water made of?",
+      "answer": "what is water made of?",
+      "success": true
+    },
+    {
+      "question": "What is gravity?",
+      "answer": "what is gravity?",
+      "success": true
+    },
+    {
+      "question": "What is a computer?",
+      "answer": "what is a computer?",
+      "success": true
+    },
+    {
+      "question": "What is artificial intelligence?",
+      "answer": "what is artificial intelligence?",
+      "success": true
+    }
+  ],
+  "multi_turn_conversation": [
+    {
+      "turn": 1,
+      "user": "Hello",
+      "assistant": "",
+      "success": true
+    },
+    {
+      "turn": 2,
+      "user": "How are you?",
+      "assistant": "how are you?",
+      "success": true
+    },
+    {
+      "turn": 3,
+      "user": "What can you do?",
+      "assistant": "how are you? how are you? what can you",
+      "success": true
+    }
+  ],
+  "context_retention": {
+    "prompt": "My name is Alice. I live in Paris. What is my name?",
+    "response": "is i in what is name?",
+    "contains_name": false,
+    "success": true
+  },
+  "repetition_detection": {
+    "results": [
+      {
+        "prompt": "The sky is blue",
+        "generated": "the sky is blue",
+        "is_repetition": true,
+        "success": true
+      },
+      {
+        "prompt": "I love programming",
+        "generated": "i love programming",
+        "is_repetition": true,
+        "success": true
+      },
+      {
+        "prompt": "Hello world",
+        "generated": "world",
+        "is_repetition": false,
+        "success": true
+      }
+    ],
+    "repetition_count": 2,
+    "total_tests": 3,
+    "repetition_rate": 0.6666666666666666
+  },
+  "unknown_questions": [
+    {
+      "question": "What is the meaning of life?",
+      "answer": "what is the of",
+      "success": true
+    },
+    {
+      "question": "Who invented the internet?",
+      "answer": "the internet?",
+      "success": true
+    },
+    {
+      "question": "What is the stock price of Apple?",
+      "answer": "what is the price of",
+      "success": true
+    },
+    {
+      "question": "What is quantum entanglement?",
+      "answer": "what is",
+      "success": true
+    }
+  ],
+  "invalid_input": [
+    {
+      "input": "",
+      "generated": "",
+      "success": true
+    },
+    {
+      "input": "   ",
+      "generated": "",
+      "success": true
+    },
+    {
+      "input": "!!!@@@###",
+      "generated": "",
+      "success": true
+    },
+    {
+      "input": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...",
+      "generated": "",
+      "success": true
+    }
+  ],
+  "inference_latency": {
+    "avg_latency_ms": 54.779696464538574,
+    "min_latency_ms": 46.39029502868652,
+    "max_latency_ms": 65.90843200683594,
+    "runs": 10
+  },
+  "memory_usage": {
+    "memory_before_mb": 213.19921875,
+    "memory_after_mb": 213.61328125,
+    "memory_increase_mb": 0.4140625
+  }
+}
