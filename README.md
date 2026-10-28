@@ -272,6 +272,15 @@ graph TB
 **packages/config/** - Configuration utilities
 - `src/config.ts` - Runtime configuration reading
 
+**packages/ai-core/** - AI Brain implementation
+- `ml-service/main.py` - Python FastAPI ML service
+- `models/` - Model checkpoints (checkpoints_medium/final_model.pt is active)
+- `tokenizer/` - Tokenizer implementation (SimpleTokenizer)
+- `neural/` - Neural network architectures (MediumTransformer, SmallTransformer)
+- `training/` - Training scripts and pipeline
+- `evaluation/` - Evaluation scripts
+- `inference/` - Text generation logic
+
 ### Root Files
 
 - `package.json` - Root package.json with pnpm workspace configuration
@@ -384,8 +393,18 @@ npm run dev
 ```
 Server runs on http://localhost:3000
 
-**Terminal 3 - AI Service (if available):**
-Start your Python AI service at http://127.0.0.1:8000
+**Terminal 3 - AI Service:**
+```bash
+cd packages/ai-core
+python ml-service/main.py
+```
+Server runs on http://127.0.0.1:8000
+
+The AI service requires Python dependencies. Install them first:
+```bash
+cd packages/ai-core
+pip install torch fastapi uvicorn pydantic
+```
 
 ### Access the Application
 - Frontend: http://localhost:3000
@@ -546,14 +565,14 @@ For complete API documentation, see [docs/05_BACKEND_API_REFERENCE.md](./docs/05
 
 ### AI System Overview
 
-NexusAI does not run AI models internally. The application acts as a proxy to an external Python FastAPI/ML service.
+NexusAI includes an internal Python ML service with a custom-trained Transformer model. The ML service is implemented in the `packages/ai-core/` monorepo package.
 
 ### AI Service Configuration
 
-- **Type**: External Python FastAPI/ML service
+- **Type**: Internal Python FastAPI/ML service (packages/ai-core/ml-service/main.py)
 - **Default URL**: http://127.0.0.1:8000
 - **Configuration**: Configurable via AI_SERVICE_URL environment variable
-- **Implementation Location**: apps/api/src/routes/ai.ts
+- **Implementation Location**: packages/ai-core/ml-service/main.py
 - **Integration Method**: HTTP proxy with POST requests
 
 ### AI Request Pipeline
@@ -622,21 +641,40 @@ sequenceDiagram
 5. **No Context Management**: Backend does not manage conversation context (delegated to AI service)
 6. **No Response Validation**: No validation of AI response content
 7. **No Rate Limiting**: No rate limiting on AI service calls
-8. **Unknown Model**: Model type and capabilities are not documented in repository
+8. **Model Quality**: Current model trained on only 19 samples with 74-token vocabulary produces poor quality, repetitive output
+9. **Bengali Support**: Current word-level tokenizer is inadequate for Bengali morphology
+10. **No GPU**: Inference is CPU-only, limiting scalability
 
-### AI Provider Information
+### AI Model Implementation
 
-**Status**: Not Verified
+**Model Architecture**: MediumTransformer (custom implementation)
+- **Location**: packages/ai-core/neural/medium_transformer.py
+- **Type**: 6-layer Transformer decoder (autoregressive)
+- **Parameters**: 4,776,522
+- **Vocabulary Size**: 74 tokens (SimpleTokenizer)
+- **Max Sequence Length**: 512
+- **Training Samples**: 19 (from data/public_datasets/v1.0_cleaned/train_cleaned.json)
+- **Training Epochs**: 5
 
-The AI service implementation (Python FastAPI/ML service) is external to this repository. The following details could not be verified:
-- Model provider (OpenAI, Anthropic, local model, etc.)
-- Model name or version
-- Token limits
-- Context window size
-- Training data
-- Response generation parameters
+**Checkpoint Location**: packages/ai-core/models/checkpoints_medium/final_model.pt
+- **Size**: 18.76 MB
+- **Storage**: Tracked directly in Git (not using Git LFS)
 
-The backend simply proxies requests to the configured AI service endpoint.
+**Tokenizer Implementation**: SimpleTokenizer (word-level whitespace tokenization)
+- **Location**: packages/ai-core/tokenizer/tokenizer.py
+- **Limitations**: 74-token vocabulary is critically small for bilingual use
+
+**Current Status**: The model is in prototype stage with significant limitations:
+- Trained on only 19 samples
+- 74-token vocabulary insufficient for meaningful generation
+- Word-level tokenization inadequate for Bengali morphology
+- Output quality is poor (incoherent, repetitive)
+- Deterministic handlers and fallback responses used for most queries
+
+For detailed model documentation, see:
+- packages/ai-core/models/README.md (checkpoint details)
+- packages/ai-core/RUNTIME_ARCHITECTURE.md (runtime flow)
+- packages/ai-core/CHECKPOINT_COMPATIBILITY.md (compatibility verification)
 
 ---
 
