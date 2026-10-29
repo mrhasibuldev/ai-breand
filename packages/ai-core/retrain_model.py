@@ -16,7 +16,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from tokenizer.tokenizer import SimpleTokenizer
-from neural.transformer import SmallTransformer
+from neural.small_transformer import SmallTransformer
 from training.dataset import TextDataset, load_json_dataset
 from training.pipeline import TrainingPipeline
 

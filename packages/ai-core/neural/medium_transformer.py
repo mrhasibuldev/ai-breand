@@ -52,7 +52,7 @@ class MediumTransformer(nn.Module):
         self.positional_encoding = PositionalEncoding(d_model, max_len, dropout)
 
         # Transformer blocks
-        from .transformer import TransformerBlock
+        from .small_transformer import TransformerBlock
         self.transformer_blocks = nn.ModuleList([
             TransformerBlock(d_model, n_heads, d_ff, dropout)
             for _ in range(n_layers)
@@ -218,7 +218,7 @@ def compare_models():
     vocab_size = 1000
     
     # Small model (original)
-    from .transformer import SmallTransformer
+    from .small_transformer import SmallTransformer
     small_model = SmallTransformer(vocab_size, d_model=128, n_layers=4, n_heads=4, d_ff=512)
     small_params = small_model.count_parameters()
     

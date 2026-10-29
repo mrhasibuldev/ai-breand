@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import torch
 from tokenizer.tokenizer import SimpleTokenizer
-from neural.transformer import SmallTransformer
+from neural.small_transformer import SmallTransformer
 from training.dataset import TextDataset, load_json_dataset
 from training.pipeline import TrainingPipeline
 from inference.generator import TextGenerator

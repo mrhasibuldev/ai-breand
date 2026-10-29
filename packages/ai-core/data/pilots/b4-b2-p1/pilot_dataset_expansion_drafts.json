@@ -1,0 +1,2874 @@
+{
+  "schema_version": "2.0",
+  "dataset_version": "0.2.0-draft",
+  "dataset_name": "nexusai-pilot-b4-b2-p1-expansion-drafts",
+  "metadata": {
+    "schema_version": "2.0",
+    "dataset_version": "0.2.0-draft",
+    "dataset_name": "nexusai-pilot-b4-b2-p1-expansion-drafts",
+    "created": "2026-10-29T16:00:00.000000",
+    "modified": "2026-10-29T16:00:00.000000",
+    "creator": "NexusAI Project",
+    "license": "proprietary-project-owned",
+    "license_url": null,
+    "commercial_use": "permitted",
+    "redistribution": "restricted-to-project",
+    "purpose": "training",
+    "description": "Original project-generated draft conversations for dataset expansion - NOT APPROVED FOR TRAINING"
+  },
+  "statistics": {
+    "total_conversations": 91,
+    "total_messages": 182,
+    "language_distribution": {
+      "bengali": 30,
+      "english": 45,
+      "mixed": 16,
+      "unknown": 0
+    },
+    "domain_distribution": {
+      "conversation": 25,
+      "knowledge": 20,
+      "reasoning": 15,
+      "mathematics": 10,
+      "coding": 5,
+      "writing": 8,
+      "planning": 3,
+      "health_wellness": 5,
+      "other": 0
+    },
+    "split_distribution": {
+      "train": 0,
+      "validation": 0,
+      "test": 0,
+      "pending": 91
+    }
+  },
+  "conversations": [
+    {
+      "record_id": "EXPAND-BENG-001",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-BENG-001",
+      "split": "pending",
+      "language": "bengali",
+      "domain": "conversation",
+      "messages": [
+        {
+          "role": "user",
+          "content": "আপনি কেমন আছেন?",
+          "language": "bengali",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "আমি একটি AI, তাই আমার কোনো অনুভূতি নেই। তবে আমি আপনাকে সাহায্য করতে প্রস্তুত আছি।",
+          "language": "bengali",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "bengali",
+        "conversation"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-BENG-002",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-BENG-002",
+      "split": "pending",
+      "language": "bengali",
+      "domain": "conversation",
+      "messages": [
+        {
+          "role": "user",
+          "content": "আপনার সাথে কথা বলতে ভালো লাগছে।",
+          "language": "bengali",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "ধন্যবাদ! আমিও আপনার সাথে কথা বলতে পছন্দ করি। আপনি আর কী জানতে চান?",
+          "language": "bengali",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "bengali",
+        "conversation"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-BENG-003",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-BENG-003",
+      "split": "pending",
+      "language": "bengali",
+      "domain": "knowledge",
+      "messages": [
+        {
+          "role": "user",
+          "content": "পৃথিবীর বৃহত্তম মহাসাগর কোনটি?",
+          "language": "bengali",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "পৃথিবীর বৃহত্তম মহাসাগর হলো প্রশান্ত মহাসাগর বা প্যাসিফিক মহাসাগর।",
+          "language": "bengali",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "bengali",
+        "knowledge",
+        "geography"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-BENG-004",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-BENG-004",
+      "split": "pending",
+      "language": "bengali",
+      "domain": "knowledge",
+      "messages": [
+        {
+          "role": "user",
+          "content": "সূর্য থেকে পৃথিবীতে আলো আসতে কত সময় লাগে?",
+          "language": "bengali",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "সূর্য থেকে পৃথিবীতে আলো আসতে প্রায় ৮ মিনিট ২০ সেকেন্ড সময় লাগে।",
+          "language": "bengali",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "bengali",
+        "knowledge",
+        "science"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-BENG-005",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-BENG-005",
+      "split": "pending",
+      "language": "bengali",
+      "domain": "reasoning",
+      "messages": [
+        {
+          "role": "user",
+          "content": "যদি ১০টি আমের দাম ৫০ টাকা হয়, তবে ৫টি আমের দাম কত?",
+          "language": "bengali",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "১০টি আমের দাম ৫০ টাকা হলে প্রতিটি আমের দাম ৫ টাকা। তাই ৫টি আমের দাম ২৫ টাকা।",
+          "language": "bengali",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "bengali",
+        "reasoning",
+        "mathematics"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-BENG-006",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-BENG-006",
+      "split": "pending",
+      "language": "bengali",
+      "domain": "reasoning",
+      "messages": [
+        {
+          "role": "user",
+          "content": "একটি বাক্সে ১২টি চকলেট আছে। যদি ৩টি চকলেট খাওয়া হয়, তবে কতগুলি বাকি থাকবে?",
+          "language": "bengali",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "১২টি চকলেট থেকে ৩টি খাওয়া হলে ৯টি চকলেট বাকি থাকবে।",
+          "language": "bengali",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "bengali",
+        "reasoning",
+        "mathematics"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-BENG-007",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-BENG-007",
+      "split": "pending",
+      "language": "bengali",
+      "domain": "writing",
+      "messages": [
+        {
+          "role": "user",
+          "content": "আমাকে একটি ছোট গল্প লিখে দিন।",
+          "language": "bengali",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "একটি ছোট গ্রামে একটি ছেলে ছিল যার নাম রাফি। সে প্রতিদিন স্কুলে যেত। একদিন সে রাস্তায় একটি পাখি দেখল যার ডানা ছিঁড়ে গেছে। রাফি পাখিটিকে বাড়িতে নিয়ে গেল এবং তার যত্ন নিল। কিছুদিন পর পাখিটি সুস্থ হয়ে উড়ে চলে গেল।",
+          "language": "bengali",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "bengali",
+        "writing",
+        "story"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-BENG-008",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-BENG-008",
+      "split": "pending",
+      "language": "bengali",
+      "domain": "writing",
+      "messages": [
+        {
+          "role": "user",
+          "content": "এই বাক্যটি সংক্ষেপ করুন: আমি আজ সকালে স্কুলে গিয়েছিলাম এবং সেখানে অনেক বন্ধুদের সাথে দেখা হয়েছিল।",
+          "language": "bengali",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "আজ সকালে স্কুলে গিয়ে বন্ধুদের সাথে দেখা হয়েছিল।",
+          "language": "bengali",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "bengali",
+        "writing",
+        "summarization"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-BENG-009",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-BENG-009",
+      "split": "pending",
+      "language": "bengali",
+      "domain": "health_wellness",
+      "messages": [
+        {
+          "role": "user",
+          "content": "প্রতিদিন কতটুকু পানি পান করা উচিত?",
+          "language": "bengali",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "সাধারণত প্রতিদিন প্রায় ৮ গ্লাস বা ২ লিটার পানি পান করা স্বাস্থ্যের জন্য ভালো। তবে এটি ব্যক্তির শরীর, আবহাওয়া এবং শারীরিক কর্মকাণ্ডের ওপর নির্ভর করে।",
+          "language": "bengali",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "bengali",
+        "health_wellness"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-BENG-010",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-BENG-010",
+      "split": "pending",
+      "language": "bengali",
+      "domain": "health_wellness",
+      "messages": [
+        {
+          "role": "user",
+          "content": "নিয়মিত ব্যায়াম করার উপকার কী?",
+          "language": "bengali",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "নিয়মিত ব্যায়াম করলে হৃদযন্ত্র সুস্থ থাকে, ওজন নিয়ন্ত্রণে থাকে, মানসিক চাপ কমে এবং শক্তি বাড়ে। এটি দীর্ঘায়ুর জন্যও সহায়ক।",
+          "language": "bengali",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "bengali",
+        "health_wellness"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-001",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-001",
+      "split": "pending",
+      "language": "english",
+      "domain": "conversation",
+      "messages": [
+        {
+          "role": "user",
+          "content": "How are you doing today?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "I'm doing well, thank you for asking! I'm ready to help you with whatever you need.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "conversation"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-002",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-002",
+      "split": "pending",
+      "language": "english",
+      "domain": "conversation",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What can you help me with?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "I can help with answering questions, writing assistance, explanations, calculations, and general conversation. Just let me know what you need!",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "conversation"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-003",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-003",
+      "split": "pending",
+      "language": "english",
+      "domain": "knowledge",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is the capital of France?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "The capital of France is Paris.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "knowledge",
+        "geography"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-004",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-004",
+      "split": "pending",
+      "language": "english",
+      "domain": "knowledge",
+      "messages": [
+        {
+          "role": "user",
+          "content": "How many planets are in our solar system?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "There are 8 planets in our solar system: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "knowledge",
+        "science"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-005",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-005",
+      "split": "pending",
+      "language": "english",
+      "domain": "knowledge",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is the largest ocean on Earth?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "The Pacific Ocean is the largest ocean on Earth, covering more than 30% of the planet's surface.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "knowledge",
+        "geography"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-006",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-006",
+      "split": "pending",
+      "language": "english",
+      "domain": "reasoning",
+      "messages": [
+        {
+          "role": "user",
+          "content": "If a train travels 60 km in 1 hour, how far will it travel in 3 hours?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "If the train travels 60 km in 1 hour, it travels at 60 km per hour. In 3 hours, it will travel 60 × 3 = 180 km.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "reasoning",
+        "mathematics"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-007",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-007",
+      "split": "pending",
+      "language": "english",
+      "domain": "reasoning",
+      "messages": [
+        {
+          "role": "user",
+          "content": "If 8 people can complete a task in 10 days, how many days will 4 people need?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "This is an inverse proportion problem. Half the people means double the time. So 4 people will need 20 days to complete the same task.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "reasoning",
+        "mathematics"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-008",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-008",
+      "split": "pending",
+      "language": "english",
+      "domain": "mathematics",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is 15 percent of 200?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "15 percent of 200 is 30. You can calculate this as (15/100) × 200 = 30.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "mathematics"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-009",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-009",
+      "split": "pending",
+      "language": "english",
+      "domain": "mathematics",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is the square root of 144?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "The square root of 144 is 12, because 12 × 12 = 144.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "mathematics"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-010",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-010",
+      "split": "pending",
+      "language": "english",
+      "domain": "mathematics",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Solve for x: 2x + 5 = 15",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "To solve for x: 2x + 5 = 15. Subtract 5 from both sides: 2x = 10. Divide by 2: x = 5.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "mathematics"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-011",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-011",
+      "split": "pending",
+      "language": "english",
+      "domain": "writing",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write a short paragraph about the importance of reading.",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Reading is essential for personal growth and learning. It expands our knowledge, improves vocabulary, and enhances critical thinking skills. Regular reading also reduces stress and improves mental focus.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "writing"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-012",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-012",
+      "split": "pending",
+      "language": "english",
+      "domain": "writing",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Summarize this: The internet allows people to communicate instantly across the world. It provides access to information, entertainment, and services.",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "The internet enables global instant communication and provides access to information, entertainment, and services.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "writing",
+        "summarization"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-013",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-013",
+      "split": "pending",
+      "language": "english",
+      "domain": "writing",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Rewrite this sentence to be more formal: Hey, can you send me the report?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Could you please send me the report?",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "writing"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-014",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-014",
+      "split": "pending",
+      "language": "english",
+      "domain": "writing",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write an email to schedule a meeting.",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Subject: Meeting Request. Hi [Name], I would like to schedule a meeting to discuss [topic]. Please let me know your availability for this week. Best regards, [Your Name].",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "writing"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-015",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-015",
+      "split": "pending",
+      "language": "english",
+      "domain": "planning",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Help me plan a study schedule for finals week.",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Start by listing all your exams with dates and times. Prioritize subjects you find most difficult. Allocate more study time to challenging subjects. Include short breaks every hour. Review past exams for practice.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "planning"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-016",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-016",
+      "split": "pending",
+      "language": "english",
+      "domain": "planning",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give me tips for time management.",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Use a calendar or planner to track tasks. Break large tasks into smaller steps. Prioritize important and urgent tasks first. Avoid multitasking; focus on one task at a time. Set specific time limits for each activity.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "planning"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-017",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-017",
+      "split": "pending",
+      "language": "english",
+      "domain": "planning",
+      "messages": [
+        {
+          "role": "user",
+          "content": "How should I plan a vacation?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "First, choose your destination and dates. Research accommodations and book in advance. Plan your activities but leave flexibility for spontaneous moments. Check visa requirements if traveling internationally. Pack essentials and keep important documents safe.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "planning"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-018",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-018",
+      "split": "pending",
+      "language": "english",
+      "domain": "health_wellness",
+      "messages": [
+        {
+          "role": "user",
+          "content": "How much sleep do adults need?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Most adults need between 7 to 9 hours of sleep per night for optimal health. Individual needs may vary slightly based on age and lifestyle.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "health_wellness"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-019",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-019",
+      "split": "pending",
+      "language": "english",
+      "domain": "health_wellness",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What are some healthy eating habits?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Eat a variety of fruits and vegetables daily. Choose whole grains over refined grains. Limit processed foods and added sugars. Stay hydrated by drinking water. Practice portion control and eat regular meals.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "health_wellness"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-020",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-020",
+      "split": "pending",
+      "language": "english",
+      "domain": "health_wellness",
+      "messages": [
+        {
+          "role": "user",
+          "content": "How can I reduce stress?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Regular exercise, meditation, deep breathing, and adequate sleep can help reduce stress. Taking breaks, talking to friends, and engaging in hobbies are also effective. If stress becomes overwhelming, consider speaking with a professional.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "health_wellness"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-021",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-021",
+      "split": "pending",
+      "language": "english",
+      "domain": "health_wellness",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What are the benefits of walking?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Walking improves cardiovascular health, strengthens muscles, helps maintain a healthy weight, boosts mood, and reduces stress. It's a low-impact exercise suitable for most people.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "health_wellness"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-022",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-022",
+      "split": "pending",
+      "language": "english",
+      "domain": "health_wellness",
+      "messages": [
+        {
+          "role": "user",
+          "content": "How often should I exercise?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Health organizations recommend at least 150 minutes of moderate exercise per week, or about 30 minutes five days a week. This can include walking, swimming, cycling, or other activities you enjoy.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "health_wellness"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-023",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-023",
+      "split": "pending",
+      "language": "english",
+      "domain": "health_wellness",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What foods are good for brain health?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Fatty fish, nuts, seeds, berries, leafy greens, and whole grains support brain health. These foods contain omega-3 fatty acids, antioxidants, and vitamins that help cognitive function.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "health_wellness"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-024",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-024",
+      "split": "pending",
+      "language": "english",
+      "domain": "coding",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is a variable in programming?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "A variable is a named storage location in computer memory that holds a value. You can use variables to store data like numbers, text, or other information, and change their values during program execution.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "coding"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-025",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-025",
+      "split": "pending",
+      "language": "english",
+      "domain": "coding",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is a function in programming?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "A function is a reusable block of code that performs a specific task. Functions take input parameters, process them, and return output. They help organize code and avoid repetition.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "coding"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-026",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-026",
+      "split": "pending",
+      "language": "english",
+      "domain": "coding",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is a loop in programming?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "A loop is a programming construct that repeats a block of code multiple times. Common types include for loops (repeat a set number of times) and while loops (repeat while a condition is true).",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "coding"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-027",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-027",
+      "split": "pending",
+      "language": "english",
+      "domain": "coding",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is a conditional statement?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "A conditional statement allows a program to make decisions based on conditions. It executes different code blocks depending on whether a condition is true or false. Common examples are if-else statements.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "coding"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-028",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-028",
+      "split": "pending",
+      "language": "english",
+      "domain": "coding",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is an array?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "An array is a data structure that stores multiple values of the same type in a single variable. Each value in an array has an index, starting from 0, which allows you to access individual elements.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "coding"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-029",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-029",
+      "split": "pending",
+      "language": "english",
+      "domain": "knowledge",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is photosynthesis?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Photosynthesis is the process by which plants convert sunlight, water, and carbon dioxide into glucose and oxygen. It occurs in plant leaves and is essential for life on Earth.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "knowledge",
+        "science"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-030",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-030",
+      "split": "pending",
+      "language": "english",
+      "domain": "knowledge",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What causes seasons on Earth?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Seasons are caused by Earth's axial tilt as it orbits the Sun. When one hemisphere tilts toward the Sun, it experiences summer. When it tilts away, it experiences winter.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "knowledge",
+        "science"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-031",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-031",
+      "split": "pending",
+      "language": "english",
+      "domain": "knowledge",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is the water cycle?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "The water cycle describes how water moves through Earth's environment. Water evaporates from oceans and lakes, forms clouds, falls as precipitation, and flows back to oceans through rivers and groundwater.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "knowledge",
+        "science"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-032",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-032",
+      "split": "pending",
+      "language": "english",
+      "domain": "knowledge",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is gravity?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Gravity is a fundamental force that attracts objects with mass toward each other. On Earth, gravity keeps us on the ground and causes objects to fall. It also keeps planets in orbit around the Sun.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "knowledge",
+        "science"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-033",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-033",
+      "split": "pending",
+      "language": "english",
+      "domain": "knowledge",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is the difference between weather and climate?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Weather refers to short-term atmospheric conditions in a specific place at a specific time, like rain or sunshine today. Climate describes long-term patterns of weather in a region over many years.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "knowledge",
+        "science"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-034",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-034",
+      "split": "pending",
+      "language": "english",
+      "domain": "knowledge",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is a black hole?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "A black hole is a region in space where gravity is so strong that nothing, not even light, can escape. Black holes form when massive stars collapse at the end of their lives.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "knowledge",
+        "science"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-035",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-035",
+      "split": "pending",
+      "language": "english",
+      "domain": "knowledge",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is the greenhouse effect?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "The greenhouse effect is the process by which certain gases in Earth's atmosphere trap heat from the Sun, warming the planet. This effect is essential for life, but human activities have intensified it, causing global warming.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "knowledge",
+        "science"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-036",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-036",
+      "split": "pending",
+      "language": "english",
+      "domain": "knowledge",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is DNA?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "DNA (deoxyribonucleic acid) is the molecule that carries genetic information in living organisms. It contains instructions for building and maintaining cells and determines inherited traits.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "knowledge",
+        "science"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-037",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-037",
+      "split": "pending",
+      "language": "english",
+      "domain": "knowledge",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is an ecosystem?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "An ecosystem is a community of living organisms interacting with each other and their physical environment. It includes plants, animals, microorganisms, soil, water, and air in a specific area.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "knowledge",
+        "science"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-038",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-038",
+      "split": "pending",
+      "language": "english",
+      "domain": "knowledge",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is evolution?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Evolution is the process by which species change over generations through natural selection. Organisms with traits that help them survive and reproduce pass those traits to their offspring, leading to gradual changes in populations.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "knowledge",
+        "science"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-039",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-039",
+      "split": "pending",
+      "language": "english",
+      "domain": "knowledge",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is the moon made of?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "The Moon's surface is primarily made of rock and dust, similar to Earth's crust. It contains oxygen, silicon, iron, calcium, magnesium, and other elements. It has no atmosphere and extreme temperature variations.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "knowledge",
+        "science"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-040",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-040",
+      "split": "pending",
+      "language": "english",
+      "domain": "knowledge",
+      "messages": [
+        {
+          "role": "user",
+          "content": "How do airplanes fly?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Airplanes fly using four forces: lift, weight, thrust, and drag. Wings generate lift as air flows over them. Engines provide thrust to move forward. When lift exceeds weight, the plane rises.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "knowledge",
+        "science"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-041",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-041",
+      "split": "pending",
+      "language": "english",
+      "domain": "reasoning",
+      "messages": [
+        {
+          "role": "user",
+          "content": "If you save $100 per month for a year, how much will you have saved?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "If you save $100 per month for 12 months, you will have saved $1,200 in total.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "reasoning",
+        "mathematics"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-042",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-042",
+      "split": "pending",
+      "language": "english",
+      "domain": "reasoning",
+      "messages": [
+        {
+          "role": "user",
+          "content": "A car uses 8 liters of fuel to travel 100 km. How much fuel for 250 km?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "If 8 liters covers 100 km, the car uses 0.08 liters per km. For 250 km, it needs 250 × 0.08 = 20 liters of fuel.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "reasoning",
+        "mathematics"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-043",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-043",
+      "split": "pending",
+      "language": "english",
+      "domain": "reasoning",
+      "messages": [
+        {
+          "role": "user",
+          "content": "If a shirt costs $40 and is 25% off, what is the sale price?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "25% of $40 is $10. So the discount is $10, and the sale price is $40 - $10 = $30.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "reasoning",
+        "mathematics"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-044",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-044",
+      "split": "pending",
+      "language": "english",
+      "domain": "reasoning",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is half of 7?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Half of 7 is 3.5 or 7/2.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "reasoning",
+        "mathematics"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-ENG-045",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-ENG-045",
+      "split": "pending",
+      "language": "english",
+      "domain": "reasoning",
+      "messages": [
+        {
+          "role": "user",
+          "content": "If you have 24 cookies and share them equally among 6 people, how many does each get?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "24 cookies divided among 6 people means each person gets 4 cookies.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "english",
+        "reasoning",
+        "mathematics"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-MIX-001",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-MIX-001",
+      "split": "pending",
+      "language": "mixed",
+      "domain": "conversation",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Apni ki amake help korte parben?",
+          "language": "mixed",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Yes, I can help you! আমি আপনাকে সাহায্য করতে পারি। আপনি কী জানতে চান?",
+          "language": "mixed",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "mixed",
+        "banglish",
+        "code-switching"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-MIX-002",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-MIX-002",
+      "split": "pending",
+      "language": "mixed",
+      "domain": "conversation",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Thank you bolbar jonno ki boli?",
+          "language": "mixed",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "You can say 'thank you' or 'dhonnobad'. আপনি বাংলায় 'ধন্যবাদ' বলতে পারেন।",
+          "language": "mixed",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "mixed",
+        "banglish",
+        "code-switching"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-MIX-003",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-MIX-003",
+      "split": "pending",
+      "language": "mixed",
+      "domain": "conversation",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Tumi kothay thako?",
+          "language": "mixed",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "I exist on computers and servers. আমি কম্পিউটার এবং সার্ভারে থাকি। আমার কোনো শারীরিক অবস্থান নেই।",
+          "language": "mixed",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "mixed",
+        "banglish",
+        "code-switching"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-MIX-004",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-MIX-004",
+      "split": "pending",
+      "language": "mixed",
+      "domain": "conversation",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Ajke weather ki?",
+          "language": "mixed",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "I don't have access to real-time weather data. আমার কাছে বাস্তব সময়ের আবহাওয়ার তথ্য নেই। আপনি আবহাওয়া অ্যাপ বা ওয়েবসাইট দেখতে পারেন।",
+          "language": "mixed",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "mixed",
+        "banglish",
+        "code-switching"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-MIX-005",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-MIX-005",
+      "split": "pending",
+      "language": "mixed",
+      "domain": "knowledge",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Bangladesh ki kotodin established hoyechilo?",
+          "language": "mixed",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Bangladesh became independent on March 26, 1971. বাংলাদেশ ১৯৭১ সালের ২৬ মার্চ স্বাধীনতা অর্জন করে।",
+          "language": "mixed",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "mixed",
+        "banglish",
+        "code-switching",
+        "knowledge"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-MIX-006",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-MIX-006",
+      "split": "pending",
+      "language": "mixed",
+      "domain": "knowledge",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Ami ki kono question porsi?",
+          "language": "mixed",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "No, you haven't asked a question yet. আপনি এখনো কোনো প্রশ্ন করেননি। আপনি আমাকে যেকোনো প্রশ্ন করতে পারেন।",
+          "language": "mixed",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "mixed",
+        "banglish",
+        "code-switching"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-MIX-007",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-MIX-007",
+      "split": "pending",
+      "language": "mixed",
+      "domain": "reasoning",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Erokom jodi 10 ta apple thake, ar ami 3 ta kheye feli, koto thakbe?",
+          "language": "mixed",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "If you have 10 apples and eat 3, you will have 7 left. ১০টি আম থেকে ৩টি খেলে ৭টি বাকি থাকবে।",
+          "language": "mixed",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "mixed",
+        "banglish",
+        "code-switching",
+        "reasoning"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-MIX-008",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-MIX-008",
+      "split": "pending",
+      "language": "mixed",
+      "domain": "reasoning",
+      "messages": [
+        {
+          "role": "user",
+          "content": "100 taka jodi 50% discount thake, koto hobe?",
+          "language": "mixed",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "50% of 100 is 50, so the price would be 50 taka. ১০০ টাকার ৫০% হলো ৫০ টাকা, তাই দাম হবে ৫০ টাকা।",
+          "language": "mixed",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "mixed",
+        "banglish",
+        "code-switching",
+        "reasoning"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-MIX-009",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-MIX-009",
+      "split": "pending",
+      "language": "mixed",
+      "domain": "writing",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Ami ki banglish likhte pari?",
+          "language": "mixed",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Yes, you can write in Banglish. আপনি বাংলিশে লিখতে পারেন। বাংলিশ হলো বাংলা ভাষা ল্যাটিন অক্ষরে লেখা।",
+          "language": "mixed",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "mixed",
+        "banglish",
+        "code-switching",
+        "writing"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-MIX-010",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-MIX-010",
+      "split": "pending",
+      "language": "mixed",
+      "domain": "writing",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Translate koro: Kemon acho?",
+          "language": "mixed",
+      "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "The English translation is 'How are you?' এর ইংরেজি অনুবাদ হলো 'How are you?'",
+          "language": "mixed",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "mixed",
+        "banglish",
+        "code-switching",
+        "writing",
+        "translation"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-MIX-011",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-MIX-011",
+      "split": "pending",
+      "language": "mixed",
+      "domain": "writing",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write koro ki boli?",
+          "language": "mixed",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "You can say 'likh' or 'likh dao'. আপনি 'লিখ' বা 'লিখ দাও' বলতে পারেন।",
+          "language": "mixed",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "mixed",
+        "banglish",
+        "code-switching",
+        "writing"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-MIX-012",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-MIX-012",
+      "split": "pending",
+      "language": "mixed",
+      "domain": "writing",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Help me write an email in Banglish.",
+          "language": "mixed",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Sure! Here's an example: 'Hi, kemon acho? Ami tomar sathe kotha bolte chai. Please contact koro.' এটি একটি সাধারণ ইমেইলের উদাহরণ।",
+          "language": "mixed",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "mixed",
+        "banglish",
+        "code-switching",
+        "writing"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-MIX-013",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-MIX-013",
+      "split": "pending",
+      "language": "mixed",
+      "domain": "health_wellness",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Health rakhar jonno ki korte hobe?",
+          "language": "mixed",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "To stay healthy, eat well, exercise regularly, and sleep enough. স্বাস্থ্য রাখতে ভালো খান, নিয়মিত ব্যায়াম করুন, এবং পর্যাপ্ত ঘুমান।",
+          "language": "mixed",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "mixed",
+        "banglish",
+        "code-switching",
+        "health_wellness"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-MIX-014",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-MIX-014",
+      "split": "pending",
+      "language": "mixed",
+      "domain": "health_wellness",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Komon kore mental health rakha jay?",
+          "language": "mixed",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Take breaks, talk to friends, exercise, and sleep well. বিরতি নিন, বন্ধুদের সাথে কথা বলুন, ব্যায়াম করুন, এবং ভালো ঘুমান। প্রয়োজনে পেশাদারের সাহায্য নিন।",
+          "language": "mixed",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "mixed",
+        "banglish",
+        "code-switching",
+        "health_wellness"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-MIX-015",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-MIX-015",
+      "split": "pending",
+      "language": "mixed",
+      "domain": "health_wellness",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Sokal e ki khai?",
+          "language": "mixed",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "A healthy breakfast might include eggs, bread, fruit, or yogurt. স্বাস্থ্যকর নাস্তায় ডিম, রুটি, ফল, বা দই থাকতে পারে।",
+          "language": "mixed",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "mixed",
+        "banglish",
+        "code-switching",
+        "health_wellness"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    },
+    {
+      "record_id": "EXPAND-MIX-016",
+      "dataset_version": "0.2.0-draft",
+      "conversation_id": "EXPAND-CONV-MIX-016",
+      "split": "pending",
+      "language": "mixed",
+      "domain": "health_wellness",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Dudh khaile ki hobe?",
+          "language": "mixed",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Milk provides calcium and protein for strong bones and muscles. দুধ শক্ত হাড় ও পেশির জন্য ক্যালসিয়াম এবং প্রোটিন সরবরাহ করে।",
+          "language": "mixed",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_project_generated",
+      "source_reference": "dataset expansion draft generation",
+      "creator": "nexusai-draft-generator",
+      "created_at": "2026-10-29T16:00:00.000000",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "draft",
+        "mixed",
+        "banglish",
+        "code-switching",
+        "health_wellness"
+      ],
+      "notes": "DRAFT CONTENT - NOT APPROVED FOR TRAINING - Requires human review"
+    }
+  ]
+}

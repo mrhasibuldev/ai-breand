@@ -12,7 +12,7 @@ import time
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from tokenizer.tokenizer import SimpleTokenizer
-from neural.transformer import SmallTransformer
+from neural.small_transformer import SmallTransformer
 from training.dataset import load_json_dataset
 from inference.generator import TextGenerator
 

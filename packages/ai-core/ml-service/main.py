@@ -49,12 +49,22 @@ ai_core_dir = os.path.dirname(service_dir)
 sys.path.insert(0, ai_core_dir)
 
 from tokenizer.tokenizer import SimpleTokenizer
-from neural.transformer import SmallTransformer
+from neural.small_transformer import SmallTransformer
 from inference.generator import TextGenerator
 from training.dataset import load_json_dataset
-from data_endpoints import add_upload_endpoints
 import sys
 import os
+
+# Add ml-service directory to path for data_endpoints import
+ml_service_dir = os.path.join(service_dir, "ml-service")
+if ml_service_dir not in sys.path:
+    sys.path.insert(0, ml_service_dir)
+
+try:
+    from data_endpoints import add_upload_endpoints
+except ImportError:
+    print("[ML Service] data_endpoints not available, skipping upload endpoints")
+    add_upload_endpoints = None
 
 # Add data directory to path for RAG and autonomous imports
 data_dir = os.path.join(ai_core_dir, "data")
@@ -110,6 +120,14 @@ tokenizer: Optional[SimpleTokenizer] = None
 model: Optional[SmallTransformer] = None
 generator: Optional[TextGenerator] = None
 model_loaded = False
+
+# Model metadata tracking
+loaded_model_name: Optional[str] = None
+loaded_checkpoint_path: Optional[str] = None
+loaded_max_len: Optional[int] = None
+
+# Diagnostic mode gate (disabled by default for safety)
+DIAGNOSTIC_MODE_ENABLED = os.getenv("DIAGNOSTIC_MODE_ENABLED", "false").lower() == "true"
 
 # RAG System
 rag_system: Optional[RAGSystem] = None
@@ -171,6 +189,7 @@ class OrchestratorRequest(BaseModel):
     conversation_id: Optional[str] = Field(None, description="Conversation ID for context")
     conversation_history: Optional[List[Dict]] = Field([], description="Conversation history for context")
     request_id: Optional[str] = Field(None, description="Unique request ID for tracing")
+    diagnostic_mode: bool = Field(False, description="Enable diagnostic mode to inspect raw neural output (requires DIAGNOSTIC_MODE_ENABLED environment variable)")
 
 class OrchestratorResponse(BaseModel):
     response: str = Field(..., description="Generated response")
@@ -179,6 +198,8 @@ class OrchestratorResponse(BaseModel):
     response_source: str = Field(..., description="Source of response")
     language: str = Field(..., description="Detected language")
     diagnostics: list = Field(..., description="Processing diagnostics")
+    raw_neural_output: Optional[str] = Field(None, description="Raw neural output before validation (diagnostic mode only)")
+    rejection_reason: Optional[str] = Field(None, description="Reason for neural output rejection (diagnostic mode only)")
 
 class ModelStatus(BaseModel):
     model_loaded: bool = Field(..., description="Whether model is loaded")
@@ -203,7 +224,7 @@ class HealthResponse(BaseModel):
 
 def load_model_if_needed():
     """Load model if not already loaded"""
-    global tokenizer, model, generator, model_loaded
+    global tokenizer, model, generator, model_loaded, loaded_model_name, loaded_checkpoint_path, loaded_max_len
 
     if model_loaded:
         return
@@ -211,8 +232,26 @@ def load_model_if_needed():
     print("[ML Service] Loading model...")
 
     try:
-        # Load checkpoint first to get vocabulary size
-        checkpoint_path = os.path.join(ai_core_dir, "models/checkpoints_medium/final_model.pt")
+        # Try to load production designation from current.json
+        production_config_path = os.path.join(ai_core_dir, "models/production/current.json")
+        checkpoint_path = None
+        
+        if os.path.exists(production_config_path):
+            try:
+                with open(production_config_path, 'r', encoding='utf-8') as f:
+                    production_config = json.load(f)
+                checkpoint_path = os.path.join(ai_core_dir, production_config["checkpoint_path"])
+                print(f"[ML Service] Loaded production designation from {production_config_path}")
+                print(f"[ML Service] Production model: {production_config['model_name']} v{production_config['model_version']}")
+            except Exception as e:
+                print(f"[ML Service] Warning: Failed to load production designation: {e}")
+                print(f"[ML Service] Falling back to default checkpoint path")
+        
+        # Fallback to default path if production designation not available
+        if checkpoint_path is None:
+            checkpoint_path = os.path.join(ai_core_dir, "models/checkpoints_medium/final_model.pt")
+            print(f"[ML Service] Using default checkpoint path: {checkpoint_path}")
+        
         checkpoint_vocab_size = None
         
         if os.path.exists(checkpoint_path):
@@ -224,14 +263,24 @@ def load_model_if_needed():
                 # Infer from embedding layer
                 checkpoint_vocab_size = checkpoint["model_state_dict"]["token_embedding.embedding.weight"].shape[0]
             print(f"[ML Service] Checkpoint vocabulary size: {checkpoint_vocab_size}")
+        else:
+            raise FileNotFoundError(f"Checkpoint not found at {checkpoint_path}")
         
         # Use checkpoint vocab size if available, otherwise use 2000
         vocab_size = checkpoint_vocab_size if checkpoint_vocab_size else 2000
         tokenizer = SimpleTokenizer(vocab_size=vocab_size)
         
-        # Build vocabulary from new dataset
-        train_texts = load_json_dataset(os.path.join(ai_core_dir, "data/train_v2.json"))
-        tokenizer.build_vocab(train_texts, min_freq=1)
+        # Load tokenizer from checkpoint if available to ensure compatibility
+        if "tokenizer_vocab" in checkpoint:
+            tokenizer.word_to_id = {k: int(v) for k, v in checkpoint["tokenizer_vocab"].items()}
+            tokenizer.id_to_word = {int(k): v for k, v in zip(tokenizer.word_to_id.values(), tokenizer.word_to_id.keys())}
+            tokenizer.is_built = True
+            print(f"[ML Service] Loaded tokenizer from checkpoint ({len(tokenizer.word_to_id)} tokens)")
+        else:
+            # Fallback: Build vocabulary from new dataset (may cause incompatibility)
+            print("[ML Service] WARNING: Checkpoint does not contain tokenizer_vocab. Rebuilding from dataset may cause incompatibility.")
+            train_texts = load_json_dataset(os.path.join(ai_core_dir, "data/train_v2.json"))
+            tokenizer.build_vocab(train_texts, min_freq=1)
 
         # Load Medium Transformer
         from neural.medium_transformer import MediumTransformer
@@ -260,6 +309,11 @@ def load_model_if_needed():
         # Create generator
         generator = TextGenerator(model, tokenizer, device="cpu")
 
+        # Track model metadata
+        loaded_model_name = "MediumTransformer"
+        loaded_checkpoint_path = checkpoint_path
+        loaded_max_len = model.max_len
+
         model_loaded = True
         print(f"[ML Service] Model loaded successfully - Parameters: {model.count_parameters():,}")
 
@@ -268,7 +322,7 @@ def load_model_if_needed():
         # Fallback to Small model if Medium fails
         print("[ML Service] Falling back to Small model...")
         try:
-            from neural.transformer import SmallTransformer
+            from neural.small_transformer import SmallTransformer
             tokenizer = SimpleTokenizer(vocab_size=1000)
             train_texts = load_json_dataset(os.path.join(ai_core_dir, "data/train_v2.json"))
             tokenizer.build_vocab(train_texts, min_freq=1)
@@ -349,15 +403,21 @@ async def model_status():
             device="cpu"
         )
 
+    # Get actual device
+    try:
+        device = str(next(model.parameters()).device)
+    except:
+        device = "cpu"
+
     return ModelStatus(
         model_loaded=True,
-        model_name="SmallTransformer",
-        model_version="1.0.0",
+        model_name=loaded_model_name or "Unknown",
+        model_version="1.0.0",  # Still hardcoded as not stored in checkpoint
         parameter_count=model.count_parameters(),
-        checkpoint="models/checkpoints/checkpoint_epoch_5.pt",
-        device="cpu",
+        checkpoint=loaded_checkpoint_path or "Unknown",
+        device=device,
         vocabulary_size=tokenizer.get_vocab_size(),
-        sequence_length=128
+        sequence_length=loaded_max_len or 512
     )
 
 @app.post("/inference", response_model=InferenceResponse)
@@ -429,6 +489,7 @@ async def orchestrate(request: Request):
         conversation_id = body_data.get('conversation_id')
         conversation_history = body_data.get('conversation_history', [])
         request_id = body_data.get('request_id')
+        diagnostic_mode = body_data.get('diagnostic_mode', False)
 
         if not model_loaded:
             load_model_if_needed()
@@ -611,6 +672,11 @@ async def orchestrate(request: Request):
             response_source = "NEURAL_MODEL"
         
         # Step 5: Neural model processing for unknown intents
+        # Initialize diagnostic variables
+        raw_neural_output = None
+        rejection_reason = None
+        is_fallback = False
+
         if response_source == "NEURAL_MODEL":
             start_time = time.time()
 
@@ -692,20 +758,25 @@ async def orchestrate(request: Request):
             latency_ms = (time.time() - start_time) * 1000
 
             # Validate output
-            is_fallback = False
+            raw_neural_output = response_text  # Save before validation for diagnostics
+
             if not response_text:
                 response_text = "দুঃখিত, এই বিষয়টি উত্তর দেওয়ার জন্য আমার কাছে পর্যাপ্ত পরিমাণ ডেটা বা তথ্য নেই।"
                 is_fallback = True
+                rejection_reason = "EMPTY_RESPONSE"
             elif response_text == message.lower():
                 response_text = "দুঃখিত, এই বিষয়টি উত্তর দেওয়ার জন্য আমার কাছে পর্যাপ্ত পরিমাণ ডেটা বা তথ্য নেই।"
                 is_fallback = True
+                rejection_reason = "EQUALS_MESSAGE"
             elif len(response_text) < 3:
                 response_text = "দুঃখিত, এই বিষয়টি উত্তর দেওয়ার জন্য আমার কাছে পর্যাপ্ত পরিমাণ ডেটা বা তথ্য নেই।"
                 is_fallback = True
+                rejection_reason = "TOO_SHORT"
             elif response_text.lower() in message.lower() or message.lower() in response_text.lower():
                 response_text = "দুঃখিত, এই বিষয়টি উত্তর দেওয়ার জন্য আমার কাছে পর্যাপ্ত পরিমাণ ডেটা বা তথ্য নেই।"
                 is_fallback = True
-            
+                rejection_reason = "CONTAINMENT"
+
             if is_fallback:
                 response_source = "FALLBACK"
 
@@ -757,14 +828,23 @@ async def orchestrate(request: Request):
 
         print(f"[ML Service] Request {request_id} completed: intent={intent}, language={language}, source={response_source}")
 
-        return OrchestratorResponse(
-            response=response_text,
-            latency_ms=latency_ms,
-            intent=intent,
-            response_source=response_source,
-            language=language,
-            diagnostics=diagnostics
-        )
+        # Build response with optional diagnostic fields
+        response_data = {
+            "response": response_text,
+            "latency_ms": latency_ms,
+            "intent": intent,
+            "response_source": response_source,
+            "language": language,
+            "diagnostics": diagnostics
+        }
+
+        # Add diagnostic fields only if both environment variable and request parameter are enabled
+        if DIAGNOSTIC_MODE_ENABLED and diagnostic_mode:
+            response_data["raw_neural_output"] = raw_neural_output if raw_neural_output else None
+            if is_fallback and rejection_reason:
+                response_data["rejection_reason"] = rejection_reason
+
+        return OrchestratorResponse(**response_data)
 
     except HTTPException:
         raise

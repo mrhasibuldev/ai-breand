@@ -9,7 +9,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import torch
-from neural.transformer import SmallTransformer
+from neural.small_transformer import SmallTransformer
 from neural.medium_transformer import MediumTransformer
 
 

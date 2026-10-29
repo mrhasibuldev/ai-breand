@@ -18,7 +18,7 @@ if sys.platform == 'win32':
 sys.path.insert(0, str(Path(__file__).parent))
 
 from tokenizer.tokenizer import SimpleTokenizer
-from neural.transformer import SmallTransformer
+from neural.small_transformer import SmallTransformer
 from neural.medium_transformer import MediumTransformer
 
 

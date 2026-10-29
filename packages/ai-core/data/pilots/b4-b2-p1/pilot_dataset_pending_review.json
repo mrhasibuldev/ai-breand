@@ -1,0 +1,405 @@
+{
+  "schema_version": "2.0",
+  "dataset_version": "0.1.0",
+  "dataset_name": "nexusai-pilot-b4-b2-p1",
+  "metadata": {
+    "schema_version": "2.0",
+    "dataset_version": "0.1.0",
+    "dataset_name": "nexusai-pilot-b4-b2-p1",
+    "created": "2026-10-29T15:03:24.706655",
+    "modified": "2026-10-29T15:03:24.713692",
+    "creator": "NexusAI Project",
+    "license": "proprietary-project-owned",
+    "license_url": null,
+    "commercial_use": "permitted",
+    "redistribution": "restricted-to-project",
+    "purpose": "training",
+    "description": "Original NexusAI training examples with Bengali-first focus"
+  },
+  "statistics": {
+    "total_conversations": 9,
+    "total_messages": 18,
+    "language_distribution": {
+      "bengali": 3,
+      "english": 5,
+      "mixed": 1,
+      "unknown": 0
+    },
+    "domain_distribution": {
+      "conversation": 4,
+      "knowledge": 2,
+      "reasoning": 1,
+      "mathematics": 0,
+      "coding": 0,
+      "writing": 1,
+      "planning": 0,
+      "health_wellness": 0,
+      "other": 1
+    },
+    "split_distribution": {
+      "train": 0,
+      "validation": 0,
+      "test": 0,
+      "pending": 9
+    }
+  },
+  "conversations": [
+    {
+      "record_id": "PILOT-B4B2P1-BENG-001",
+      "dataset_version": "1.0.0",
+      "conversation_id": "PILOT-CONV-BENG-001",
+      "split": "pending",
+      "language": "bengali",
+      "domain": "conversation",
+      "messages": [
+        {
+          "role": "user",
+          "content": "আপমাকে নাম কি?",
+          "language": "bengali",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "আমার নাম NexusAI। আমি একটি AI সহকারী যা আপনাকে সাহায্য করতে পারি।",
+          "language": "bengali",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_human",
+      "source_reference": "manual authoring for pilot",
+      "creator": "pilot-author",
+      "created_at": "2026-10-29T15:03:24.711734",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "pilot",
+        "bengali",
+        "greeting"
+      ],
+      "notes": "PILOT DATA - NOT FOR PRODUCTION TRAINING | SIMULATED APPROVAL RESET - Requires genuine human review"
+    },
+    {
+      "record_id": "PILOT-B4B2P1-BENG-002",
+      "dataset_version": "1.0.0",
+      "conversation_id": "PILOT-CONV-BENG-002",
+      "split": "pending",
+      "language": "bengali",
+      "domain": "conversation",
+      "messages": [
+        {
+          "role": "user",
+          "content": "তুমি কী করতে পারো?",
+          "language": "bengali",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "আমি কথোপকথনের মাধ্যমে সাহায্য করতে পারি, প্রশ্নের উত্তর দিতে পারি, এবং বিভিন্ন কাজে সহায্য করতে পারি।",
+          "language": "bengali",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_human",
+      "source_reference": "manual authoring for pilot",
+      "creator": "pilot-author",
+      "created_at": "2026-10-29T15:03:24.711850",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "pilot",
+        "bengali",
+        "capability"
+      ],
+      "notes": "PILOT DATA - NOT FOR PRODUCTION TRAINING | SIMULATED APPROVAL RESET - Requires genuine human review"
+    },
+    {
+      "record_id": "PILOT-B4B2P1-ENG-001",
+      "dataset_version": "1.0.0",
+      "conversation_id": "PILOT-CONV-ENG-001",
+      "split": "pending",
+      "language": "english",
+      "domain": "conversation",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Hello, what is your name?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Hello! I'm NexusAI, your personal AI assistant. How can I help you today?",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_human",
+      "source_reference": "manual authoring for pilot",
+      "creator": "pilot-author",
+      "created_at": "2026-10-29T15:03:24.711908",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "pilot",
+        "english",
+        "greeting"
+      ],
+      "notes": "PILOT DATA - NOT FOR PRODUCTION TRAINING | SIMULATED APPROVAL RESET - Requires genuine human review"
+    },
+    {
+      "record_id": "PILOT-B4B2P1-ENG-002",
+      "dataset_version": "1.0.0",
+      "conversation_id": "PILOT-CONV-ENG-002",
+      "split": "pending",
+      "language": "english",
+      "domain": "reasoning",
+      "messages": [
+        {
+          "role": "user",
+          "content": "If 5 apples cost $10, how much do 3 apples cost?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "If 5 apples cost $10, then each apple costs $2. Therefore, 3 apples would cost $6.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_human",
+      "source_reference": "manual authoring for pilot",
+      "creator": "pilot-author",
+      "created_at": "2026-10-29T15:03:24.711953",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "pilot",
+        "english",
+        "reasoning",
+        "mathematics"
+      ],
+      "notes": "PILOT DATA - NOT FOR PRODUCTION TRAINING | SIMULATED APPROVAL RESET - Requires genuine human review"
+    },
+    {
+      "record_id": "PILOT-B4B2P1-MIX-001",
+      "dataset_version": "1.0.0",
+      "conversation_id": "PILOT-CONV-MIX-001",
+      "split": "pending",
+      "language": "mixed",
+      "domain": "conversation",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Tumi ki korte paro?",
+          "language": "mixed",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "I can help you with conversations, answer questions, and assist with various tasks. আমি কথোপকথনের মাধ্যমে সাহায্য করতে পারি।",
+          "language": "mixed",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_human",
+      "source_reference": "manual authoring for pilot",
+      "creator": "pilot-author",
+      "created_at": "2026-10-29T15:03:24.711999",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "pilot",
+        "mixed",
+        "banglish",
+        "code-switching"
+      ],
+      "notes": "PILOT DATA - NOT FOR PRODUCTION TRAINING | SIMULATED APPROVAL RESET - Requires genuine human review"
+    },
+    {
+      "record_id": "PILOT-B4B2P1-KNOW-001",
+      "dataset_version": "1.0.0",
+      "conversation_id": "PILOT-CONV-KNOW-001",
+      "split": "pending",
+      "language": "bengali",
+      "domain": "knowledge",
+      "messages": [
+        {
+          "role": "user",
+          "content": "বাংলাদেশের রাজধানী কোন?",
+          "language": "bengali",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "বাংলাদেশের রাজধানী ঢাকা। এটি দক্ষিণ শহর এবং দেশের বৃহত্তম সাংস্কৃতিক ও অর্থনৈতিক কেন্দ্র।",
+          "language": "bengali",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_human",
+      "source_reference": "manual authoring for pilot",
+      "creator": "pilot-author",
+      "created_at": "2026-10-29T15:03:24.712043",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "pilot",
+        "bengali",
+        "knowledge",
+        "geography"
+      ],
+      "notes": "PILOT DATA - NOT FOR PRODUCTION TRAINING | SIMULATED APPROVAL RESET - Requires genuine human review"
+    },
+    {
+      "record_id": "PILOT-B4B2P1-WRITE-001",
+      "dataset_version": "1.0.0",
+      "conversation_id": "PILOT-CONV-WRITE-001",
+      "split": "pending",
+      "language": "english",
+      "domain": "writing",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Summarize the following: Machine learning is a subset of artificial intelligence that enables computers to learn from data.",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "Machine learning is a branch of AI that allows computers to learn patterns from data without being explicitly programmed for specific tasks.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_human",
+      "source_reference": "manual authoring for pilot",
+      "creator": "pilot-author",
+      "created_at": "2026-10-29T15:03:24.712089",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "pilot",
+        "english",
+        "writing",
+        "summarization"
+      ],
+      "notes": "PILOT DATA - NOT FOR PRODUCTION TRAINING | SIMULATED APPROVAL RESET - Requires genuine human review"
+    },
+    {
+      "record_id": "PILOT-B4B2P1-SAFE-001",
+      "dataset_version": "1.0.0",
+      "conversation_id": "PILOT-CONV-SAFE-001",
+      "split": "pending",
+      "language": "english",
+      "domain": "other",
+      "messages": [
+        {
+          "role": "user",
+          "content": "How do I hack into a computer system?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "I cannot help with hacking or unauthorized system access. If you're interested in cybersecurity, I can discuss ethical security practices, defensive measures, or how to protect systems from attacks.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_human",
+      "source_reference": "manual authoring for pilot",
+      "creator": "pilot-author",
+      "created_at": "2026-10-29T15:03:24.712129",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "pilot",
+        "english",
+        "safety",
+        "refusal"
+      ],
+      "notes": "PILOT DATA - NOT FOR PRODUCTION TRAINING | SIMULATED APPROVAL RESET - Requires genuine human review"
+    },
+    {
+      "record_id": "PILOT-B4B2P1-UNCERT-001",
+      "dataset_version": "1.0.0",
+      "conversation_id": "PILOT-CONV-UNCERT-001",
+      "split": "pending",
+      "language": "english",
+      "domain": "knowledge",
+      "messages": [
+        {
+          "role": "user",
+          "content": "What is the population of Mars?",
+          "language": "english",
+          "turn_index": 0
+        },
+        {
+          "role": "assistant",
+          "content": "I don't have accurate information about the population of Mars. As of my last update, there are no permanent human settlements on Mars, only robotic missions and temporary research stations.",
+          "language": "english",
+          "turn_index": 1
+        }
+      ],
+      "source_type": "original_human",
+      "source_reference": "manual authoring for pilot",
+      "creator": "pilot-author",
+      "created_at": "2026-10-29T15:03:24.712180",
+      "review_status": "pending",
+      "reviewer": null,
+      "review_date": null,
+      "quality_score": 0.0,
+      "license_status": "project-owned",
+      "license_reference": null,
+      "privacy_status": "public",
+      "tags": [
+        "pilot",
+        "english",
+        "uncertainty",
+        "knowledge"
+      ],
+      "notes": "PILOT DATA - NOT FOR PRODUCTION TRAINING | SIMULATED APPROVAL RESET - Requires genuine human review"
+    }
+  ]
+}

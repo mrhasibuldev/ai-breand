@@ -9,21 +9,21 @@ import time
 import json
 from typing import Dict, List, Any
 from tokenizer.tokenizer import SimpleTokenizer
-from neural.transformer import SmallTransformer
 from inference.generator import TextGenerator
 
 
 class ModelEvaluator:
     """
     Honest model evaluator.
+    Model-agnostic: works with any PyTorch model (SmallTransformer, MediumTransformer, etc.)
     """
 
-    def __init__(self, model: SmallTransformer, tokenizer: SimpleTokenizer):
+    def __init__(self, model: torch.nn.Module, tokenizer: SimpleTokenizer):
         """
         Initialize evaluator.
 
         Args:
-            model: Trained model
+            model: Trained model (any PyTorch nn.Module)
             tokenizer: Tokenizer instance
         """
         self.model = model

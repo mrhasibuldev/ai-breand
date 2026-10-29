@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "model_version": "1.0.0",
+  "model_name": "MediumTransformer",
+  "architecture": "6-layer Transformer decoder (autoregressive)",
+  "checkpoint_path": "models/checkpoints_medium/final_model.pt",
+  "checkpoint_filename": "final_model.pt",
+  "checkpoint_size_mb": 18.76,
+  "tokenizer_type": "SimpleTokenizer",
+  "tokenizer_implementation": "word-level whitespace splitting",
+  "vocab_size": 74,
+  "special_tokens": {
+    "PAD": 0,
+    "UNK": 1,
+    "BOS": 2,
+    "EOS": 3
+  },
+  "parameter_count": 4776522,
+  "architecture_config": {
+    "d_model": 256,
+    "n_layers": 6,
+    "n_heads": 8,
+    "d_ff": 1024,
+    "max_len": 512,
+    "dropout": 0.1
+  },
+  "training_metadata": {
+    "training_epochs": 5,
+    "training_samples": 19,
+    "training_dataset": "data/public_datasets/v1.0_cleaned/train_cleaned.json",
+    "final_train_loss": 0.19332341849803925,
+    "final_val_loss": 0.15789948403835297,
+    "train_losses": [1.758284866809845, 0.43552087992429733, 0.30376724526286125, 0.2252483032643795, 0.19332341849803925],
+    "val_losses": [0.4360542893409729, 0.23762600123882294, 0.1963929533958435, 0.16330350935459137, 0.15789948403835297]
+  },
+  "status": "production",
+  "created": "2025-10-14",
+  "last_updated": "2025-10-14",
+  "compatibility": {
+    "requires_tokenizer_vocab_in_checkpoint": true,
+    "vocab_size_must_match": 74,
+    "embedding_dimension": 256,
+    "output_dimension": 74
+  },
+  "rollback": {
+    "previous_checkpoint": null,
+    "rollback_procedure": "Restore previous checkpoint from backup or git history",
+    "safe_to_rollback": true
+  },
+  "known_limitations": [
+    "74-token vocabulary is critically small for bilingual use",
+    "Word-level tokenization inadequate for Bengali morphology",
+    "Trained on only 19 samples",
+    "Poor generation quality due to limited data and vocabulary"
+  ]
+}
