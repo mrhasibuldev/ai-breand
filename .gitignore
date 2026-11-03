@@ -13,12 +13,26 @@ coverage/
 test-results/
 playwright-report/
 
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
 # Large model checkpoints and binary files
 models/checkpoints/
 *.pt
 *.pth
 
-# Training data and temporary files
-training/
+# Training data files
 *.jsonl
 *.mjs
+
+# Temporary test files
+check-dataset.mjs
+cleanup-hybrid-test.mjs
+download-*.mjs
+download-*.py
+extract-*.mjs
+extract-*.py
+test-*.mjs
+hybrid-test-cookies.txt
