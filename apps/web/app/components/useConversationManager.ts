@@ -121,7 +121,7 @@ export function useConversationManager() {
       setActiveConversationId(null);
       localStorage.removeItem(LAST_ACTIVE_CONV_KEY);
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, loadConversationsFromBackend]);
 
   /**
    * Save last active conversation to localStorage

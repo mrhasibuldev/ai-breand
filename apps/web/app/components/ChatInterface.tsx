@@ -29,6 +29,8 @@ export default function ChatInterface() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
   const pendingMessageProcessed = useRef(false);
+  const pendingMessageRef = useRef<string | null>(null); // Track pending message for homepage navigation
+  const isComposing = useRef(false); // Track IME composition state
 
   // Local state for guest mode (in-memory only)
   const [guestConversations, setGuestConversations] = useState<Map<string, Conversation>>(new Map());
@@ -54,7 +56,8 @@ export default function ChatInterface() {
       console.log('[ChatInterface] Found pending message from homepage:', pendingMessage);
       localStorage.removeItem('nexusai_pending_message');
       pendingMessageProcessed.current = true;
-      
+      pendingMessageRef.current = pendingMessage; // Store in ref to avoid closure stale state
+
       // For guest users, submit immediately (no conversation needed)
       if (!isAuthenticated) {
         // Remove delay for instant response
@@ -68,18 +71,22 @@ export default function ChatInterface() {
 
   // Auto-submit pending message for authenticated users when conversation manager is ready
   useEffect(() => {
-    if (!pendingMessageProcessed.current || !inputValue.trim() || !isAuthenticated) return;
-    
+    if (!pendingMessageProcessed.current || !isAuthenticated) return;
+
+    // Use ref to get the pending message, not the stale inputValue from closure
+    const pendingMessage = pendingMessageRef.current;
+    if (!pendingMessage || !pendingMessage.trim()) return;
+
     // Wait for conversation loading to complete before submitting
     if (conversationLoading) return;
-    
+
     // Don't submit if already typing (means we already started processing)
     if (isTyping) return;
-    
+
     // Submit immediately when ready (removed delay)
     const formEvent = new Event('submit', { cancelable: true, bubbles: true });
     handleSubmit(formEvent as unknown as React.FormEvent);
-  }, [isAuthenticated, inputValue, conversationLoading, isTyping]);
+  }, [isAuthenticated, conversationLoading, isTyping]); // Dependencies without inputValue
 
   // Get active conversation (guest if not authenticated)
   const activeConversation = useMemo(() => {
@@ -115,6 +122,12 @@ export default function ChatInterface() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Prevent duplicate submissions
+    if (activeRequestId) {
+      console.log('[ChatInterface] Request already active, ignoring duplicate submission');
+      return;
+    }
+
     // If typing, treat as cancel
     if (isTyping) {
       handleCancelRequest();
@@ -122,6 +135,11 @@ export default function ChatInterface() {
     }
 
     if (!inputValue.trim()) return;
+
+    // Clear pending message ref if this is the pending message submission
+    if (pendingMessageRef.current === inputValue) {
+      pendingMessageRef.current = null;
+    }
 
     const message = inputValue;
     console.log('[ChatInterface] Submitting message, authenticated:', isAuthenticated, 'activeConversationId:', activeConversationId);
@@ -160,6 +178,12 @@ export default function ChatInterface() {
    * Handle guest message (in-memory only, no persistence)
    */
   const handleGuestMessage = async (userMessage: string) => {
+    // Prevent duplicate submissions
+    if (activeRequestId) {
+      console.log('[ChatInterface] Request already active, ignoring duplicate submission');
+      return;
+    }
+
     const requestId = `NEXUSAI_REQ_${Date.now()}_${Math.random().toString(36).substring(7)}`;
     setActiveRequestId(requestId);
     setIsTyping(true);
@@ -512,7 +536,11 @@ export default function ChatInterface() {
               value={inputValue}
               onChange={handleInputChange}
               rows={1}
+              onCompositionStart={() => { isComposing.current = true; }}
+              onCompositionEnd={() => { isComposing.current = false; }}
               onKeyDown={(e) => {
+                // Prevent submission during IME composition (Bengali/Banglish input)
+                if (isComposing.current) return;
                 if (e.key === 'Enter' && !e.shiftKey) {
                   e.preventDefault();
                   handleSubmit(e);

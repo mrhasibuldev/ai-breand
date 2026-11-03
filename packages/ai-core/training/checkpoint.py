@@ -31,7 +31,8 @@ class CheckpointManager:
         epoch: int,
         loss: float,
         metadata: Dict[str, Any] = None,
-        config: Dict[str, Any] = None
+        config: Dict[str, Any] = None,
+        tokenizer_vocab: Dict[str, Any] = None
     ) -> str:
         """
         Save checkpoint.
@@ -43,6 +44,7 @@ class CheckpointManager:
             loss: Current loss
             metadata: Additional metadata
             config: Training configuration for reproducibility
+            tokenizer_vocab: Tokenizer vocabulary for reproducibility
 
         Returns:
             Path to saved checkpoint
@@ -55,6 +57,10 @@ class CheckpointManager:
             "metadata": metadata or {},
             "config": config or {}
         }
+
+        # Include tokenizer vocabulary if provided for reproducibility
+        if tokenizer_vocab is not None:
+            checkpoint["tokenizer_vocab"] = tokenizer_vocab
 
         checkpoint_path = os.path.join(self.checkpoint_dir, f"checkpoint_epoch_{epoch}.pt")
         torch.save(checkpoint, checkpoint_path)

@@ -66,6 +66,22 @@ except ImportError:
     print("[ML Service] data_endpoints not available, skipping upload endpoints")
     add_upload_endpoints = None
 
+# Add knowledge ingestion endpoints
+try:
+    import sys
+    ai_core_dir = os.path.dirname(service_dir)
+    knowledge_dir = os.path.join(ai_core_dir, "knowledge")
+    if knowledge_dir not in sys.path:
+        sys.path.insert(0, knowledge_dir)
+    from pipeline.ingestion_pipeline import KnowledgeIngestionPipeline
+    INGESTION_AVAILABLE = True
+    ingestion_pipeline = KnowledgeIngestionPipeline()
+    print("[ML Service] Knowledge ingestion pipeline available")
+except ImportError as e:
+    INGESTION_AVAILABLE = False
+    ingestion_pipeline = None
+    print(f"[ML Service] Knowledge ingestion pipeline not available: {e}")
+
 # Add data directory to path for RAG and autonomous imports
 data_dir = os.path.join(ai_core_dir, "data")
 sys.path.insert(0, data_dir)
@@ -912,6 +928,85 @@ async def run_pipeline():
     except Exception as e:
         autonomous_running = False
         raise HTTPException(status_code=500, detail=f"Pipeline execution failed: {str(e)}")
+
+@app.post("/ingestion/process")
+async def process_document(request: Request):
+    """
+    Process document using Python ingestion pipeline
+    Returns cleaned document and chunks for database persistence
+    """
+    if not INGESTION_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Ingestion pipeline not available")
+
+    try:
+        body_bytes = await request.body()
+        body_text = body_bytes.decode('utf-8')
+        body_data = json.loads(body_text)
+
+        text = body_data.get('text')
+        source = body_data.get('source', 'api_ingestion')
+        source_type = body_data.get('source_type', 'user_uploaded')
+        metadata = body_data.get('metadata', {})
+
+        if not text or not text.strip():
+            raise HTTPException(status_code=400, detail="Text is required")
+
+        # Convert string source_type to enum
+        from pipeline.schemas import SourceType
+        source_type_enum = SourceType.USER_UPLOADED
+        if source_type == 'web':
+            source_type_enum = SourceType.WEB
+        elif source_type == 'dataset':
+            source_type_enum = SourceType.DATASET
+        elif source_type == 'user_uploaded':
+            source_type_enum = SourceType.USER_UPLOADED
+
+        # Process using Python pipeline
+        result = await ingestion_pipeline.ingest_from_text(
+            text=text,
+            source=source,
+            source_type=source_type_enum,
+            metadata=metadata
+        )
+
+        if not result.success:
+            raise HTTPException(status_code=500, detail=f"Processing failed: {result.error}")
+
+        # Retrieve the cleaned document and chunks
+        cleaned_doc = ingestion_pipeline.get_cleaned_document(result.document_id)
+
+        if not cleaned_doc:
+            raise HTTPException(status_code=500, detail="Failed to retrieve processed document")
+
+        # Read chunks from JSONL file
+        chunks_file = ingestion_pipeline.cleaned_data_dir / "chunks.jsonl"
+        chunks = []
+        if chunks_file.exists():
+            with open(chunks_file, 'r', encoding='utf-8') as f:
+                for line in f:
+                    if line.strip():
+                        chunk_data = json.loads(line)
+                        # Only return chunks for this document
+                        if chunk_data.get('document_id') == result.document_id:
+                            chunks.append(chunk_data)
+
+        return {
+            "success": True,
+            "document_id": result.document_id,
+            "cleaned_document": cleaned_doc.to_dict(),
+            "chunks": chunks,
+            "chunk_count": len(chunks),
+            "processing_time_ms": result.processing_time_ms,
+            "metadata": result.metadata
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"[ML Service] Ingestion error: {e}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"Ingestion failed: {str(e)}")
 
 if __name__ == "__main__":
     # Add data management endpoints

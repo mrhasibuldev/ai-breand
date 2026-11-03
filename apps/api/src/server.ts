@@ -12,14 +12,35 @@ import { readRuntimeConfig } from '@nexusai/config';
 
 const config = readRuntimeConfig(process.env);
 
-const app = await buildApp();
+console.log('[API] Config loaded:', { apiHost: config.apiHost, apiPort: config.apiPort });
 
-await app.listen({ port: config.apiPort, host: config.apiHost });
+let app: any;
 
 const shutdown = async (signal: string) => {
-  await app.close();
+  console.log(`[API] Received ${signal}, shutting down...`);
+  if (app) {
+    await app.close();
+  }
   process.exit(0);
 };
 
 process.once('SIGINT', () => void shutdown('SIGINT'));
 process.once('SIGTERM', () => void shutdown('SIGTERM'));
+
+(async () => {
+  try {
+    console.log('[API] Building application...');
+    app = await buildApp();
+    console.log('[API] Application built, starting server...');
+    const address = await app.listen({ port: config.apiPort, host: config.apiHost });
+    console.log(`[API] Server listening on ${address}`);
+    console.log('[API] Press Ctrl+C to stop');
+  } catch (error) {
+    console.error('[API] Failed to start server:', error);
+    if (error instanceof Error) {
+      console.error('[API] Error details:', error.stack);
+    }
+    process.exit(1);
+  }
+})();
+

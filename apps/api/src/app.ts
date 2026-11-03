@@ -1,6 +1,7 @@
 import Fastify, { type FastifyInstance, type FastifyReply, type FastifyRequest } from 'fastify';
 import cookie from '@fastify/cookie';
 import cors from '@fastify/cors';
+import multipart from '@fastify/multipart';
 import { randomUUID } from 'node:crypto';
 import { API_PREFIX, INTERNAL_PREFIX, apiError, apiSuccess } from '@nexusai/contracts';
 import { readRuntimeConfig } from '@nexusai/config';
@@ -55,6 +56,13 @@ export async function buildApp(
   // Register cookie plugin for HTTP-only session cookies
   await app.register(cookie, {
     secret: options.env?.COOKIE_SECRET || process.env.COOKIE_SECRET || 'nexus-cookie-secret-change-in-production',
+  });
+
+  // Register multipart plugin for file uploads
+  await app.register(multipart, {
+    limits: {
+      fileSize: 100 * 1024 * 1024, // 100MB
+    },
   });
   const idempotency = new InMemoryIdempotencyStore();
   const rateLimit = options.rateLimit ?? new InMemoryAuthRateLimit();
@@ -161,6 +169,20 @@ export async function buildApp(
       },
     ]);
 
+  // CSRF protection for state-changing requests
+  const trustedOrigins = new Set([
+    config.webOrigin || 'http://localhost:3000',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+  ]);
+
+  const isStateChanging = (method: string, url: string) => {
+    if (method === 'GET' || method === 'HEAD' || method === 'OPTIONS') return false;
+    // Exclude health endpoints
+    if (url.startsWith('/health/')) return false;
+    return true;
+  };
+
   app.addHook('onRequest', async (request, reply) => {
     reply.header('x-request-id', request.id);
     reply.header('x-content-type-options', 'nosniff');
@@ -176,6 +198,37 @@ export async function buildApp(
       request.url.startsWith(`${API_PREFIX}/me`)
     ) {
       reply.header('cache-control', 'private, no-store');
+    }
+
+    // CSRF protection for state-changing requests
+    if (isStateChanging(request.method, request.url)) {
+      const origin = request.headers.origin;
+      const referer = request.headers.referer;
+
+      // Allow requests from trusted origins
+      if (origin && trustedOrigins.has(origin)) {
+        return; // Origin header present and trusted
+      }
+
+      // Fallback to referer if origin is missing
+      if (referer) {
+        try {
+          const refererUrl = new URL(referer);
+          if (trustedOrigins.has(refererUrl.origin)) {
+            return; // Referer is from trusted origin
+          }
+        } catch {
+          // Invalid referer URL
+        }
+      }
+
+      // Development mode: allow localhost without origin
+      if (config.nodeEnv === 'development' && request.ip === '127.0.0.1' || request.ip === '::1') {
+        return;
+      }
+
+      // Reject untrusted state-changing requests
+      throw new FoundationHttpError(403, 'csrf_rejected', 'Origin verification failed');
     }
   });
   app.setErrorHandler((error, request, reply) => {
@@ -235,10 +288,26 @@ export async function buildApp(
       const { profileRoutes } = await import('./routes/profile.js');
       const { conversationRoutes } = await import('./routes/conversations.js');
       const { aiRoutes } = await import('./routes/ai.js');
+      const { storageRoutes } = await import('./routes/storage.js');
+      const { datasetRegistryRoutes } = await import('./routes/dataset-registry.js');
+      const { memoryRoutes } = await import('./routes/memory.js');
+      const { ingestionRoutes } = await import('./routes/ingestion.js');
+      const { knowledgeRoutes } = await import('./routes/knowledge.js');
+      const { knowledgeSourceRoutes } = await import('./routes/knowledge-sources.js');
+      const { collectionRoutes } = await import('./routes/collection.js');
+      const { trainingRoutes } = await import('./routes/training.js');
       authRoutes(app);
       profileRoutes(app);
       conversationRoutes(app);
       aiRoutes(app);
+      storageRoutes(app);
+      datasetRegistryRoutes(app);
+      memoryRoutes(app);
+      ingestionRoutes(app);
+      knowledgeRoutes(app);
+      knowledgeSourceRoutes(app);
+      collectionRoutes(app);
+      trainingRoutes(app);
       console.log('[API] Database-backed auth routes registered');
     } catch (error) {
       console.log('[API] Database-backed routes not available:', error);

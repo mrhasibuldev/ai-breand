@@ -12,3 +12,13 @@ coverage/
 .playwright/
 test-results/
 playwright-report/
+
+# Large model checkpoints and binary files
+models/checkpoints/
+*.pt
+*.pth
+
+# Training data and temporary files
+training/
+*.jsonl
+*.mjs

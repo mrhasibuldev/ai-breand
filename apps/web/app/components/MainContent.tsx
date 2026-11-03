@@ -255,7 +255,7 @@ export default function MainContent({
     <main className="main-content">
       <div className="content-area">
         {/* Greeting Section */}
-        <GreetingSection />
+        <GreetingSection profileName={localProfileName} />
 
         {/* Input Section */}
         <InputSection
@@ -295,7 +295,11 @@ export default function MainContent({
  *
  * Displays animated orb and time-based greeting
  */
-function GreetingSection() {
+interface GreetingSectionProps {
+  profileName: string;
+}
+
+function GreetingSection({ profileName }: GreetingSectionProps) {
   const getGreeting = (): string => {
     const hour = new Date().getHours();
     if (hour < 12) return 'Good Morning';
@@ -303,11 +307,14 @@ function GreetingSection() {
     return 'Good Evening';
   };
 
+  // Fallback to "Guest" if profileName is empty or not set
+  const displayName = profileName && profileName !== 'Guest' ? profileName : 'Guest';
+
   return (
     <div className="greeting-section">
       <div className="greeting-orb" aria-hidden="true" />
       <h1 className="greeting-title">
-        {getGreeting()}, Judha.
+        {getGreeting()}, {displayName}.
       </h1>
       <p className="greeting-subtitle">
         How Can I <span className="greeting-highlight">Assist You Today?</span>

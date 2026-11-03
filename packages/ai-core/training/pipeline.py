@@ -116,8 +116,20 @@ class TrainingPipeline:
 
             print(f"Train Loss: {train_loss:.4f}, Val Loss: {val_loss:.4f}")
 
-            # Save checkpoint
+            # Save checkpoint with tokenizer vocabulary for reproducibility
             if (epoch + 1) % checkpoint_freq == 0:
+                # Prepare tokenizer vocabulary for checkpoint
+                tokenizer_vocab = {
+                    "word_to_id": self.tokenizer.word_to_id,
+                    "id_to_word": self.tokenizer.id_to_word,
+                    "vocab_size": self.tokenizer.get_vocab_size(),
+                    "special_tokens": {
+                        "PAD": self.tokenizer.PAD_TOKEN,
+                        "UNK": self.tokenizer.UNK_TOKEN,
+                        "BOS": self.tokenizer.BOS_TOKEN,
+                        "EOS": self.tokenizer.EOS_TOKEN
+                    }
+                }
                 self.checkpoint_manager.save(
                     self.model,
                     optimizer,
@@ -127,7 +139,8 @@ class TrainingPipeline:
                         "train_loss": train_loss,
                         "val_loss": val_loss
                     },
-                    config=training_config if save_config else None
+                    config=training_config if save_config else None,
+                    tokenizer_vocab=tokenizer_vocab
                 )
 
         return {

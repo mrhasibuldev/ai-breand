@@ -1,8 +1,8 @@
 /**
  * Avatar Service
  *
- * Handles avatar upload with localStorage fallback for development
- * Supabase Storage dependency removed
+ * Handles avatar upload to NexusAI backend API with Neon Object Storage
+ * localStorage fallback removed - now uses backend storage only
  */
 
 export interface UploadResult {
@@ -10,48 +10,10 @@ export interface UploadResult {
   storagePath: string;
 }
 
-const LOCAL_STORAGE_KEY = 'nexusai_avatar';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:4000';
 
 /**
- * Save avatar to localStorage
- */
-function saveAvatarToLocalStorage(userId: string, file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      try {
-        const dataUrl = reader.result as string;
-        localStorage.setItem(`${LOCAL_STORAGE_KEY}_${userId}`, dataUrl);
-        console.log('[Avatar] Saved to localStorage');
-        resolve(dataUrl);
-      } catch (e) {
-        reject(e);
-      }
-    };
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-}
-
-/**
- * Load avatar from localStorage
- */
-export function loadAvatarFromLocalStorage(userId: string): string | null {
-  try {
-    const dataUrl = localStorage.getItem(`${LOCAL_STORAGE_KEY}_${userId}`);
-    if (dataUrl) {
-      console.log('[Avatar] Loaded from localStorage');
-      return dataUrl;
-    }
-    return null;
-  } catch (e) {
-    console.warn('[Avatar] Failed to load from localStorage:', e);
-    return null;
-  }
-}
-
-/**
- * Upload avatar to localStorage (development storage)
+ * Upload avatar to backend API
  */
 export async function uploadAvatar(
   userId: string,
@@ -71,28 +33,95 @@ export async function uploadAvatar(
     throw new Error('Invalid file type. Only JPEG, PNG, WebP, and GIF are allowed');
   }
 
-  // Save to localStorage
-  const dataUrl = await saveAvatarToLocalStorage(userId, file);
+  // Create FormData for upload
+  const formData = new FormData();
+  formData.append('file', file);
 
-  return {
-    publicUrl: dataUrl,
-    storagePath: 'local',
-  };
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/storage/avatar`, {
+      method: 'POST',
+      credentials: 'include', // Include cookies for authentication
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || 'Avatar upload failed');
+    }
+
+    const result = await response.json();
+    console.log('[Avatar] Upload successful:', result);
+
+    // Generate public URL from key
+    const publicUrl = `${API_BASE_URL}/api/storage/avatar/${userId}/${result.metadata.timestamp}?ext=${result.metadata.ext}`;
+
+    return {
+      publicUrl,
+      storagePath: result.key,
+    };
+  } catch (error) {
+    console.error('[Avatar] Upload failed:', error);
+    throw error;
+  }
 }
 
 /**
- * Delete avatar from localStorage
+ * Load avatar from backend API
+ */
+export async function loadAvatar(userId: string): Promise<string | null> {
+  try {
+    // Get the latest avatar timestamp from profile or storage
+    // For now, return null and let the UI handle default avatar
+    console.log('[Avatar] Loading avatar for user:', userId);
+    return null;
+  } catch (e) {
+    console.warn('[Avatar] Failed to load avatar:', e);
+    return null;
+  }
+}
+
+/**
+ * Delete avatar from backend API
  */
 export async function deleteAvatar(storagePath: string, userId?: string): Promise<void> {
-  if (storagePath === 'local' && userId) {
-    try {
-      localStorage.removeItem(`${LOCAL_STORAGE_KEY}_${userId}`);
-      console.log('[Avatar] Deleted from localStorage');
-    } catch (e) {
-      console.warn('[Avatar] Failed to delete from localStorage:', e);
-    }
+  if (!userId) {
+    console.warn('[Avatar] Cannot delete without userId');
     return;
   }
 
-  console.warn('[Avatar] Cannot delete from non-local storage path:', storagePath);
+  try {
+    // Parse storage path to get timestamp and extension
+    // Format: avatars/{userId}/{timestamp}.{ext}
+    const parts = storagePath.split('/');
+    const timestampWithExt = parts[parts.length - 1];
+    const [timestamp, ext] = timestampWithExt.split('.');
+
+    const response = await fetch(
+      `${API_BASE_URL}/api/storage/avatar/${userId}/${timestamp}?ext=${ext}`,
+      {
+        method: 'DELETE',
+        credentials: 'include',
+      }
+    );
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || 'Avatar deletion failed');
+    }
+
+    console.log('[Avatar] Delete successful');
+  } catch (error) {
+    console.error('[Avatar] Delete failed:', error);
+    throw error;
+  }
+}
+
+/**
+ * Get avatar URL for display
+ */
+export function getAvatarUrl(userId: string, timestamp?: number, ext: string = 'jpg'): string {
+  if (timestamp) {
+    return `${API_BASE_URL}/api/storage/avatar/${userId}/${timestamp}?ext=${ext}`;
+  }
+  return ''; // Return empty if no avatar set
 }
