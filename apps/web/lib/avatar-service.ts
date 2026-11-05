@@ -10,7 +10,7 @@ export interface UploadResult {
   storagePath: string;
 }
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:4000';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
 
 /**
  * Upload avatar to backend API
@@ -82,7 +82,7 @@ export async function loadAvatar(userId: string): Promise<string | null> {
     }
 
     const profile = await response.json();
-    const avatarStoragePath = profile.avatar_storage_path;
+    const avatarStoragePath = profile.avatar_storage_path || profile.avatarStoragePath;
 
     if (!avatarStoragePath) {
       console.log('[Avatar] No avatar set for user:', userId);

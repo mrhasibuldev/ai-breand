@@ -13,6 +13,7 @@ export interface UserProfile {
   readonly ageBand?: string;
   readonly locale?: string;
   readonly timezone?: string;
+  readonly avatarStoragePath?: string;
   readonly createdAt: string;
   readonly updatedAt: string;
   readonly deletedAt?: string;
@@ -41,9 +42,9 @@ export class ProfileRepository {
    */
   async findByAccountId(accountId: string): Promise<UserProfile | null> {
     const result = await this.db.query<UserProfile>(
-      `SELECT id, account_id, display_name, age_band, locale, timezone, 
+      `SELECT id, account_id, display_name, age_band, locale, timezone, avatar_storage_path as "avatarStoragePath",
               created_at, updated_at, deleted_at
-       FROM nexus.user_profiles 
+       FROM nexus.user_profiles
        WHERE account_id = $1 AND deleted_at IS NULL`,
       [accountId]
     );
@@ -58,7 +59,7 @@ export class ProfileRepository {
     const result = await this.db.query<UserProfile>(
       `INSERT INTO nexus.user_profiles (account_id, display_name, age_band, locale, timezone)
        VALUES ($1, $2, $3, $4, $5)
-       RETURNING id, account_id, display_name, age_band, locale, timezone, 
+       RETURNING id, account_id, display_name, age_band, locale, timezone, avatar_storage_path as "avatarStoragePath",
                  created_at, updated_at, deleted_at`,
       [
         input.accountId,
@@ -108,7 +109,7 @@ export class ProfileRepository {
       `UPDATE nexus.user_profiles
        SET ${updates.join(', ')}
        WHERE account_id = $${paramIndex} AND deleted_at IS NULL
-       RETURNING id, account_id, display_name, age_band, locale, timezone, 
+       RETURNING id, account_id, display_name, age_band, locale, timezone, avatar_storage_path as "avatarStoragePath",
                  created_at, updated_at, deleted_at`,
       values
     );

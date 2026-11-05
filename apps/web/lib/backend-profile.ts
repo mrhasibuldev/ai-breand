@@ -14,6 +14,7 @@ export interface UserProfile {
   age_band?: string;
   locale?: string;
   timezone?: string;
+  avatar_storage_path?: string;
   created_at: string;
   updated_at: string;
   deleted_at?: string;
