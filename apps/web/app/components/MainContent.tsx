@@ -65,6 +65,12 @@ interface MainContentProps {
   isAuthenticated: boolean;
   /** Callback to open auth modal */
   onAuthRequired: () => void;
+  /** Profile edit dialog open state */
+  isProfileEditOpen?: boolean;
+  /** Callback to close profile edit dialog */
+  onProfileEditClose?: () => void;
+  /** Callback to open profile edit dialog from mobile */
+  onProfileEditRequest?: () => void;
 }
 
 /**
@@ -101,13 +107,14 @@ export default function MainContent({
   onProfileSave,
   isAuthenticated,
   onAuthRequired,
+  isProfileEditOpen,
+  onProfileEditClose,
+  onProfileEditRequest,
 }: MainContentProps) {
   // State for input field value
   const [inputValue, setInputValue] = useState('');
   // State for active action pill
   const [activePill, setActivePill] = useState<string | null>(null);
-  // State for profile edit dialog
-  const [isProfileEditOpen, setIsProfileEditOpen] = useState(false);
   // Local state for profile data
   const [localProfileName, setLocalProfileName] = useState(propProfileName);
   const [localProfileEmail, setLocalProfileEmail] = useState(propProfileEmail);
@@ -140,7 +147,7 @@ export default function MainContent({
     if (!isAuthenticated) {
       onAuthRequired();
     } else {
-      setIsProfileEditOpen(true);
+      onProfileEditRequest?.();
     }
   };
 
@@ -148,8 +155,10 @@ export default function MainContent({
    * Handle profile save
    */
   const handleProfileSave = (name: string, email: string, photoUrl: string | null) => {
+    setLocalProfileName(name);
+    setLocalProfileEmail(email);
+    setLocalProfilePhoto(photoUrl);
     onProfileSave(name, email, photoUrl);
-    setIsProfileEditOpen(false);
   };
 
   /**
@@ -177,7 +186,7 @@ export default function MainContent({
             initialEmail={localProfileEmail}
             initialPhotoUrl={localProfilePhoto}
             onSave={handleProfileSave}
-            onClose={() => setIsProfileEditOpen(false)}
+            onClose={onProfileEditClose || (() => {})}
           />
         )}
       </main>
@@ -207,7 +216,7 @@ export default function MainContent({
             initialEmail={localProfileEmail}
             initialPhotoUrl={localProfilePhoto}
             onSave={handleProfileSave}
-            onClose={() => setIsProfileEditOpen(false)}
+            onClose={onProfileEditClose || (() => {})}
           />
         )}
       </main>
@@ -244,7 +253,7 @@ export default function MainContent({
             initialEmail={localProfileEmail}
             initialPhotoUrl={localProfilePhoto}
             onSave={handleProfileSave}
-            onClose={() => setIsProfileEditOpen(false)}
+            onClose={onProfileEditClose || (() => {})}
           />
         )}
       </main>
@@ -283,7 +292,7 @@ export default function MainContent({
           initialEmail={localProfileEmail}
           initialPhotoUrl={localProfilePhoto}
           onSave={handleProfileSave}
-          onClose={() => setIsProfileEditOpen(false)}
+          onClose={onProfileEditClose || (() => {})}
         />
       )}
     </main>

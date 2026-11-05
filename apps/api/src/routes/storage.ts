@@ -165,7 +165,15 @@ export async function storageRoutes(fastify: FastifyInstance) {
 
       const buffer = await storageService.downloadAvatar(userId, parseInt(timestamp), ext);
 
-      reply.type('image/jpeg');
+      // Set correct content type based on file extension
+      const contentTypeMap: Record<string, string> = {
+        'jpg': 'image/jpeg',
+        'jpeg': 'image/jpeg',
+        'png': 'image/png',
+        'webp': 'image/webp',
+        'gif': 'image/gif',
+      };
+      reply.type(contentTypeMap[ext.toLowerCase()] || 'image/jpeg');
       return reply.send(buffer);
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : String(error);

@@ -24,6 +24,7 @@ import {
   Clock,
   MessageSquare,
   ChevronDown,
+  Settings,
 } from 'lucide-react';
 
 /**
@@ -56,6 +57,8 @@ interface SidebarProps {
   isAuthenticated?: boolean;
   /** Callback when profile card is clicked */
   onProfileClick?: () => void;
+  /** Callback when edit profile is requested */
+  onProfileEditClick?: () => void;
   /** Callback when logout is requested */
   onLogout?: () => void;
 }
@@ -85,6 +88,7 @@ export default function Sidebar({
   profilePhoto = null,
   isAuthenticated = false,
   onProfileClick,
+  onProfileEditClick,
   onLogout,
 }: SidebarProps) {
   // State for search input
@@ -190,14 +194,24 @@ export default function Sidebar({
           </div>
           <div className="profile-action">
             {isAuthenticated ? (
-              <button 
-                onClick={(e) => { e.stopPropagation(); onLogout?.(); }}
-                aria-label="Logout"
-                title="Logout"
-                style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px' }}
-              >
-                <X size={16} />
-              </button>
+              <>
+                <button
+                  onClick={(e) => { e.stopPropagation(); onProfileEditClick?.(); }}
+                  aria-label="Edit profile"
+                  title="Edit profile"
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px', marginRight: '4px' }}
+                >
+                  <Settings size={16} />
+                </button>
+                <button
+                  onClick={(e) => { e.stopPropagation(); onLogout?.(); }}
+                  aria-label="Logout"
+                  title="Logout"
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px' }}
+                >
+                  <X size={16} />
+                </button>
+              </>
             ) : (
               <ChevronDown size={16} />
             )}

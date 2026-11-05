@@ -15,6 +15,7 @@ import { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import MainContent from './components/MainContent';
 import AuthModal from './components/AuthModal';
+import ProfileEdit from './components/ProfileEdit';
 import { AuthProvider, useAuth } from './components/AuthContext';
 import { getProfile, createProfile, updateProfile } from '../lib/backend-profile';
 import { loadAvatar } from '../lib/avatar-service';
@@ -28,12 +29,23 @@ import { loadAvatar } from '../lib/avatar-service';
 function HomeContent() {
   const [activeNav, setActiveNav] = useState('home');
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [isProfileEditOpen, setIsProfileEditOpen] = useState(false);
 
   // Profile state
   const [profileName, setProfileName] = useState('Guest');
   const [profileEmail, setProfileEmail] = useState('');
   const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
+  const [localProfileName, setLocalProfileName] = useState('Guest');
+  const [localProfileEmail, setLocalProfileEmail] = useState('');
+  const [localProfilePhoto, setLocalProfilePhoto] = useState<string | null>(null);
   const { user, isAuthenticated, initialized } = useAuth();
+
+  // Sync local profile state with props
+  useEffect(() => {
+    setLocalProfileName(profileName);
+    setLocalProfileEmail(profileEmail);
+    setLocalProfilePhoto(profilePhoto);
+  }, [profileName, profileEmail, profilePhoto]);
 
   // Update profile when auth state changes
   useEffect(() => {
@@ -94,6 +106,9 @@ function HomeContent() {
       setProfileName(name);
       setProfileEmail(email);
       setProfilePhoto(photoUrl);
+      setLocalProfileName(name);
+      setLocalProfileEmail(email);
+      setLocalProfilePhoto(photoUrl);
 
       console.log('[Profile] Saved successfully');
     } catch (error) {
@@ -103,13 +118,28 @@ function HomeContent() {
   };
 
   /**
+   * Handle profile edit close
+   */
+  const handleProfileEditClose = () => {
+    setIsProfileEditOpen(false);
+  };
+
+  /**
    * Handle profile card click
    */
   const handleProfileClick = () => {
     if (!isAuthenticated) {
       setShowAuthModal(true);
     }
-    // Profile edit will be handled by MainContent
+  };
+
+  /**
+   * Handle profile edit click
+   */
+  const handleProfileEditClick = () => {
+    if (isAuthenticated) {
+      setIsProfileEditOpen(true);
+    }
   };
 
   /**
@@ -142,6 +172,7 @@ function HomeContent() {
         profilePhoto={profilePhoto}
         isAuthenticated={isAuthenticated}
         onProfileClick={handleProfileClick}
+        onProfileEditClick={handleProfileEditClick}
         onLogout={handleLogout}
       />
 
@@ -155,6 +186,9 @@ function HomeContent() {
         onProfileSave={handleProfileSave}
         isAuthenticated={isAuthenticated}
         onAuthRequired={() => setShowAuthModal(true)}
+        isProfileEditOpen={isProfileEditOpen}
+        onProfileEditClose={() => setIsProfileEditOpen(false)}
+        onProfileEditRequest={handleProfileEditClick}
       />
 
       {/* Authentication Modal */}
@@ -162,6 +196,17 @@ function HomeContent() {
         isOpen={showAuthModal}
         onClose={() => setShowAuthModal(false)}
       />
+
+      {/* Profile Edit Dialog */}
+      {isProfileEditOpen && (
+        <ProfileEdit
+          initialName={localProfileName}
+          initialEmail={localProfileEmail}
+          initialPhotoUrl={localProfilePhoto}
+          onSave={handleProfileSave}
+          onClose={() => setIsProfileEditOpen(false)}
+        />
+      )}
     </div>
   );
 }
