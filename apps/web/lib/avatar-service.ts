@@ -3,11 +3,18 @@
  *
  * Handles avatar upload to NexusAI backend API with Neon Object Storage
  * localStorage fallback removed - now uses backend storage only
+ * Includes client-side image optimization for better performance
  */
+
+import { optimizeImage, supportsImageOptimization, type OptimizationResult } from './image-optimizer';
 
 export interface UploadResult {
   publicUrl: string;
   storagePath: string;
+}
+
+export interface UploadResultWithOptimization extends UploadResult {
+  optimizationResult?: OptimizationResult;
 }
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
@@ -18,7 +25,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
 export async function uploadAvatar(
   userId: string,
   file: File
-): Promise<{ storagePath: string; publicUrl: string }> {
+): Promise<UploadResultWithOptimization> {
   console.log('[Avatar] Starting upload for user:', userId);
   console.log('[Avatar] File:', file.name, 'Size:', file.size, 'Type:', file.type);
 
@@ -33,9 +40,40 @@ export async function uploadAvatar(
     throw new Error('Invalid file type. Only JPEG, PNG, WebP, and GIF are allowed');
   }
 
+  // Optimize image if supported
+  let fileToUpload = file;
+  let optimizationResult: OptimizationResult | undefined;
+
+  if (supportsImageOptimization()) {
+    try {
+      console.log('[Avatar] Optimizing image...');
+      optimizationResult = await optimizeImage(file, {
+        maxWidth: 1600,
+        maxHeight: 1600,
+        quality: 0.85,
+        outputFormat: 'image/webp',
+        targetSizeKB: 500,
+      });
+
+      fileToUpload = optimizationResult.optimizedFile;
+
+      console.log('[Avatar] Optimization complete:', {
+        originalSize: optimizationResult.originalSize,
+        optimizedSize: optimizationResult.optimizedSize,
+        compressionRatio: optimizationResult.compressionRatio.toFixed(2),
+        processingTime: `${optimizationResult.processingTime.toFixed(0)}ms`,
+      });
+    } catch (error) {
+      console.warn('[Avatar] Image optimization failed, using original:', error);
+      // Continue with original file
+    }
+  } else {
+    console.log('[Avatar] Image optimization not supported, using original');
+  }
+
   // Create FormData for upload
   const formData = new FormData();
-  formData.append('file', file);
+  formData.append('file', fileToUpload);
 
   try {
     const response = await fetch(`${API_BASE_URL}/api/storage/avatar`, {
@@ -58,6 +96,7 @@ export async function uploadAvatar(
     return {
       publicUrl,
       storagePath: result.key,
+      ...(optimizationResult ? { optimizationResult } : {}),
     };
   } catch (error) {
     console.error('[Avatar] Upload failed:', error);

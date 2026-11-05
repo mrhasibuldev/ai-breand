@@ -38,7 +38,9 @@ export default function ProfileEdit({
   const [email, setEmail] = useState(initialEmail);
   const [photoUrl, setPhotoUrl] = useState<string | null>(initialPhotoUrl);
   const [isUploading, setIsUploading] = useState(false);
+  const [isOptimizing, setIsOptimizing] = useState(false);
   const [uploadError, setUploadError] = useState('');
+  const [optimizationInfo, setOptimizationInfo] = useState<string>('');
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { user } = useAuth();
 
@@ -49,22 +51,34 @@ export default function ProfileEdit({
     const file = e.target.files?.[0];
     if (file) {
       setIsUploading(true);
+      setIsOptimizing(true);
       setUploadError('');
+      setOptimizationInfo('');
 
       try {
         if (!user) {
           throw new Error('User not authenticated');
         }
 
-        // Upload to storage
-        const { publicUrl } = await uploadAvatar(user.id, file);
+        // Upload to storage with optimization
+        const { publicUrl, optimizationResult } = await uploadAvatar(user.id, file);
         setPhotoUrl(publicUrl);
+
+        // Display optimization info if available
+        if (optimizationResult) {
+          const sizeSaved = (optimizationResult.originalSize - optimizationResult.optimizedSize) / 1024;
+          const percentSaved = ((1 - 1 / optimizationResult.compressionRatio) * 100).toFixed(0);
+          setOptimizationInfo(
+            `Optimized: Saved ${sizeSaved.toFixed(0)} KB (${percentSaved}% reduction)`
+          );
+        }
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error('[ProfileEdit] Upload failed:', error);
         setUploadError(error instanceof Error ? error.message : 'Failed to upload image');
       } finally {
         setIsUploading(false);
+        setIsOptimizing(false);
       }
     }
   };
@@ -128,7 +142,9 @@ export default function ProfileEdit({
                 disabled={isUploading}
                 aria-label="Change photo"
               >
-                {isUploading ? (
+                {isOptimizing ? (
+                  <span className="uploading-text">Optimizing...</span>
+                ) : isUploading ? (
                   <span className="uploading-text">Uploading...</span>
                 ) : (
                   <Camera size={20} />
@@ -138,6 +154,11 @@ export default function ProfileEdit({
             {uploadError && (
               <div className="profile-upload-error">
                 {uploadError}
+              </div>
+            )}
+            {optimizationInfo && (
+              <div className="profile-optimization-info">
+                {optimizationInfo}
               </div>
             )}
             <input
