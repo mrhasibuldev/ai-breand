@@ -17,7 +17,7 @@ import MainContent from './components/MainContent';
 import AuthModal from './components/AuthModal';
 import { AuthProvider, useAuth } from './components/AuthContext';
 import { getProfile, createProfile, updateProfile } from '../lib/backend-profile';
-import { loadAvatarFromLocalStorage } from '../lib/avatar-service';
+import { loadAvatar } from '../lib/avatar-service';
 
 /**
  * Home Page Component
@@ -45,10 +45,14 @@ function HomeContent() {
       getProfile().then((profile) => {
         if (profile) {
           setProfileName(profile.display_name || user.email?.split('@')[0] || 'User');
-          const localAvatar = loadAvatarFromLocalStorage(user.id);
-          if (localAvatar) {
-            setProfilePhoto(localAvatar);
-          }
+          // Load avatar from backend (localStorage fallback removed)
+          loadAvatar(user.id).then((avatarUrl) => {
+            if (avatarUrl) {
+              setProfilePhoto(avatarUrl);
+            }
+          }).catch((error) => {
+            console.warn('[Profile] Failed to load avatar:', error);
+          });
         }
       }).catch((error) => {
         console.error('[Profile] Failed to load profile:', error);

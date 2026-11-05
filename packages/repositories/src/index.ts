@@ -2,3 +2,4 @@ export { ProfileRepository, type UserProfile, type CreateProfileInput, type Upda
 export { ConversationRepository, type Conversation, type CreateConversationInput } from './conversation-repository.js';
 export { MessageRepository, type Message, type CreateMessageInput } from './message-repository.js';
 export { MemoryRepository, type MemoryRecord, type CreateMemoryInput } from './memory-repository.js';
+export { ConsentRecordRepository } from './consent-record-repository.js';

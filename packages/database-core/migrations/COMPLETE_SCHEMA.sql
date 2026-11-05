@@ -1,5 +1,5 @@
 -- NEXUSAI - COMPLETE DATABASE SCHEMA
--- Run this entire script in Supabase SQL Editor
+-- Run this entire script in your PostgreSQL client (psql, Neon SQL Editor, etc.)
 -- This creates all required tables for NexusAI application
 
 -- ============================================
@@ -289,7 +289,7 @@ FOR EACH ROW EXECUTE FUNCTION nexus.set_updated_at();
 CREATE TABLE IF NOT EXISTS nexus.file_metadata (
     id                  uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     account_id          uuid NOT NULL,
-    storage_provider     text NOT NULL DEFAULT 'supabase',
+    storage_provider     text NOT NULL DEFAULT 's3',
     storage_key          varchar(500) NOT NULL,
     mime_type            varchar(100) NOT NULL,
     size_bytes          bigint NOT NULL,
@@ -316,7 +316,7 @@ CREATE TABLE IF NOT EXISTS nexus.schema_migrations (
 );
 
 -- Record all migrations as applied
-INSERT INTO nexus.schema_migrations (id) VALUES 
+INSERT INTO nexus.schema_migrations (id) VALUES
 ('001_bootstrap'),
 ('002_core_identity'),
 ('003_user_profiles'),
@@ -327,7 +327,15 @@ INSERT INTO nexus.schema_migrations (id) VALUES
 ('008_library_items'),
 ('009_file_metadata'),
 ('011_create_g_media_table'),
-('012_g_media_rls_policies')
+('012_g_media_rls_policies'),
+('013_knowledge_tables'),
+('014_fix_conversations_account_id'),
+('015_grant_nexus_api_access'),
+('016_add_password_hash'),
+('017_add_memory_consent_fk'),
+('018_dataset_registry_tables'),
+('019_extended_knowledge_source_registry'),
+('020_fix_storage_provider_default')
 ON CONFLICT (id) DO NOTHING;
 
 -- ============================================

@@ -50,8 +50,10 @@ sys.path.insert(0, ai_core_dir)
 
 from tokenizer.tokenizer import SimpleTokenizer
 from neural.small_transformer import SmallTransformer
+from neural.medium_transformer import MediumTransformer
 from inference.generator import TextGenerator
 from training.dataset import load_json_dataset
+import sentencepiece as spm
 import sys
 import os
 
@@ -204,6 +206,7 @@ class OrchestratorRequest(BaseModel):
     message: str = Field(..., description="User message to process")
     conversation_id: Optional[str] = Field(None, description="Conversation ID for context")
     conversation_history: Optional[List[Dict]] = Field([], description="Conversation history for context")
+    memory: Optional[List[Dict]] = Field([], description="User memory for context")
     request_id: Optional[str] = Field(None, description="Unique request ID for tracing")
     diagnostic_mode: bool = Field(False, description="Enable diagnostic mode to inspect raw neural output (requires DIAGNOSTIC_MODE_ENABLED environment variable)")
 
@@ -282,48 +285,169 @@ def load_model_if_needed():
         else:
             raise FileNotFoundError(f"Checkpoint not found at {checkpoint_path}")
         
-        # Use checkpoint vocab size if available, otherwise use 2000
-        vocab_size = checkpoint_vocab_size if checkpoint_vocab_size else 2000
-        tokenizer = SimpleTokenizer(vocab_size=vocab_size)
+        # Load checkpoint to get configuration
+        checkpoint = torch.load(checkpoint_path, map_location="cpu")
         
-        # Load tokenizer from checkpoint if available to ensure compatibility
-        if "tokenizer_vocab" in checkpoint:
-            tokenizer.word_to_id = {k: int(v) for k, v in checkpoint["tokenizer_vocab"].items()}
-            tokenizer.id_to_word = {int(k): v for k, v in zip(tokenizer.word_to_id.values(), tokenizer.word_to_id.keys())}
-            tokenizer.is_built = True
-            print(f"[ML Service] Loaded tokenizer from checkpoint ({len(tokenizer.word_to_id)} tokens)")
+        # Use checkpoint config if available
+        if "config" in checkpoint:
+            config = checkpoint["config"]
+            vocab_size = config["vocab_size"]
+            d_model = config["d_model"]
+            n_layers = config["n_layers"]
+            n_heads = config["n_heads"]
+            d_ff = config["d_ff"]
+            max_len = config["max_len"]
+            print(f"[ML Service] Loaded config from checkpoint: {config}")
         else:
-            # Fallback: Build vocabulary from new dataset (may cause incompatibility)
-            print("[ML Service] WARNING: Checkpoint does not contain tokenizer_vocab. Rebuilding from dataset may cause incompatibility.")
+            # Fallback defaults
+            vocab_size = checkpoint_vocab_size if checkpoint_vocab_size else 8000
+            d_model = 128
+            n_layers = 2
+            n_heads = 2
+            d_ff = 512
+            max_len = 128
+            print(f"[ML Service] Using default config (vocab_size={vocab_size})")
+        
+        # Load SentencePiece tokenizer (Phase 1 BPE 8K)
+        tokenizer_path = os.path.join(ai_core_dir, "data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model")
+        if os.path.exists(tokenizer_path):
+            tokenizer = spm.SentencePieceProcessor()
+            tokenizer.load(tokenizer_path)
+            print(f"[ML Service] Loaded SentencePiece tokenizer from {tokenizer_path}")
+            print(f"[ML Service] Tokenizer vocab size: {tokenizer.get_piece_size()}")
+        else:
+            # Fallback to SimpleTokenizer
+            print(f"[ML Service] WARNING: SentencePiece tokenizer not found at {tokenizer_path}")
+            print(f"[ML Service] Falling back to SimpleTokenizer")
+            tokenizer = SimpleTokenizer(vocab_size=vocab_size)
             train_texts = load_json_dataset(os.path.join(ai_core_dir, "data/train_v2.json"))
             tokenizer.build_vocab(train_texts, min_freq=1)
 
-        # Load Medium Transformer
-        from neural.medium_transformer import MediumTransformer
+        # Load Medium Transformer with checkpoint config
         model = MediumTransformer(
-            vocab_size=tokenizer.get_vocab_size(),
-            d_model=256,
-            n_layers=6,
-            n_heads=8,
-            d_ff=1024,
-            max_len=512
+            vocab_size=vocab_size,
+            d_model=d_model,
+            n_layers=n_layers,
+            n_heads=n_heads,
+            d_ff=d_ff,
+            max_len=max_len
         )
 
         # Load checkpoint
-        if os.path.exists(checkpoint_path):
-            checkpoint = torch.load(checkpoint_path, map_location="cpu")
-            # Handle different checkpoint formats
-            if "model_state_dict" in checkpoint:
-                model.load_state_dict(checkpoint["model_state_dict"])
-            else:
-                model.load_state_dict(checkpoint)
-            model.eval()
-            print(f"[ML Service] Medium model loaded from {checkpoint_path}")
+        if "model_state_dict" in checkpoint:
+            model.load_state_dict(checkpoint["model_state_dict"])
         else:
-            print("[ML Service] No Medium model checkpoint found, using random initialization")
+            model.load_state_dict(checkpoint)
+        model.eval()
+        print(f"[ML Service] Medium model loaded from {checkpoint_path}")
 
         # Create generator
-        generator = TextGenerator(model, tokenizer, device="cpu")
+        # Wrap SentencePiece tokenizer to match SimpleTokenizer interface
+        class SentencePieceWrapper:
+            def __init__(self, sp_tokenizer):
+                self.sp = sp_tokenizer
+                self.pad_id = 0
+                self.unk_id = 1
+                self.bos_id = 2
+                self.eos_id = 3
+            
+            def encode(self, text, add_special_tokens=True):
+                tokens = self.sp.encode(text, out_type=int)
+                if add_special_tokens:
+                    tokens = [self.bos_id] + tokens + [self.eos_id]
+                return tokens
+            
+            def decode(self, token_ids, skip_special_tokens=True):
+                # Filter special tokens if requested
+                if skip_special_tokens:
+                    token_ids = [tid for tid in token_ids if tid not in [self.pad_id, self.unk_id, self.bos_id, self.eos_id]]
+                return self.sp.decode(token_ids)
+        
+        class SimpleTextGenerator:
+            """Simple generator that supports sampling parameters"""
+            def __init__(self, model, tokenizer, device="cpu"):
+                self.model = model.to(device)
+                self.tokenizer = tokenizer
+                self.device = device
+                self.model.eval()
+            
+            def generate(self, prompt, max_new_tokens=50, temperature=1.0, 
+                        top_k=None, top_p=None, do_sample=False, repetition_penalty=1.0, **kwargs):
+                with torch.no_grad():
+                    # Encode prompt
+                    tokens = self.tokenizer.encode(prompt, add_special_tokens=True)
+                    input_ids = torch.tensor([tokens], dtype=torch.long).to(self.device)
+                    
+                    # Generate token by token
+                    for _ in range(max_new_tokens):
+                        if input_ids.size(1) >= self.model.max_len:
+                            input_ids = input_ids[:, -self.model.max_len:]
+                        
+                        logits = self.model(input_ids)
+                        next_token_logits = logits[:, -1, :]
+                        
+                        # Apply repetition penalty
+                        if repetition_penalty > 1.0:
+                            for token_id in set(input_ids[0].tolist()):
+                                next_token_logits[0, token_id] /= repetition_penalty
+                        
+                        # Apply temperature
+                        next_token_logits = next_token_logits / temperature
+                        
+                        # Sampling logic
+                        if do_sample and (top_k is not None or top_p is not None):
+                            # Top-k sampling
+                            if top_k is not None:
+                                top_k = min(top_k, next_token_logits.size(-1))
+                                values, indices = torch.topk(next_token_logits, top_k)
+                                next_token_logits = torch.full_like(next_token_logits, float('-inf'))
+                                next_token_logits.scatter_(1, indices, values)
+                            
+                            # Top-p (nucleus) sampling
+                            if top_p is not None:
+                                sorted_logits, sorted_indices = torch.sort(next_token_logits, descending=True)
+                                cumulative_probs = torch.cumsum(torch.softmax(sorted_logits, dim=-1), dim=-1)
+                                sorted_indices_to_remove = cumulative_probs > top_p
+                                sorted_indices_to_remove[..., 1:] = sorted_indices_to_remove[..., :-1].clone()
+                                sorted_indices_to_remove[..., 0] = 0
+                                indices_to_remove = sorted_indices_to_remove.scatter(1, sorted_indices, sorted_indices_to_remove)
+                                next_token_logits[indices_to_remove] = float('-inf')
+                            
+                            # Sample from distribution
+                            probs = torch.softmax(next_token_logits, dim=-1)
+                            next_token = torch.multinomial(probs, num_samples=1)
+                        else:
+                            # Greedy decoding
+                            next_token = torch.argmax(next_token_logits, dim=-1, keepdim=True)
+                        
+                        input_ids = torch.cat([input_ids, next_token], dim=1)
+                        
+                        # Check for EOS or PAD
+                        if next_token.item() == self.tokenizer.eos_id or next_token.item() == self.tokenizer.pad_id:
+                            break
+                    
+                    # Decode
+                    generated_ids = input_ids[0].cpu().tolist()
+                    generated_text = self.tokenizer.decode(generated_ids, skip_special_tokens=True)
+                    
+                    # Remove prompt from output
+                    # Try to find where the generated content starts
+                    prompt_tokens = self.tokenizer.encode(prompt, add_special_tokens=True)
+                    if len(generated_ids) > len(prompt_tokens):
+                        generated_only_ids = generated_ids[len(prompt_tokens):]
+                        generated_text = self.tokenizer.decode(generated_only_ids, skip_special_tokens=True)
+                        print(f"[Generator] Generated {len(generated_only_ids)} new tokens: {generated_only_ids[:10]}")
+                    else:
+                        print(f"[Generator] Warning: No new tokens generated (total={len(generated_ids)}, prompt={len(prompt_tokens)})")
+                        generated_text = ""
+                    
+                    return generated_text
+        
+        if isinstance(tokenizer, spm.SentencePieceProcessor):
+            tokenizer = SentencePieceWrapper(tokenizer)
+            generator = SimpleTextGenerator(model, tokenizer, device="cpu")
+        else:
+            generator = TextGenerator(model, tokenizer, device="cpu")
 
         # Track model metadata
         loaded_model_name = "MediumTransformer"
@@ -504,6 +628,7 @@ async def orchestrate(request: Request):
         message = body_data.get('message', '')
         conversation_id = body_data.get('conversation_id')
         conversation_history = body_data.get('conversation_history', [])
+        memory = body_data.get('memory', [])
         request_id = body_data.get('request_id')
         diagnostic_mode = body_data.get('diagnostic_mode', False)
 
@@ -533,7 +658,60 @@ async def orchestrate(request: Request):
         language = detect_language(message)
         print(f"[ML Service] Detected language: {language}")
 
-        # Step 2: Store message in conversation context
+        # Step 2: Validate and format conversation history for neural generation
+        formatted_history = ""
+        history_used = False
+        
+        if conversation_history and isinstance(conversation_history, list):
+            # Validate and format history entries
+            valid_history = []
+            for entry in conversation_history[-5:]:  # Use last 5 messages to stay within token limits
+                if not isinstance(entry, dict):
+                    continue
+                role = entry.get('role', '').lower()
+                content = entry.get('content', '')
+                
+                # Only accept valid roles and non-empty content
+                if role in ['user', 'assistant'] and content and isinstance(content, str):
+                    # Truncate long messages to avoid exceeding sequence length
+                    if len(content) > 200:
+                        content = content[:200]
+                    valid_history.append(f"{role}: {content}")
+            
+            if valid_history:
+                # Join history with newlines
+                formatted_history = "\n".join(valid_history) + "\n"
+                history_used = True
+                print(f"[ML Service] Using {len(valid_history)} history messages for context")
+
+        # Step 2.5: Validate and format memory for neural generation (Phase 3)
+        formatted_memory = ""
+        memory_used = False
+        
+        if memory and isinstance(memory, list):
+            # Validate and format memory entries
+            valid_memory = []
+            for entry in memory[:3]:  # Use top 3 memories to stay within token limits
+                if not isinstance(entry, dict):
+                    continue
+                category = entry.get('category', '')
+                purpose = entry.get('purpose', '')
+                value = entry.get('value', '')
+                
+                # Only accept valid entries with non-empty value
+                if value and isinstance(value, str):
+                    # Truncate long memory values
+                    if len(value) > 150:
+                        value = value[:150]
+                    valid_memory.append(f"Memory ({category}): {value}")
+            
+            if valid_memory:
+                # Join memory with newlines
+                formatted_memory = "\n".join(valid_memory) + "\n"
+                memory_used = True
+                print(f"[ML Service] Using {len(valid_memory)} memory entries for context")
+
+        # Step 3: Store message in conversation context (legacy in-memory storage)
         if conversation_id:
             if conversation_id not in conversation_contexts:
                 conversation_contexts[conversation_id] = []
@@ -696,104 +874,88 @@ async def orchestrate(request: Request):
         if response_source == "NEURAL_MODEL":
             start_time = time.time()
 
-            # Try simple retrieval first (immediate knowledge access)
+            # DISABLED: Simple retrieval fallback for accurate neural model testing
+            # The requirement is to test the trained neural model, not fallback to retrieval
             retrieved_context = ""
-            print(f"[ML Service] SIMPLE_RETRIEVAL_AVAILABLE: {SIMPLE_RETRIEVAL_AVAILABLE}")
-            if SIMPLE_RETRIEVAL_AVAILABLE and simple_retrieval is not None:
-                try:
-                    print(f"[ML Service] Attempting simple retrieval...")
-                    if not simple_retrieval.loaded:
-                        simple_retrieval.load()
-                    context = simple_retrieval.get_context(message, top_k=2)
-                    print(f"[ML Service] Context length: {len(context) if context else 0}")
-                    if context:
-                        retrieved_context = context
-                        print(f"[ML Service] Retrieved context for query: {message[:50]}...")
-                except Exception as e:
-                    print(f"[ML Service] Simple retrieval failed: {e}")
-                    import traceback
-                    traceback.print_exc()
+            print(f"[ML Service] SIMPLE_RETRIEVAL_AVAILABLE: {SIMPLE_RETRIEVAL_AVAILABLE} (DISABLED for neural testing)")
+            # if SIMPLE_RETRIEVAL_AVAILABLE and simple_retrieval is not None:
+            #     try:
+            #         print(f"[ML Service] Attempting simple retrieval...")
+            #         if not simple_retrieval.loaded:
+            #             simple_retrieval.load()
+            #         context = simple_retrieval.get_context(message, top_k=2)
+            #         print(f"[ML Service] Context length: {len(context) if context else 0}")
+            #         if context:
+            #             retrieved_context = context
+            #             print(f"[ML Service] Retrieved context for query: {message[:50]}...")
+            #     except Exception as e:
+            #         print(f"[ML Service] Simple retrieval failed: {e}")
+            #         import traceback
+            #         traceback.print_exc()
 
-            # Prepend system prompt to message for better responses
-            augmented_message = f"{SYSTEM_PROMPT}\n\nUser: {message}\nAssistant:"
-
-            # Try RAG augmentation if available
-            if rag_loaded and rag_system is not None:
-                try:
-                    augmented_prompt = rag_system.augment_prompt(augmented_message, top_k=3)
-                    response_text = generator.generate(
-                        prompt=augmented_prompt,
-                        max_new_tokens=50,
-                        temperature=0.8,
-                        top_k=50,
-                        top_p=0.9,
-                        do_sample=True,
-                        repetition_penalty=1.2
-                    )
-                    response_source = "RAG_AUGMENTED"
-                except Exception as e:
-                    print(f"[ML Service] RAG augmentation failed, using original prompt: {e}")
-                    response_text = generator.generate(
-                        prompt=augmented_message,
-                        max_new_tokens=50,
-                        temperature=0.8,
-                        top_k=50,
-                        top_p=0.9,
-                        do_sample=True,
-                        repetition_penalty=1.2
-                    )
-            elif retrieved_context:
-                # Use simple retrieval context directly
-                # For now, return the context directly as response
-                # The model is not trained well enough to generate good answers
-                results = simple_retrieval.retrieve(message, top_k=1)
-                if results:
-                    response_text = results[0]["text"]
-                    response_source = "SIMPLE_RETRIEVAL"
-                else:
-                    response_text = generator.generate(
-                        prompt=augmented_message,
-                        max_new_tokens=50,
-                        temperature=0.8,
-                        top_k=50,
-                        top_p=0.9,
-                        do_sample=True,
-                        repetition_penalty=1.2
-                    )
+            # Build prompt for neural generation
+            # The model was trained on raw text, not chat format
+            # Use simple concatenation of context + message
+            context_parts = []
+            
+            if history_used and formatted_history:
+                # Add history without role labels
+                for entry in conversation_history[-3:]:
+                    if isinstance(entry, dict):
+                        content = entry.get('content', '')
+                        if content:
+                            context_parts.append(content)
+            
+            if memory_used and formatted_memory:
+                for entry in memory[:2]:
+                    if isinstance(entry, dict):
+                        value = entry.get('value', '')
+                        if value:
+                            context_parts.append(value)
+            
+            if context_parts:
+                # Join context with message
+                augmented_message = " ".join(context_parts) + " " + message
+                print(f"[ML Service] Context-aware prompt (total length: {len(augmented_message)})")
             else:
-                response_text = generator.generate(
-                    prompt=augmented_message,
-                    max_new_tokens=50,
-                    temperature=0.8,
-                    top_k=50,
-                    top_p=0.9,
-                    do_sample=True,
-                    repetition_penalty=1.2
-                )
+                augmented_message = message
+                print(f"[ML Service] Single-turn prompt")
+
+            # Use neural model for generation (retrieval disabled for accurate testing)
+            response_text = generator.generate(
+                prompt=augmented_message,
+                max_new_tokens=100,  # Increased for better responses
+                temperature=0.8,
+                top_k=50,
+                top_p=0.9,
+                do_sample=True,
+                repetition_penalty=1.2
+            )
 
             latency_ms = (time.time() - start_time) * 1000
 
             # Validate output
             raw_neural_output = response_text  # Save before validation for diagnostics
+            print(f"[ML Service] Raw neural output: '{response_text}' (length: {len(response_text)})")
 
             if not response_text:
                 response_text = "দুঃখিত, এই বিষয়টি উত্তর দেওয়ার জন্য আমার কাছে পর্যাপ্ত পরিমাণ ডেটা বা তথ্য নেই।"
                 is_fallback = True
                 rejection_reason = "EMPTY_RESPONSE"
-            elif response_text == message.lower():
+            elif response_text.strip() == message.strip().lower():
+                # Only reject if response is EXACTLY the input (not just contains it)
                 response_text = "দুঃখিত, এই বিষয়টি উত্তর দেওয়ার জন্য আমার কাছে পর্যাপ্ত পরিমাণ ডেটা বা তথ্য নেই।"
                 is_fallback = True
                 rejection_reason = "EQUALS_MESSAGE"
-            elif len(response_text) < 3:
+            elif len(response_text.strip()) < 3:
                 response_text = "দুঃখিত, এই বিষয়টি উত্তর দেওয়ার জন্য আমার কাছে পর্যাপ্ত পরিমাণ ডেটা বা তথ্য নেই।"
                 is_fallback = True
                 rejection_reason = "TOO_SHORT"
-            elif response_text.lower() in message.lower() or message.lower() in response_text.lower():
-                response_text = "দুঃখিত, এই বিষয়টি উত্তর দেওয়ার জন্য আমার কাছে পর্যাপ্ত পরিমাণ ডেটা বা তথ্য নেই।"
-                is_fallback = True
-                rejection_reason = "CONTAINMENT"
+            # REMOVED: Overly strict containment check that rejected valid conversational responses
+            # Conversational models naturally include context from the input
 
             if is_fallback:
+                print(f"[ML Service] Using fallback: {rejection_reason}")
                 response_source = "FALLBACK"
 
         # Step 6: Store assistant response in context

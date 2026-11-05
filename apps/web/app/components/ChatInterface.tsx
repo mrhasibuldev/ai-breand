@@ -202,6 +202,14 @@ export default function ChatInterface() {
       timestamp: new Date(),
     };
 
+    // Get conversation history BEFORE updating state (Phase 2)
+    const guestConv = guestConversations.get('guest');
+    const conversationHistory = guestConv ? guestConv.messages.map(msg => ({
+      role: msg.role,
+      content: msg.content,
+      timestamp: msg.timestamp.toISOString()
+    })) : [];
+
     // Add to guest conversation state
     setGuestConversations(prev => {
       const guestConvId = 'guest';
@@ -232,7 +240,7 @@ export default function ChatInterface() {
         body: JSON.stringify({
           message: userMessage,
           conversationId: 'guest',
-          context: [],
+          context: conversationHistory, // Send conversation history for context awareness
         }),
       });
 
@@ -275,6 +283,8 @@ export default function ChatInterface() {
         }
         return prev;
       });
+
+      console.log(`[ChatInterface] Guest request ${requestId} completed with ${conversationHistory.length} context messages`);
     } catch (error) {
       console.error('[ChatInterface] Guest request failed:', error);
 
@@ -346,13 +356,15 @@ export default function ChatInterface() {
     }
     abortControllerRef.current = new AbortController();
 
-    // Get conversation history for context
+    // Get conversation history for context (Phase 2)
     const activeConv = getActiveConversation();
     const conversationHistory = activeConv ? activeConv.messages.map(msg => ({
       role: msg.role,
       content: msg.content,
       timestamp: msg.timestamp.toISOString()
     })) : [];
+
+    console.log(`[ChatInterface] Sending ${conversationHistory.length} messages in context for conversation ${conversationId}`);
 
     try {
       // Persist user message first
@@ -395,7 +407,7 @@ export default function ChatInterface() {
       }
 
       const data = await response.json();
-      console.log(`[ChatInterface] Request ${requestId} completed successfully`);
+      console.log(`[ChatInterface] Request ${requestId} completed successfully with ${conversationHistory.length} context messages`);
 
       // Add assistant message to conversation
       const aiMessage: ConversationMessage = {

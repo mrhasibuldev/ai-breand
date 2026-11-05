@@ -70,14 +70,25 @@ export async function authRoutes(app: FastifyInstance) {
       const sessionTokenHash = await hashSessionToken(sessionToken);
       const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
 
-      await db.query(
+      const sessionResult = await db.query(
         `INSERT INTO nexus.auth_sessions (account_id, session_token_hash, expires_at)
-         VALUES ($1, $2, $3)`,
+         VALUES ($1, $2, $3)
+         RETURNING id`,
         [account.id, sessionTokenHash, expiresAt]
       );
 
-      // Set HTTP-only cookie
+      // Set HTTP-only cookie with session token
       reply.setCookie('nexus_session', sessionToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        path: '/',
+        maxAge: 7 * 24 * 60 * 60, // 7 days in seconds
+      });
+
+      // Also set session_id for efficient lookup (non-sensitive UUID)
+      const sessionId = (sessionResult.rows[0] as { id: string }).id;
+      reply.setCookie('nexus_session_id', sessionId, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax',
@@ -144,14 +155,25 @@ export async function authRoutes(app: FastifyInstance) {
       const sessionTokenHash = await hashSessionToken(sessionToken);
       const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
 
-      await db.query(
+      const sessionResult = await db.query(
         `INSERT INTO nexus.auth_sessions (account_id, session_token_hash, expires_at)
-         VALUES ($1, $2, $3)`,
+         VALUES ($1, $2, $3)
+         RETURNING id`,
         [account.id, sessionTokenHash, expiresAt]
       );
 
-      // Set HTTP-only cookie
+      // Set HTTP-only cookie with session token
       reply.setCookie('nexus_session', sessionToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        path: '/',
+        maxAge: 7 * 24 * 60 * 60, // 7 days in seconds
+      });
+
+      // Also set session_id for efficient lookup (non-sensitive UUID)
+      const sessionId = (sessionResult.rows[0] as { id: string }).id;
+      reply.setCookie('nexus_session_id', sessionId, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax',
@@ -176,52 +198,80 @@ export async function authRoutes(app: FastifyInstance) {
    */
   app.post('/api/v1/auth/logout', async (request: FastifyRequest, reply: FastifyReply) => {
     const sessionToken = request.cookies.nexus_session;
+    const sessionId = request.cookies.nexus_session_id;
 
     if (!sessionToken) {
       return reply.send({ logged_out: true });
     }
 
     try {
-      // Find the session by comparing token against all hashes
-      const sessionsResult = await db.query(
-        `SELECT s.id, s.session_token_hash
-         FROM nexus.auth_sessions s
-         WHERE s.revoked_at IS NULL
-         AND s.expires_at > NOW()
-         ORDER BY s.created_at DESC
-         LIMIT 100`
-      );
+      // Efficient lookup: use session_id if available
+      let sessionToDelete = null;
 
-      let sessionId = null;
-      for (const session of sessionsResult.rows) {
-        const sessionRow = session as { id: string; session_token_hash: string };
-        const isValid = await verifySessionToken(sessionToken, sessionRow.session_token_hash);
-        if (isValid) {
-          sessionId = sessionRow.id;
-          break;
+      if (sessionId) {
+        const sessionResult = await db.query(
+          `SELECT s.id, s.session_token_hash
+           FROM nexus.auth_sessions s
+           WHERE s.id = $1
+           AND s.revoked_at IS NULL
+           AND s.expires_at > NOW()`,
+          [sessionId]
+        );
+
+        if (sessionResult.rows.length > 0) {
+          const sessionRow = sessionResult.rows[0] as { id: string; session_token_hash: string };
+          const isValid = await verifySessionToken(sessionToken, sessionRow.session_token_hash);
+          if (isValid) {
+            sessionToDelete = sessionRow.id;
+          }
         }
       }
 
-      if (sessionId) {
+      // Fallback: scan all sessions (backward compatibility)
+      if (!sessionToDelete) {
+        const sessionsResult = await db.query(
+          `SELECT s.id, s.session_token_hash
+           FROM nexus.auth_sessions s
+           WHERE s.revoked_at IS NULL
+           AND s.expires_at > NOW()
+           ORDER BY s.created_at DESC
+           LIMIT 100`
+        );
+
+        for (const session of sessionsResult.rows) {
+          const sessionRow = session as { id: string; session_token_hash: string };
+          const isValid = await verifySessionToken(sessionToken, sessionRow.session_token_hash);
+          if (isValid) {
+            sessionToDelete = sessionRow.id;
+            break;
+          }
+        }
+      }
+
+      if (sessionToDelete) {
         // Mark session as revoked
         await db.query(
           `UPDATE nexus.auth_sessions
            SET revoked_at = NOW()
            WHERE id = $1`,
-          [sessionId]
+          [sessionToDelete]
         );
       }
 
-      // Clear cookie
+      // Clear cookies
       reply.clearCookie('nexus_session', {
+        path: '/',
+      });
+      reply.clearCookie('nexus_session_id', {
         path: '/',
       });
 
       return reply.send({ logged_out: true });
     } catch (error) {
       console.error('[Auth] Logout error:', error);
-      // Still clear cookie even if database error
+      // Still clear cookies even if database error
       reply.clearCookie('nexus_session', { path: '/' });
+      reply.clearCookie('nexus_session_id', { path: '/' });
       return reply.send({ logged_out: true });
     }
   });
@@ -232,41 +282,73 @@ export async function authRoutes(app: FastifyInstance) {
    */
   app.get('/api/v1/auth/session', async (request: FastifyRequest, reply: FastifyReply) => {
     const sessionToken = request.cookies.nexus_session;
+    const sessionId = request.cookies.nexus_session_id;
 
-    console.log('[Auth] Session validation - token present:', !!sessionToken);
+    console.log('[Auth] Session validation - token present:', !!sessionToken, 'session_id present:', !!sessionId);
 
     if (!sessionToken) {
       return reply.status(401).send({ authenticated: false });
     }
 
     try {
-      // Get all active sessions for this account and check the token against each hash
-      // This is less efficient but necessary because bcrypt requires rehashing to compare
-      const sessionsResult = await db.query(
-        `SELECT s.id, s.account_id, s.session_token_hash, s.expires_at, s.revoked_at, a.email_normalized, a.status
-         FROM nexus.auth_sessions s
-         JOIN nexus.accounts a ON s.account_id = a.id
-         WHERE s.revoked_at IS NULL
-         AND s.expires_at > NOW()
-         ORDER BY s.created_at DESC
-         LIMIT 100`
-      );
-
+      // Efficient lookup: use session_id if available
       let matchedSession = null;
-      for (const session of sessionsResult.rows) {
-        const sessionRow = session as {
-          id: string;
-          account_id: string;
-          session_token_hash: string;
-          expires_at: Date;
-          revoked_at: Date | null;
-          email_normalized: string;
-          status: string;
-        };
-        const isValid = await verifySessionToken(sessionToken, sessionRow.session_token_hash);
-        if (isValid) {
-          matchedSession = sessionRow;
-          break;
+
+      if (sessionId) {
+        const sessionResult = await db.query(
+          `SELECT s.id, s.account_id, s.session_token_hash, s.expires_at, s.revoked_at, a.email_normalized, a.status
+           FROM nexus.auth_sessions s
+           JOIN nexus.accounts a ON s.account_id = a.id
+           WHERE s.id = $1
+           AND s.revoked_at IS NULL
+           AND s.expires_at > NOW()`,
+          [sessionId]
+        );
+
+        if (sessionResult.rows.length > 0) {
+          const sessionRow = sessionResult.rows[0] as {
+            id: string;
+            account_id: string;
+            session_token_hash: string;
+            expires_at: Date;
+            revoked_at: Date | null;
+            email_normalized: string;
+            status: string;
+          };
+          const isValid = await verifySessionToken(sessionToken, sessionRow.session_token_hash);
+          if (isValid) {
+            matchedSession = sessionRow;
+          }
+        }
+      }
+
+      // Fallback: scan all sessions (backward compatibility)
+      if (!matchedSession) {
+        const sessionsResult = await db.query(
+          `SELECT s.id, s.account_id, s.session_token_hash, s.expires_at, s.revoked_at, a.email_normalized, a.status
+           FROM nexus.auth_sessions s
+           JOIN nexus.accounts a ON s.account_id = a.id
+           WHERE s.revoked_at IS NULL
+           AND s.expires_at > NOW()
+           ORDER BY s.created_at DESC
+           LIMIT 100`
+        );
+
+        for (const session of sessionsResult.rows) {
+          const sessionRow = session as {
+            id: string;
+            account_id: string;
+            session_token_hash: string;
+            expires_at: Date;
+            revoked_at: Date | null;
+            email_normalized: string;
+            status: string;
+          };
+          const isValid = await verifySessionToken(sessionToken, sessionRow.session_token_hash);
+          if (isValid) {
+            matchedSession = sessionRow;
+            break;
+          }
         }
       }
 

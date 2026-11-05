@@ -104,6 +104,22 @@ export async function storageRoutes(fastify: FastifyInstance) {
       const timestamp = Date.now();
       const result = await storageService.uploadAvatar(userId, buffer, data.mimetype, fileExtension);
 
+      // Update user profile with avatar storage path
+      if (db) {
+        try {
+          await db.query(
+            `UPDATE nexus.user_profiles
+             SET avatar_storage_path = $1
+             WHERE account_id = $2`,
+            [result.key, userId]
+          );
+          console.log('[Storage] Avatar storage path updated in user profile:', result.key);
+        } catch (dbError) {
+          console.error('[Storage] Failed to update avatar storage path:', dbError);
+          // Continue even if database update fails (storage succeeded)
+        }
+      }
+
       return {
         success: true,
         key: result.key,
@@ -183,6 +199,22 @@ export async function storageRoutes(fastify: FastifyInstance) {
     try {
       const ext = (request.query as { ext?: string }).ext || 'jpg';
       await storageService.deleteAvatar(userId, parseInt(timestamp), ext);
+
+      // Clear avatar storage path from user profile
+      if (db) {
+        try {
+          await db.query(
+            `UPDATE nexus.user_profiles
+             SET avatar_storage_path = NULL
+             WHERE account_id = $1`,
+            [userId]
+          );
+          console.log('[Storage] Avatar storage path cleared from user profile');
+        } catch (dbError) {
+          console.error('[Storage] Failed to clear avatar storage path:', dbError);
+          // Continue even if database update fails (storage deletion succeeded)
+        }
+      }
 
       return { success: true };
     } catch (error) {

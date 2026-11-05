@@ -32,6 +32,7 @@ async function ensureDbConnected() {
  */
 export async function authMiddleware(request: FastifyRequest, reply: FastifyReply) {
   const sessionToken = request.cookies.nexus_session;
+  const sessionId = request.cookies.nexus_session_id;
 
   if (!sessionToken) {
     return reply.status(401).send({ error: 'Unauthorized', code: 'no_session' });
@@ -40,47 +41,72 @@ export async function authMiddleware(request: FastifyRequest, reply: FastifyRepl
   try {
     await ensureDbConnected();
 
-    // Get all active sessions and check the token against each hash
-    const sessionsResult = await db.query(
-      `SELECT s.id, s.account_id, s.session_token_hash, a.status
-       FROM nexus.auth_sessions s
-       JOIN nexus.accounts a ON s.account_id = a.id
-       WHERE s.revoked_at IS NULL
-       AND s.expires_at > NOW()
-       ORDER BY s.created_at DESC
-       LIMIT 100`
-    );
+    // Efficient lookup: use session_id if available, otherwise fallback to old method
+    let session = null;
 
-    let matchedSession = null;
-    for (const session of sessionsResult.rows) {
-      const sessionRow = session as { id: string; account_id: string; session_token_hash: string; status: string };
-      const isValid = await verifySessionToken(sessionToken, sessionRow.session_token_hash);
-      if (isValid) {
-        matchedSession = sessionRow;
-        break;
+    if (sessionId) {
+      // Direct lookup by session_id (efficient)
+      const sessionResult = await db.query(
+        `SELECT s.id, s.account_id, s.session_token_hash, a.status
+         FROM nexus.auth_sessions s
+         JOIN nexus.accounts a ON s.account_id = a.id
+         WHERE s.id = $1
+         AND s.revoked_at IS NULL
+         AND s.expires_at > NOW()`,
+        [sessionId]
+      );
+
+      if (sessionResult.rows.length > 0) {
+        const sessionRow = sessionResult.rows[0] as { id: string; account_id: string; session_token_hash: string; status: string };
+        const isValid = await verifySessionToken(sessionToken, sessionRow.session_token_hash);
+        if (isValid) {
+          session = sessionRow;
+        }
       }
     }
 
-    if (!matchedSession) {
+    // Fallback: retrieve all active sessions (for backward compatibility)
+    if (!session) {
+      const sessionsResult = await db.query(
+        `SELECT s.id, s.account_id, s.session_token_hash, a.status
+         FROM nexus.auth_sessions s
+         JOIN nexus.accounts a ON s.account_id = a.id
+         WHERE s.revoked_at IS NULL
+         AND s.expires_at > NOW()
+         ORDER BY s.created_at DESC
+         LIMIT 100`
+      );
+
+      for (const sessionRow of sessionsResult.rows) {
+        const row = sessionRow as { id: string; account_id: string; session_token_hash: string; status: string };
+        const isValid = await verifySessionToken(sessionToken, row.session_token_hash);
+        if (isValid) {
+          session = row;
+          break;
+        }
+      }
+    }
+
+    if (!session) {
       return reply.status(401).send({ error: 'Unauthorized', code: 'invalid_session' });
     }
 
-    const session = matchedSession as { account_id: string; status: string; id: string };
+    const sessionData = session as { account_id: string; status: string; id: string };
 
     // Check account status
-    if (session.status !== 'active') {
+    if (sessionData.status !== 'active') {
       return reply.status(403).send({ error: 'Forbidden', code: 'account_inactive' });
     }
 
     // Set accountId on request
-    request.accountId = session.account_id;
+    request.accountId = sessionData.account_id;
 
     // Update last_seen_at
     await db.query(
       `UPDATE nexus.auth_sessions
        SET last_seen_at = NOW()
        WHERE id = $1`,
-      [session.id]
+      [sessionData.id]
     );
   } catch (error) {
     console.error('[Auth Middleware] Error:', error);
@@ -94,6 +120,7 @@ export async function authMiddleware(request: FastifyRequest, reply: FastifyRepl
  */
 export async function optionalAuthMiddleware(request: FastifyRequest, reply: FastifyReply) {
   const sessionToken = request.cookies.nexus_session;
+  const sessionId = request.cookies.nexus_session_id;
 
   if (!sessionToken) {
     return; // No session, continue without accountId
@@ -102,6 +129,31 @@ export async function optionalAuthMiddleware(request: FastifyRequest, reply: Fas
   try {
     await ensureDbConnected();
 
+    // Efficient lookup: use session_id if available
+    let session = null;
+
+    if (sessionId) {
+      const sessionResult = await db.query(
+        `SELECT s.id, s.account_id, s.session_token_hash, a.status
+         FROM nexus.auth_sessions s
+         JOIN nexus.accounts a ON s.account_id = a.id
+         WHERE s.id = $1
+         AND s.revoked_at IS NULL
+         AND s.expires_at > NOW()`,
+        [sessionId]
+      );
+
+      if (sessionResult.rows.length > 0) {
+        const sessionRow = sessionResult.rows[0] as { id: string; account_id: string; session_token_hash: string; status: string };
+        const isValid = await verifySessionToken(sessionToken, sessionRow.session_token_hash);
+        if (isValid && sessionRow.status === 'active') {
+          request.accountId = sessionRow.account_id;
+          return;
+        }
+      }
+    }
+
+    // Fallback for backward compatibility
     const sessionsResult = await db.query(
       `SELECT s.id, s.account_id, s.session_token_hash, a.status
        FROM nexus.auth_sessions s
@@ -112,11 +164,11 @@ export async function optionalAuthMiddleware(request: FastifyRequest, reply: Fas
        LIMIT 100`
     );
 
-    for (const session of sessionsResult.rows) {
-      const sessionRow = session as { id: string; account_id: string; session_token_hash: string; status: string };
-      const isValid = await verifySessionToken(sessionToken, sessionRow.session_token_hash);
-      if (isValid && sessionRow.status === 'active') {
-        request.accountId = sessionRow.account_id;
+    for (const sessionRow of sessionsResult.rows) {
+      const row = sessionRow as { id: string; account_id: string; session_token_hash: string; status: string };
+      const isValid = await verifySessionToken(sessionToken, row.session_token_hash);
+      if (isValid && row.status === 'active') {
+        request.accountId = row.account_id;
         break;
       }
     }

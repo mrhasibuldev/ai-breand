@@ -54,8 +54,15 @@ export async function buildApp(
   });
 
   // Register cookie plugin for HTTP-only session cookies
+  const cookieSecret = options.env?.COOKIE_SECRET || process.env.COOKIE_SECRET;
+  if (!cookieSecret) {
+    throw new Error(
+      'COOKIE_SECRET is required for session cookie signing. ' +
+      'Set it in your environment variables.'
+    );
+  }
   await app.register(cookie, {
-    secret: options.env?.COOKIE_SECRET || process.env.COOKIE_SECRET || 'nexus-cookie-secret-change-in-production',
+    secret: cookieSecret,
   });
 
   // Register multipart plugin for file uploads

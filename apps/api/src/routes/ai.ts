@@ -1,12 +1,16 @@
 /**
  * AI Orchestration Routes
  *
- * Handles AI inference requests by calling the Python ML service
+ * Handles AI inference requests using the IntelligenceEngine
  * Requires authentication for user conversations, allows guest mode
  */
 
 import type { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
 import { authMiddleware, optionalAuthMiddleware } from '../middleware/auth.js';
+import { intelligenceEngine } from '../intelligence-engine.js';
+
+// Define SafetyMode locally for Phase 1
+type SafetyMode = 'NORMAL' | 'WELLNESS_REDIRECT' | 'SAFETY_ESCALATION' | 'BLOCKED';
 
 interface ChatRequest {
   message: string;
@@ -25,9 +29,10 @@ export async function aiRoutes(app: FastifyInstance) {
    * POST /api/v1/ai/chat
    * Send a message to the AI and get a response
    * Uses optional auth - works for both guest and authenticated users
+   * Routes through IntelligenceEngine for full orchestration
    */
   app.post('/api/v1/ai/chat', { preHandler: optionalAuthMiddleware }, async (request: FastifyRequest, reply: FastifyReply) => {
-    const accountId = request.accountId;
+    const accountId = request.accountId || 'guest';
     const body = request.body as ChatRequest;
     const { message, conversationId, context } = body;
 
@@ -36,49 +41,57 @@ export async function aiRoutes(app: FastifyInstance) {
     }
 
     try {
-      // Call Python AI service
-      const aiServiceUrl = process.env.AI_SERVICE_URL || 'http://127.0.0.1:8000';
-      
-      // Add timeout to prevent hanging
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
-      
-      const response = await fetch(`${aiServiceUrl}/orchestrate`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        signal: controller.signal,
-        body: JSON.stringify({
+      // Build context for IntelligenceEngine
+      const requestContext = [
+        {
           message,
-          conversation_id: conversationId,
-          context: context || [],
-          user_id: accountId, // Pass account ID if authenticated
-        }),
-      });
-      
-      clearTimeout(timeoutId);
+          conversation_id: conversationId || crypto.randomUUID(),
+          user_id: accountId,
+          history: context || [], // Pass conversation history for context awareness
+          ...(context || {}),
+        },
+      ];
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('[AI] Service error:', response.status, errorText);
-        return reply.status(502).send({ error: 'AI service unavailable' });
-      }
+      // Determine safety mode (NORMAL for guest, configurable for authenticated)
+      const safetyMode: SafetyMode = accountId !== 'guest' ? 'NORMAL' : 'NORMAL';
 
-      const aiResponse = await response.json();
+      // Create ModelRequest for IntelligenceEngine
+      const modelRequest = {
+        operation: 'chat' as const,
+        accountId,
+        safetyMode,
+        context: requestContext,
+      };
+
+      // Call IntelligenceEngine
+      const startTime = Date.now();
+      const response = await intelligenceEngine.respond(modelRequest);
+      const latencyMs = Date.now() - startTime;
+
+      console.log(`[AI] Response generated in ${latencyMs}ms via IntelligenceEngine`);
 
       return reply.send({
-        response: aiResponse.response || aiResponse.message || aiResponse.text || 'No response from AI',
-        conversationId: aiResponse.conversation_id || conversationId,
-        messageId: aiResponse.message_id,
+        response: response.text,
+        conversationId: conversationId || requestContext[0]?.conversation_id || crypto.randomUUID(),
+        messageId: crypto.randomUUID(),
+        latencyMs,
+        provider: response.providerAlias,
+        contextInfo: response.contextInfo,
       });
     } catch (error) {
-      if (error instanceof Error && error.name === 'AbortError') {
-        console.error('[AI] Request timeout');
-        return reply.status(504).send({ error: 'AI service timeout' });
+      console.error('[AI] IntelligenceEngine error:', error);
+      
+      if (error instanceof Error) {
+        // Handle specific error types
+        if (error.message.includes('unavailable') || error.message.includes('timeout')) {
+          return reply.status(503).send({ error: 'AI service unavailable' });
+        }
+        if (error.message.includes('empty')) {
+          return reply.status(502).send({ error: 'AI generated empty response' });
+        }
       }
-      console.error('[AI] Request error:', error);
-      return reply.status(502).send({ error: 'AI service unavailable' });
+      
+      return reply.status(500).send({ error: 'AI processing failed' });
     }
   });
 

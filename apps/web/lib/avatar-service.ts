@@ -70,9 +70,40 @@ export async function uploadAvatar(
  */
 export async function loadAvatar(userId: string): Promise<string | null> {
   try {
-    // Get the latest avatar timestamp from profile or storage
-    // For now, return null and let the UI handle default avatar
-    console.log('[Avatar] Loading avatar for user:', userId);
+    // Get user profile to retrieve avatar_storage_path
+    const response = await fetch(`${API_BASE_URL}/api/v1/profile`, {
+      method: 'GET',
+      credentials: 'include', // Include cookies for authentication
+    });
+
+    if (!response.ok) {
+      console.warn('[Avatar] Failed to fetch profile:', response.status);
+      return null;
+    }
+
+    const profile = await response.json();
+    const avatarStoragePath = profile.avatar_storage_path;
+
+    if (!avatarStoragePath) {
+      console.log('[Avatar] No avatar set for user:', userId);
+      return null;
+    }
+
+    // Parse storage path to extract timestamp and extension
+    // Format: avatars/{userId}/{timestamp}.{ext}
+    const parts = avatarStoragePath.split('/');
+    const timestampWithExt = parts[parts.length - 1];
+    if (!timestampWithExt) {
+      return null;
+    }
+    const [timestamp, ext] = timestampWithExt.split('.');
+
+    if (timestamp && ext) {
+      const avatarUrl = `${API_BASE_URL}/api/storage/avatar/${userId}/${timestamp}?ext=${ext}`;
+      console.log('[Avatar] Avatar URL constructed:', avatarUrl);
+      return avatarUrl;
+    }
+
     return null;
   } catch (e) {
     console.warn('[Avatar] Failed to load avatar:', e);
@@ -94,6 +125,9 @@ export async function deleteAvatar(storagePath: string, userId?: string): Promis
     // Format: avatars/{userId}/{timestamp}.{ext}
     const parts = storagePath.split('/');
     const timestampWithExt = parts[parts.length - 1];
+    if (!timestampWithExt) {
+      throw new Error('Invalid storage path');
+    }
     const [timestamp, ext] = timestampWithExt.split('.');
 
     const response = await fetch(
