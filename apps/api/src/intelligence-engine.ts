@@ -86,23 +86,25 @@ export class NexusAIIntelligenceEngine implements IntelligenceEngine {
 
     // Call Python ML service with conversation history and memory
     const aiServiceUrl = process.env.AI_SERVICE_URL || 'http://127.0.0.1:8000';
-    
+
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 10000);
-      
+
+      const requestBody = JSON.stringify({
+        message,
+        conversation_id: conversationId,
+        context: request.context,
+        history: conversationContext.messages, // Add conversation history
+        memory: memoryContext.memories, // Add memory (Phase 3)
+        user_id: accountId,
+      });
+
       const response = await fetch(`${aiServiceUrl}/orchestrate`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
         signal: controller.signal,
-        body: JSON.stringify({
-          message,
-          conversation_id: conversationId,
-          context: request.context,
-          history: conversationContext.messages, // Add conversation history
-          memory: memoryContext.memories, // Add memory (Phase 3)
-          user_id: accountId,
-        }),
+        body: requestBody,
       });
       
       clearTimeout(timeoutId);

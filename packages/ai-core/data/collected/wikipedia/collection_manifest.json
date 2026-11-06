@@ -1,0 +1,36 @@
+{
+  "collection_timestamp": "2026-11-03T17:44:47.690876",
+  "source": "Wikipedia API",
+  "license": "CC BY-SA 3.0",
+  "attribution_required": true,
+  "english_stats": {
+    "total_requested": 14,
+    "collected": 14,
+    "failed": 0,
+    "failed_titles": [],
+    "total_words": 941,
+    "total_chars": 6435,
+    "language": "en",
+    "output_dir": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\collected\\wikipedia\\en"
+  },
+  "bengali_stats": {
+    "total_requested": 11,
+    "collected": 5,
+    "failed": 6,
+    "failed_titles": [
+      "কৃত্রিমিকি",
+      "বিজ্ঞান প্রযুক্তি",
+      "প্রযুক্তি বিজ্ঞান",
+      "তথ্যশাস্ত্র",
+      "প্রযুক্তি বিজ্ঞান",
+      "নিউরোবায়টিক নেটওয়র্ক"
+    ],
+    "total_words": 439,
+    "total_chars": 3022,
+    "language": "bn",
+    "output_dir": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\collected\\wikipedia\\bn"
+  },
+  "total_articles": 19,
+  "total_words": 1380,
+  "total_chars": 9457
+}

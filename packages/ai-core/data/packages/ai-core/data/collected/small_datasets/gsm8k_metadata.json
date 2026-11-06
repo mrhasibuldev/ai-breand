@@ -1,0 +1,15 @@
+{
+  "dataset": "GSM8K",
+  "source": "https://github.com/openai/grade-school-math",
+  "license": "MIT",
+  "category": "mathematical_reasoning",
+  "language": "en",
+  "train_samples": 7473,
+  "test_samples": 1319,
+  "total_samples": 8792,
+  "collected_at": "2026-11-03T18:05:23.504048",
+  "files": {
+    "train": "gsm8k_train.jsonl",
+    "test": "gsm8k_test.jsonl"
+  }
+}

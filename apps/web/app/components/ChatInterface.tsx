@@ -234,7 +234,7 @@ export default function ChatInterface() {
     try {
       const response = await fetch('http://localhost:4000/api/v1/ai/chat', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
         credentials: 'include',
         signal: abortControllerRef.current.signal,
         body: JSON.stringify({
@@ -379,7 +379,7 @@ export default function ChatInterface() {
       // Call backend AI service
       const response = await fetch('http://localhost:4000/api/v1/ai/chat', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
         credentials: 'include',
         signal: abortControllerRef.current.signal,
         body: JSON.stringify({

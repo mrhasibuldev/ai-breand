@@ -1,0 +1,202 @@
+[
+  {
+    "test": 1,
+    "input": "তুমি কে?",
+    "response": "পছন্দ করো? আমি ক্ষেত্রে হল স্বাধীনতা মাধ্যমে। তুমি কী?",
+    "source": "NEURAL_MODEL",
+    "intent": "UNKNOWN",
+    "language": "bengali",
+    "latency_ms": 107.19561576843262,
+    "status": "success"
+  },
+  {
+    "test": 2,
+    "input": "আমার নাম কী?",
+    "response": "আমার নাম NexusAI। আমি একটি কাস্টম AI সহকারী যা বিভিন্ন কাজে সাহায্য করার জন্য ডিজাইন করা হয়েছে।",
+    "source": "DETERMINISTIC_HANDLER",
+    "intent": "IDENTITY_QUESTION",
+    "language": "bengali",
+    "latency_ms": 3.350496292114258,
+    "status": "success"
+  },
+  {
+    "test": 3,
+    "input": "আজকের আবহাওয়া সম্পর্কে বলো।",
+    "response": "৬ সমান ৪ সমান প্রিয় সামাজিক মাধ্যমে।",
+    "source": "NEURAL_MODEL",
+    "intent": "UNKNOWN",
+    "language": "bengali",
+    "latency_ms": 381.24537467956543,
+    "status": "success"
+  },
+  {
+    "test": 4,
+    "input": "আমি নতুন কিছু শিখতে চাই।",
+    "response": "আমার নাম NexusAI। আমি একটি কাস্টম AI সহকারী যা বিভিন্ন কাজে সাহায্য করার জন্য ডিজাইন করা হয়েছে।",
+    "source": "DETERMINISTIC_HANDLER",
+    "intent": "IDENTITY_QUESTION",
+    "language": "bengali",
+    "latency_ms": 2.1843910217285156,
+    "status": "success"
+  },
+  {
+    "test": 5,
+    "input": "বাংলাদেশ কোথায়?",
+    "response": ", আমি প্রিয় সেন গুরুত্বপূর্ণ। তোমার প্রিয় সিনেমা নিয়ে কাজ করতে পছন্দ করো?",
+    "source": "NEURAL_MODEL",
+    "intent": "UNKNOWN",
+    "language": "bengali",
+    "latency_ms": 113.95144462585449,
+    "status": "success"
+  },
+  {
+    "test": 6,
+    "input": "ঢাকা কি?",
+    "response": "আমার নাম NexusAI। আমি একটি কাস্টম AI সহকারী যা বিভিন্ন কাজে সাহায্য করার জন্য ডিজাইন করা হয়েছে।",
+    "source": "DETERMINISTIC_HANDLER",
+    "intent": "IDENTITY_QUESTION",
+    "language": "bengali",
+    "latency_ms": 2.12860107421875,
+    "status": "success"
+  },
+  {
+    "test": 7,
+    "input": "ভালো আছ?",
+    "response": "x 5 = $<< এবং জেনেটিক খ্রিস্টাব্দ, আমি সম গ্রহণ করতে পছন্দ করি। তুমি কোন মাধ্যমে।",
+    "source": "NEURAL_MODEL",
+    "intent": "UNKNOWN",
+    "language": "bengali",
+    "latency_ms": 135.54739952087402,
+    "status": "success"
+  },
+  {
+    "test": 8,
+    "input": "ধন্যবাদ",
+    "response": "স্বাগতম! আমি আপনাকে আর কীভাবে সাহায্য করতে পারি?",
+    "source": "DETERMINISTIC_HANDLER",
+    "intent": "THANKS",
+    "language": "bengali",
+    "latency_ms": 2.1321773529052734,
+    "status": "success"
+  },
+  {
+    "test": 9,
+    "input": "বিদায়",
+    "response": "বিদায়! যখনই আপনার সাহায্য প্রয়োজন হবে, ফিরে আসুন।",
+    "source": "DETERMINISTIC_HANDLER",
+    "intent": "FAREWELL",
+    "language": "bengali",
+    "latency_ms": 4.328727722167969,
+    "status": "success"
+  },
+  {
+    "test": 10,
+    "input": "সাহায্য চাই",
+    "response": "আমি কথোপকথনের মাধ্যমে সাহায্য করতে পারি, প্রশ্নের উত্তর দিতে পারি এবং বিভিন্ন কাজে সহায্য করতে পারি। তবে আমার বর্তমান মডেলটি এখনও শিখছে, তাই কিছু উত্তর সীমিত হতে পারে।",
+    "source": "DETERMINISTIC_HANDLER",
+    "intent": "CAPABILITY_QUESTION",
+    "language": "bengali",
+    "latency_ms": 3.8695335388183594,
+    "status": "success"
+  },
+  {
+    "test": 11,
+    "input": "Who are you?",
+    "response": "দুঃখিত, এই বিষয়টি উত্তর দেওয়ার জন্য আমার কাছে পর্যাপ্ত পরিমাণ ডেটা বা তথ্য নেই।",
+    "source": "FALLBACK",
+    "intent": "GENERAL_QUESTION",
+    "language": "english",
+    "latency_ms": 16.501665115356445,
+    "status": "success"
+  },
+  {
+    "test": 12,
+    "input": "What is your name?",
+    "response": "is the most for the first.",
+    "source": "NEURAL_MODEL",
+    "intent": "GENERAL_QUESTION",
+    "language": "english",
+    "latency_ms": 52.870750427246094,
+    "status": "success"
+  },
+  {
+    "test": 13,
+    "input": "How are you?",
+    "response": "and he 6 = $<<50।",
+    "source": "NEURAL_MODEL",
+    "intent": "GENERAL_QUESTION",
+    "language": "english",
+    "latency_ms": 49.820661544799805,
+    "status": "success"
+  },
+  {
+    "test": 14,
+    "input": "Thank you",
+    "response": "You're welcome! Is there anything else I can help you with?",
+    "source": "DETERMINISTIC_HANDLER",
+    "intent": "THANKS",
+    "language": "english",
+    "latency_ms": 2.172708511352539,
+    "status": "success"
+  },
+  {
+    "test": 15,
+    "input": "Goodbye",
+    "response": "Goodbye! Feel free to come back anytime you need assistance.",
+    "source": "DETERMINISTIC_HANDLER",
+    "intent": "FAREWELL",
+    "language": "english",
+    "latency_ms": 2.296924591064453,
+    "status": "success"
+  },
+  {
+    "test": 16,
+    "input": "Help me",
+    "response": "I'm here to help! You can ask me questions, have a conversation, or tell me what you need assistance with.",
+    "source": "DETERMINISTIC_HANDLER",
+    "intent": "HELP_REQUEST",
+    "language": "english",
+    "latency_ms": 2.155780792236328,
+    "status": "success"
+  },
+  {
+    "test": 17,
+    "input": "What is the capital of Bangladesh?",
+    "response": "দুঃখিত, এই বিষয়টি উত্তর দেওয়ার জন্য আমার কাছে পর্যাপ্ত পরিমাণ ডেটা বা তথ্য নেই।",
+    "source": "FALLBACK",
+    "intent": "GENERAL_QUESTION",
+    "language": "english",
+    "latency_ms": 18.689632415771484,
+    "status": "success"
+  },
+  {
+    "test": 18,
+    "input": "Explain how a neural network learns",
+    "response": "is the 3 = $<< করেছিলেন।",
+    "source": "NEURAL_MODEL",
+    "intent": "GENERAL_QUESTION",
+    "language": "english",
+    "latency_ms": 69.98157501220703,
+    "status": "success"
+  },
+  {
+    "test": 19,
+    "input": "Hello",
+    "response": "Hello! I'm NexusAI, your personal AI assistant. How can I help you today?",
+    "source": "DETERMINISTIC_HANDLER",
+    "intent": "GREETING",
+    "language": "english",
+    "latency_ms": 2.742767333984375,
+    "status": "success"
+  },
+  {
+    "test": 20,
+    "input": "What can you do?",
+    "response": "I can help you with conversations, answer questions, and assist with various tasks. However, my current model is still learning, so some responses may be limited.",
+    "source": "DETERMINISTIC_HANDLER",
+    "intent": "CAPABILITY_QUESTION",
+    "language": "english",
+    "latency_ms": 2.5186538696289062,
+    "status": "success"
+  }
+]

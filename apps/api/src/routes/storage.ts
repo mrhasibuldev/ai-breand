@@ -101,8 +101,12 @@ export async function storageRoutes(fastify: FastifyInstance) {
       }
 
       // Upload to storage
-      const timestamp = Date.now();
       const result = await storageService.uploadAvatar(userId, buffer, data.mimetype, fileExtension);
+
+      console.log('[Storage] Avatar upload completed:');
+      console.log('[Storage] - Key:', result.key);
+      console.log('[Storage] - URL:', result.url);
+      console.log('[Storage] - Metadata:', result.metadata);
 
       // Update user profile with avatar storage path
       if (db) {
@@ -120,14 +124,23 @@ export async function storageRoutes(fastify: FastifyInstance) {
         }
       }
 
+      // Extract timestamp from the result.key for consistency
+      // Key format: avatars/{userId}/{timestamp}.{ext}
+      const keyParts = result.key.split('/');
+      const timestampWithExt = keyParts[keyParts.length - 1];
+      if (!timestampWithExt) {
+        throw new Error('Invalid avatar key format');
+      }
+      const [timestamp, ext] = timestampWithExt.split('.');
+
       return {
         success: true,
         key: result.key,
         url: result.url,
         metadata: {
           ...result.metadata,
-          timestamp: timestamp.toString(),
-          ext: fileExtension,
+          timestamp: timestamp,
+          ext: ext,
         },
       };
     } catch (error) {
@@ -163,7 +176,17 @@ export async function storageRoutes(fastify: FastifyInstance) {
       // Determine file extension from query or default to jpg
       const ext = (request.query as { ext?: string }).ext || 'jpg';
 
+      // Log the download attempt
+      const expectedKey = `avatars/${userId}/${timestamp}.${ext}`;
+      console.log('[Storage] Avatar download requested:');
+      console.log('[Storage] - User ID:', userId);
+      console.log('[Storage] - Timestamp:', timestamp);
+      console.log('[Storage] - Extension:', ext);
+      console.log('[Storage] - Expected key:', expectedKey);
+
       const buffer = await storageService.downloadAvatar(userId, parseInt(timestamp), ext);
+
+      console.log('[Storage] Avatar download successful for key:', expectedKey);
 
       // Set correct content type based on file extension
       const contentTypeMap: Record<string, string> = {
@@ -177,7 +200,9 @@ export async function storageRoutes(fastify: FastifyInstance) {
       return reply.send(buffer);
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : String(error);
-      console.error('Avatar download failed:', errorMessage);
+      console.error('[Storage] Avatar download failed:', errorMessage);
+      const ext = (request.query as { ext?: string }).ext || 'jpg';
+      console.error(`[Storage] Requested key: avatars/${userId}/${timestamp}.${ext}`);
       return reply.status(404).send({ error: 'Avatar not found' });
     }
   });

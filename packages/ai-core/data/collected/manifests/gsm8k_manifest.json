@@ -1,0 +1,32 @@
+{
+  "dataset": "GSM8K",
+  "dataset_key": "gsm8k",
+  "source": "https://github.com/openai/grade-school-math",
+  "license": "MIT",
+  "license_url": "https://github.com/openai/grade-school-math",
+  "commercial_eligibility": "APPROVED",
+  "attribution_required": false,
+  "share_alike": false,
+  "category": "reasoning",
+  "language": "en",
+  "collection_timestamp": "2026-11-03T18:40:27.360989",
+  "total_files": 2,
+  "total_size_bytes": 4915944,
+  "total_records": 8792,
+  "files": [
+    {
+      "filename": "gsm8k_train.jsonl",
+      "url": "https://raw.githubusercontent.com/openai/grade-school-math/master/grade_school_math/data/train.jsonl",
+      "size": 4166206,
+      "sha256": "17f347dc51477c50d4efb83959dbb7c56297aba886e5544ee2aaed3024813465",
+      "status": "downloaded"
+    },
+    {
+      "filename": "gsm8k_test.jsonl",
+      "url": "https://raw.githubusercontent.com/openai/grade-school-math/master/grade_school_math/data/test.jsonl",
+      "size": 749738,
+      "sha256": "3730d312f6e3440559ace48831e51066acaca737f6eabec99bccb9e4b3c39d14",
+      "status": "downloaded"
+    }
+  ]
+}

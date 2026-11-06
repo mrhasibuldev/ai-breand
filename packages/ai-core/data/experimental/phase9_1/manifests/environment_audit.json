@@ -1,0 +1,27 @@
+{
+  "audit_timestamp": "2026-11-03T23:51:25.287851",
+  "storage": {
+    "c_drive_free_gb": 3.31,
+    "c_drive_total_gb": 119.2,
+    "d_drive_free_gb": 0.05,
+    "d_drive_total_gb": 29.7,
+    "safe_for_download": true,
+    "max_download_mb": 150
+  },
+  "hardware": {
+    "ram_gb": 8,
+    "gpu": "None",
+    "cpu": "Available"
+  },
+  "python": {
+    "version": "3.14.6",
+    "datasets_library_installed": false,
+    "datasets_version": null
+  },
+  "existing_storage": {
+    "phase7_mb": 26,
+    "phase8_mb": 62,
+    "phase9_mb": 11,
+    "total_experimental_mb": 99
+  }
+}

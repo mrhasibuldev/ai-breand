@@ -12,6 +12,7 @@
   ],
   "scripts": {
     "dev": "pnpm --parallel --filter @nexusai/web --filter @nexusai/api --filter @nexusai/worker dev",
+    "dev:ml": "cd packages/ai-core/ml-service && python main.py",
     "build": "pnpm -r build",
     "typecheck": "tsc --noEmit -p tsconfig.json && pnpm -r build && pnpm -r typecheck",
     "lint": "eslint .",

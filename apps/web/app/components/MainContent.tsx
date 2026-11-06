@@ -69,8 +69,8 @@ interface MainContentProps {
   isProfileEditOpen?: boolean;
   /** Callback to close profile edit dialog */
   onProfileEditClose?: () => void;
-  /** Callback to open profile edit dialog from mobile */
-  onProfileEditRequest?: () => void;
+  /** Callback to open profile menu from mobile */
+  onProfileMenuRequest?: () => void;
 }
 
 /**
@@ -109,7 +109,7 @@ export default function MainContent({
   onAuthRequired,
   isProfileEditOpen,
   onProfileEditClose,
-  onProfileEditRequest,
+  onProfileMenuRequest,
 }: MainContentProps) {
   // State for input field value
   const [inputValue, setInputValue] = useState('');
@@ -141,13 +141,13 @@ export default function MainContent({
   };
 
   /**
-   * Handle profile edit open
+   * Handle profile click (open profile menu on mobile)
    */
   const handleProfileClick = () => {
     if (!isAuthenticated) {
       onAuthRequired();
     } else {
-      onProfileEditRequest?.();
+      onProfileMenuRequest?.();
     }
   };
 

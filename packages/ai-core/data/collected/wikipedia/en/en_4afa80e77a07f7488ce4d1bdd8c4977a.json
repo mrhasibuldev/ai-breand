@@ -1,0 +1,12 @@
+{
+  "title": "Algorithm",
+  "text": "In mathematics and computer science, an algorithm is a finite sequence of mathematically rigorous instructions, typically used to solve a class of specific problems or to perform a computation. Algorithms are used as specifications for performing calculations and data processing. More advanced algorithms can use conditionals to divert the code execution through various routes and deduce valid inferences, achieving automation eventually. Using human characteristics as descriptors of machines in metaphorical ways was already practiced by Alan Turing with terms such as \"memory\", \"search\" and \"stimulus\".",
+  "url": "https://en.wikipedia.org/wiki/Algorithm",
+  "lang": "en",
+  "source": "wikipedia",
+  "license": "CC BY-SA 3.0",
+  "collected_at": "2026-11-03T17:44:29.213452",
+  "word_count": 85,
+  "char_count": 607,
+  "checksum": "aa60eac0fe367c1d98b6523491acce9cdbe7280ee6d36ae77f52b09ad61a64c3"
+}

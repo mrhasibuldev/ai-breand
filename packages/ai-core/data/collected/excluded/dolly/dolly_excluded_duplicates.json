@@ -1,0 +1,1162 @@
+[
+  {
+    "index": 513,
+    "instruction": "What is the English Premier League?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 1028,
+    "instruction": "Extract all of the dates mentioned in this paragraph and list them using bullets in the format {Date",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 1130,
+    "instruction": "Extract all of the names of people mentioned in this paragraph and list them using bullets in the fo",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 1233,
+    "instruction": "Extract all of the names of people mentioned in this paragraph and list them using bullets in the fo",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 1245,
+    "instruction": "Give me a title of one of the \"Harry Potter\" novels.",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 1303,
+    "instruction": "What is the meaning of life?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 1391,
+    "instruction": "Why is the sky blue?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 1435,
+    "instruction": "Extract all of the dates mentioned in this paragraph and list them using bullets in the format {Date",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 1456,
+    "instruction": "What are the primary colors?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 2027,
+    "instruction": "Where do bears live?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 2040,
+    "instruction": "What is the meaning of life?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 2130,
+    "instruction": "Let\u2019s solve the following math problem. Each rabbit has 4 feets and each duck has 2 feets. If there ",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 2212,
+    "instruction": "Give me a list of the best movies I've never seen.",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 2337,
+    "instruction": "What is the meaning of life?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 2415,
+    "instruction": "How to lose weight?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 2483,
+    "instruction": "Why did Kim Kardashian and Ye divorce?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 2518,
+    "instruction": "What is Linux?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 2681,
+    "instruction": "Who is the greatest tennis player of all time?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 2958,
+    "instruction": "Why is the sky blue?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 2989,
+    "instruction": "What is a benefit of salsa dancing?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 2995,
+    "instruction": "How many planets are there?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 3041,
+    "instruction": "Describe a recurring dream you've had.",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 3058,
+    "instruction": "Write a short story about a person who discovers a hidden room in their house. The story should incl",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 3075,
+    "instruction": "Extract all of the names of people mentioned in this paragraph and list them using bullets in the fo",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 3176,
+    "instruction": "Give me a title of one of the \"Harry Potter\" novels.",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 3258,
+    "instruction": "What is the most popular sport?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 3263,
+    "instruction": "Who is the greatest tennis player of all time?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 3307,
+    "instruction": "Who were the Beatles?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 3525,
+    "instruction": "What is the biggest fish in the ocean?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 3551,
+    "instruction": "Which team was relegated from the league at the conclusion of the 1991 Season?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 3568,
+    "instruction": "Who is the St Louis Cardinals?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 3578,
+    "instruction": "How did Andy Warhol create the \"piss paintings\"?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 3607,
+    "instruction": "Why are kids inquisitive?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 3842,
+    "instruction": "What is the value of x if x^2 = 4?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 3845,
+    "instruction": "What is a verb?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 3874,
+    "instruction": "Should I use a dynamic microphone or a condenser microphone for recording a podcast? What about stre",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 3876,
+    "instruction": "Why do humans like dogs?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 3914,
+    "instruction": "Why are plants green?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 3975,
+    "instruction": "What happened to Captain Bligh after the Mutiny on the Bounty?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 3982,
+    "instruction": "What is SQL?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 3990,
+    "instruction": "Based on the information below, when might people have started baking bread?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 4024,
+    "instruction": "Extract all of the names of people mentioned in this paragraph and list them using bullets in the fo",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 4122,
+    "instruction": "I need some ideas for a first date.",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 4203,
+    "instruction": "Extract all of the names of people mentioned in this paragraph and list them using bullets in the fo",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 4223,
+    "instruction": "Extract and list the names of characters a player can control in The Last of Us mentioned in the par",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 4245,
+    "instruction": "Why do people like to ski?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 4342,
+    "instruction": "Why do humans like dogs?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 4358,
+    "instruction": "How many points did Jarom\u00edr J\u00e1gr score in the 1995-1996 season?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 4363,
+    "instruction": "Extract all the place names from the paragraph. Different places should be separated by comma.",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 4394,
+    "instruction": "Extract all of the names of people mentioned in this paragraph and list them using bullets in the fo",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 4547,
+    "instruction": "What is Mexico?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 4734,
+    "instruction": "Why do humans like dogs?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 4920,
+    "instruction": "How should I pick a name for my baby?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 4936,
+    "instruction": "What are the primary causes of inflation?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 5011,
+    "instruction": "What is the difference between affect and effect?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 5050,
+    "instruction": "What is freedom?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 5071,
+    "instruction": "Why is the sky blue?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 5078,
+    "instruction": "What is the most popular sport?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 5447,
+    "instruction": "What is a bank run?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 5465,
+    "instruction": "What is a benefit of salsa dancing?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 5538,
+    "instruction": "What is the meaning of life?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 5540,
+    "instruction": "Why do people enjoy baseball?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 5568,
+    "instruction": "Give me a bulleted list of Aaron Fenster's accomplishments.",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 5735,
+    "instruction": "Why is the sky blue?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 5741,
+    "instruction": "I'm going to give you a passage from Marty Essen's book \"Cool Creatures, Hot Planet: Exploring the S",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 5819,
+    "instruction": "Why practicing sport is important ?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 5889,
+    "instruction": "How can I decide what bike I should get?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 5984,
+    "instruction": "What are the primary causes of inflation?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 6010,
+    "instruction": "Why is Pickleball sport so popular",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 6015,
+    "instruction": "What is orange wine?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 6021,
+    "instruction": "Give me a list of the best movies I've never seen.",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 6201,
+    "instruction": "Imagine you are the last person on Earth. Write a diary entry describing your thoughts and feelings.",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 6342,
+    "instruction": "Explain the use of screens in basketball",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 6489,
+    "instruction": "What's the differences of the Wing Chun kongfu and the traditional Shaolin Kongfu?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 6491,
+    "instruction": "How do you make wine?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 6499,
+    "instruction": "Imagine you are the last person on Earth. Write a diary entry describing your thoughts and feelings.",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 6536,
+    "instruction": "What is Cricket in sports?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 6640,
+    "instruction": "What is one of your favorite hobbies?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 6702,
+    "instruction": "What is Categorization and Sentiment Analysis",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 6762,
+    "instruction": "Why are cats better than dogs?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 6896,
+    "instruction": "Extract all of the names of people mentioned in this paragraph and list them using bullets in the fo",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 6977,
+    "instruction": "What is The Masters?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 7071,
+    "instruction": "Who was the first president of the United States?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 7075,
+    "instruction": "Give me a title of one of the \"Harry Potter\" novels.",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 7102,
+    "instruction": "What is the best hand in poker?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 7108,
+    "instruction": "Are you going for a walk today?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 7227,
+    "instruction": "What is a noun?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 7236,
+    "instruction": "How do you play chess?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 7306,
+    "instruction": "How is data engineering different from data science?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 7316,
+    "instruction": "What is Football?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 7680,
+    "instruction": "Think up some openings for beginners to the game of Chess",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 7727,
+    "instruction": "Extract all of the names of people mentioned in this paragraph and list them using bullets in the fo",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 7767,
+    "instruction": "Why is the sky blue?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 7798,
+    "instruction": "What are the benefits of meditation?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 7803,
+    "instruction": "Extract all of the dates mentioned in this paragraph and list them using bullets in the format {Date",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 7809,
+    "instruction": "Which era of counterculture were the Beatles pivotal to?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 7840,
+    "instruction": "Why are people migrating in the US from the NE and Mid-West to the South and SE?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 7884,
+    "instruction": "Should I use a dynamic microphone or a condenser microphone for recording a podcast? What about stre",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 7906,
+    "instruction": "Write a short story about a person who discovers a hidden room in their house. The story should incl",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 8034,
+    "instruction": "What are the primary causes of inflation?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 8066,
+    "instruction": "Why do humans play sports?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 8098,
+    "instruction": "What are the primary causes of inflation?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 8110,
+    "instruction": "How is it that some high net-worth individuals are able to avoid paying taxes completely?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 8119,
+    "instruction": "Extract all of the names of people mentioned in this paragraph and list them using bullets in the fo",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 8206,
+    "instruction": "Give me a simpler way to tell someone that Layli and Majnun is Persian literature that borrows story",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 8411,
+    "instruction": "Why do babies cry?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 8480,
+    "instruction": "Extract the names of the islands located on the Eastern Group of the Azores plateau from the text. S",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 8602,
+    "instruction": "Who invented Calculus?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 8650,
+    "instruction": "Who is LBJ?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 8681,
+    "instruction": "Are you going for a walk today?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 8687,
+    "instruction": "Are you going for a walk today?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 8737,
+    "instruction": "How many continents are there on Earth?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 8776,
+    "instruction": "Which are the main reasons for doing a PhD?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 8972,
+    "instruction": "Give me a title of one of the \"Harry Potter\" novels.",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 8986,
+    "instruction": "What causes that feeling of weightlessness when you're on a rollercoaster?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 9017,
+    "instruction": "Which company built the F-22 Raptor?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 9039,
+    "instruction": "What is freedom?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 9196,
+    "instruction": "Extract all of the dates mentioned in this paragraph and list them using bullets in the format {Date",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 9206,
+    "instruction": "Who is the protagonist in CyberPunk 2077?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 9273,
+    "instruction": "Give me a title of one of the \"Harry Potter\" novels.",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 9284,
+    "instruction": "Haven't you always believed that Earth is flat?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 9303,
+    "instruction": "Which are the main reasons for doing a PhD?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 9391,
+    "instruction": "Why do people like cats?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 9401,
+    "instruction": "Why do people like to travel?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 9429,
+    "instruction": "What is Lady Gaga's real name?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 9630,
+    "instruction": "What are the primary causes of inflation?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 9673,
+    "instruction": "What is Python?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 9674,
+    "instruction": "what does it mean to have brunette hair?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 9714,
+    "instruction": "What is EDM?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 9718,
+    "instruction": "Extract all of the dates mentioned in this paragraph and list them using bullets in the format {Date",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 9722,
+    "instruction": "Is a tomato a fruit or a vegetable?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 9820,
+    "instruction": "What is Ramadan?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 9836,
+    "instruction": "Why are people migrating in the US from the NE and Mid-West to the South and SE?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 9907,
+    "instruction": "What is photosynthesis?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 9967,
+    "instruction": "How tall is Mt. Shakspere?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 10061,
+    "instruction": "What is the meaning of life?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 10084,
+    "instruction": "How do I find my Tesla charging station?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 10093,
+    "instruction": "How do I keep my plants alive?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 10144,
+    "instruction": "What's the capital of Brazil?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 10218,
+    "instruction": "What are the four major subregions in Central Otago?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 10317,
+    "instruction": "Extract the occupations of Elie Wiesel from the text.",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 10320,
+    "instruction": "What are the primary causes of inflation?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 10358,
+    "instruction": "Extract all of the names of people mentioned in this paragraph and list them using bullets in the fo",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 10410,
+    "instruction": "Extract all of the names of people mentioned in this paragraph and list them using bullets in the fo",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 10429,
+    "instruction": "Why do people like cats?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 10442,
+    "instruction": "How is chocolate made?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 10483,
+    "instruction": "What is Augusta National Golf Club?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 10575,
+    "instruction": "How should I sleep train my baby?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 10603,
+    "instruction": "Are you going for a walk today?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 10769,
+    "instruction": "Extract and list the names of characters a player can control in The Last of Us mentioned in the par",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 10880,
+    "instruction": "Given this paragraph about WWII, how many fatalities happened?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 10909,
+    "instruction": "Extract all of the names of people mentioned in this paragraph and list them using bullets in the fo",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 10921,
+    "instruction": "Give me a one line summary of the story below: \n\nA long long time ago the Queen of Odisha heard that",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 11221,
+    "instruction": "How do I get in shape?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 11257,
+    "instruction": "What is an audible?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 11413,
+    "instruction": "Tell me a joke",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 11469,
+    "instruction": "What is gravity?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 11494,
+    "instruction": "Do aliens exist?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 11502,
+    "instruction": "What are the best types of pets for a family with kids?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 11562,
+    "instruction": "Give me a one line summary of the story below: \n\nA long long time ago the Queen of Odisha heard that",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 11574,
+    "instruction": "What are the benefits of working with a coach?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 11580,
+    "instruction": "Why is the sky blue?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 11588,
+    "instruction": "What is the stock market?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 11629,
+    "instruction": "What is contemporary style of dance?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 11654,
+    "instruction": "Why are plants green?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 11761,
+    "instruction": "What is the best way to approach a new cat?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 11802,
+    "instruction": "Does parallel universe really exist?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 11838,
+    "instruction": "Who is the greatest tennis player of all time?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 11884,
+    "instruction": "What is photosynthesis?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 11898,
+    "instruction": "Extract all of the names of people mentioned in this paragraph and list them using bullets in the fo",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 11907,
+    "instruction": "What is the meaning of life?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 11972,
+    "instruction": "Why is the sky blue?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 12129,
+    "instruction": "What does the idiom burning your bridges mean?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 12158,
+    "instruction": "What is the best way to cook a steak?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 12203,
+    "instruction": "Can we move away from fossil fuels in the next decade  ?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 12259,
+    "instruction": "What is one of your favorite hobbies?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 12338,
+    "instruction": "Give me a title of one of the \"Harry Potter\" novels.",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 12381,
+    "instruction": "Write an friendly, convincing e-mail to my landlord asking whether I can get a dog.",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 12419,
+    "instruction": "Why is the sky blue?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 12572,
+    "instruction": "What books would you recommend someone read to improve their general knowledge of the world?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 12592,
+    "instruction": "Are you going for a walk today?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 12637,
+    "instruction": "Create a dialogue between two characters discussing the impact of social media on their lives. Your ",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 12675,
+    "instruction": "Who is the greatest tennis player of all time?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 12737,
+    "instruction": "What is a database schema?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 12790,
+    "instruction": "What is an adverb?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 12794,
+    "instruction": "What is Linux?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 12894,
+    "instruction": "Why are cats better than dogs?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 12907,
+    "instruction": "Imagine you are the last person on Earth. Write a diary entry describing your thoughts and feelings.",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 12945,
+    "instruction": "Why do people like cats?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 12985,
+    "instruction": "What is a derivative in finance?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 13003,
+    "instruction": "What is the structure of Public Forum debate, as used in US debate competitions?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 13007,
+    "instruction": "What is a noun?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 13089,
+    "instruction": "How do you play blackjack?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 13090,
+    "instruction": "What was the relationship of the person who became MD at Grandmaster Capital Management to Paypal?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 13110,
+    "instruction": "Extract all of the dates mentioned in this paragraph and list them using bullets in the format {Date",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 13323,
+    "instruction": "What is a credit card?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 13335,
+    "instruction": "Why did the chicken cross the road?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 13391,
+    "instruction": "What are the primary causes of inflation?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 13472,
+    "instruction": "When running a marathon and attempting to run a personal best time, categorize the following as eith",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 13482,
+    "instruction": "Why do people like to travel?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 13487,
+    "instruction": "What is the best way to lose weight?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 13540,
+    "instruction": "What should I do if I'm feeling depressed?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 13561,
+    "instruction": "Extract all of the names of people mentioned in this paragraph and list them using bullets in the fo",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 13623,
+    "instruction": "Given the following paragraph about the observation deck of the Burj Khalifa, what's offered on the ",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 13659,
+    "instruction": "What is ice hockey?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 13683,
+    "instruction": "What is the English Premier League?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 13762,
+    "instruction": "Write a polite rejection response to a LinkedIn recruiter",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 13765,
+    "instruction": "Extract all of the dates mentioned in this paragraph and list them using bullets in the format {Date",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 13801,
+    "instruction": "What is celiac disease?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 13936,
+    "instruction": "How can I be more productive?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 13976,
+    "instruction": "What are five totally distinct, creative ways to describe the usefulness of a broken stapler.",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 14001,
+    "instruction": "Extract all of the dates mentioned in this paragraph and list them using bullets in the format {Date",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 14009,
+    "instruction": "What is a verb?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 14014,
+    "instruction": "Extract all of the dates mentioned in this paragraph and list them using bullets in the format {Date",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 14032,
+    "instruction": "How do I get to Juneau, Alaska?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 14037,
+    "instruction": "How did Kdramas become so popular?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 14107,
+    "instruction": "Which are the main reasons for doing a PhD?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 14147,
+    "instruction": "Which of these foods are kosher? Lobster, cheeseburger, hamburger and fries, shrimp and grits, thai ",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 14179,
+    "instruction": "Imagine you are the last person on Earth. Write a diary entry describing your thoughts and feelings.",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 14199,
+    "instruction": "Is UBS a good bank",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 14303,
+    "instruction": "What is baseball?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 14396,
+    "instruction": "Why practicing sport is important ?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 14500,
+    "instruction": "What is freedom?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 14704,
+    "instruction": "What is the meaning of life?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 14756,
+    "instruction": "Find the four eye shapes on Maitum anthropomorphic pottery and separate them with a comma",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 14821,
+    "instruction": "What do giant Pandas eats?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 14861,
+    "instruction": "What is the Premier League?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 14862,
+    "instruction": "What causes that feeling of weightlessness when you're on a rollercoaster?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 14935,
+    "instruction": "Who is the best soccer player in the world?",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 14937,
+    "instruction": "From the passage provided, extract the difference in caffeine between a light roast and a dark roast",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 14946,
+    "instruction": "Extract all of the dates mentioned in this paragraph and list them using bullets in the format {Date",
+    "reason": "duplicate_instruction"
+  },
+  {
+    "index": 14948,
+    "instruction": "Who is the greatest basketball player of all time?",
+    "reason": "duplicate_instruction"
+  }
+]

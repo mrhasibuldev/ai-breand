@@ -11,11 +11,15 @@
  * <Home />
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Sidebar from './components/Sidebar';
 import MainContent from './components/MainContent';
 import AuthModal from './components/AuthModal';
 import ProfileEdit from './components/ProfileEdit';
+import ProfileMenu from './components/ProfileMenu';
+import Settings from './components/Settings';
+import LogoutConfirmDialog from './components/LogoutConfirmDialog';
+import MobileProfileScreen from './components/MobileProfileScreen';
 import { AuthProvider, useAuth } from './components/AuthContext';
 import { getProfile, createProfile, updateProfile } from '../lib/backend-profile';
 import { loadAvatar } from '../lib/avatar-service';
@@ -30,6 +34,13 @@ function HomeContent() {
   const [activeNav, setActiveNav] = useState('home');
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [isProfileEditOpen, setIsProfileEditOpen] = useState(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [isMobileProfileOpen, setIsMobileProfileOpen] = useState(false);
+  const [profileMenuPosition, setProfileMenuPosition] = useState({ top: 0, left: 0 });
+  const profileCardRef = useRef<HTMLDivElement>(null);
 
   // Profile state
   const [profileName, setProfileName] = useState('Guest');
@@ -38,7 +49,7 @@ function HomeContent() {
   const [localProfileName, setLocalProfileName] = useState('Guest');
   const [localProfileEmail, setLocalProfileEmail] = useState('');
   const [localProfilePhoto, setLocalProfilePhoto] = useState<string | null>(null);
-  const { user, isAuthenticated, initialized } = useAuth();
+  const { user, isAuthenticated, initialized, signOut } = useAuth();
 
   // Sync local profile state with props
   useEffect(() => {
@@ -120,16 +131,48 @@ function HomeContent() {
   /**
    * Handle profile edit close
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleProfileEditClose = () => {
     setIsProfileEditOpen(false);
   };
 
   /**
-   * Handle profile card click
+   * Handle profile card click (open profile menu)
    */
   const handleProfileClick = () => {
     if (!isAuthenticated) {
       setShowAuthModal(true);
+    } else {
+      // Check if on mobile (viewport width <= 768px)
+      const isMobile = window.innerWidth <= 768;
+
+      if (isMobile) {
+        // Mobile: Open full-screen profile screen
+        setIsMobileProfileOpen(true);
+      } else {
+        // Desktop: Calculate position to appear above the profile card within sidebar
+        if (profileCardRef.current) {
+          const rect = profileCardRef.current.getBoundingClientRect();
+          const menuHeight = 200;
+          const gap = 8;
+
+          // Position menu above the profile card, aligned to sidebar left edge
+          const top = rect.top - menuHeight - gap;
+          const left = 24; // Sidebar padding (24px from viewport left)
+
+          setProfileMenuPosition({ top, left });
+        } else {
+          // Fallback: Position near bottom of sidebar
+          const viewportHeight = window.innerHeight;
+          const menuHeight = 200;
+
+          const top = viewportHeight - menuHeight - 100;
+          const left = 24; // Sidebar padding
+
+          setProfileMenuPosition({ top, left });
+        }
+        setIsProfileMenuOpen(true);
+      }
     }
   };
 
@@ -138,17 +181,70 @@ function HomeContent() {
    */
   const handleProfileEditClick = () => {
     if (isAuthenticated) {
+      setIsSettingsOpen(false); // Close Settings when opening ProfileEdit
       setIsProfileEditOpen(true);
     }
   };
 
   /**
-   * Handle logout
+   * Handle settings click
    */
-  const handleLogout = async () => {
-    const { signOut } = useAuth();
-    await signOut();
-    setShowAuthModal(false);
+  const handleSettingsClick = () => {
+    setIsMobileProfileOpen(false); // Close mobile profile when opening settings
+    setIsSettingsOpen(true);
+  };
+
+  /**
+   * Handle logout click (show confirmation)
+   */
+  const handleLogoutClick = () => {
+    setIsMobileProfileOpen(false); // Close mobile profile when logout is clicked
+    setIsLogoutConfirmOpen(true);
+  };
+
+  /**
+   * Handle logout confirmation
+   */
+  const handleLogoutConfirm = async () => {
+    setIsLoggingOut(true);
+    try {
+      await signOut();
+      setIsProfileMenuOpen(false);
+      setIsSettingsOpen(false);
+      setIsLogoutConfirmOpen(false);
+      setProfileName('Guest');
+      setProfileEmail('');
+      setProfilePhoto(null);
+      setLocalProfileName('Guest');
+      setLocalProfileEmail('');
+      setLocalProfilePhoto(null);
+    } catch (error) {
+      console.error('[Logout] Failed to logout:', error);
+    } finally {
+      setIsLoggingOut(false);
+    }
+  };
+
+  /**
+   * Handle logout cancel
+   */
+  const handleLogoutCancel = () => {
+    setIsLogoutConfirmOpen(false);
+  };
+
+  /**
+   * Handle mobile profile open
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleMobileProfileOpen = () => {
+    setIsMobileProfileOpen(true);
+  };
+
+  /**
+   * Handle mobile profile back
+   */
+  const handleMobileProfileBack = () => {
+    setIsMobileProfileOpen(false);
   };
 
   return (
@@ -172,8 +268,7 @@ function HomeContent() {
         profilePhoto={profilePhoto}
         isAuthenticated={isAuthenticated}
         onProfileClick={handleProfileClick}
-        onProfileEditClick={handleProfileEditClick}
-        onLogout={handleLogout}
+        profileCardRef={profileCardRef}
       />
 
       {/* Main Content Area */}
@@ -188,7 +283,7 @@ function HomeContent() {
         onAuthRequired={() => setShowAuthModal(true)}
         isProfileEditOpen={isProfileEditOpen}
         onProfileEditClose={() => setIsProfileEditOpen(false)}
-        onProfileEditRequest={handleProfileEditClick}
+        onProfileMenuRequest={handleProfileClick}
       />
 
       {/* Authentication Modal */}
@@ -207,6 +302,64 @@ function HomeContent() {
           onClose={() => setIsProfileEditOpen(false)}
         />
       )}
+
+      {/* Profile Menu */}
+      {isProfileMenuOpen && (
+        <ProfileMenu
+          profileName={profileName}
+          profileEmail={profileEmail}
+          profilePhoto={profilePhoto}
+          isOpen={isProfileMenuOpen}
+          onClose={() => setIsProfileMenuOpen(false)}
+          onSettings={handleSettingsClick}
+          onLogout={handleLogoutClick}
+          position={profileMenuPosition}
+        />
+      )}
+
+      {/* Settings Dialog */}
+      {isSettingsOpen && (
+        <Settings
+          profileName={profileName}
+          profileEmail={profileEmail}
+          profilePhoto={profilePhoto}
+          onClose={() => setIsSettingsOpen(false)}
+          onProfileEditRequest={handleProfileEditClick}
+          isMobile={window.innerWidth <= 768}
+        />
+      )}
+
+      {/* Mobile Profile Screen */}
+      {isMobileProfileOpen && (
+        <MobileProfileScreen
+          profileName={profileName}
+          profileEmail={profileEmail}
+          profilePhoto={profilePhoto}
+          onBack={handleMobileProfileBack}
+          onSettings={handleSettingsClick}
+          onLogout={handleLogoutClick}
+          onEditProfile={handleProfileEditClick}
+        />
+      )}
+
+      {/* Profile Edit Dialog - Available from both Settings and Mobile Profile */}
+      {isProfileEditOpen && (
+        <ProfileEdit
+          initialName={profileName}
+          initialEmail={profileEmail}
+          initialPhotoUrl={profilePhoto}
+          onSave={handleProfileSave}
+          onClose={() => setIsProfileEditOpen(false)}
+        />
+      )}
+
+      {/* Logout Confirmation Dialog */}
+      <LogoutConfirmDialog
+        isOpen={isLogoutConfirmOpen}
+        isLoggingOut={isLoggingOut}
+        onConfirm={handleLogoutConfirm}
+        onCancel={handleLogoutCancel}
+      />
     </div>
   );
 }

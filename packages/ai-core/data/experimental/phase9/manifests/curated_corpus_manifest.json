@@ -1,0 +1,49 @@
+{
+  "curation_timestamp": "2026-11-03T23:46:40.384533",
+  "source": "Phase 7 corpus + deduplication",
+  "total_texts": 90362,
+  "total_words": 1917461,
+  "total_chars": 10888140,
+  "file_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9\\curated\\corpus_expanded.txt",
+  "file_size_bytes": 11087300,
+  "file_size_mb": 10.57,
+  "sha256": "35b816965b8ebc297e23cc6f07f96c67ffc39a5b2d83ef2e17b1c9fdc335de0e",
+  "language_distribution": {
+    "bengali": {
+      "texts": 28,
+      "chars": 3615,
+      "words": 531,
+      "percentage": 0.030986476616276754
+    },
+    "english": {
+      "texts": 87593,
+      "chars": 10809568,
+      "words": 1905110,
+      "percentage": 96.93565879462605
+    },
+    "mixed": {
+      "texts": 2,
+      "chars": 57,
+      "words": 10,
+      "percentage": 0.0022133197583054823
+    },
+    "unknown": {
+      "texts": 2739,
+      "chars": 74900,
+      "words": 11810,
+      "percentage": 3.0311414089993582
+    }
+  },
+  "preprocessing_steps": [
+    "Loaded from Phase 7 corpus",
+    "Language detection (Bengali Unicode range)",
+    "Deduplication (exact match)",
+    "UTF-8 encoding"
+  ],
+  "notes": [
+    "No new datasets downloaded due to missing datasets library",
+    "Expanded corpus based on existing Phase 7 data",
+    "Bengali coverage remains critically low",
+    "Recommendation: Install datasets library or manually download small Bengali datasets"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "preparation_timestamp": "2026-11-04T00:26:36.096818",
+  "tokenizer": {
+    "path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_2\\tokenizers\\bpe_8k\\sp_bpe_8k.model",
+    "vocab_size": 8000
+  },
+  "corpus": {
+    "path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_2\\corpus\\combined.txt",
+    "original_lines": 1865,
+    "unique_lines": 1837,
+    "tokenized_examples": 1837,
+    "filtered_examples": 1812
+  },
+  "language_distribution": {
+    "bengali": 737,
+    "english": 1022,
+    "mixed": 19
+  },
+  "splits": {
+    "train": 1449,
+    "validation": 181,
+    "test": 182,
+    "total": 1812
+  },
+  "random_seed": 42,
+  "max_length": 128,
+  "normalization": "NFC"
+}

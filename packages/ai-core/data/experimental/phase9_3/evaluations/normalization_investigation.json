@@ -1,0 +1,142 @@
+[
+  {
+    "index": 0,
+    "original": "তুমি কেমন আছো?",
+    "normalized": "তুমি কেমন আছো?",
+    "without_normalization": {
+      "decoded": "তুমি কেমন আছো?",
+      "match": true
+    },
+    "with_normalization": {
+      "decoded": "তুমি কেমন আছো?",
+      "match": true
+    },
+    "normalization_needed": false
+  },
+  {
+    "index": 1,
+    "original": "বাংলাদেশের রাজধানী ঢাকা।",
+    "normalized": "বাংলাদেশের রাজধানী ঢাকা।",
+    "without_normalization": {
+      "decoded": "বাংলাদেশের রাজধানী ঢাকা।",
+      "match": true
+    },
+    "with_normalization": {
+      "decoded": "বাংলাদেশের রাজধানী ঢাকা।",
+      "match": true
+    },
+    "normalization_needed": false
+  },
+  {
+    "index": 2,
+    "original": "আমি একটি নতুন কৃত্রিম বুদ্ধিমত্তা তৈরি করছি।",
+    "normalized": "আমি একটি নতুন কৃত্রিম বুদ্ধিমত্তা তৈরি করছি।",
+    "without_normalization": {
+      "decoded": "আমি একটি নতুন কৃত্রিম বুদ্ধিমত্তা তৈরি করছি।",
+      "match": true
+    },
+    "with_normalization": {
+      "decoded": "আমি একটি নতুন কৃত্রিম বুদ্ধিমত্তা তৈরি করছি।",
+      "match": true
+    },
+    "normalization_needed": false
+  },
+  {
+    "index": 3,
+    "original": "বাংলা ভাষার শব্দের গঠন এবং উচ্চারণ আলাদা।",
+    "normalized": "বাংলা ভাষার শব্দের গঠন এবং উচ্চারণ আলাদা।",
+    "without_normalization": {
+      "decoded": "বাংলা ভাষার শব্দের গঠন এবং উচ্চারণ আলাদা।",
+      "match": true
+    },
+    "with_normalization": {
+      "decoded": "বাংলা ভাষার শব্দের গঠন এবং উচ্চারণ আলাদা।",
+      "match": true
+    },
+    "normalization_needed": false
+  },
+  {
+    "index": 4,
+    "original": "আজকের আবহাওয়া খুব সুন্দর।",
+    "normalized": "আজকের আবহাওয়া খুব সুন্দর।",
+    "without_normalization": {
+      "decoded": "আজকের আবহাওয়া খুব সুন্দর।",
+      "match": true
+    },
+    "with_normalization": {
+      "decoded": "আজকের আবহাওয়া খুব সুন্দর।",
+      "match": true
+    },
+    "normalization_needed": false
+  },
+  {
+    "index": 5,
+    "original": "তুমি কি আমাকে একটি পরিকল্পনা তৈরি করতে সাহায্য করতে পারবে?",
+    "normalized": "তুমি কি আমাকে একটি পরিকল্পনা তৈরি করতে সাহায্য করতে পারবে?",
+    "without_normalization": {
+      "decoded": "তুমি কি আমাকে একটি পরিকল্পনা তৈরি করতে সাহায্য করতে পারবে?",
+      "match": true
+    },
+    "with_normalization": {
+      "decoded": "তুমি কি আমাকে একটি পরিকল্পনা তৈরি করতে সাহায্য করতে পারবে?",
+      "match": true
+    },
+    "normalization_needed": false
+  },
+  {
+    "index": 6,
+    "original": "বাংলাদেশ স্বাধীনতা দিবস ২৬ মার্চ।",
+    "normalized": "বাংলাদেশ স্বাধীনতা দিবস ২৬ মার্চ।",
+    "without_normalization": {
+      "decoded": "বাংলাদেশ স্বাধীনতা দিবস ২৬ মার্চ।",
+      "match": true
+    },
+    "with_normalization": {
+      "decoded": "বাংলাদেশ স্বাধীনতা দিবস ২৬ মার্চ।",
+      "match": true
+    },
+    "normalization_needed": false
+  },
+  {
+    "index": 7,
+    "original": "পানি জীবনের জন্য অত্যন্ত গুরুত্বপূর্ণ।",
+    "normalized": "পানি জীবনের জন্য অত্যন্ত গুরুত্বপূর্ণ।",
+    "without_normalization": {
+      "decoded": "পানি জীবনের জন্য অত্যন্ত গুরুত্বপূর্ণ।",
+      "match": true
+    },
+    "with_normalization": {
+      "decoded": "পানি জীবনের জন্য অত্যন্ত গুরুত্বপূর্ণ।",
+      "match": true
+    },
+    "normalization_needed": false
+  },
+  {
+    "index": 8,
+    "original": "শিক্ষা জাতির উন্নতির চাবিক।",
+    "normalized": "শিক্ষা জাতির উন্নতির চাবিক।",
+    "without_normalization": {
+      "decoded": "শিক্ষা জাতির উন্নতির চাবিক।",
+      "match": true
+    },
+    "with_normalization": {
+      "decoded": "শিক্ষা জাতির উন্নতির চাবিক।",
+      "match": true
+    },
+    "normalization_needed": false
+  },
+  {
+    "index": 9,
+    "original": "আমি বই পড়তে ভালোবাসি।",
+    "normalized": "আমি বই পড়তে ভালোবাসি।",
+    "without_normalization": {
+      "decoded": "আমি বই পড়তে ভালোবাসি।",
+      "match": false
+    },
+    "with_normalization": {
+      "decoded": "আমি বই পড়তে ভালোবাসি।",
+      "match": true
+    },
+    "normalization_needed": true
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "title": "Data science",
+  "text": "Data science is an interdisciplinary academic field that uses statistics, scientific computing, scientific methods, processing, scientific visualization, algorithms, coding, and systems to extract or extrapolate knowledge from potentially noisy, structured, or unstructured data. A data scientist is a professional who creates programming code and combines it with statistical knowledge to summarize data.",
+  "url": "https://en.wikipedia.org/wiki/Data_science",
+  "lang": "en",
+  "source": "wikipedia",
+  "license": "CC BY-SA 3.0",
+  "collected_at": "2026-11-03T17:44:27.791636",
+  "word_count": 52,
+  "char_count": 405,
+  "checksum": "8212a595720813a70b8ed889f97ca8c9834debdf17026163e0e51131141c01cf"
+}

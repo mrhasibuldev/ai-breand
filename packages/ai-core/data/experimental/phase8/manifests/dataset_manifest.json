@@ -1,0 +1,13 @@
+{
+  "created": "2026-11-03",
+  "source_corpus": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase7\\tokenizer_corpus\\corpus_combined.txt",
+  "sample_size": 10000,
+  "train_size": 9000,
+  "val_size": 1000,
+  "train_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase8\\data\\train.txt",
+  "val_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase8\\data\\val.txt",
+  "train_checksum": "7f52e78e293c889c0af681d6e71abb6523336445c78549a85b645a596c90c780",
+  "val_checksum": "bca1582f43b6b28a7bd16e6086474904006e2a1b3703b0cb46e37d5dbb78a43c",
+  "tokenizer_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase7\\tokenizer_models\\sp_8k_bpe.model",
+  "vocab_size": 8000
+}

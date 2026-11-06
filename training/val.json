@@ -1,0 +1,17 @@
+{
+  "texts": [
+    "Transfer learning is a research problem in machine learning that focuses on storing knowledge gained while solving one problem and applying it to a different but related problem.",
+    "Feature engineering is the process of using domain knowledge to extract features from raw data that make machine learning algorithms work."
+  ],
+  "config": {
+    "train_split": 0.8,
+    "document_count": 10,
+    "train_count": 8,
+    "validation_count": 2
+  },
+  "metadata": {
+    "dataset_id": "verification-dataset",
+    "dataset_version": "v1.0",
+    "checksum": "verification"
+  }
+}

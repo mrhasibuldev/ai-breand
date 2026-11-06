@@ -1,0 +1,95 @@
+{
+  "collection_timestamp": "2026-11-03T18:40:44.917015",
+  "total_datasets": 3,
+  "successful_collections": 3,
+  "failed_collections": 0,
+  "results": {
+    "gsm8k": "success",
+    "math": "success",
+    "dolly": "success"
+  },
+  "datasets": {
+    "gsm8k": {
+      "dataset": "GSM8K",
+      "dataset_key": "gsm8k",
+      "source": "https://github.com/openai/grade-school-math",
+      "license": "MIT",
+      "license_url": "https://github.com/openai/grade-school-math",
+      "commercial_eligibility": "APPROVED",
+      "attribution_required": false,
+      "share_alike": false,
+      "category": "reasoning",
+      "language": "en",
+      "collection_timestamp": "2026-11-03T18:40:27.360989",
+      "total_files": 2,
+      "total_size_bytes": 4915944,
+      "total_records": 8792,
+      "files": [
+        {
+          "filename": "gsm8k_train.jsonl",
+          "url": "https://raw.githubusercontent.com/openai/grade-school-math/master/grade_school_math/data/train.jsonl",
+          "size": 4166206,
+          "sha256": "17f347dc51477c50d4efb83959dbb7c56297aba886e5544ee2aaed3024813465",
+          "status": "downloaded"
+        },
+        {
+          "filename": "gsm8k_test.jsonl",
+          "url": "https://raw.githubusercontent.com/openai/grade-school-math/master/grade_school_math/data/test.jsonl",
+          "size": 749738,
+          "sha256": "3730d312f6e3440559ace48831e51066acaca737f6eabec99bccb9e4b3c39d14",
+          "status": "downloaded"
+        }
+      ]
+    },
+    "math": {
+      "dataset": "MATH",
+      "dataset_key": "math",
+      "source": "https://github.com/hendrycks/math",
+      "license": "MIT",
+      "license_url": "https://github.com/hendrycks/math/blob/main/LICENSE",
+      "commercial_eligibility": "APPROVED",
+      "attribution_required": false,
+      "share_alike": false,
+      "category": "reasoning",
+      "language": "en",
+      "collection_timestamp": "2026-11-03T18:40:32.859040",
+      "total_files": 1,
+      "total_size_bytes": 0,
+      "total_records": 0,
+      "files": [
+        {
+          "filename": "math.tar",
+          "url": "https://people.eecs.berkeley.edu/~hendrycks/MATH.tar",
+          "size": 0,
+          "sha256": null,
+          "status": "failed"
+        }
+      ]
+    },
+    "dolly": {
+      "dataset": "Dolly",
+      "dataset_key": "dolly",
+      "source": "https://huggingface.co/datasets/databricks/databricks-dolly-15k",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "commercial_eligibility": "CONDITIONAL",
+      "attribution_required": true,
+      "share_alike": true,
+      "category": "instruction_following",
+      "language": "en",
+      "collection_timestamp": "2026-11-03T18:40:44.915467",
+      "total_files": 1,
+      "total_size_bytes": 13085339,
+      "total_records": 15011,
+      "files": [
+        {
+          "filename": "dolly-15k.jsonl",
+          "url": "https://huggingface.co/datasets/databricks/databricks-dolly-15k/resolve/main/databricks-dolly-15k.jsonl",
+          "size": 13085339,
+          "sha256": "2df9083338b4abd6bceb5635764dab5d833b393b55759dffb0959b6fcbf794ec",
+          "status": "downloaded"
+        }
+      ]
+    }
+  }
+}

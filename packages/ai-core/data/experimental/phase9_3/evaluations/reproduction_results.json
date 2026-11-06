@@ -1,0 +1,541 @@
+{
+  "bengali": [
+    {
+      "index": 0,
+      "original": "তুমি কেমন আছো?",
+      "normalized": "তুমি কেমন আছো?",
+      "tokens": 4,
+      "pieces": [
+        "▁তুমি",
+        "▁কেমন",
+        "▁আছো",
+        "?"
+      ],
+      "unk_count": 0,
+      "decoded": "তুমি কেমন আছো?",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 1,
+      "original": "বাংলাদেশের রাজধানী ঢাকা।",
+      "normalized": "বাংলাদেশের রাজধানী ঢাকা।",
+      "tokens": 6,
+      "pieces": [
+        "▁বাংলাদেশের",
+        "▁রাজ",
+        "ধান",
+        "ী",
+        "▁ঢাকা",
+        "।"
+      ],
+      "unk_count": 0,
+      "decoded": "বাংলাদেশের রাজধানী ঢাকা।",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 2,
+      "original": "আমি একটি নতুন কৃত্রিম বুদ্ধিমত্তা তৈরি করছি।",
+      "normalized": "আমি একটি নতুন কৃত্রিম বুদ্ধিমত্তা তৈরি করছি।",
+      "tokens": 8,
+      "pieces": [
+        "▁আমি",
+        "▁একটি",
+        "▁নতুন",
+        "▁কৃত্রিম",
+        "▁বুদ্ধিমত্তা",
+        "▁তৈরি",
+        "▁করছি",
+        "।"
+      ],
+      "unk_count": 0,
+      "decoded": "আমি একটি নতুন কৃত্রিম বুদ্ধিমত্তা তৈরি করছি।",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 3,
+      "original": "বাংলা ভাষার শব্দের গঠন এবং উচ্চারণ আলাদা।",
+      "normalized": "বাংলা ভাষার শব্দের গঠন এবং উচ্চারণ আলাদা।",
+      "tokens": 16,
+      "pieces": [
+        "▁বাংলা",
+        "▁ভা",
+        "ষ",
+        "ার",
+        "▁শব্দের",
+        "▁গঠ",
+        "ন",
+        "▁এবং",
+        "▁উ",
+        "চ্",
+        "চার",
+        "ণ",
+        "▁আ",
+        "লা",
+        "দা",
+        "।"
+      ],
+      "unk_count": 0,
+      "decoded": "বাংলা ভাষার শব্দের গঠন এবং উচ্চারণ আলাদা।",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 4,
+      "original": "আজকের আবহাওয়া খুব সুন্দর।",
+      "normalized": "আজকের আবহাওয়া খুব সুন্দর।",
+      "tokens": 5,
+      "pieces": [
+        "▁আজকের",
+        "▁আবহাওয়া",
+        "▁খুব",
+        "▁সুন্দর",
+        "।"
+      ],
+      "unk_count": 0,
+      "decoded": "আজকের আবহাওয়া খুব সুন্দর।",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 5,
+      "original": "তুমি কি আমাকে একটি পরিকল্পনা তৈরি করতে সাহায্য করতে পারবে?",
+      "normalized": "তুমি কি আমাকে একটি পরিকল্পনা তৈরি করতে সাহায্য করতে পারবে?",
+      "tokens": 12,
+      "pieces": [
+        "▁তুমি",
+        "▁কি",
+        "▁আমাকে",
+        "▁একটি",
+        "▁পরিকল্পনা",
+        "▁তৈরি",
+        "▁করতে",
+        "▁সাহায্য",
+        "▁করতে",
+        "▁পার",
+        "বে",
+        "?"
+      ],
+      "unk_count": 0,
+      "decoded": "তুমি কি আমাকে একটি পরিকল্পনা তৈরি করতে সাহায্য করতে পারবে?",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 6,
+      "original": "বাংলাদেশ স্বাধীনতা দিবস ২৬ মার্চ।",
+      "normalized": "বাংলাদেশ স্বাধীনতা দিবস ২৬ মার্চ।",
+      "tokens": 6,
+      "pieces": [
+        "▁বাংলাদেশ",
+        "▁স্বাধীনতা",
+        "▁দিবস",
+        "▁২৬",
+        "▁মার্চ",
+        "।"
+      ],
+      "unk_count": 0,
+      "decoded": "বাংলাদেশ স্বাধীনতা দিবস ২৬ মার্চ।",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 7,
+      "original": "পানি জীবনের জন্য অত্যন্ত গুরুত্বপূর্ণ।",
+      "normalized": "পানি জীবনের জন্য অত্যন্ত গুরুত্বপূর্ণ।",
+      "tokens": 6,
+      "pieces": [
+        "▁পানি",
+        "▁জীবনের",
+        "▁জন্য",
+        "▁অত্যন্ত",
+        "▁গুরুত্বপূর্ণ",
+        "।"
+      ],
+      "unk_count": 0,
+      "decoded": "পানি জীবনের জন্য অত্যন্ত গুরুত্বপূর্ণ।",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 8,
+      "original": "শিক্ষা জাতির উন্নতির চাবিক।",
+      "normalized": "শিক্ষা জাতির উন্নতির চাবিক।",
+      "tokens": 9,
+      "pieces": [
+        "▁শিক্ষা",
+        "▁জা",
+        "তির",
+        "▁উন্ন",
+        "তির",
+        "▁চা",
+        "ব",
+        "িক",
+        "।"
+      ],
+      "unk_count": 0,
+      "decoded": "শিক্ষা জাতির উন্নতির চাবিক।",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 9,
+      "original": "আমি বই পড়তে ভালোবাসি।",
+      "normalized": "আমি বই পড়তে ভালোবাসি।",
+      "tokens": 5,
+      "pieces": [
+        "▁আমি",
+        "▁বই",
+        "▁পড়তে",
+        "▁ভালোবাসি",
+        "।"
+      ],
+      "unk_count": 0,
+      "decoded": "আমি বই পড়তে ভালোবাসি।",
+      "exact_match": true,
+      "difference": null
+    }
+  ],
+  "english": [
+    {
+      "index": 0,
+      "original": "Hello, how are you?",
+      "normalized": "Hello, how are you?",
+      "tokens": 8,
+      "pieces": [
+        "▁He",
+        "ll",
+        "o",
+        ",",
+        "▁how",
+        "▁are",
+        "▁you",
+        "?"
+      ],
+      "unk_count": 0,
+      "decoded": "Hello, how are you?",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 1,
+      "original": "I want to build an advanced AI Brain.",
+      "normalized": "I want to build an advanced AI Brain.",
+      "tokens": 12,
+      "pieces": [
+        "▁I",
+        "▁want",
+        "▁to",
+        "▁build",
+        "▁an",
+        "▁adv",
+        "anc",
+        "ed",
+        "▁AI",
+        "▁Br",
+        "ain",
+        "."
+      ],
+      "unk_count": 0,
+      "decoded": "I want to build an advanced AI Brain.",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 2,
+      "original": "The capital of Bangladesh is Dhaka.",
+      "normalized": "The capital of Bangladesh is Dhaka.",
+      "tokens": 13,
+      "pieces": [
+        "▁The",
+        "▁capital",
+        "▁of",
+        "▁Bang",
+        "l",
+        "ades",
+        "h",
+        "▁is",
+        "▁D",
+        "h",
+        "ak",
+        "a",
+        "."
+      ],
+      "unk_count": 0,
+      "decoded": "The capital of Bangladesh is Dhaka.",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 3,
+      "original": "Artificial intelligence is transforming the world.",
+      "normalized": "Artificial intelligence is transforming the world.",
+      "tokens": 15,
+      "pieces": [
+        "▁Ar",
+        "t",
+        "ific",
+        "ial",
+        "▁int",
+        "ell",
+        "ig",
+        "ence",
+        "▁is",
+        "▁trans",
+        "form",
+        "ing",
+        "▁the",
+        "▁world",
+        "."
+      ],
+      "unk_count": 0,
+      "decoded": "Artificial intelligence is transforming the world.",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 4,
+      "original": "Today's weather is very beautiful.",
+      "normalized": "Today's weather is very beautiful.",
+      "tokens": 10,
+      "pieces": [
+        "▁To",
+        "day",
+        "'",
+        "s",
+        "▁we",
+        "ather",
+        "▁is",
+        "▁very",
+        "▁beautiful",
+        "."
+      ],
+      "unk_count": 0,
+      "decoded": "Today's weather is very beautiful.",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 5,
+      "original": "Can you help me create a study plan?",
+      "normalized": "Can you help me create a study plan?",
+      "tokens": 11,
+      "pieces": [
+        "▁Can",
+        "▁you",
+        "▁help",
+        "▁me",
+        "▁cre",
+        "ate",
+        "▁a",
+        "▁stud",
+        "y",
+        "▁plan",
+        "?"
+      ],
+      "unk_count": 0,
+      "decoded": "Can you help me create a study plan?",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 6,
+      "original": "Bangladesh Independence Day is March 26.",
+      "normalized": "Bangladesh Independence Day is March 26.",
+      "tokens": 13,
+      "pieces": [
+        "▁Bang",
+        "l",
+        "ades",
+        "h",
+        "▁Ind",
+        "ep",
+        "end",
+        "ence",
+        "▁Day",
+        "▁is",
+        "▁March",
+        "▁2",
+        "6."
+      ],
+      "unk_count": 0,
+      "decoded": "Bangladesh Independence Day is March 26.",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 7,
+      "original": "Water is essential for life.",
+      "normalized": "Water is essential for life.",
+      "tokens": 7,
+      "pieces": [
+        "▁Water",
+        "▁is",
+        "▁ess",
+        "ential",
+        "▁for",
+        "▁life",
+        "."
+      ],
+      "unk_count": 0,
+      "decoded": "Water is essential for life.",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 8,
+      "original": "Education is the key to national progress.",
+      "normalized": "Education is the key to national progress.",
+      "tokens": 10,
+      "pieces": [
+        "▁Ed",
+        "uc",
+        "ation",
+        "▁is",
+        "▁the",
+        "▁key",
+        "▁to",
+        "▁national",
+        "▁progress",
+        "."
+      ],
+      "unk_count": 0,
+      "decoded": "Education is the key to national progress.",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 9,
+      "original": "I love reading books.",
+      "normalized": "I love reading books.",
+      "tokens": 5,
+      "pieces": [
+        "▁I",
+        "▁love",
+        "▁reading",
+        "▁books",
+        "."
+      ],
+      "unk_count": 0,
+      "decoded": "I love reading books.",
+      "exact_match": true,
+      "difference": null
+    }
+  ],
+  "mixed": [
+    {
+      "index": 0,
+      "original": "Hello, তুমি কেমন আছো?",
+      "normalized": "Hello, তুমি কেমন আছো?",
+      "tokens": 8,
+      "pieces": [
+        "▁He",
+        "ll",
+        "o",
+        ",",
+        "▁তুমি",
+        "▁কেমন",
+        "▁আছো",
+        "?"
+      ],
+      "unk_count": 0,
+      "decoded": "Hello, তুমি কেমন আছো?",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 1,
+      "original": "আমি NexusAI তৈরি করছি, an AI assistant.",
+      "normalized": "আমি NexusAI তৈরি করছি, an AI assistant.",
+      "tokens": 15,
+      "pieces": [
+        "▁আমি",
+        "▁N",
+        "ex",
+        "us",
+        "A",
+        "I",
+        "▁তৈরি",
+        "▁করছি",
+        ",",
+        "▁an",
+        "▁AI",
+        "▁ass",
+        "ist",
+        "ant",
+        "."
+      ],
+      "unk_count": 0,
+      "decoded": "আমি NexusAI তৈরি করছি, an AI assistant.",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 2,
+      "original": "Explain machine learning বাংলায়।",
+      "normalized": "Explain machine learning বাংলায়।",
+      "tokens": 10,
+      "pieces": [
+        "▁Ex",
+        "pl",
+        "ain",
+        "▁m",
+        "ach",
+        "ine",
+        "▁learn",
+        "ing",
+        "▁বাংলায়",
+        "।"
+      ],
+      "unk_count": 0,
+      "decoded": "Explain machine learning বাংলায়।",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 3,
+      "original": "আমাকে একটি study plan তৈরি করে দাও।",
+      "normalized": "আমাকে একটি study plan তৈরি করে দাও।",
+      "tokens": 9,
+      "pieces": [
+        "▁আমাকে",
+        "▁একটি",
+        "▁stud",
+        "y",
+        "▁plan",
+        "▁তৈরি",
+        "▁করে",
+        "▁দাও",
+        "।"
+      ],
+      "unk_count": 0,
+      "decoded": "আমাকে একটি study plan তৈরি করে দাও।",
+      "exact_match": true,
+      "difference": null
+    },
+    {
+      "index": 4,
+      "original": "Today is sunny, আজকের আবহাওয়া সুন্দর।",
+      "normalized": "Today is sunny, আজকের আবহাওয়া সুন্দর।",
+      "tokens": 10,
+      "pieces": [
+        "▁To",
+        "day",
+        "▁is",
+        "▁s",
+        "unny",
+        ",",
+        "▁আজকের",
+        "▁আবহাওয়া",
+        "▁সুন্দর",
+        "।"
+      ],
+      "unk_count": 0,
+      "decoded": "Today is sunny, আজকের আবহাওয়া সুন্দর।",
+      "exact_match": true,
+      "difference": null
+    }
+  ]
+}

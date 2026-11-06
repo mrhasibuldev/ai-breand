@@ -1,0 +1,95 @@
+{
+  "curated_timestamp": "2026-11-03",
+  "corpus_files": {
+    "bengali": {
+      "path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase7\\tokenizer_corpus\\corpus_bengali.txt",
+      "records": 28,
+      "sha256": "a15045eb174994a6a4624e2b681ff76794563507354adbdfac598a177985409e"
+    },
+    "english": {
+      "path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase7\\tokenizer_corpus\\corpus_english.txt",
+      "records": 47221,
+      "sha256": "02ed913262f6f6d85f92fd60ffd8d582d093a30c9760349ae12209a0a37ca9bf"
+    },
+    "mixed": {
+      "path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase7\\tokenizer_corpus\\corpus_mixed.txt",
+      "records": 3,
+      "sha256": "7638a4b90b03007945a7899d78913501107b370e570edf501aad35dbe670a4cb"
+    },
+    "unknown": {
+      "path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase7\\tokenizer_corpus\\corpus_unknown.txt",
+      "records": 84,
+      "sha256": "7f306dc0fdf5b7f241a33e14a2ad1810cf739abe06f9429bc5339d623a7c37c7"
+    },
+    "combined": {
+      "path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase7\\tokenizer_corpus\\corpus_combined.txt",
+      "records": 47336,
+      "sha256": "e455bcff4180f6118647c8fe909ae30ac8a86701cb48f54cac9bb41db0084ce5"
+    }
+  },
+  "language_distribution": {
+    "bengali": 28,
+    "english": 47221,
+    "mixed": 3,
+    "unknown": 84
+  },
+  "total_texts": 47336,
+  "total_words": 1937334,
+  "total_chars": 11030754,
+  "source_datasets": [
+    {
+      "name": "production_train_cleaned",
+      "records": 19,
+      "type": "JSON",
+      "license": "UNKNOWN"
+    },
+    {
+      "name": "bengali_english_mixed",
+      "records": 24,
+      "type": "JSON",
+      "license": "UNKNOWN"
+    },
+    {
+      "name": "gsm8k_gsm8k_train",
+      "records": 7473,
+      "type": "JSONL",
+      "license": "MIT"
+    },
+    {
+      "name": "gsm8k_gsm8k_test",
+      "records": 1319,
+      "type": "JSONL",
+      "license": "MIT"
+    },
+    {
+      "name": "dolly_15k",
+      "records": 15011,
+      "type": "JSONL",
+      "license": "CC_BY_SA_3.0"
+    },
+    {
+      "name": "wikipedia_bengali",
+      "records": 5,
+      "type": "JSON",
+      "license": "CC_BY_SA_3.0"
+    },
+    {
+      "name": "wikipedia_english",
+      "records": 14,
+      "type": "JSON",
+      "license": "CC_BY_SA_3.0"
+    },
+    {
+      "name": "conversational_data",
+      "records": 28,
+      "type": "JSON",
+      "license": "UNKNOWN"
+    }
+  ],
+  "preprocessing_steps": [
+    "Unicode normalization (NFC)",
+    "Empty record removal",
+    "Duplicate removal (exact)",
+    "Language detection"
+  ]
+}

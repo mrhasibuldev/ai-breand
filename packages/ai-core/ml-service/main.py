@@ -622,7 +622,10 @@ async def orchestrate(request: Request):
     try:
         # Parse request body manually to ensure UTF-8 handling
         body_bytes = await request.body()
-        body_text = body_bytes.decode('utf-8')
+        # Handle UTF-8 BOM and encoding issues
+        if body_bytes.startswith(b'\xef\xbb\xbf'):
+            body_bytes = body_bytes[3:]  # Remove UTF-8 BOM
+        body_text = body_bytes.decode('utf-8', errors='replace')
         body_data = json.loads(body_text)
 
         message = body_data.get('message', '')

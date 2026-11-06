@@ -1,0 +1,40 @@
+{
+  "acquisition_timestamp": "2026-11-03T23:56:37.454639",
+  "total_datasets": 2,
+  "successful": 2,
+  "failed": 0,
+  "results": [
+    {
+      "name": "bengali_chat_conv",
+      "status": "SUCCESS",
+      "huggingface_id": "spedrox-sac/bengali_chat_conv",
+      "license": "MIT",
+      "license_url": "https://opensource.org/licenses/MIT",
+      "language": "Bengali",
+      "type": "Conversation/QA",
+      "estimated_records": 1074,
+      "actual_records": 1074,
+      "file_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_1\\raw\\bengali_chat_conv.jsonl",
+      "file_size_bytes": 629177,
+      "file_size_mb": 0.6,
+      "sha256": "875a6d47d8a4c3510592b5b4bbf3505960cb409de96c184e3bc23ae61ba7cf4a",
+      "download_timestamp": "2026-11-03T23:56:33.100475"
+    },
+    {
+      "name": "bengali_sft_v1",
+      "status": "SUCCESS",
+      "huggingface_id": "worldjit/bengali-sft-v1",
+      "license": "Apache-2.0",
+      "license_url": "https://www.apache.org/licenses/LICENSE-2.0",
+      "language": "Bengali",
+      "type": "Instruction-following",
+      "estimated_records": 151,
+      "actual_records": 151,
+      "file_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_1\\raw\\bengali_sft_v1.jsonl",
+      "file_size_bytes": 50899,
+      "file_size_mb": 0.05,
+      "sha256": "3494b7214ab7b64b40a32d61609e2b1a1674656d2227f97fa627b7fe618a67df",
+      "download_timestamp": "2026-11-03T23:56:37.454626"
+    }
+  ]
+}

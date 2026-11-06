@@ -1,0 +1,29 @@
+{
+  "audit_timestamp": "2026-11-04T00:25:48.035126",
+  "storage": {
+    "c_drive_free_gb": 2.74,
+    "c_drive_total_gb": 119.2,
+    "d_drive_free_gb": 0.05,
+    "safe_for_training": true
+  },
+  "tokenizer": {
+    "path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_2\\tokenizers\\bpe_8k\\sp_bpe_8k.model",
+    "exists": true,
+    "size_bytes": 387195,
+    "sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+    "vocab_size": 8000,
+    "sanity_test": true
+  },
+  "corpus": {
+    "path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_2\\corpus\\combined.txt",
+    "exists": true,
+    "total_lines": 1867,
+    "bengali_lines": 738,
+    "english_lines": 1023,
+    "mixed_lines": 19
+  },
+  "license_verification": {
+    "manifest_exists": true,
+    "successful_datasets": 2
+  }
+}

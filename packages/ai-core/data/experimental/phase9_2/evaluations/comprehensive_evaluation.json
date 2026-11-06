@@ -1,0 +1,163 @@
+{
+  "evaluation_timestamp": "2026-11-04T00:12:10.364515",
+  "test_sentences": {
+    "bengali": [
+      "তুমি কেমন আছো?",
+      "বাংলাদেশের রাজধানী ঢাকা।",
+      "আমি একটি নতুন কৃত্রিম বুদ্ধিমত্তা তৈরি করছি।",
+      "বাংলা ভাষার শব্দের গঠন এবং উচ্চারণ আলাদা।",
+      "আজকের আবহাওয়া খুব সুন্দর।",
+      "তুমি কি আমাকে একটি পরিকল্পনা তৈরি করতে সাহায্য করতে পারবে?",
+      "বাংলাদেশ স্বাধীনতা দিবস ২৬ মার্চ।",
+      "পানি জীবনের জন্য অত্যন্ত গুরুত্বপূর্ণ।",
+      "শিক্ষা জাতির উন্নতির চাবিক।",
+      "আমি বই পড়তে ভালোবাসি।"
+    ],
+    "english": [
+      "Hello, how are you?",
+      "I want to build an advanced AI Brain.",
+      "The capital of Bangladesh is Dhaka.",
+      "Artificial intelligence is transforming the world.",
+      "Today's weather is very beautiful.",
+      "Can you help me create a study plan?",
+      "Bangladesh Independence Day is March 26.",
+      "Water is essential for life.",
+      "Education is the key to national progress.",
+      "I love reading books."
+    ],
+    "mixed": [
+      "Hello, তুমি কেমন আছো?",
+      "আমি NexusAI তৈরি করছি, an AI assistant.",
+      "Explain machine learning বাংলায়।",
+      "আমাকে একটি study plan তৈরি করে দাও।",
+      "Today is sunny, আজকের আবহাওয়া সুন্দর।"
+    ]
+  },
+  "tokenizers": {
+    "baseline": {
+      "name": "Phase 7 Baseline (BPE 8K)",
+      "path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase7\\tokenizer_models\\sp_8k_bpe.model"
+    },
+    "bpe_8k": {
+      "name": "Phase 9.2 BPE 8K",
+      "path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_2\\tokenizers\\bpe_8k\\sp_bpe_8k.model"
+    },
+    "bpe_4k": {
+      "name": "Phase 9.2 BPE 4K",
+      "path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_2\\tokenizers\\bpe_4k\\sp_bpe_4k.model"
+    }
+  },
+  "results": {
+    "baseline": {
+      "name": "Phase 7 Baseline (BPE 8K)",
+      "vocab_size": 8000,
+      "status": "SUCCESS",
+      "bengali": {
+        "total_sentences": 10,
+        "total_tokens": 106,
+        "total_unk": 52,
+        "unk_rate": 0.49056603773584906,
+        "round_trip_correct": 0,
+        "round_trip_rate": 0.0,
+        "total_words": 52,
+        "avg_tokens_per_word": 2.0384615384615383
+      },
+      "english": {
+        "total_sentences": 10,
+        "total_tokens": 87,
+        "total_unk": 0,
+        "unk_rate": 0.0,
+        "round_trip_correct": 10,
+        "round_trip_rate": 1.0,
+        "total_words": 59,
+        "avg_tokens_per_word": 1.4745762711864407
+      },
+      "mixed": {
+        "total_sentences": 5,
+        "total_tokens": 56,
+        "total_unk": 15,
+        "unk_rate": 0.26785714285714285,
+        "round_trip_correct": 0,
+        "round_trip_rate": 0.0,
+        "total_words": 28,
+        "avg_tokens_per_word": 2.0
+      },
+      "model_size_bytes": 365752,
+      "model_size_kb": 357.1796875
+    },
+    "bpe_8k": {
+      "name": "Phase 9.2 BPE 8K",
+      "vocab_size": 8000,
+      "status": "SUCCESS",
+      "bengali": {
+        "total_sentences": 10,
+        "total_tokens": 77,
+        "total_unk": 0,
+        "unk_rate": 0.0,
+        "round_trip_correct": 9,
+        "round_trip_rate": 0.9,
+        "total_words": 52,
+        "avg_tokens_per_word": 1.4807692307692308
+      },
+      "english": {
+        "total_sentences": 10,
+        "total_tokens": 104,
+        "total_unk": 0,
+        "unk_rate": 0.0,
+        "round_trip_correct": 10,
+        "round_trip_rate": 1.0,
+        "total_words": 59,
+        "avg_tokens_per_word": 1.7627118644067796
+      },
+      "mixed": {
+        "total_sentences": 5,
+        "total_tokens": 52,
+        "total_unk": 0,
+        "unk_rate": 0.0,
+        "round_trip_correct": 5,
+        "round_trip_rate": 1.0,
+        "total_words": 28,
+        "avg_tokens_per_word": 1.8571428571428572
+      },
+      "model_size_bytes": 387195,
+      "model_size_kb": 378.1201171875
+    },
+    "bpe_4k": {
+      "name": "Phase 9.2 BPE 4K",
+      "vocab_size": 4000,
+      "status": "SUCCESS",
+      "bengali": {
+        "total_sentences": 10,
+        "total_tokens": 88,
+        "total_unk": 0,
+        "unk_rate": 0.0,
+        "round_trip_correct": 9,
+        "round_trip_rate": 0.9,
+        "total_words": 52,
+        "avg_tokens_per_word": 1.6923076923076923
+      },
+      "english": {
+        "total_sentences": 10,
+        "total_tokens": 120,
+        "total_unk": 0,
+        "unk_rate": 0.0,
+        "round_trip_correct": 10,
+        "round_trip_rate": 1.0,
+        "total_words": 59,
+        "avg_tokens_per_word": 2.0338983050847457
+      },
+      "mixed": {
+        "total_sentences": 5,
+        "total_tokens": 56,
+        "total_unk": 0,
+        "unk_rate": 0.0,
+        "round_trip_correct": 5,
+        "round_trip_rate": 1.0,
+        "total_words": 28,
+        "avg_tokens_per_word": 2.0
+      },
+      "model_size_bytes": 309535,
+      "model_size_kb": 302.2802734375
+    }
+  }
+}

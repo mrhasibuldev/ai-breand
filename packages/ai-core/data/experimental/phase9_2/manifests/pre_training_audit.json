@@ -1,0 +1,42 @@
+{
+  "audit_timestamp": "2026-11-04T00:07:56.689985",
+  "storage": {
+    "c_drive_free_gb": 2.75,
+    "c_drive_total_gb": 119.2,
+    "d_drive_free_gb": 0.05,
+    "safe_for_training": true
+  },
+  "hardware": {
+    "ram_gb": 8,
+    "gpu": "None",
+    "cpu": "Available"
+  },
+  "python": {
+    "version": "3.14.6",
+    "sentencepiece_version": "0.2.2"
+  },
+  "phase9_1_verification": {
+    "cleaning_manifest": {
+      "exists": true,
+      "total_records": 741,
+      "total_words": 10702,
+      "bengali_records": 726,
+      "english_records": 1,
+      "mixed_records": 14
+    },
+    "language_evaluation": {
+      "exists": true,
+      "bengali_words": 10561,
+      "english_words": 14,
+      "mixed_words": 127
+    },
+    "combined_corpus": {
+      "exists": true,
+      "line_count": 741
+    }
+  },
+  "phase7_tokenizer": {
+    "exists": true,
+    "path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase7\\tokenizer_models\\sp_8k_bpe.model"
+  }
+}

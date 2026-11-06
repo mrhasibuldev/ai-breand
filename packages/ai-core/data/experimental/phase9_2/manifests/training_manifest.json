@@ -1,0 +1,61 @@
+{
+  "training_timestamp": "2026-11-04T00:09:35.399586",
+  "corpus": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_2\\corpus\\combined.txt",
+  "configurations": [
+    {
+      "name": "bpe_8k",
+      "model_type": "bpe",
+      "vocab_size": 8000,
+      "character_coverage": 0.9999,
+      "output_dir": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_2\\tokenizers\\bpe_8k",
+      "prefix": "sp_bpe_8k"
+    },
+    {
+      "name": "unigram_8k",
+      "model_type": "unigram",
+      "vocab_size": 8000,
+      "character_coverage": 0.9999,
+      "output_dir": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_2\\tokenizers\\unigram_8k",
+      "prefix": "sp_unigram_8k"
+    },
+    {
+      "name": "bpe_4k",
+      "model_type": "bpe",
+      "vocab_size": 4000,
+      "character_coverage": 0.9999,
+      "output_dir": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_2\\tokenizers\\bpe_4k",
+      "prefix": "sp_bpe_4k"
+    }
+  ],
+  "results": [
+    {
+      "name": "bpe_8k",
+      "status": "SUCCESS",
+      "model_type": "bpe",
+      "vocab_size": 8000,
+      "character_coverage": 0.9999,
+      "model_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_2\\tokenizers\\bpe_8k\\sp_bpe_8k.model",
+      "vocab_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_2\\tokenizers\\bpe_8k\\sp_bpe_8k.vocab",
+      "model_size_bytes": 387195,
+      "vocab_size_bytes": 137745
+    },
+    {
+      "name": "unigram_8k",
+      "status": "FAILED",
+      "error": "INTERNAL: D:\\a\\sentencepiece\\sentencepiece\\src\\trainer_interface.cc(678) [(trainer_spec_.vocab_size()) == (model_proto->pieces_size())] Vocabulary size too high (8000). Please set it to a value <= 7607."
+    },
+    {
+      "name": "bpe_4k",
+      "status": "SUCCESS",
+      "model_type": "bpe",
+      "vocab_size": 4000,
+      "character_coverage": 0.9999,
+      "model_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_2\\tokenizers\\bpe_4k\\sp_bpe_4k.model",
+      "vocab_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_2\\tokenizers\\bpe_4k\\sp_bpe_4k.vocab",
+      "model_size_bytes": 309535,
+      "vocab_size_bytes": 64085
+    }
+  ],
+  "successful": 2,
+  "failed": 1
+}

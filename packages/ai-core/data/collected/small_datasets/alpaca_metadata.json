@@ -1,0 +1,12 @@
+{
+  "dataset": "Alpaca",
+  "source": "https://github.com/tatsu-lab/stanford_alpaca",
+  "license": "Apache 2.0",
+  "category": "instruction_following",
+  "language": "en",
+  "total_samples": 52002,
+  "collected_at": "2026-11-03T18:17:01.398700",
+  "files": {
+    "data": "alpaca_data.json"
+  }
+}

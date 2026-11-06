@@ -1,0 +1,121 @@
+{
+  "evaluation_timestamp": "2026-11-03",
+  "current_tokenizer": {
+    "type": "word-level",
+    "vocab_size": 74,
+    "limitation": "critically small for bilingual use"
+  },
+  "word_level_evaluation": {
+    "vocab_size": 74,
+    "special_tokens": {
+      "PAD": 0,
+      "UNK": 1,
+      "BOS": 2,
+      "EOS": 3
+    },
+    "language_metrics": {
+      "bengali": {
+        "sample_count": 12,
+        "total_tokens": 51,
+        "avg_tokens_per_sentence": 4.25,
+        "unknown_token_rate": 0.0,
+        "unique_words_in_vocab": 70
+      },
+      "english": {
+        "sample_count": 6,
+        "total_tokens": 43,
+        "avg_tokens_per_sentence": 7.166666666666667,
+        "unknown_token_rate": 0.0,
+        "unique_words_in_vocab": 70
+      },
+      "mixed": {
+        "sample_count": 1,
+        "total_tokens": 3,
+        "avg_tokens_per_sentence": 3.0,
+        "unknown_token_rate": 0.0,
+        "unique_words_in_vocab": 70
+      }
+    }
+  },
+  "bengali_morphology_analysis": {
+    "total_words": 51,
+    "avg_word_length": 5.196078431372549,
+    "max_word_length": 10,
+    "common_suffixes": {
+      "ে": 9,
+      "র": 5
+    }
+  },
+  "vocabulary_size_evaluation": {
+    "100": {
+      "actual_vocab_size": 74,
+      "unknown_rates": {
+        "bengali": 0.0,
+        "english": 0.0,
+        "mixed": 0.0
+      }
+    },
+    "500": {
+      "actual_vocab_size": 74,
+      "unknown_rates": {
+        "bengali": 0.0,
+        "english": 0.0,
+        "mixed": 0.0
+      }
+    },
+    "1000": {
+      "actual_vocab_size": 74,
+      "unknown_rates": {
+        "bengali": 0.0,
+        "english": 0.0,
+        "mixed": 0.0
+      }
+    },
+    "2000": {
+      "actual_vocab_size": 74,
+      "unknown_rates": {
+        "bengali": 0.0,
+        "english": 0.0,
+        "mixed": 0.0
+      }
+    },
+    "5000": {
+      "actual_vocab_size": 74,
+      "unknown_rates": {
+        "bengali": 0.0,
+        "english": 0.0,
+        "mixed": 0.0
+      }
+    },
+    "10000": {
+      "actual_vocab_size": 74,
+      "unknown_rates": {
+        "bengali": 0.0,
+        "english": 0.0,
+        "mixed": 0.0
+      }
+    },
+    "20000": {
+      "actual_vocab_size": 74,
+      "unknown_rates": {
+        "bengali": 0.0,
+        "english": 0.0,
+        "mixed": 0.0
+      }
+    },
+    "50000": {
+      "actual_vocab_size": 74,
+      "unknown_rates": {
+        "bengali": 0.0,
+        "english": 0.0,
+        "mixed": 0.0
+      }
+    }
+  },
+  "recommendations": {
+    "current_status": "inadequate",
+    "recommended_action": "replace with subword tokenizer (SentencePiece or BPE)",
+    "target_vocab_size": "30000-50000",
+    "rationale": "74-token vocabulary and word-level tokenization cannot handle Bengali morphology or bilingual conversation"
+  }
+}

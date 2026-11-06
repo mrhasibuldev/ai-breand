@@ -1,0 +1,8 @@
+{
+  "parameters": 1081984,
+  "train_loss": 7.2225395188455686,
+  "val_loss": 6.537508964538574,
+  "train_time_seconds": 142.2818729877472,
+  "batch_size": 32,
+  "epochs": 1
+}

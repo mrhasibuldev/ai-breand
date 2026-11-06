@@ -1,0 +1,39 @@
+{
+  "config": {
+    "vocab_size": 8000,
+    "d_model": 128,
+    "nhead": 2,
+    "num_layers": 2,
+    "dim_feedforward": 512,
+    "dropout": 0.1,
+    "max_len": 128,
+    "batch_size": 4,
+    "epochs": 3,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.01,
+    "grad_clip": 1.0,
+    "random_seed": 42,
+    "device": "cpu"
+  },
+  "num_parameters": 2468928,
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 7.7913559747664305,
+      "val_loss": 7.353692605760362,
+      "time": 62.55989170074463
+    },
+    {
+      "epoch": 2,
+      "train_loss": 6.846635721006446,
+      "val_loss": 6.68707111146715,
+      "time": 58.08654713630676
+    },
+    {
+      "epoch": 3,
+      "train_loss": 6.037515860894767,
+      "val_loss": 6.009209760030111,
+      "time": 57.02606177330017
+    }
+  ]
+}

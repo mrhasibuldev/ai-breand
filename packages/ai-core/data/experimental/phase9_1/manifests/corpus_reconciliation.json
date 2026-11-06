@@ -1,0 +1,28 @@
+{
+  "reconciliation_timestamp": "2026-11-03T23:52:00.085094",
+  "phase7_analysis": {
+    "manifest_report": 47336,
+    "file_line_count": 99097,
+    "discrepancy": 51761,
+    "explanation": "corpus_combined.txt contains line-by-line text. Multi-line source records (GSM8K, Dolly) become multiple lines when split. Manifest count is record count, file line count is line count."
+  },
+  "phase9_analysis": {
+    "script_reported_loaded": 99097,
+    "file_line_count": 90362,
+    "manifest_report": 90362,
+    "explanation": "Phase 9 script loaded 99,097 lines from corpus_combined.txt (not 103,749 - possibly some filtering occurred). After deduplication, it became 90,362 texts."
+  },
+  "conclusion": {
+    "phase7_actual_records": 47336,
+    "phase9_actual_records": 90362,
+    "bengali_records": 28,
+    "english_records": 87593,
+    "notes": [
+      "The discrepancy is due to counting records vs lines",
+      "Phase 7: 47,336 records became 103,749 lines when split by newlines",
+      "Phase 9: Loaded ~99K lines, deduplicated to 90,362 texts",
+      "Bengali count remains 28 texts in both phases",
+      "No Bengali data was lost or incorrectly classified"
+    ]
+  }
+}

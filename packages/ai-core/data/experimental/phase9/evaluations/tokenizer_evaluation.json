@@ -1,0 +1,106 @@
+{
+  "evaluation_timestamp": "2026-11-03T23:47:33.321260",
+  "tokenizer": {
+    "path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase7\\tokenizer_models\\sp_8k_bpe.model",
+    "vocab_size": 8000,
+    "model_type": "BPE"
+  },
+  "corpus": {
+    "path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9\\curated\\corpus_expanded.txt",
+    "total_texts": 90362,
+    "sample_size": 1000
+  },
+  "test_sentences": [
+    {
+      "language": "English",
+      "input": "Hello, how are you?",
+      "token_count": 8,
+      "unk_count": 0,
+      "unk_rate": 0.0,
+      "decoded": "Hello, how are you?",
+      "round_trip_correct": true
+    },
+    {
+      "language": "English",
+      "input": "I want to build an AI.",
+      "token_count": 7,
+      "unk_count": 0,
+      "unk_rate": 0.0,
+      "decoded": "I want to build an AI.",
+      "round_trip_correct": true
+    },
+    {
+      "language": "English",
+      "input": "The capital of Bangladesh is Dhaka.",
+      "token_count": 11,
+      "unk_count": 0,
+      "unk_rate": 0.0,
+      "decoded": "The capital of Bangladesh is Dhaka.",
+      "round_trip_correct": true
+    },
+    {
+      "language": "Bengali",
+      "input": "তুমি কেমন আছো?",
+      "token_count": 7,
+      "unk_count": 3,
+      "unk_rate": 0.42857142857142855,
+      "decoded": " ⁇   ⁇   ⁇ ?",
+      "round_trip_correct": false
+    },
+    {
+      "language": "Bengali",
+      "input": "আমি NexusAI তৈরি করছি।",
+      "token_count": 11,
+      "unk_count": 3,
+      "unk_rate": 0.2727272727272727,
+      "decoded": " ⁇  NexusAI  ⁇   ⁇ ",
+      "round_trip_correct": false
+    },
+    {
+      "language": "Bengali",
+      "input": "বাংলাদেশের রাজধানী ঢাকা।",
+      "token_count": 6,
+      "unk_count": 3,
+      "unk_rate": 0.5,
+      "decoded": " ⁇   ⁇   ⁇ ",
+      "round_trip_correct": false
+    },
+    {
+      "language": "Mixed",
+      "input": "Hello, তুমি কেমন আছো?",
+      "token_count": 11,
+      "unk_count": 3,
+      "unk_rate": 0.2727272727272727,
+      "decoded": "Hello,  ⁇   ⁇   ⁇ ?",
+      "round_trip_correct": false
+    },
+    {
+      "language": "Mixed",
+      "input": "I am NexusAI, আমি একটি AI তৈরি করছি।",
+      "token_count": 17,
+      "unk_count": 4,
+      "unk_rate": 0.23529411764705882,
+      "decoded": "I am NexusAI,  ⁇   ⁇  AI  ⁇   ⁇ ",
+      "round_trip_correct": false
+    }
+  ],
+  "corpus_sample": {
+    "sample_size": 1000,
+    "total_tokens": 34014,
+    "total_unk": 1096,
+    "overall_unk_rate": 0.0322220262244958,
+    "bengali_tokens": 1108,
+    "bengali_unk": 536,
+    "bengali_unk_rate": 0.48375451263537905,
+    "english_tokens": 32906,
+    "english_unk": 560,
+    "english_unk_rate": 0.01701817297757248
+  },
+  "conclusions": [
+    "Overall UNK rate: 3.22%",
+    "Bengali UNK rate: 48.38% - HIGH",
+    "English UNK rate: 1.70% - GOOD",
+    "Tokenizer handles English well but struggles with Bengali",
+    "Bengali data expansion is critical for better tokenization"
+  ]
+}

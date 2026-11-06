@@ -1,0 +1,48 @@
+{
+  "evaluation_timestamp": "2026-11-04T00:41:34.830679",
+  "checkpoint": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase10\\checkpoints\\best_model.pt",
+  "config": {
+    "vocab_size": 8000,
+    "d_model": 128,
+    "nhead": 2,
+    "num_layers": 2,
+    "dim_feedforward": 512,
+    "dropout": 0.1,
+    "max_len": 128,
+    "batch_size": 4,
+    "epochs": 3,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.01,
+    "grad_clip": 1.0,
+    "random_seed": 42,
+    "device": "cpu"
+  },
+  "test_loss": 6.162087641821968,
+  "perplexity": 474.417455460409,
+  "samples": [
+    {
+      "prompt": "Hello",
+      "generated": "Hello =80 = = = = = + = = = = = =."
+    },
+    {
+      "prompt": "তুমি কেমন",
+      "generated": "তুমি কেমন ক্ষেত্রে কাজ পছন্দ করো? হ্যাঁ, আমি মজার পছন্দ করি। তুমি কী?"
+    },
+    {
+      "prompt": "I want to",
+      "generated": "I want to he the the The a the the a the the total the the She the"
+    },
+    {
+      "prompt": "আমি একটি",
+      "generated": "আমি একটি।।।।।।।। প্রিয়।। সমান।।।"
+    },
+    {
+      "prompt": "The weather",
+      "generated": "The weather points on un other 2 = = = = = = = = = ="
+    },
+    {
+      "prompt": "আজকের",
+      "generated": "আজকের years iss the902* the 2 = = = = = = ="
+    }
+  ]
+}

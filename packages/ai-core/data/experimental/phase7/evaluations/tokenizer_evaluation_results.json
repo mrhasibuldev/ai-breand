@@ -1,0 +1,226 @@
+[
+  {
+    "config": {
+      "vocab_size": 8000,
+      "model_type": "bpe",
+      "name": "sp_8k_bpe"
+    },
+    "model_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase7\\tokenizer_models\\sp_8k_bpe.model",
+    "vocab_size_actual": 8000,
+    "training_time_seconds": 6.716249465942383,
+    "model_file_size_bytes": 365752,
+    "evaluation": [
+      {
+        "sentence": "Hello, how are you?",
+        "token_count": 8,
+        "tokens": [
+          "▁He",
+          "ll",
+          "o",
+          ",",
+          "▁how",
+          "▁are",
+          "▁you",
+          "?"
+        ],
+        "unk_count": 0,
+        "decoded": "Hello, how are you?",
+        "decode_matches": true
+      },
+      {
+        "sentence": "তুমি কেমন আছো?",
+        "token_count": 7,
+        "tokens": [
+          "▁",
+          "তুমি",
+          "▁",
+          "কেমন",
+          "▁",
+          "আছো",
+          "?"
+        ],
+        "unk_count": 3,
+        "decoded": " ⁇   ⁇   ⁇ ?",
+        "decode_matches": false
+      },
+      {
+        "sentence": "আমি NexusAI তৈরি করছি।",
+        "token_count": 11,
+        "tokens": [
+          "▁",
+          "আমি",
+          "▁Ne",
+          "x",
+          "us",
+          "A",
+          "I",
+          "▁",
+          "তৈরি",
+          "▁",
+          "করছি।"
+        ],
+        "unk_count": 3,
+        "decoded": " ⁇  NexusAI  ⁇   ⁇ ",
+        "decode_matches": false
+      },
+      {
+        "sentence": "Hello, তুমি কেমন আছো?",
+        "token_count": 11,
+        "tokens": [
+          "▁He",
+          "ll",
+          "o",
+          ",",
+          "▁",
+          "তুমি",
+          "▁",
+          "কেমন",
+          "▁",
+          "আছো",
+          "?"
+        ],
+        "unk_count": 3,
+        "decoded": "Hello,  ⁇   ⁇   ⁇ ?",
+        "decode_matches": false
+      },
+      {
+        "sentence": "Explain artificial intelligence বাংলায়।",
+        "token_count": 6,
+        "tokens": [
+          "▁Expl",
+          "ain",
+          "▁artificial",
+          "▁intelligence",
+          "▁",
+          "বাংলায়।"
+        ],
+        "unk_count": 1,
+        "decoded": "Explain artificial intelligence  ⁇ ",
+        "decode_matches": false
+      },
+      {
+        "sentence": "Solve 25 × 4.",
+        "token_count": 6,
+        "tokens": [
+          "▁Sol",
+          "ve",
+          "▁25",
+          "▁",
+          "×",
+          "▁4."
+        ],
+        "unk_count": 1,
+        "decoded": "Solve 25  ⁇  4.",
+        "decode_matches": false
+      },
+      {
+        "sentence": "বাংলাদেশের রাজধানী ঢাকা।",
+        "token_count": 6,
+        "tokens": [
+          "▁",
+          "বাংলাদেশের",
+          "▁",
+          "রাজধানী",
+          "▁",
+          "ঢাকা।"
+        ],
+        "unk_count": 3,
+        "decoded": " ⁇   ⁇   ⁇ ",
+        "decode_matches": false
+      },
+      {
+        "sentence": "I want to build an advanced AI Brain.",
+        "token_count": 10,
+        "tokens": [
+          "▁I",
+          "▁want",
+          "▁to",
+          "▁build",
+          "▁an",
+          "▁advanced",
+          "▁AI",
+          "▁Br",
+          "ain",
+          "."
+        ],
+        "unk_count": 0,
+        "decoded": "I want to build an advanced AI Brain.",
+        "decode_matches": true
+      }
+    ],
+    "statistics": {
+      "total_tokens": 65,
+      "total_unk": 14,
+      "avg_unk_rate": 0.2153846153846154,
+      "max_unk_per_sentence": 3
+    }
+  },
+  {
+    "tokenizer_type": "SimpleTokenizer",
+    "vocab_size": 34,
+    "evaluation": [
+      {
+        "sentence": "Hello, how are you?",
+        "token_count": 6,
+        "unk_count": 0,
+        "decoded": "hello, how are you?",
+        "decode_matches": false
+      },
+      {
+        "sentence": "তুমি কেমন আছো?",
+        "token_count": 5,
+        "unk_count": 0,
+        "decoded": "তুমি কেমন আছো?",
+        "decode_matches": true
+      },
+      {
+        "sentence": "আমি NexusAI তৈরি করছি।",
+        "token_count": 6,
+        "unk_count": 0,
+        "decoded": "আমি nexusai তৈরি করছি।",
+        "decode_matches": false
+      },
+      {
+        "sentence": "Hello, তুমি কেমন আছো?",
+        "token_count": 6,
+        "unk_count": 0,
+        "decoded": "hello, তুমি কেমন আছো?",
+        "decode_matches": false
+      },
+      {
+        "sentence": "Explain artificial intelligence বাংলায়।",
+        "token_count": 6,
+        "unk_count": 0,
+        "decoded": "explain artificial intelligence বাংলায়।",
+        "decode_matches": false
+      },
+      {
+        "sentence": "Solve 25 × 4.",
+        "token_count": 6,
+        "unk_count": 0,
+        "decoded": "solve 25 × 4.",
+        "decode_matches": false
+      },
+      {
+        "sentence": "বাংলাদেশের রাজধানী ঢাকা।",
+        "token_count": 5,
+        "unk_count": 0,
+        "decoded": "বাংলাদেশের রাজধানী ঢাকা।",
+        "decode_matches": true
+      },
+      {
+        "sentence": "I want to build an advanced AI Brain.",
+        "token_count": 10,
+        "unk_count": 0,
+        "decoded": "i want to build an advanced ai brain.",
+        "decode_matches": false
+      }
+    ],
+    "statistics": {
+      "total_tokens": 50,
+      "total_unk": 0,
+      "avg_unk_rate": 0.0,
+      "max_unk_per_sentence": 0
+    }
+  }
+]

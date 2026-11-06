@@ -1,0 +1,15 @@
+{
+  "collection_timestamp": "2026-11-03T18:05:44.313884",
+  "datasets": {
+    "gsm8k": {
+      "collected": false,
+      "category": "mathematical_reasoning",
+      "license": "MIT"
+    },
+    "alpaca": {
+      "collected": true,
+      "category": "instruction_following",
+      "license": "Apache 2.0"
+    }
+  }
+}

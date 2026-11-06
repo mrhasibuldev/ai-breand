@@ -1,0 +1,97 @@
+{
+  "phase": "10",
+  "title": "Experimental Transformer Training & Intelligence Baseline",
+  "completion_timestamp": "2026-11-04T00:45:00.000000",
+  "objective": "Train a small experimental Transformer model using Phase 9.3 validated tokenizer as a baseline demonstration",
+  "training_objective": "Next-token language modeling (instruction-following not suitable given available data)",
+  "dataset": {
+    "total_examples": 1812,
+    "train": 1449,
+    "validation": 181,
+    "test": 182,
+    "bengali_examples": 737,
+    "english_examples": 1022,
+    "mixed_examples": 19,
+    "split": "80/10/10",
+    "random_seed": 42
+  },
+  "model": {
+    "architecture": "Transformer",
+    "vocab_size": 8000,
+    "d_model": 128,
+    "nhead": 2,
+    "num_layers": 2,
+    "dim_feedforward": 512,
+    "dropout": 0.1,
+    "max_len": 128,
+    "parameters": 2468928,
+    "checkpoint_path": "packages/ai-core/data/experimental/phase10/checkpoints/best_model.pt"
+  },
+  "training": {
+    "epochs": 3,
+    "batch_size": 4,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.01,
+    "grad_clip": 1.0,
+    "optimizer": "AdamW",
+    "device": "CPU",
+    "total_time_seconds": 178.0,
+    "epoch_1_train_loss": 7.7914,
+    "epoch_1_val_loss": 7.3537,
+    "epoch_2_train_loss": 6.8466,
+    "epoch_2_val_loss": 6.6871,
+    "epoch_3_train_loss": 6.0375,
+    "epoch_3_val_loss": 6.0092,
+    "best_val_loss": 6.0092
+  },
+  "evaluation": {
+    "test_loss": 6.1621,
+    "perplexity": 474.42,
+    "generation_quality": "Repetitive, incoherent, no genuine language understanding"
+  },
+  "intelligence_claims": {
+    "language_understanding": false,
+    "reasoning": false,
+    "instruction_following": false,
+    "planning": false,
+    "bengali_processing": false,
+    "coherent_generation": false,
+    "not_evaluated": ["Mathematics reasoning", "Logical reasoning", "Multi-turn conversation", "Persistent memory"]
+  },
+  "limitations": {
+    "data_limitations": [
+      "Bengali data scarcity (737 examples, ~10K words)",
+      "Total dataset size too small (1,812 examples)",
+      "No instruction-following data structure",
+      "Mixed-language data insufficient (19 examples)"
+    ],
+    "model_limitations": [
+      "Small model (2.47M parameters)",
+      "Short context (128 tokens)",
+      "Undertrained (3 epochs only)"
+    ],
+    "hardware_limitations": [
+      "No GPU",
+      "Limited RAM (8 GB)",
+      "Limited disk space (2.74 GB free)"
+    ]
+  },
+  "production_safety": {
+    "production_chat_unchanged": true,
+    "production_brain_unchanged": true,
+    "production_tokenizer_unchanged": true,
+    "production_model_unchanged": true,
+    "production_checkpoints_unchanged": true,
+    "phase8_checkpoint_unchanged": true,
+    "phase9_1_artifacts_unchanged": true,
+    "phase9_2_tokenizer_unchanged": true,
+    "phase9_3_artifacts_unchanged": true,
+    "database_unchanged": true,
+    "authentication_unchanged": true,
+    "no_database_migrations": true,
+    "no_git_commit": true,
+    "no_github_push": true
+  },
+  "status": "EXPERIMENTAL BASELINE ONLY - NOT PRODUCTION READY",
+  "recommendation": "Acquire more Bengali data, instruction-following datasets, and reasoning datasets. Increase model size to 10-50M parameters. Acquire GPU for faster training."
+}

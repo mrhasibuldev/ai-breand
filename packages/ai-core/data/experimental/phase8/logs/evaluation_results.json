@@ -1,0 +1,50 @@
+[
+  {
+    "language": "English",
+    "input": "Hello, how are you?",
+    "output": "Hello, how are you? ⁇ s the total of the total of the total of the total of the total of the total of",
+    "status": "success"
+  },
+  {
+    "language": "English",
+    "input": "I want to build an AI.",
+    "output": "I want to build an AI. The total of the total of the total of the total of the total of the total of the total",
+    "status": "success"
+  },
+  {
+    "language": "English",
+    "input": "The capital of Bangladesh is Dhaka.",
+    "output": "The capital of Bangladesh is Dhaka. The total of the total of the total of the total of the total of the total of the total",
+    "status": "success"
+  },
+  {
+    "language": "Bengali",
+    "input": "তুমি কেমন আছো?",
+    "output": " ⁇   ⁇   ⁇ ? ⁇ s, the total of the total of the total of the total of the total of the total",
+    "status": "success"
+  },
+  {
+    "language": "Bengali",
+    "input": "আমি NexusAI তৈরি করছি।",
+    "output": " ⁇  NexusAI  ⁇   ⁇ s, and the total of the total of the total of the total of the total of the total",
+    "status": "success"
+  },
+  {
+    "language": "Bengali",
+    "input": "বাংলাদেশের রাজধানী ঢাকা।",
+    "output": " ⁇   ⁇   ⁇ s, and the total of the total of the total of the total of the total of the total",
+    "status": "success"
+  },
+  {
+    "language": "Mixed",
+    "input": "Hello, তুমি কেমন আছো?",
+    "output": "Hello,  ⁇   ⁇   ⁇ ? ⁇ s, and the total of the total of the total of the total of the total of the",
+    "status": "success"
+  },
+  {
+    "language": "Mixed",
+    "input": "I am NexusAI, আমি একটি AI তৈরি করছি।",
+    "output": "I am NexusAI,  ⁇   ⁇  AI  ⁇   ⁇ s, and the total of the total of the total of the total of",
+    "status": "success"
+  }
+]

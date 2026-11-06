@@ -1,0 +1,8 @@
+{
+  "source": "collected_wikipedia",
+  "document_count": 1,
+  "text_count": 1,
+  "average_quality_score": 0.7,
+  "extracted_at": "2026-11-03T12:00:00Z",
+  "provenance": "real_collected_data_from_neon"
+}

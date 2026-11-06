@@ -1,0 +1,25 @@
+{
+  "dataset": "Dolly",
+  "dataset_key": "dolly",
+  "source": "https://huggingface.co/datasets/databricks/databricks-dolly-15k",
+  "license": "CC BY-SA 3.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "commercial_eligibility": "CONDITIONAL",
+  "attribution_required": true,
+  "share_alike": true,
+  "category": "instruction_following",
+  "language": "en",
+  "collection_timestamp": "2026-11-03T18:40:44.915467",
+  "total_files": 1,
+  "total_size_bytes": 13085339,
+  "total_records": 15011,
+  "files": [
+    {
+      "filename": "dolly-15k.jsonl",
+      "url": "https://huggingface.co/datasets/databricks/databricks-dolly-15k/resolve/main/databricks-dolly-15k.jsonl",
+      "size": 13085339,
+      "sha256": "2df9083338b4abd6bceb5635764dab5d833b393b55759dffb0959b6fcbf794ec",
+      "status": "downloaded"
+    }
+  ]
+}

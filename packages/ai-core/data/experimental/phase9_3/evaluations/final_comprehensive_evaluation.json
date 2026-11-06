@@ -1,0 +1,151 @@
+{
+  "evaluation_timestamp": "2026-11-04T00:20:22.007787",
+  "normalization": "NFC",
+  "test_suite_size": {
+    "bengali": 68,
+    "english": 51,
+    "mixed": 52
+  },
+  "tokenizers": {
+    "baseline": {
+      "name": "Phase 7 Baseline (BPE 8K)",
+      "path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase7\\tokenizer_models\\sp_8k_bpe.model"
+    },
+    "bpe_8k": {
+      "name": "Phase 9.2 BPE 8K",
+      "path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_2\\tokenizers\\bpe_8k\\sp_bpe_8k.model"
+    },
+    "bpe_4k": {
+      "name": "Phase 9.2 BPE 4K",
+      "path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_2\\tokenizers\\bpe_4k\\sp_bpe_4k.model"
+    }
+  },
+  "results": {
+    "baseline": {
+      "name": "Phase 7 Baseline (BPE 8K)",
+      "vocab_size": 8000,
+      "model_size_bytes": 365752,
+      "status": "SUCCESS",
+      "bengali": {
+        "total_sentences": 68,
+        "total_tokens": 1562,
+        "total_unk": 723,
+        "unk_rate": 0.46286811779769527,
+        "round_trip_correct": 0,
+        "round_trip_rate": 0.0,
+        "total_words": 718,
+        "avg_tokens_per_word": 2.1754874651810585,
+        "avg_encode_time": 2.8007170733283547e-05,
+        "avg_decode_time": 1.996755599975586e-05
+      },
+      "english": {
+        "total_sentences": 51,
+        "total_tokens": 496,
+        "total_unk": 4,
+        "unk_rate": 0.008064516129032258,
+        "round_trip_correct": 48,
+        "round_trip_rate": 0.9411764705882353,
+        "total_words": 288,
+        "avg_tokens_per_word": 1.7222222222222223,
+        "avg_encode_time": 2.7960421992283243e-05,
+        "avg_decode_time": 1.5436434278301165e-05
+      },
+      "mixed": {
+        "total_sentences": 52,
+        "total_tokens": 577,
+        "total_unk": 135,
+        "unk_rate": 0.2339688041594454,
+        "round_trip_correct": 0,
+        "round_trip_rate": 0.0,
+        "total_words": 309,
+        "avg_tokens_per_word": 1.867313915857605,
+        "avg_encode_time": 7.943923656757061e-05,
+        "avg_decode_time": 2.7693234957181492e-05
+      }
+    },
+    "bpe_8k": {
+      "name": "Phase 9.2 BPE 8K",
+      "vocab_size": 8000,
+      "model_size_bytes": 387195,
+      "status": "SUCCESS",
+      "bengali": {
+        "total_sentences": 68,
+        "total_tokens": 979,
+        "total_unk": 0,
+        "unk_rate": 0.0,
+        "round_trip_correct": 68,
+        "round_trip_rate": 1.0,
+        "total_words": 718,
+        "avg_tokens_per_word": 1.3635097493036212,
+        "avg_encode_time": 0.0006079182905309341,
+        "avg_decode_time": 3.0289678012623507e-05
+      },
+      "english": {
+        "total_sentences": 51,
+        "total_tokens": 612,
+        "total_unk": 0,
+        "unk_rate": 0.0,
+        "round_trip_correct": 51,
+        "round_trip_rate": 1.0,
+        "total_words": 288,
+        "avg_tokens_per_word": 2.125,
+        "avg_encode_time": 5.323279137704887e-05,
+        "avg_decode_time": 2.185971129174326e-05
+      },
+      "mixed": {
+        "total_sentences": 52,
+        "total_tokens": 613,
+        "total_unk": 0,
+        "unk_rate": 0.0,
+        "round_trip_correct": 52,
+        "round_trip_rate": 1.0,
+        "total_words": 309,
+        "avg_tokens_per_word": 1.9838187702265373,
+        "avg_encode_time": 2.6175609001746543e-05,
+        "avg_decode_time": 1.691854917086088e-05
+      }
+    },
+    "bpe_4k": {
+      "name": "Phase 9.2 BPE 4K",
+      "vocab_size": 4000,
+      "model_size_bytes": 309535,
+      "status": "SUCCESS",
+      "bengali": {
+        "total_sentences": 68,
+        "total_tokens": 1111,
+        "total_unk": 0,
+        "unk_rate": 0.0,
+        "round_trip_correct": 68,
+        "round_trip_rate": 1.0,
+        "total_words": 718,
+        "avg_tokens_per_word": 1.5473537604456824,
+        "avg_encode_time": 4.3066108928007236e-05,
+        "avg_decode_time": 2.804223228903378e-05
+      },
+      "english": {
+        "total_sentences": 51,
+        "total_tokens": 685,
+        "total_unk": 0,
+        "unk_rate": 0.0,
+        "round_trip_correct": 51,
+        "round_trip_rate": 1.0,
+        "total_words": 288,
+        "avg_tokens_per_word": 2.3784722222222223,
+        "avg_encode_time": 0.00016425170150457643,
+        "avg_decode_time": 2.4328044816559438e-05
+      },
+      "mixed": {
+        "total_sentences": 52,
+        "total_tokens": 673,
+        "total_unk": 0,
+        "unk_rate": 0.0,
+        "round_trip_correct": 52,
+        "round_trip_rate": 1.0,
+        "total_words": 309,
+        "avg_tokens_per_word": 2.177993527508091,
+        "avg_encode_time": 3.235615216768705e-05,
+        "avg_decode_time": 2.3199961735652043e-05
+      }
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "check_timestamp": "2026-11-03T18:45:00",
+  "datasets": {
+    "gsm8k": {
+      "quality": {
+        "total_records": 8792,
+        "empty_records": 0,
+        "missing_fields": 0,
+        "invalid_json": 0,
+        "short_records": 0,
+        "duplicate_content": 0,
+        "utf8_errors": 0
+      },
+      "duplicates": {
+        "total_duplicates": 0,
+        "duplicate_indices": []
+      },
+      "language": {
+        "bengali": 0,
+        "english": 8792,
+        "mixed": 0,
+        "other": 0
+      },
+      "word_count": {
+        "total_words": 854046,
+        "total_chars": 4612419,
+        "avg_words_per_record": 97.13898999090082
+      }
+    },
+    "dolly": {
+      "quality": {
+        "total_records": 15011,
+        "empty_records": 0,
+        "missing_fields": 0,
+        "invalid_json": 0,
+        "short_records": 0,
+        "duplicate_content": 8,
+        "utf8_errors": 0
+      },
+      "duplicates": {
+        "total_duplicates": 232,
+        "duplicate_indices": [
+          513,
+          1028,
+          1130,
+          1233,
+          1245,
+          1303,
+          1391,
+          1435,
+          1456,
+          2027
+        ]
+      },
+      "language": {
+        "bengali": 0,
+        "english": 15010,
+        "mixed": 1,
+        "other": 0
+      },
+      "word_count": {
+        "total_words": 1088210,
+        "total_chars": 6468894,
+        "avg_words_per_record": 72.4941709413097
+      }
+    }
+  }
+}

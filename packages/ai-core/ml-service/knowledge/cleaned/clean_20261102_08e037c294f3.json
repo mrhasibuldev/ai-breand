@@ -1,0 +1,26 @@
+{
+  "document_id": "clean_20261102_08e037c294f3",
+  "raw_document_id": "raw_20261102_d37f355dc997",
+  "text": "NexusAI hybrid ingestion test. This document is processed by Python pipeline and persisted by TypeScript. The Python service performs cleaning and chunking, while TypeScript handles database persistence. This proves the integration works correctly.",
+  "language": "en",
+  "quality_score": 0.5,
+  "trust_level": "TIER_4",
+  "information_lifetime": "SLOW_CHANGING",
+  "word_count": 33,
+  "char_count": 248,
+  "processed_at": "2026-11-02T10:21:56.627099",
+  "processing_metadata": {
+    "extraction_method": "file_reader",
+    "deduplication_status": "unique",
+    "quality_flags": [],
+    "processing_time_ms": 4.061,
+    "document_hash": "08e037c294f3d72ffc99ed7da07d321d7f6eb4d1e27334dda492fa1a9a2dd564"
+  },
+  "source": {
+    "url": "hybrid_test",
+    "source_type": "user_uploaded",
+    "license": null,
+    "author": null,
+    "publish_date": null
+  }
+}

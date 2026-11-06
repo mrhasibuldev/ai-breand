@@ -1,0 +1,36 @@
+{
+  "evaluation_timestamp": "2026-11-04T00:02:23.141798",
+  "tokenizer": {
+    "path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase7\\tokenizer_models\\sp_8k_bpe.model",
+    "vocab_size": 8000,
+    "model_type": "BPE"
+  },
+  "corpus": {
+    "path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_1\\cleaned\\combined_cleaned.jsonl",
+    "total_records": 741,
+    "sample_size": 500
+  },
+  "corpus_sample": {
+    "sample_size": 500,
+    "total_tokens": 15745,
+    "total_unk": 7409,
+    "overall_unk_rate": 0.47056208320101617,
+    "bengali_tokens": 15745,
+    "bengali_unk": 7409,
+    "bengali_unk_rate": 0.47056208320101617,
+    "mixed_tokens": 0,
+    "mixed_unk": 0,
+    "mixed_unk_rate": 0
+  },
+  "comparison": {
+    "phase9_bengali_unk_rate": 0.4838,
+    "phase9_1_bengali_unk_rate": 0.47056208320101617,
+    "improvement_percentage_points": 0.01323791679898384
+  },
+  "conclusions": [
+    "New Bengali UNK rate: 47.06%",
+    "Improvement over Phase 9: 0.01 percentage points",
+    "UNK rate remains high - tokenizer retraining recommended",
+    "More Bengali data would further improve tokenization"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "cleaning_timestamp": "2026-11-03T23:58:39.159441",
+  "datasets_processed": [
+    "bengali_chat_conv",
+    "bengali_sft_v1"
+  ],
+  "cleaning_results": {
+    "bengali_chat_conv": {
+      "raw_records": 1074,
+      "cleaned_records": 590,
+      "duplicates_removed": 484,
+      "empty_removed": 0,
+      "language_distribution": {
+        "bengali": 590,
+        "english": 0,
+        "mixed": 0,
+        "unknown": 0
+      },
+      "file_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_1\\cleaned\\bengali_chat_conv_cleaned.jsonl",
+      "file_size_bytes": 188167,
+      "sha256": "205f02847d9598fc28b96533558fe420841ca588e25bb944b1251acf3025c62b"
+    },
+    "bengali_sft_v1": {
+      "raw_records": 151,
+      "cleaned_records": 151,
+      "duplicates_removed": 0,
+      "empty_removed": 0,
+      "language_distribution": {
+        "bengali": 136,
+        "english": 1,
+        "mixed": 14,
+        "unknown": 0
+      },
+      "file_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_1\\cleaned\\bengali_sft_v1_cleaned.jsonl",
+      "file_size_bytes": 33908,
+      "sha256": "436b0258eee2ff2787450b8fd1f515de756dfed35fb3ca9bbf5f1724ba1b47ec"
+    }
+  },
+  "total_statistics": {
+    "bengali": 726,
+    "english": 1,
+    "mixed": 14,
+    "unknown": 0,
+    "total_records": 741,
+    "total_words": 10702,
+    "total_chars": 65063
+  },
+  "combined_corpus": {
+    "file_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_1\\cleaned\\combined_cleaned.jsonl",
+    "total_records": 741
+  }
+}

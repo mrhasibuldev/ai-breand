@@ -1,0 +1,27 @@
+{
+  "version": "1.1.0",
+  "vocab_size": 100,
+  "actual_vocab_size": 55,
+  "special_tokens": {
+    "PAD": "<pad>",
+    "UNK": "<unk>",
+    "BOS": "<s>",
+    "EOS": "</s>",
+    "USER": "<user>",
+    "ASSISTANT": "<assistant>",
+    "SEP": "<sep>"
+  },
+  "special_token_ids": {
+    "PAD": 0,
+    "UNK": 1,
+    "BOS": 2,
+    "EOS": 3,
+    "USER": 4,
+    "ASSISTANT": 5,
+    "SEP": 6
+  },
+  "num_merges": 47,
+  "fixes": [
+    "whitespace_preservation_v1.1.0"
+  ]
+}

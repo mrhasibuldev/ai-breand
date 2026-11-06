@@ -1,0 +1,33 @@
+{
+  "preparation_timestamp": "2026-11-04T00:08:28.548688",
+  "normalization": "NFC",
+  "random_seed": 42,
+  "sources": {
+    "phase9_1": {
+      "records": 741,
+      "bengali": 726,
+      "english": 1,
+      "mixed": 14
+    },
+    "phase7": {
+      "total_lines": 99097,
+      "sampled_english": 1110
+    }
+  },
+  "final_corpus": {
+    "bengali_texts": 726,
+    "english_texts": 1111,
+    "mixed_texts": 14,
+    "total_texts": 1851,
+    "bengali_words": 10561,
+    "english_words": 21105,
+    "mixed_words": 127,
+    "total_words": 31793
+  },
+  "files": {
+    "bengali": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_2\\corpus\\bengali.txt",
+    "english": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_2\\corpus\\english.txt",
+    "mixed": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_2\\corpus\\mixed.txt",
+    "combined": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data\\experimental\\phase9_2\\corpus\\combined.txt"
+  }
+}

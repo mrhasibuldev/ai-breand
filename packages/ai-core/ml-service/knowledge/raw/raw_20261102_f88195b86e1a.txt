@@ -1,0 +1,1 @@
+NexusAI hybrid ingestion test. This document is processed by Python pipeline and persisted by TypeScript. The Python service performs cleaning and chunking, while TypeScript handles database persistence. This proves the integration works correctly.

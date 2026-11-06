@@ -1,0 +1,25 @@
+{
+  "texts": [
+    "Machine learning is a field of artificial intelligence that uses statistical techniques to give computer systems the ability to learn from data.",
+    "Artificial intelligence is intelligence demonstrated by machines, as opposed to the natural intelligence displayed by humans and animals.",
+    "Deep learning is part of a broader family of machine learning methods based on artificial neural networks with representation learning.",
+    "Neural networks are computing systems inspired by the biological neural networks that constitute animal brains.",
+    "Natural language processing is a subfield of linguistics, computer science, and artificial intelligence concerned with the interactions between computers and human language.",
+    "Computer vision is an interdisciplinary scientific field that deals with how computers can gain high-level understanding from digital images or videos.",
+    "Reinforcement learning is an area of machine learning concerned with how software agents ought to take actions in an environment to maximize some notion of cumulative reward.",
+    "Supervised learning is the machine learning task of learning a function that maps an input to an output based on example input-output pairs.",
+    "Unsupervised learning is a type of machine learning algorithm used to draw inferences from datasets consisting of input data without labeled responses.",
+    "Data science is an interdisciplinary field that uses scientific methods, processes, algorithms and systems to extract knowledge and insights from noisy, structured and unstructured data."
+  ],
+  "config": {
+    "train_split": 0.8,
+    "document_count": 10,
+    "train_count": 8,
+    "validation_count": 2
+  },
+  "metadata": {
+    "dataset_id": "verification-dataset",
+    "dataset_version": "v1.0",
+    "checksum": "verification"
+  }
+}

@@ -24,7 +24,6 @@ import {
   Clock,
   MessageSquare,
   ChevronDown,
-  Settings,
 } from 'lucide-react';
 
 /**
@@ -57,10 +56,8 @@ interface SidebarProps {
   isAuthenticated?: boolean;
   /** Callback when profile card is clicked */
   onProfileClick?: () => void;
-  /** Callback when edit profile is requested */
-  onProfileEditClick?: () => void;
-  /** Callback when logout is requested */
-  onLogout?: () => void;
+  /** Ref callback for profile card positioning */
+  profileCardRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 /**
@@ -80,16 +77,15 @@ const NAV_ITEMS: NavItem[] = [
  * Main navigation sidebar for the application.
  * Contains logo, search, navigation menu, and user profile.
  */
-export default function Sidebar({ 
-  activeNav, 
+export default function Sidebar({
+  activeNav,
   onNavChange,
   profileName = 'Guest',
   profileEmail = '',
   profilePhoto = null,
   isAuthenticated = false,
   onProfileClick,
-  onProfileEditClick,
-  onLogout,
+  profileCardRef,
 }: SidebarProps) {
   // State for search input
   const [searchQuery, setSearchQuery] = useState('');
@@ -173,11 +169,12 @@ export default function Sidebar({
       </nav>
 
       {/* User Profile Card */}
-      <div 
+      <div
+        ref={profileCardRef}
         className="profile-card"
-        onClick={isAuthenticated ? undefined : onProfileClick}
-        style={isAuthenticated ? {} : { cursor: 'pointer' }}
-        title={isAuthenticated ? 'Profile' : 'Click to sign in'}
+        onClick={onProfileClick}
+        style={{ cursor: 'pointer' }}
+        title={isAuthenticated ? 'Profile menu' : 'Click to sign in'}
       >
         <div className="profile-header">
           <div className="profile-avatar" aria-label="User avatar">
@@ -193,28 +190,7 @@ export default function Sidebar({
             <div className="profile-email">{profileEmail || (isAuthenticated ? 'Logged in' : 'Click to sign in')}</div>
           </div>
           <div className="profile-action">
-            {isAuthenticated ? (
-              <>
-                <button
-                  onClick={(e) => { e.stopPropagation(); onProfileEditClick?.(); }}
-                  aria-label="Edit profile"
-                  title="Edit profile"
-                  style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px', marginRight: '4px' }}
-                >
-                  <Settings size={16} />
-                </button>
-                <button
-                  onClick={(e) => { e.stopPropagation(); onLogout?.(); }}
-                  aria-label="Logout"
-                  title="Logout"
-                  style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px' }}
-                >
-                  <X size={16} />
-                </button>
-              </>
-            ) : (
-              <ChevronDown size={16} />
-            )}
+            <ChevronDown size={16} />
           </div>
         </div>
       </div>
