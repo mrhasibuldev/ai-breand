@@ -17,6 +17,8 @@ playwright-report/
 __pycache__/
 *.pyc
 *.pyo
+.venv/
+venv/
 
 # Large model checkpoints and binary files
 models/checkpoints/
