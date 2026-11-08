@@ -32,13 +32,16 @@ export interface ContextBuilderConfig {
 export class NexusAIContextBuilder {
   private conversationRepo: ConversationRepository;
   private messageRepo: MessageRepository;
+  private db: ReturnType<typeof createDatabaseClient>;
+  private dbConnectPromise: Promise<void> | null = null;
   private config: Required<ContextBuilderConfig>;
 
   constructor(config?: ContextBuilderConfig) {
     // Initialize database connection
     const dbConfig = readDatabaseConfig();
     const db = createDatabaseClient(dbConfig);
-    
+    this.db = db;
+
     this.conversationRepo = new ConversationRepository(db);
     this.messageRepo = new MessageRepository(db);
     
@@ -51,7 +54,18 @@ export class NexusAIContextBuilder {
   /**
    * Build context for a given conversation
    */
+  private async ensureDbConnected(): Promise<void> {
+    if (!this.dbConnectPromise) {
+      this.dbConnectPromise = this.db.connect().catch((err) => {
+        this.dbConnectPromise = null;
+        throw err;
+      });
+    }
+    await this.dbConnectPromise;
+  }
+
   async buildContext(conversationId: string, accountId: string): Promise<ConversationContext> {
+    await this.ensureDbConnected();
     // Verify conversation ownership
     const conversation = await this.conversationRepo.findById(accountId, conversationId);
     

@@ -1,0 +1,26 @@
+{
+ "package": "NEXUSAI_COLAB_USER_PACKAGE",
+ "created": "2026-11-08",
+ "files": {
+  "COLAB_SMOKE_TEST_CELL.py": {
+   "sha256": "5646a9278d67dd0e99300ea987618e616ccea9837efeea0da51c6773276c9408",
+   "bytes": 13547
+  },
+  "SMOKE_TEST_README.md": {
+   "sha256": "ba908fda61116e7b10e5b1358f90abdec7e6656ab6d4053433f3f982a007b1c9",
+   "bytes": 854
+  },
+  "TRANSFER_MANIFEST.json": {
+   "sha256": "3d93ac34597e84b4bb702602bbb25037e4b3a26ba46f52c67d4a4476642eb864",
+   "bytes": 1567
+  },
+  "UPLOAD_INSTRUCTIONS_BANGLA.md": {
+   "sha256": "4552def33e267b63c41778fa9d705c280e8fc0abd2a4627fea668f419ca6cb6c",
+   "bytes": 4567
+  },
+  "transformer.py": {
+   "sha256": "c8b25687ace8cc6f1bb51589a16c2a5d9f14ff9ab6fffafadec9147a5b1e85bc",
+   "bytes": 18136
+  }
+ }
+}

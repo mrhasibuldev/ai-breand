@@ -1,0 +1,142 @@
+[
+ {
+  "test": "syntax core01/transformer.py",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "syntax core01/training.py",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "syntax core01/dataset.py",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "syntax core01/pretraining_driver.py",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "syntax core01/tokenizer_interface.py",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "config",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "tokenizer vocab",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "tokenizer ids",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "tokenizer roundtrip",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "token ids in range",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "param count",
+  "status": "PASS",
+  "detail": "8842560"
+ },
+ {
+  "test": "loss finite",
+  "status": "PASS",
+  "detail": "9.078219413757324"
+ },
+ {
+  "test": "grads finite",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "optimizer updates",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "logits shape",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "causal lower-tri",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "attention_mask path",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "mask key-semantics",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "packed keys",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "packed shapes",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "shift alignment",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "pad ignored in loss",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "ckpt saved",
+  "status": "PASS",
+  "detail": "['checkpoint_test.pt']"
+ },
+ {
+  "test": "ckpt fields",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "ckpt reload strict",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "driver->config",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "test": "driver e2e run",
+  "status": "PASS",
+  "detail": "rc=0 16s"
+ },
+ {
+  "test": "driver ckpts",
+  "status": "PASS",
+  "detail": "['checkpoint_maxsteps.pt', 'checkpoint_step2.pt', 'train_tokens.meta.json', 'train_tokens.npy', 'val_tokens.meta.json', 'val_tokens.npy']"
+ }
+]

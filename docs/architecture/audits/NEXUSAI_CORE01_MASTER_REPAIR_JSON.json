@@ -1,0 +1,86 @@
+{
+ "report": "NEXUSAI_CORE01_MASTER_REPAIR_AND_READINESS_REPORT",
+ "date": "2026-11-08",
+ "base_commit": "a0ca7ce",
+ "training_started": false,
+ "model_status": "UNTRAINED",
+ "findings": [
+  {
+   "id": 1,
+   "issue": "attention_mask path RuntimeError + wrong key/query semantics",
+   "file": "packages/ai-core/core01/transformer.py",
+   "lines": "349-358",
+   "severity": "HIGH",
+   "status": "FIXED"
+  },
+  {
+   "id": 2,
+   "issue": "notebook out['loss']/out['logits'] dict-style on tensor returns",
+   "file": "docs/notebooks/NexusAI_Core01_Google_Colab_Training.ipynb",
+   "severity": "HIGH",
+   "status": "FIXED"
+  },
+  {
+   "id": 3,
+   "issue": "driver invoked as script fails (relative import); needs -m module",
+   "file": "docs/notebooks/NexusAI_Core01_Google_Colab_Training.ipynb",
+   "severity": "HIGH",
+   "status": "FIXED"
+  },
+  {
+   "id": 4,
+   "issue": "misleading 'Shift targets' comment (pre-shifted by dataset)",
+   "file": "packages/ai-core/core01/transformer.py",
+   "severity": "LOW",
+   "status": "DOCUMENTED"
+  }
+ ],
+ "repairs": [
+  {
+   "file": "packages/ai-core/core01/transformer.py",
+   "change": "mask -> [B,S,S] key-position semantics",
+   "backup": "backups/core01_repair/transformer.py.bak"
+  },
+  {
+   "file": "docs/notebooks/NexusAI_Core01_Google_Colab_Training.ipynb",
+   "change": "cells 14/15 tensor handling; -m driver + cwd fix",
+   "backup": "backups/core01_repair/Colab_Training.ipynb.bak"
+  }
+ ],
+ "verification": {
+  "total": 28,
+  "passed": 28,
+  "failed": 0,
+  "extra": [
+   "driver e2e CPU run rc=0 (3 steps, ckpts written)",
+   "resume verified step2->4"
+  ],
+  "not_tested": [
+   "GPU/VRAM T4",
+   "FP16 CUDA",
+   "100M corpus prep",
+   "convergence"
+  ]
+ },
+ "model_config": {
+  "layers": 6,
+  "heads": 8,
+  "d_model": 256,
+  "d_ff": 1024,
+  "max_len": 512,
+  "vocab": 8000,
+  "params": 8842560
+ },
+ "training_recommendation": {
+  "device": "cuda",
+  "precision": "fp16",
+  "batch_size": 16,
+  "grad_accum": 2,
+  "lr": 0.0003,
+  "warmup": 500,
+  "ckpt_interval": 500,
+  "est_vram_gb": "4-6",
+  "est_steps": 6000
+ },
+ "final_gate": "READY FOR TRAINING APPROVAL"
+}

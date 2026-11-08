@@ -1,0 +1,132 @@
+# =============================================================================
+# NEXUSAI CORE-01 — CONSOLIDATED EVIDENCE COLLECTION CELL (Google Colab)
+# READ-ONLY. No training, no checkpoint/dataset modification, no git ops.
+# A: latest smoke report from Drive | B: 100M corpus audit | C: GPU/VRAM probe
+# Output: console + JSON report -> Drive/NexusAI/audit_reports/evidence_<ts>.json
+# =============================================================================
+import os, sys, json, glob, hashlib, time
+from datetime import datetime
+import torch
+
+AI_CORE   = "/content/nexusai/packages/ai-core"
+DRIVE     = "/content/drive/MyDrive/NexusAI"
+DATA      = os.path.join(DRIVE, "data")
+REPORTS   = os.path.join(DRIVE, "audit_reports")
+os.makedirs(REPORTS, exist_ok=True)
+
+E = {"ts": datetime.now().isoformat(), "tasks": {}, "errors": []}
+def note(task, key, val): E["tasks"].setdefault(task, {})[key] = val
+
+# ================= TASK A — smoke report retrieval =================
+print("\n========== TASK A: GPU SMOKE EVIDENCE ==========")
+smoke_reports = sorted(glob.glob(os.path.join(REPORTS, "core01_smoke_*.json")))
+if not smoke_reports:
+    print("NOT FOUND: no core01_smoke_*.json in", REPORTS)
+    note("A_smoke", "status", "NOT FOUND")
+else:
+    latest = smoke_reports[-1]
+    rep = json.load(open(latest, encoding="utf-8"))
+    print("latest report:", os.path.basename(latest))
+    print(json.dumps({k: rep.get(k) for k in ("ts","stage","status","results","errors")},
+                     indent=1, ensure_ascii=False)[:4000])
+    note("A_smoke", "report_file", os.path.basename(latest))
+    note("A_smoke", "status", rep.get("status"))
+    note("A_smoke", "results", rep.get("results"))
+
+# ================= TASK B — 100M corpus audit =================
+print("\n========== TASK B: CORPUS AUDIT ==========")
+tok_path = os.path.join(AI_CORE, "data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model")
+try:
+    import sentencepiece as spm
+    sp = spm.SentencePieceProcessor(model_file=tok_path)
+    note("B_corpus", "tokenizer_vocab", sp.vocab_size())
+except Exception as e:
+    print("tokenizer load failed:", e); note("B_corpus","status","TOKENIZER_FAIL"); sp=None
+
+for label, fn in [("train","english_train.jsonl"),("val","english_val.jsonl")]:
+    p = os.path.join(DATA, fn)
+    if not os.path.exists(p):
+        print(label, "MISSING:", p); note("B_corpus", label, "MISSING"); continue
+    size = os.path.getsize(p)
+    recs = valid = empty = bad = 0
+    tok_sum = unk = 0
+    texts = []
+    t0 = time.time()
+    with open(p, encoding="utf-8") as f:
+        for i, line in enumerate(f):
+            line = line.strip()
+            if not line: continue
+            recs += 1
+            try:
+                o = json.loads(line)
+                t = o.get("text","") if isinstance(o,dict) else ""
+                if not isinstance(t,str) or not t.strip(): empty += 1; continue
+                valid += 1; texts.append(t)
+                if sp:
+                    ids = sp.encode(t, out_type=int)
+                    tok_sum += len(ids); unk += sum(1 for x in ids if x==sp.unk_id())
+            except Exception: bad += 1
+            if i and i % 30000 == 0:
+                print("  %s %d docs %.0fs" % (label, i, time.time()-t0), flush=True)
+    d = {"path": p, "size_mb": round(size/1e6,1), "records": recs,
+         "valid": valid, "empty": empty, "bad_json": bad,
+         "dup_docs": valid - len(set(texts)), "unique": len(set(texts)),
+         "tokenizer_tokens": tok_sum,
+         "unk_rate_pct": round(100*unk/max(1,tok_sum),3),
+         "elapsed_s": round(time.time()-t0,1)}
+    note("B_corpus", label, d)
+    print(label, json.dumps({k:v for k,v in d.items() if k!="path"}))
+
+# overlap
+tr_p, va_p = os.path.join(DATA,"english_train.jsonl"), os.path.join(DATA,"english_val.jsonl")
+if os.path.exists(tr_p) and os.path.exists(va_p):
+    tr = {json.loads(l)["text"] for l in open(tr_p,encoding="utf-8") if l.strip()}
+    va = {json.loads(l)["text"] for l in open(va_p,encoding="utf-8") if l.strip()}
+    note("B_corpus","overlap_docs", len(tr & va))
+    print("train/val overlap:", len(tr & va))
+    del tr, va
+
+# manifest cross-check
+man_p = os.path.join(DATA, "manifest.json")
+if os.path.exists(man_p):
+    man = json.load(open(man_p, encoding="utf-8"))
+    note("B_corpus","manifest_tokens", man.get("target",{}).get("actual_accepted_tokens"))
+    print("manifest actual tokens:", man.get("target",{}).get("actual_accepted_tokens"))
+
+# ================= TASK C — GPU/VRAM probe (NO training) =================
+print("\n========== TASK C: GPU / VRAM PROBE ==========")
+try:
+    if not torch.cuda.is_available():
+        note("C_gpu","status","NO CUDA"); print("CUDA unavailable")
+    else:
+        prop = torch.cuda.get_device_properties(0)
+        note("C_gpu","model",prop.name); note("C_gpu","vram_gb",round(prop.total_memory/1e9,2))
+        note("C_gpu","capability","%d.%d"%(prop.major,prop.minor))
+        print("GPU:",prop.name,"VRAM %.2f GB"%(prop.total_memory/1e9))
+        # memory-only forward probe: bs16 x seq512 fp16 autocast, NO backward/optimizer
+        for pp in (AI_CORE, os.path.join(AI_CORE,"models")):
+            if pp not in sys.path: sys.path.insert(0,pp)
+        from nexusai_core_01.config.model_config import NexusAICore01Config
+        from core01.transformer import NexusAICore01
+        cfg = NexusAICore01Config()
+        model = NexusAICore01(cfg).cuda().eval()
+        torch.cuda.reset_peak_memory_stats()
+        x = torch.randint(0,cfg.vocab_size,(16,cfg.max_len),device="cuda")
+        with torch.no_grad(), torch.autocast("cuda",dtype=torch.float16):
+            logits = model(x)
+        torch.cuda.synchronize()
+        peak = torch.cuda.max_memory_allocated()/1e9
+        note("C_gpu","fwd_only_bs16x512_peak_gb",round(peak,2))
+        print("forward-only bs16x512 fp16 peak VRAM: %.2f GB (no backward/optimizer)"%peak)
+        del model,x,logits; torch.cuda.empty_cache()
+        note("C_gpu","status","PROBED")
+except Exception as e:
+    note("C_gpu","status","ERROR"); note("C_gpu","error",repr(e)); print("probe error:",e)
+
+# ================= save evidence JSON =================
+ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+out = os.path.join(REPORTS, "evidence_%s.json" % ts)
+json.dump(E, open(out,"w",encoding="utf-8"), indent=1, ensure_ascii=False)
+print("\n==== EVIDENCE REPORT ====")
+print(json.dumps(E["tasks"], indent=1, ensure_ascii=False)[:3000])
+print("\nreport ->", out)

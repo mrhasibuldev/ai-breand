@@ -1,0 +1,33 @@
+{
+ "stats": {
+  "read": 223521,
+  "empty": 5129,
+  "short": 114021,
+  "non_english": 12,
+  "malformed": 0,
+  "dedup_removed": 45623
+ },
+ "counts": {
+  "total_docs": 63876,
+  "train": 61960,
+  "validation": 958,
+  "test": 958,
+  "total_tokens": 7428739,
+  "train_tokens": 7214029,
+  "val_tokens": 106224,
+  "test_tokens": 108486,
+  "avg_doc_tokens": 116.3,
+  "max_doc_tokens": 8092
+ },
+ "sources": {
+  "experimental/phase7/tokenizer_corpus/corpus_english.txt": 41158,
+  "experimental/phase9/curated/corpus_expanded.txt": 41107,
+  "experimental/phase9_2/corpus/english.txt": 459,
+  "experimental/phase8/data/train.txt": 3609,
+  "experimental/phase8/data/val.txt": 396,
+  "collected/cleaned/dolly/dolly-15k_cleaned.jsonl": 13967,
+  "collected/cleaned/gsm8k/gsm8k_train_cleaned.jsonl": 7473,
+  "collected/cleaned/gsm8k/gsm8k_test_cleaned.jsonl": 1319,
+  "staging/love_emotion_en": 11
+ }
+}

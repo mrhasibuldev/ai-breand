@@ -1,0 +1,57 @@
+{
+ "bundle": "NEXUSAI_CORE01_COLAB_SOURCE_BUNDLE",
+ "files": {
+  "packages/ai-core/core01/__init__.py": {
+   "sha256": "a560c988413378cc51545072fd17e91f1257f7531dbd74941cc32b8d95538cd8",
+   "bytes": 1326
+  },
+  "packages/ai-core/core01/transformer.py": {
+   "sha256": "c8b25687ace8cc6f1bb51589a16c2a5d9f14ff9ab6fffafadec9147a5b1e85bc",
+   "bytes": 18136
+  },
+  "packages/ai-core/core01/tokenizer_interface.py": {
+   "sha256": "47ff3e0b061bc5a9c538faced5317f27a5625a5a91a20404ca2aa9fa3a869592",
+   "bytes": 7477
+  },
+  "packages/ai-core/core01/dataset.py": {
+   "sha256": "25d6b2f2affc02f3964766a2731743b1a9682e5ac5fe424a67916dd7aae063a9",
+   "bytes": 19752
+  },
+  "packages/ai-core/core01/training.py": {
+   "sha256": "1bca6e60e7a8204c64a13c051c78ff53134dc8830645d97e2d511b110c49582a",
+   "bytes": 29863
+  },
+  "packages/ai-core/core01/inference.py": {
+   "sha256": "89f5e917082eda925d652e0496262ec4248c52e4d211f15b721660d61a77e001",
+   "bytes": 6452
+  },
+  "packages/ai-core/core01/evaluation.py": {
+   "sha256": "3e06875ceebdc5a2ef2c614fde2d9df6fe0bf6df667725618b8015e0eb8def08",
+   "bytes": 12975
+  },
+  "packages/ai-core/models/nexusai_core_01/__init__.py": {
+   "sha256": "1634aa63f2439320c50f9e504c3f2292e43509a18e5dc9e2b25d5634a1256118",
+   "bytes": 203
+  },
+  "packages/ai-core/models/nexusai_core_01/config/__init__.py": {
+   "sha256": "3df359ef83c91a6015abdf0c91ded6558eafe4249f63df519912bfe9a62211d1",
+   "bytes": 203
+  },
+  "packages/ai-core/models/nexusai_core_01/config/model_config.py": {
+   "sha256": "156cf111b9af3fe5b327f25801b548401545b62de865a90471387a68acd28318",
+   "bytes": 9435
+  },
+  "packages/ai-core/data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model": {
+   "sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+   "bytes": 387195
+  },
+  "packages/ai-core/data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.vocab": {
+   "sha256": "8e499079703b5f749769e529d6a2a2835cea58b5f56c72332ab6f1e765c65c15",
+   "bytes": 137745
+  },
+  "docs/notebooks/COLAB_EVIDENCE_COLLECTION_CELL.py": {
+   "sha256": "e09d01041c54c1895daa5fea8767a99e8bb6bda9aa1188dfe941efcaf996f2a1",
+   "bytes": 15209
+  }
+ }
+}

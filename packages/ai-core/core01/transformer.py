@@ -348,12 +348,12 @@ class NexusAICore01(nn.Module):
         
         # Apply attention mask if provided (for padding)
         if attention_mask is not None:
-            # Convert attention mask to causal attention mask
-            # attention_mask: [batch_size, seq_len] where 1 = valid, 0 = padding
-            mask = attention_mask.unsqueeze(1).unsqueeze(1)  # [batch_size, 1, 1, seq_len]
-            mask = mask.expand(-1, seq_len, -1, -1)  # [batch_size, seq_len, seq_len, seq_len]
-            mask = mask.squeeze(-1)  # [batch_size, seq_len, seq_len]
-            causal_mask = causal_mask.unsqueeze(0) * mask  # Apply both masks
+            # attention_mask: [batch_size, seq_len] where 1 = valid, 0 = padding.
+            # Padding must mask KEY positions (dim -1), broadcast over query rows.
+            # causal_mask [S,S] x pad [B,1,S] -> [B,S,S]: entry [b,i,j] =
+            # causal[i,j] * attention_mask[b,j]
+            pad = attention_mask[:, None, :].to(causal_mask.dtype)
+            causal_mask = causal_mask.unsqueeze(0) * pad
         else:
             causal_mask = causal_mask.unsqueeze(0)  # [1, seq_len, seq_len]
         

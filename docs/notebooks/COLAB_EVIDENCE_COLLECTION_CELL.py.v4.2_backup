@@ -1,0 +1,302 @@
+# =============================================================================
+# NEXUSAI CORE-01 — EVIDENCE COLLECTION CELL v4.2 (Google Colab) — READ-ONLY
+# A: smoke report | B: corpus audit (STREAMING + SQLite hash store, bounded RAM)
+# C: GPU forward-only VRAM probe (no optimizer/backward/checkpoint/training)
+# Only persistent output: evidence_<ts>.json in Drive audit_reports/.
+# v1/v2/v3 preserved: *.v1_backup / *.v2_backup / *.v3_backup
+# =============================================================================
+import os, sys, json, glob, hashlib, time, traceback, sqlite3, tempfile
+from datetime import datetime
+
+AI_CORE = "/content/nexusai/packages/ai-core"
+DRIVE   = "/content/drive/MyDrive/NexusAI"
+DATA    = os.path.join(DRIVE, "data")
+REPORTS = os.path.join(DRIVE, "audit_reports")
+os.makedirs(REPORTS, exist_ok=True)
+
+E = {"ts": datetime.now().isoformat(), "cell_version": 4, "tasks": {}, "errors": []}
+def note(task, key, val): E["tasks"].setdefault(task, {})[key] = val
+def task_err(task, e):
+    E["errors"].append({"task": task, "error": repr(e)[:400],
+                        "trace": traceback.format_exc()[-600:]})
+    note(task, "status", "ERROR")
+    print("ERROR in", task, ":", repr(e)[:200])
+
+# ---------- disk-backed hash store (bounded RAM) ----------
+DB_PATH = None
+_con = None
+_db_ok = True          # False once any hash insert fails -> overlap NOT VERIFIED
+
+def db_init():
+    global DB_PATH, _con
+    _tmp = tempfile.NamedTemporaryFile(prefix="core01_audit_", suffix=".db", delete=False)
+    DB_PATH = _tmp.name; _tmp.close()
+    _con = sqlite3.connect(DB_PATH)
+    _con.execute("CREATE TABLE hashes(split TEXT, h TEXT, PRIMARY KEY(split,h))")
+    _con.execute("CREATE INDEX idx_h ON hashes(h)")
+    _con.commit()
+
+def h_add(split, h):
+    """Insert hash; failures are RECORDED (never silent)."""
+    global _db_ok
+    try:
+        _con.execute("INSERT OR IGNORE INTO hashes VALUES(?,?)", (split, h))
+    except Exception as e:
+        db_fail("h_add", e)
+
+_db_err_logged = {"done": False}
+def db_fail(where, e):
+    """Record DB failure once; marks hash storage unreliable."""
+    global _db_ok
+    _db_ok = False
+    if not _db_err_logged["done"]:
+        _db_err_logged["done"] = True
+        E["errors"].append({"task": "B_db", "where": where, "error": repr(e)[:300]})
+        note("B_db", "status", "ERROR — hash storage unreliable")
+
+def h_count(split):
+    try:
+        return _con.execute("SELECT COUNT(*) FROM hashes WHERE split=?", (split,)).fetchone()[0]
+    except Exception as e:
+        db_fail("h_count", e); return None
+
+def h_overlap():
+    try:
+        return _con.execute(
+            "SELECT COUNT(*) FROM hashes t JOIN hashes v ON t.h=v.h "
+            "WHERE t.split='train' AND v.split='val'").fetchone()[0]
+    except Exception as e:
+        db_fail("h_overlap", e); return None
+
+def cleanup_db():
+    global _con, DB_PATH
+    try:
+        if _con is not None: _con.close()
+    except Exception: pass
+    try:
+        if DB_PATH and os.path.exists(DB_PATH): os.remove(DB_PATH)
+    except Exception: pass
+    _con = None; DB_PATH = None
+
+try:
+    # ---------- db init INSIDE protected flow ----------
+    try:
+        db_init()
+    except Exception as e:
+        db_fail("db_init", e)
+        note("B_db", "status", "NOT VERIFIED — init failed")
+
+    # ================= TASK A — smoke report =================
+    print("\n========== TASK A: GPU SMOKE EVIDENCE ==========")
+    try:
+        reps = sorted(glob.glob(os.path.join(REPORTS, "core01_smoke_*.json")))
+        if not reps:
+            print("NOT FOUND: no core01_smoke_*.json in", REPORTS)
+            note("A_smoke", "status", "NOT FOUND")
+        else:
+            latest = reps[-1]
+            try:
+                rep = json.load(open(latest, encoding="utf-8"))
+                print("latest:", os.path.basename(latest))
+                print(json.dumps({k: rep.get(k) for k in ("ts","stage","status","results","errors")},
+                                 indent=1, ensure_ascii=False)[:4000])
+                note("A_smoke", "report_file", os.path.basename(latest))
+                note("A_smoke", "status", rep.get("status"))
+                note("A_smoke", "results", rep.get("results"))
+            except Exception as e:
+                task_err("A_smoke", e)
+    except Exception as e:
+        task_err("A_smoke", e)
+
+    # ================= TASK B — corpus audit =================
+    print("\n========== TASK B: CORPUS AUDIT (streaming, SQLite hashes) ==========")
+    tok_ok = False
+    try:
+        import sentencepiece as spm
+        tok_path = os.path.join(AI_CORE,
+            "data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model")
+        sp = spm.SentencePieceProcessor(model_file=tok_path)
+        note("B_corpus", "tokenizer_vocab", sp.vocab_size())
+        note("B_corpus", "tokenizer_unk_id", sp.unk_id())
+        tok_ok = True
+    except Exception as e:
+        task_err("B_tokenizer", e); sp = None
+        note("B_corpus", "token_recount", "NOT VERIFIED — tokenizer load failed")
+
+    tok_errs = {"train": None, "val": None}
+
+    def audit_file(path, label, split):
+        """Stream JSONL. SHA-256 doc hashes -> SQLite. Returns True on clean audit."""
+        d = {"path": path, "exists": os.path.exists(path), "hash_algo": "sha256"}
+        if not d["exists"]:
+            note("B_corpus", label, d); print(label, "MISSING:", path); return False
+        d["size_mb"] = round(os.path.getsize(path)/1e6, 1)
+        recs = valid = empty = bad = tok_err = 0
+        tok_sum = unk = 0
+        t0 = time.time()
+        try:
+            with open(path, encoding="utf-8") as f:
+                for i, line in enumerate(f):
+                    line = line.strip()
+                    if not line: continue
+                    recs += 1
+                    try:
+                        o = json.loads(line)
+                    except Exception:
+                        bad += 1; continue            # malformed JSON
+                    try:
+                        t = o.get("text", "") if isinstance(o, dict) else ""
+                        if not isinstance(t, str) or not t.strip():
+                            empty += 1; continue
+                        valid += 1
+                        h = hashlib.sha256(t.encode("utf-8","replace")).hexdigest()
+                        # per-split existence: dup = same doc twice WITHIN this split;
+                        # same hash in BOTH splits must still be stored per split
+                        try:
+                            cur = _con.execute(
+                                "SELECT 1 FROM hashes WHERE split=? AND h=?",
+                                (split, h)).fetchone()
+                        except Exception as e:
+                            db_fail("hash_select", e); cur = None
+                        if cur: d["dup_docs"] = d.get("dup_docs",0)+1
+                        elif _con is not None: h_add(split, h)
+                        if sp:
+                            try:
+                                ids = sp.encode(t, out_type=int)
+                                tok_sum += len(ids)
+                                unk += sum(1 for x in ids if x == sp.unk_id())
+                            except Exception:
+                                tok_err += 1
+                    except Exception:
+                        bad += 1
+                    if i and i % 30000 == 0:
+                        print("  %s %d docs %.0fs" % (label, i, time.time()-t0), flush=True)
+            try:
+                _con.commit()
+            except Exception as e:
+                db_fail("commit", e)
+            d.update({"records": recs, "valid": valid, "empty": empty,
+                      "malformed_json": bad, "tokenize_errors": tok_err,
+                      "dup_docs": d.get("dup_docs",0),
+                      "unique_hashes_db": h_count(split),
+                      "tokenizer_tokens": tok_sum if tok_ok else None,
+                      "unk_rate_pct": round(100*unk/max(1,tok_sum),3) if tok_ok else None,
+                      "elapsed_s": round(time.time()-t0,1)})
+            note("B_corpus", label, d)
+            print(label, json.dumps({k:v for k,v in d.items() if k!="path"}))
+            tok_errs[label] = tok_err
+            return True
+        except Exception as e:
+            task_err("B_"+label, e)
+            return False
+
+    tr_p = os.path.join(DATA, "english_train.jsonl")
+    va_p = os.path.join(DATA, "english_val.jsonl")
+    tr_audit_ok = audit_file(tr_p, "train", "train")
+    va_audit_ok = audit_file(va_p, "val", "val")
+
+    # overlap: hash-based, disk-backed — NOT VERIFIED if storage failed
+    try:
+        ov = h_overlap() if _db_ok else None
+        if ov is None:
+            note("B_corpus", "overlap_docs_hash_sha256", "NOT VERIFIED — hash storage failed")
+        else:
+            note("B_corpus", "overlap_docs_hash_sha256", ov)
+            print("train/val overlap (SHA-256 hash match):", ov)
+    except Exception as e:
+        task_err("B_overlap", e)
+
+    # 100M verdict — requires tokenizer OK AND BOTH audits completed AND valid counts
+    tr_tok = E["tasks"].get("B_corpus",{}).get("train",{}).get("tokenizer_tokens")
+    va_tok = E["tasks"].get("B_corpus",{}).get("val",{}).get("tokenizer_tokens")
+    if tok_ok and tr_audit_ok and va_audit_ok \
+       and tr_tok is not None and va_tok is not None \
+       and tok_errs.get("train") == 0 and tok_errs.get("val") == 0:
+        actual = tr_tok + va_tok
+        note("B_corpus", "recount_total_tokens", actual)
+        note("B_corpus", "target_100m_reached", actual >= 100_000_000)
+        print("recount total:", actual, "| >=100M:", actual >= 100_000_000)
+    else:
+        note("B_corpus", "recount_total_tokens", "NOT VERIFIED")
+        note("B_corpus", "target_100m_reached", "NOT VERIFIED")
+        print("100M verdict: NOT VERIFIED (tokenizer/audit incomplete)")
+
+    # manifest — informational only (never the verdict source)
+    man_p = os.path.join(DATA, "manifest.json")
+    try:
+        if os.path.exists(man_p):
+            man = json.load(open(man_p, encoding="utf-8"))
+            tgt = man.get("target") if isinstance(man.get("target"), dict) else {}
+            note("B_corpus", "manifest_target_tokens", tgt.get("target_tokens"))
+            note("B_corpus", "manifest_actual_tokens", tgt.get("actual_accepted_tokens"))
+            print("manifest (informational):", json.dumps(tgt)[:300])
+        else:
+            note("B_corpus", "manifest", "MISSING")
+    except Exception as e:
+        task_err("B_manifest", e)
+
+    # ================= TASK C — GPU forward-only probe =================
+    print("\n========== TASK C: GPU FORWARD-ONLY PROBE ==========")
+    try:
+        import torch
+        if not torch.cuda.is_available():
+            note("C_gpu", "status", "NO CUDA"); print("CUDA unavailable")
+        else:
+            prop = torch.cuda.get_device_properties(0)
+            note("C_gpu", "model", prop.name)
+            note("C_gpu", "vram_gb", round(prop.total_memory/1e9, 2))
+            note("C_gpu", "capability", "%d.%d" % (prop.major, prop.minor))
+            print("GPU:", prop.name, "VRAM %.2f GB" % (prop.total_memory/1e9))
+            for pp in (AI_CORE, os.path.join(AI_CORE, "models")):
+                if pp not in sys.path: sys.path.insert(0, pp)
+            from nexusai_core_01.config.model_config import NexusAICore01Config
+            from core01.transformer import NexusAICore01
+            cfg = NexusAICore01Config()
+            note("C_gpu", "config_max_len", cfg.max_len)
+            note("C_gpu", "config_vocab", cfg.vocab_size)
+            is_512 = (cfg.max_len == 512)
+            model = NexusAICore01(cfg).cuda().eval()
+            torch.cuda.reset_peak_memory_stats()
+            B = 16; S = cfg.max_len
+            x = torch.randint(0, cfg.vocab_size, (B, S), device="cuda")
+            assert tuple(x.shape) == (B, S), "input shape mismatch"
+            with torch.no_grad(), torch.autocast("cuda", dtype=torch.float16):
+                logits = model(x)          # forward ONLY
+            torch.cuda.synchronize()
+            peak_alloc = torch.cuda.max_memory_allocated()/1e9
+            peak_resv  = torch.cuda.max_memory_reserved()/1e9
+            note("C_gpu", "probe", "forward_only_bs16x%d_fp16" % S)
+            note("C_gpu", "is_bs16x512", is_512)
+            note("C_gpu", "peak_allocated_gb", round(peak_alloc, 2))
+            note("C_gpu", "peak_reserved_gb",  round(peak_resv, 2))
+            note("C_gpu", "logits_shape", list(logits.shape))
+            note("C_gpu", "status", "PROBED_FORWARD_ONLY")
+            note("C_gpu", "warning",
+                 "forward-only VRAM — NOT a training (fwd+bwd+optimizer) guarantee")
+            print("forward-only bs16x%d fp16: peak alloc %.2f GB / reserved %.2f GB"
+                  % (S, peak_alloc, peak_resv))
+            print("logits:", tuple(logits.shape))
+            del model, x, logits; torch.cuda.empty_cache()
+    except Exception as e:
+        task_err("C_gpu", e)
+
+finally:
+    # guaranteed cleanup even on failure
+    try: cleanup_db()
+    except Exception: pass
+
+# ================= save report =================
+ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+out = os.path.join(REPORTS, "evidence_%s.json" % ts)
+try:
+    json.dump(E, open(out, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+except Exception as e:
+    # last-resort local fallback so evidence is never lost
+    out = os.path.join(tempfile.gettempdir(), "evidence_%s.json" % ts)
+    json.dump(E, open(out, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    print("Drive write failed; report saved locally:", out)
+print("\n==== EVIDENCE REPORT ====")
+print(json.dumps(E["tasks"], indent=1, ensure_ascii=False)[:3500])
+if E["errors"]: print("ERRORS:", json.dumps(E["errors"], indent=1)[:1500])
+print("\nreport ->", out)
+print("DONE — no training, temp audit DB removed, no dataset/checkpoint/tokenizer changes")

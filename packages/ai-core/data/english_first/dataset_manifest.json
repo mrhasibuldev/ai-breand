@@ -1,0 +1,51 @@
+{
+ "created": "2026-11-09T00:16:03.593605",
+ "seed": 42,
+ "tokenizer": "sp_bpe_8k.model",
+ "vocab": 8000,
+ "sources": {
+  "experimental/phase7/tokenizer_corpus/corpus_english.txt": 41158,
+  "experimental/phase9/curated/corpus_expanded.txt": 41107,
+  "experimental/phase9_2/corpus/english.txt": 459,
+  "experimental/phase8/data/train.txt": 3609,
+  "experimental/phase8/data/val.txt": 396,
+  "collected/cleaned/dolly/dolly-15k_cleaned.jsonl": 13967,
+  "collected/cleaned/gsm8k/gsm8k_train_cleaned.jsonl": 7473,
+  "collected/cleaned/gsm8k/gsm8k_test_cleaned.jsonl": 1319,
+  "staging/love_emotion_en": 11
+ },
+ "stats": {
+  "read": 223521,
+  "empty": 5129,
+  "short": 114021,
+  "non_english": 12,
+  "malformed": 0,
+  "dedup_removed": 45623
+ },
+ "counts": {
+  "total_docs": 63876,
+  "train": 61960,
+  "validation": 958,
+  "test": 958,
+  "total_tokens": 7428739,
+  "train_tokens": 7214029,
+  "val_tokens": 106224,
+  "test_tokens": 108486,
+  "avg_doc_tokens": 116.3,
+  "max_doc_tokens": 8092
+ },
+ "files": {
+  "english_train.json": {
+   "sha256": "441e2fd3c1b8c46dd19b3b7d2d019359a351b6a9da4fc07f1538b1eb33140da0",
+   "bytes": 25980550
+  },
+  "english_validation.json": {
+   "sha256": "f3b7a6fea2c450441be11a6ff7ccf7179cf5c0528fe22628e5180ddc9c9a096e",
+   "bytes": 381044
+  },
+  "english_test.json": {
+   "sha256": "7f5e2c77ad9ebe3e1eae30ddb27b1f382358993e36de7ffd080212f0cc67366d",
+   "bytes": 390875
+  }
+ }
+}

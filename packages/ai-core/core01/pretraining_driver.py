@@ -263,7 +263,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     ) if val_ds is not None else None
 
     # ---- Model + engine ----
-    model = NexusAICore01(config)
+    model = NexusAICore01(config).to(device)
     n_params = model.count_parameters()
     print(f"model parameters={n_params:,} device={device}")
 

@@ -1,0 +1,94 @@
+{
+ "bundle": "NEXUSAI_CORE01_COLAB_TRAINING_BUNDLE",
+ "zip_sha256": "e192e47ed2cd2ebe639f5b82185c28fdb1e223cc3229c261f53fff8fa4aefaa8",
+ "files": {
+  "packages/ai-core/core01/__init__.py": {
+   "sha256": "a560c988413378cc51545072fd17e91f1257f7531dbd74941cc32b8d95538cd8",
+   "bytes": 1326
+  },
+  "packages/ai-core/core01/transformer.py": {
+   "sha256": "c8b25687ace8cc6f1bb51589a16c2a5d9f14ff9ab6fffafadec9147a5b1e85bc",
+   "bytes": 18136
+  },
+  "packages/ai-core/core01/tokenizer_interface.py": {
+   "sha256": "47ff3e0b061bc5a9c538faced5317f27a5625a5a91a20404ca2aa9fa3a869592",
+   "bytes": 7477
+  },
+  "packages/ai-core/core01/dataset.py": {
+   "sha256": "25d6b2f2affc02f3964766a2731743b1a9682e5ac5fe424a67916dd7aae063a9",
+   "bytes": 19752
+  },
+  "packages/ai-core/core01/training.py": {
+   "sha256": "1bca6e60e7a8204c64a13c051c78ff53134dc8830645d97e2d511b110c49582a",
+   "bytes": 29863
+  },
+  "packages/ai-core/core01/inference.py": {
+   "sha256": "89f5e917082eda925d652e0496262ec4248c52e4d211f15b721660d61a77e001",
+   "bytes": 6452
+  },
+  "packages/ai-core/core01/evaluation.py": {
+   "sha256": "3e06875ceebdc5a2ef2c614fde2d9df6fe0bf6df667725618b8015e0eb8def08",
+   "bytes": 12975
+  },
+  "packages/ai-core/core01/pretraining_driver.py": {
+   "sha256": "6eb5f0d25062d995ffb3c2b50fb1f78d2fdf99d8bd73887e2b64be12d8861950",
+   "bytes": 16083
+  },
+  "packages/ai-core/models/nexusai_core_01/__init__.py": {
+   "sha256": "1634aa63f2439320c50f9e504c3f2292e43509a18e5dc9e2b25d5634a1256118",
+   "bytes": 203
+  },
+  "packages/ai-core/models/nexusai_core_01/config/__init__.py": {
+   "sha256": "3df359ef83c91a6015abdf0c91ded6558eafe4249f63df519912bfe9a62211d1",
+   "bytes": 203
+  },
+  "packages/ai-core/models/nexusai_core_01/config/model_config.py": {
+   "sha256": "156cf111b9af3fe5b327f25801b548401545b62de865a90471387a68acd28318",
+   "bytes": 9435
+  },
+  "packages/ai-core/data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model": {
+   "sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+   "bytes": 387195
+  },
+  "packages/ai-core/data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.vocab": {
+   "sha256": "8e499079703b5f749769e529d6a2a2835cea58b5f56c72332ab6f1e765c65c15",
+   "bytes": 137745
+  },
+  "packages/ai-core/data/english_first/english_train.json": {
+   "sha256": "441e2fd3c1b8c46dd19b3b7d2d019359a351b6a9da4fc07f1538b1eb33140da0",
+   "bytes": 25980550
+  },
+  "packages/ai-core/data/english_first/english_validation.json": {
+   "sha256": "f3b7a6fea2c450441be11a6ff7ccf7179cf5c0528fe22628e5180ddc9c9a096e",
+   "bytes": 381044
+  },
+  "packages/ai-core/data/english_first/english_test.json": {
+   "sha256": "7f5e2c77ad9ebe3e1eae30ddb27b1f382358993e36de7ffd080212f0cc67366d",
+   "bytes": 390875
+  },
+  "packages/ai-core/data/english_first/dataset_manifest.json": {
+   "sha256": "fcec9896d3306ed77bcb45112f2235d271bd5dd5061c7d5a55cbe2251986bc5b",
+   "bytes": 1452
+  },
+  "packages/ai-core/data/prepare_english_first.py": {
+   "sha256": "eda4cdedccbc675e9e6d2aa1eec2323b7538cc4bf977890110abb53045584023",
+   "bytes": 7067
+  },
+  "docs/notebooks/COLAB_EVIDENCE_COLLECTION_CELL.py": {
+   "sha256": "e09d01041c54c1895daa5fea8767a99e8bb6bda9aa1188dfe941efcaf996f2a1",
+   "bytes": 15209
+  },
+  "docs/notebooks/COLAB_MASTER_GATE_CELL.py": {
+   "sha256": "d0c9e48011c450429d1506f4a0c000d8472c4e0231dbfb48c91c4d132a8ec778",
+   "bytes": 5753
+  },
+  "docs/notebooks/COLAB_ENGLISH_TRAIN_CELL.py": {
+   "sha256": "6105a4ac6486a986936647fc76fff6a1966e85e08f755cdaa509e8c1d4851b20",
+   "bytes": 2766
+  },
+  "docs/notebooks/COLAB_INIT_CELL.py": {
+   "sha256": "53d7434a5c4069a16032ea9ae7e004e66659576b125cad0aaeaad3f78053f9cb",
+   "bytes": 3990
+  }
+ }
+}

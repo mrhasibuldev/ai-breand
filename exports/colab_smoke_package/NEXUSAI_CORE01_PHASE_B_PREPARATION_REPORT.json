@@ -1,0 +1,26 @@
+{
+ "phase": "B-preparation",
+ "date": "2026-11-08",
+ "base_commit": "a0ca7ce",
+ "source_integrity": {
+  "transformer_fix": "pad = attention_mask[:, None, :] PRESENT",
+  "buggy_pattern": "absent",
+  "notebook_dict_access": "fixed",
+  "driver_module_form": "-m verified",
+  "sha256": {
+   "transformer.py": "c8b25687ace8cc6f1bb51589a16c2a5d9f14ff9ab6fffafadec9147a5b1e85bc",
+   "COLAB_SMOKE_TEST_CELL.py": "5646a9278d67dd0e99300ea987618e616ccea9837efeea0da51c6773276c9408",
+   "NexusAI_Core01_Google_Colab_Training.ipynb": "5b52a75076f3edbf32441a2c580e49f523baca19b786e981fe1115fd54d4c387"
+  }
+ },
+ "package": "exports/colab_smoke_package/",
+ "local_verification": {
+  "syntax": "PASS",
+  "json": "PASS",
+  "manifest_hashes": "MATCH",
+  "safety_guard": "SMOKE_TEST_ONLY=True, max-steps<=3",
+  "git_push": "none"
+ },
+ "colab_tests": "NOT EXECUTED \u2014 awaiting owner run",
+ "final_status": "READY FOR COLAB GPU SMOKE TEST"
+}

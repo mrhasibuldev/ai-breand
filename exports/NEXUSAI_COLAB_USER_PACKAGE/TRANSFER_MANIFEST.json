@@ -1,0 +1,31 @@
+{
+  "package": "NexusAI Core-01 Colab GPU Smoke Test Transfer Package",
+  "created": "2026-11-08",
+  "base_commit": "a0ca7ceb620f46dc4151cdcb73001596364cc805",
+  "purpose": "Transfer repaired transformer.py + consolidated smoke cell into Colab (uncommitted fixes are NOT on GitHub)",
+  "files": {
+    "transformer.py": {
+      "source_path": "packages/ai-core/core01/transformer.py",
+      "package_path": "exports/colab_smoke_package/transformer.py",
+      "sha256": "c8b25687ace8cc6f1bb51589a16c2a5d9f14ff9ab6fffafadec9147a5b1e85bc",
+      "colab_destination": "/content/nexusai/packages/ai-core/core01/transformer.py",
+      "contains": "repaired attention_mask (key-position, [B,S,S])"
+    },
+    "COLAB_SMOKE_TEST_CELL.py": {
+      "source_path": "docs/notebooks/COLAB_SMOKE_TEST_CELL.py",
+      "package_path": "exports/colab_smoke_package/COLAB_SMOKE_TEST_CELL.py",
+      "sha256": "5646a9278d67dd0e99300ea987618e616ccea9837efeea0da51c6773276c9408",
+      "usage": "paste entire file content into ONE Colab cell and run"
+    },
+    "NexusAI_Core01_Google_Colab_Training.ipynb": {
+      "source_path": "docs/notebooks/NexusAI_Core01_Google_Colab_Training.ipynb",
+      "sha256": "5b52a75076f3edbf32441a2c580e49f523baca19b786e981fe1115fd54d4c387",
+      "note": "re-upload to Colab if using the full notebook (has -m driver fix + tensor-return fixes)"
+    }
+  },
+  "verification_markers": {
+    "mask_fix": "pad = attention_mask[:, None, :]",
+    "buggy_absent": "mask.expand(-1, seq_len, -1, -1)",
+    "driver_module_form": "-m core01.pretraining_driver"
+  }
+}

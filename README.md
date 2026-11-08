@@ -823,30 +823,30 @@ When variables/files are missing after a restart, recover in this order — **ne
 6. Run cells in order; enable each `APPROVE_*` flag only when that stage is next.
 7. If the runtime restarts → follow **Kaggle Runtime Recovery Procedure** above.
 
-### NexusAI Core-01 — Google Colab Training Guide
+### NexusAI Core-01 — Google Colab Training Guide (Kaggle-free)
 
-Kaggle runtime instability prompted a move to **Google Colab** (verified env: Python 3.13.16, torch 2.14.1+cu130, CUDA True, 1× Tesla T4). Core-01 code is platform-independent — only the notebook layer changed.
+Training moved fully to **Google Colab** — no Kaggle, no manual uploads. The notebook clones our public GitHub repo, downloads FineWeb `sample-10BT` shard 0 (~2 GiB), prepares the 100M-token corpus with our own `prepare_english_corpus.py`, then trains on 1× Tesla T4 (verified env: Python 3.13.16, torch 2.14.1+cu130, CUDA True).
 
-**Files you need**
+**One-time setup**
 
-| File | Location | Action |
+1. Open **https://colab.research.google.com** → sign in.
+2. **File → Upload notebook** → `docs/notebooks/NexusAI_Core01_Google_Colab_Training.ipynb`.
+3. **Runtime → Change runtime type → T4 GPU**.
+4. Run cells top-to-bottom. Everything else is automatic.
+
+**The 3 approval gates (all `False` by default — enable one at a time)**
+
+| Cell | Flag | What it authorizes |
 |---|---|---|
-| `nexusai_core01_kaggle_package.zip` | Desktop / `exports/` (306,348 B, sha `1b0c66f0…be970`) | upload to Drive `NexusAI/package/` |
-| `english_train.jsonl`, `english_val.jsonl`, `manifest.json`, `preparation_report.md`, `deduplication_report.json` | **Kaggle Output only** (not in repo) | download from Kaggle → upload to Drive `NexusAI/data/` |
-| Tokenizer + training code | inside the ZIP | nothing extra needed |
-| Notebook | `docs/notebooks/NexusAI_Core01_Google_Colab_Training.ipynb` | File → Upload notebook in Colab |
+| 9 | `APPROVE_DATASET_PREPARATION` | FineWeb shard-0 download (~2 GiB) + 100M-token corpus prep (~30–60 min) |
+| 17 | `APPROVE_SMOKE_TEST` | ~200-step GPU pipeline test on real data |
+| 19 | `APPROVE_FULL_TRAINING` | real pretraining; checkpoints→Drive every 500 steps |
 
-**Steps (beginner path)**
+**Drive layout (auto-created):** `MyDrive/NexusAI/{source_data,data,package,tokenizer,checkpoints,logs,reports}`
 
-1. **Kaggle:** open `NexusAI-Core-Training` → Output → download `prepared_dataset/` (5 files). If wiped, re-run Cells 2–9 then Cell 7–8.
-2. **Drive:** create `MyDrive/NexusAI/{package,data,checkpoints,logs}` → upload ZIP to `package/`, 5 files to `data/`.
-3. **Colab:** https://colab.research.google.com → Upload notebook → **Runtime → T4 GPU**.
-4. Run cells 2–8 in order (env → Drive mount → package sha-verify → tokenizer → dataset audit → VRAM probe → config review).
-5. **Smoke test:** set `APPROVE_SMOKE_TEST = True` in Cell 9 → ~200 real steps → review loss in Cell 10.
-6. **Full training:** only after smoke looks good, set `APPROVE_FULL_TRAINING = True` in Cell 11 → checkpoints auto-save to Drive every 500 steps.
-7. **Session cut?** New session → re-run Cells 2–7 → Cell 11 with `--resume checkpoint_last.pt`.
+**Resume after disconnect:** new session → re-run Cells 2–16 → Cell 19 with `--resume checkpoint_last.pt`.
 
-**Links:** full guide `docs/notebooks/NEXUSAI_CORE01_COLAB_SETUP.md` · audit `docs/architecture/audits/NEXUSAI_CORE01_COLAB_MIGRATION_AUDIT.md` · Kaggle guide remains above for history.
+**Links:** full guide `docs/notebooks/NEXUSAI_CORE01_COLAB_SETUP.md` · audit `docs/architecture/audits/NEXUSAI_CORE01_COLAB_MIGRATION_AUDIT.md` · Kaggle guide above kept for history.
 
 ### Training Session Log
 

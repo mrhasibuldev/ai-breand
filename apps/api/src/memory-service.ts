@@ -25,10 +25,13 @@ export interface MemoryContext {
 export class NexusAIMemoryService {
   private memoryRepo: MemoryRepository;
   private consentRepo: ConsentRecordRepository;
+  private db: ReturnType<typeof createDatabaseClient>;
+  private dbConnectPromise: Promise<void> | null = null;
 
   constructor() {
     const dbConfig = readDatabaseConfig();
     const db = createDatabaseClient(dbConfig);
+    this.db = db;
     this.memoryRepo = new MemoryRepository(db);
     this.consentRepo = new ConsentRecordRepository(db);
   }
@@ -38,7 +41,18 @@ export class NexusAIMemoryService {
    * Guest mode returns empty memories
    * Consent is checked before retrieval
    */
+  private async ensureDbConnected(): Promise<void> {
+    if (!this.dbConnectPromise) {
+      this.dbConnectPromise = this.db.connect().catch((err) => {
+        this.dbConnectPromise = null;
+        throw err;
+      });
+    }
+    await this.dbConnectPromise;
+  }
+
   async retrieveMemories(accountId: string, purpose?: string): Promise<MemoryContext> {
+    await this.ensureDbConnected();
     if (accountId === 'guest') {
       return {
         accountId: 'guest',
@@ -83,6 +97,7 @@ export class NexusAIMemoryService {
    */
   async proposeMemory(input: CreateMemoryInput): Promise<string> {
     try {
+      await this.ensureDbConnected();
       const id = crypto.randomUUID();
       
       // Build record with only defined optional fields
