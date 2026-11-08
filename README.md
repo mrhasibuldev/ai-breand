@@ -22,6 +22,7 @@ NexusAI is an independent AI-powered application designed to assist users with h
 - [Future Roadmap](#future-roadmap)
 - [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
+- [Core-01 Kaggle Pretraining Guide](#core-01-kaggle-pretraining-guide)
 - [License](#license)
 
 ---
@@ -642,6 +643,234 @@ Contributions are welcome! This is an independent AI project with significant ro
 3. Make your changes
 4. Test thoroughly
 5. Submit a pull request
+
+---
+
+## Core-01 Kaggle Pretraining Guide
+
+> **Purpose:** Permanent setup, recovery, and training manual for **NexusAI Core-01** — our independently initialized decoder-only Transformer — on Kaggle. Written so a beginner can reproduce everything from a fresh account.
+>
+> **Honesty rule:** ✅ = real verified output exists. ⏳ = pending/unverified. ❌ = failed. Never assume a step succeeded — check the printed output.
+
+### What is Core-01?
+
+Our own language model — **not** GPT, Llama, Mistral, or any pretrained model. It learns only from data we prepare.
+
+| Property | Value |
+|---|---|
+| Architecture | Decoder-only Transformer, causal attention |
+| Parameters | **8,842,560** |
+| Vocabulary | 8,000 SentencePiece BPE (pad=0, unk=1, bos=2, eos=3) |
+| Tokenizer | `sp_bpe_8k.model` |
+| d_model / layers / heads | 256 / 6 / 8 |
+| Feed-forward / activation | 1,024 / GELU · Pre-LayerNorm · sinusoidal positions |
+| Context length | 512 tokens |
+| Status | **UNTRAINED** — full pretraining NOT completed |
+
+### Why our own model?
+
+External models are someone else's brain. Core-01 gives us control over weights, data, privacy, and behavior — the foundation of the NexusAI "own AI brain" goal.
+
+### Verified artifacts
+
+| Item | Location | Details |
+|---|---|---|
+| Package ZIP | `exports/nexusai_core01_kaggle_package.zip` (Desktop copy: `C:\Users\Nusaiba\Desktop\nexusai_core01_kaggle_package.zip`) | 306,348 B · 15 files · SHA-256 `1b0c66f03457eb764b08dacde5594e4093581b2b3f116ad9e3176a97d33be970` |
+| Notebook | `docs/notebooks/nexusai_core01_fineweb_pretraining.ipynb` | 23 physical cells = logical Cells 1–12 |
+| Prep script | `packages/ai-core/data/prepare_english_corpus.py` (also inside ZIP at `data/`) | local-Parquet only, never downloads |
+| Driver | `packages/ai-core/core01/pretraining_driver.py` (inside ZIP at `core01/`) | CLI entry point |
+| Tokenizer | `data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model` + `.vocab` | Kaggle sha256 `2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052` |
+
+### Kaggle account details (verified)
+
+- Notebook: `NexusAI-Core-Training`
+- Dataset owner: `atoplay` · Dataset: `nexusai-core01-package`
+- Input path: `/kaggle/input/datasets/atoplay/nexusai-core01-package/nexusai_core01_kaggle_package/`
+
+### Cell-by-cell progress (historical evidence)
+
+| Cell | Stage | Status | Evidence |
+|---|---|---|---|
+| 2 | Environment check | ✅ VERIFIED SUCCESS (CPU session) | Python 3.13.18/16 · torch 2.11.0 (cpu build seen once, cu130 in recovery) · sentencepiece 0.2.2 · pyarrow 23.0.1 · ~20.9 GB disk · ~33.7 GB RAM. **CPU env ≠ GPU ready** |
+| 3 | Package setup | ✅ VERIFIED SUCCESS | Package found as **extracted dir** (ZIP candidate absent → sha check skipped); `PACKAGE_OK=True`; extracted to `/kaggle/working/nexusai_core01/pkg/` |
+| 4 | Tokenizer | ✅ VERIFIED SUCCESS | vocab 8,000 · IDs 0/1/2/3 · encode/decode round-trip True |
+| 5 | FineWeb verify | ✅ VERIFIED SUCCESS | `FINEWEB_VERIFIED=True` (license `odc-by`, lang `en`, shard-0 size verified) |
+| 6 | FineWeb download | ✅ PREVIOUSLY VERIFIED | `APPROVE_FINEWEB_DOWNLOAD=True` → shard 0 (~2.0 GiB) downloaded in earlier session |
+| 7 | Corpus preparation | ✅ PREVIOUSLY VERIFIED | See "Verified corpus results" below — 100,499,546 tokens, exit 0 |
+| 8 | Dataset audit | ✅ PREVIOUSLY VERIFIED | `DATASET_OK=True`, overlap 0, driver loaded 103,846 docs |
+| 9 | GPU verification | ✅ PREVIOUSLY VERIFIED | Tesla T4 · CUDA True · sm_75 · fp16 path · `GPU_OK=True` |
+| 10 | GPU smoke test | ❌ **FAILED — NOT VERIFIED** | `NameError: PACKAGE_OK is not defined` after runtime restart; driver never launched; 200-step smoke **never ran** |
+| 11 | Full training approval | ⏳ PENDING | gate exists, not enabled |
+| 12 | Full pretraining | ❌ **NOT STARTED** | no evidence of any completed training |
+
+> ⚠️ Cells 6–9 results are **historical** — they were verified in an earlier Kaggle session. `/kaggle/working/` contents may not persist; always re-verify before relying on them (see Recovery section).
+
+### Verified corpus results (historical, Cell 7/8)
+
+| Metric | Value |
+|---|---|
+| Source | FineWeb `sample-10BT`, shard 0, license ODC-By-1.0 |
+| Target / buffer / val / seed | 100,000,000 / 0.005 / 0.015 / 42 |
+| Inspected docs | 105,475 |
+| Accepted docs | 105,427 (48 duplicates rejected) |
+| **Total tokens (Core-01 tokenizer)** | **100,499,546** |
+| Train | 103,846 docs / 99,011,035 tokens |
+| Val | 1,581 docs / 1,488,511 tokens |
+| Audit | overlap=0, empty=0, dup-in-output=0, `DATASET_OK=True`, driver loaded all docs |
+| Outputs | `english_train.jsonl`, `english_val.jsonl`, `manifest.json`, `preparation_report.md`, `deduplication_report.json` |
+
+### Kaggle Runtime Restart & Recovery Incident
+
+**What happened:** During the earlier workflow, Cell 10 (GPU smoke test) was authorized and executed — but failed immediately with:
+
+```
+NameError: name 'PACKAGE_OK' is not defined
+```
+
+A recovery diagnostic was then run (read-only; no downloads, prep, or training). Verified findings:
+
+- Python 3.13.16 · torch 2.11.0+cu130 · **CUDA True** · GPU **Tesla T4** · VRAM **14.56 GB**
+- **Missing from `/kaggle/working/`:** package working dir, tokenizer, FineWeb shard, prepared dataset, train/val files, smoke checkpoint dir
+- **Missing variables:** `PACKAGE_OK`, `TOKENIZER_OK`, `DATASET_OK`, `DOWNLOAD_OK`, `PREP_DONE`, `PACKAGE_ROOT`, `TOKENIZER_PATH`, `train_path`, `val_path`, `PREPARED_DIR`
+- `GPU_OK` remained set (it was re-created by Cell 9 in that session)
+- The attached package dataset was still accessible at `/kaggle/input/datasets/atoplay/nexusai-core01-package/nexusai_core01_kaggle_package/`
+
+**Explanation (beginner terms):**
+- `/kaggle/input/` = attached datasets (persistent, survives restarts)
+- `/kaggle/working/` = notebook working storage (can be wiped on runtime restart/crash/timeout)
+- Python variables live only in the running kernel — a restart erases them all
+- The earlier prepared corpus therefore **must be regenerated** if `/kaggle/working` was cleared
+
+**Cause:** not independently established — described as a **suspected Kaggle runtime reset/restart** (consistent with status-code-56-style session drops seen previously). Do not claim a definitive root cause.
+
+### Kaggle Runtime Recovery Procedure
+
+When variables/files are missing after a restart, recover in this order — **never skip verification, never auto-repeat expensive steps:**
+
+1. **Env check** — re-run Cell 2; confirm torch/CUDA/GPU.
+2. **Input check** — confirm `/kaggle/input/datasets/atoplay/nexusai-core01-package/` still exists.
+3. **Restore package** — re-run Cell 3 → recreates `PACKAGE_OK`, `PACKAGE_ROOT`, paths.
+4. **Tokenizer** — re-run Cell 4 → `TOKENIZER_OK`.
+5. **FineWeb verify** — re-run Cell 5 (read-only).
+6. **Shard** — Cell 6 checks `SHARD_PATH` size before downloading; if `.part`/full file exists it skips re-download. Only set `APPROVE_FINEWEB_DOWNLOAD=True` if the shard is actually missing.
+7. **Corpus** — Cell 7 prep script is resume-safe (row-group checkpoints in `prep_state.json`); re-run only if outputs are missing/incomplete.
+8. **Audit** — re-run Cell 8 → `DATASET_OK`.
+9. **GPU** — re-run Cell 9 → `GPU_OK`.
+10. **Smoke test** — re-run Cell 10 **only after re-reading its code and getting explicit owner approval.**
+
+> ⚠️ **Runtime Recovery ≠ Training Resume.** Recovery rebuilds environment+data. Training resume continues a checkpointed run (next section).
+
+### Checkpoint Management & Training Resume
+
+- A **checkpoint** = saved snapshot of model weights + optimizer + scheduler + GradScaler + RNG + step/epoch + status. It is the "save game" of training.
+- Checkpoints are written **atomically** (`.tmp` → `os.replace`) with `.backup` copies — a crash cannot leave a half-written file.
+- Files in `--output-dir`: `checkpoint_step{N}.pt` (periodic), `checkpoint_last.pt` (epoch end — primary resume point), `checkpoint_final.pt` (only on genuine completion → `PRETRAINING_COMPLETED`), `checkpoint_interrupted.pt` (Ctrl+C, stays `PRETRAINING_IN_PROGRESS`), `checkpoint_error.pt` (exception forensics), `checkpoint_maxsteps.pt`.
+- Checkpoint interval is configured by `--checkpoint-interval` (driver arg, verified in `pretraining_driver.py`).
+- **Resume:** the driver supports `--resume <checkpoint filename inside --output-dir>` — verified in code (`args.resume` → `engine.load_checkpoint`). Exact procedure for cross-session resume on Kaggle: download `checkpoints_full/` output before session end → attach as Kaggle Dataset → re-run driver with `--resume checkpoint_last.pt`.
+- Resume restores model/optimizer/scheduler/RNG/epoch/step but **not** DataLoader sampler/batch position → **approximate, epoch-granular** — documented limitation.
+- Before session end, download `/kaggle/working/nexusai_core01/checkpoints_full/` (Kaggle Output → download, or save as Dataset) — working storage may not persist.
+
+### The 12 notebook cells — plain-language guide
+
+| Cell | CPU/GPU | Downloads? | Changes files? | Approval? | Success looks like | If it fails |
+|---|---|---|---|---|---|---|
+| 1 Overview | — | no | no | no | read markdown | — |
+| 2 Env check | CPU | no | no | no | versions + disk printed | missing pkg → `!pip install -q sentencepiece pyarrow` |
+| 3 Package | CPU | no | extracts to `/kaggle/working/.../pkg` only | no | `PACKAGE_OK = True` | see Troubleshooting |
+| 4 Tokenizer | CPU | no | no | no | `vocab_size: 8000`, round-trip True | wrong path → check Cell 3 |
+| 5 FineWeb verify | CPU | metadata only (HEAD/API) | no | no | `FINEWEB_VERIFIED: True` | internet off → Settings → Internet ON |
+| 6 Download | CPU | **YES — shard 0 ~2.0 GiB** | writes `raw/…shard0.parquet` | **`APPROVE_FINEWEB_DOWNLOAD`** | `DOWNLOAD_OK: True` + sha256 | disk short → free space; never auto-fetches more shards |
+| 7 Corpus prep | CPU | no | writes `prepared_dataset/` | **`APPROVE_CORPUS_PREPARATION`** | `PREP_DONE` + 5 output files | see Troubleshooting |
+| 8 Dataset audit | CPU | no | no | no | `DATASET_OK: True` | token shortfall → report, don't train |
+| 9 GPU check | GPU probe | no | no | no | `GPU_OK: True`, T4 + 14.56 GB | CUDA unavailable → Accelerator → GPU T4 x2 |
+| 10 Smoke test | **GPU** | no | writes `checkpoints_smoke/` | **`APPROVE_GPU_SMOKE_TEST`** | ~200 steps, finite loss, ckpt saved | OOM → lower batch / raise accum |
+| 11 Full training | **GPU** | no | writes `checkpoints_full/` | **`APPROVE_FULL_TRAINING`** | `checkpoint_final.pt` = COMPLETED | session end → resume |
+| 12 Status | — | no | no | no | status board | — |
+
+> ⚠️ Enable `APPROVE_*` flags **one at a time**, only after reading that cell's plan. Never enable all four together.
+
+### FineWeb dataset facts (verified)
+
+- Repo `HuggingFaceFW/fineweb` · config `sample-10BT` · English · **ODC-By 1.0** (attribution: *"FineWeb by Hugging Face"*) + Common Crawl ToS.
+- `sample-10BT` = 15 shards; shard 0 = **2,147,292,183 bytes (~2.0 GiB)**; Range requests supported.
+- Only shard 0 downloaded; prep stops at ~100M **real SentencePiece tokens** (never GPT-2 estimates), 0.5% buffer, 1.5% val, seed 42.
+- The older ~3.47M-token corpus is too small — FineWeb replaces it for pretraining. Bengali needs a separate approved data strategy later.
+
+### Beginner glossary
+
+| Term | Plain meaning |
+|---|---|
+| Runtime | The live Python process inside the notebook. Restart = all variables + `/kaggle/working` files may be lost. |
+| CUDA | NVIDIA's GPU computing platform — lets PyTorch use the GPU. |
+| GPU / VRAM | Graphics card / its memory (T4 = 14.56 GB). Model+batches must fit in VRAM. |
+| Tokenizer | Tool that splits text into tokens the model understands (ours: SentencePiece, 8,000 vocab). |
+| Training dataset | Text the model learns from (train split). |
+| Validation dataset | Held-out text used to measure progress honestly (val split). |
+| Pretraining | First stage: model learns language patterns from raw text (next-token prediction). |
+| Training step | One optimizer update after processing a batch. |
+| Loss | Error score — lower = better. We watch it go down. |
+| Checkpoint | Saved model+optimizer snapshot for resume/safety. |
+| Runtime recovery | Rebuilding notebook state after a restart (Cells 2–9). |
+| Training resume | Continuing from a checkpoint in a later session (`--resume`). |
+
+### Rebuilding the NexusAI Core-01 Kaggle Environment from Scratch
+
+1. Kaggle account → verify phone if prompted.
+2. **Dataset:** Datasets → New Dataset → upload `nexusai_core01_kaggle_package.zip` → Create.
+3. **Notebook:** `NexusAI-Core-Training` → File → Import `nexusai_core01_fineweb_pretraining.ipynb`.
+4. Right panel → **Input → Add Input → Your Work → nexusai-core01-package**.
+5. **Settings:** Internet ON · Add-ons `sentencepiece`, `pyarrow` if Cell 2 reports missing · Accelerator CPU for Cells 2–8, GPU T4 x2 for Cells 9–11.
+6. Run cells in order; enable each `APPROVE_*` flag only when that stage is next.
+7. If the runtime restarts → follow **Kaggle Runtime Recovery Procedure** above.
+
+### NexusAI Core-01 — Google Colab Training Guide
+
+Kaggle runtime instability prompted a move to **Google Colab** (verified env: Python 3.13.16, torch 2.14.1+cu130, CUDA True, 1× Tesla T4). Core-01 code is platform-independent — only the notebook layer changed.
+
+**Files you need**
+
+| File | Location | Action |
+|---|---|---|
+| `nexusai_core01_kaggle_package.zip` | Desktop / `exports/` (306,348 B, sha `1b0c66f0…be970`) | upload to Drive `NexusAI/package/` |
+| `english_train.jsonl`, `english_val.jsonl`, `manifest.json`, `preparation_report.md`, `deduplication_report.json` | **Kaggle Output only** (not in repo) | download from Kaggle → upload to Drive `NexusAI/data/` |
+| Tokenizer + training code | inside the ZIP | nothing extra needed |
+| Notebook | `docs/notebooks/NexusAI_Core01_Google_Colab_Training.ipynb` | File → Upload notebook in Colab |
+
+**Steps (beginner path)**
+
+1. **Kaggle:** open `NexusAI-Core-Training` → Output → download `prepared_dataset/` (5 files). If wiped, re-run Cells 2–9 then Cell 7–8.
+2. **Drive:** create `MyDrive/NexusAI/{package,data,checkpoints,logs}` → upload ZIP to `package/`, 5 files to `data/`.
+3. **Colab:** https://colab.research.google.com → Upload notebook → **Runtime → T4 GPU**.
+4. Run cells 2–8 in order (env → Drive mount → package sha-verify → tokenizer → dataset audit → VRAM probe → config review).
+5. **Smoke test:** set `APPROVE_SMOKE_TEST = True` in Cell 9 → ~200 real steps → review loss in Cell 10.
+6. **Full training:** only after smoke looks good, set `APPROVE_FULL_TRAINING = True` in Cell 11 → checkpoints auto-save to Drive every 500 steps.
+7. **Session cut?** New session → re-run Cells 2–7 → Cell 11 with `--resume checkpoint_last.pt`.
+
+**Links:** full guide `docs/notebooks/NEXUSAI_CORE01_COLAB_SETUP.md` · audit `docs/architecture/audits/NEXUSAI_CORE01_COLAB_MIGRATION_AUDIT.md` · Kaggle guide remains above for history.
+
+### Training Session Log
+
+| Session ID | Date/time | Notebook | Runtime | GPU | VRAM | Python | Torch | Package | Tokenizer | Dataset | Tokens | Config (bs/lr/prec) | Steps | Train loss | Val loss | Checkpoints | Errors | Fixes | Status |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| S1 | 2026-11-07 | NexusAI-Core-Training | CPU then GPU T4 | Tesla T4 | 14.56 GB | 3.13.x | 2.11.0 | ✅ dir-found (sha skipped) | ✅ | ✅ 100.5M tok | 100,499,546 | smoke bs32/lr3e-4/fp16 (planned) | 0 | — | — | none saved | Cell10 NameError (runtime restart) | recovery diagnostic only | **UNTRAINED** |
+
+> Fill one row per real session using **actual outputs only**. Update this table when new stages complete.
+
+### Troubleshooting
+
+| Symptom | Meaning | Safe fix |
+|---|---|---|
+| `PACKAGE_OK is not defined` | kernel restarted; variables lost | Re-run Cells 2–9 in order (Recovery Procedure) |
+| `zip candidates: []` but dir found | dataset attached as folder | Normal — sha check skipped; re-upload ZIP if hash verify wanted |
+| `PACKAGE INIT FAILED` | required file missing | verify dataset contents; re-upload ZIP |
+| `sha256 match: False` | old package version | upload current ZIP as new dataset version |
+| `sentencepiece/pyarrow MISSING` | deps absent | `!pip install -q sentencepiece` / `pyarrow` |
+| Download fails / disk error | shard ~2 GiB + margin | check Cell 2 disk; free `/kaggle/working` |
+| `CUDA unavailable` Cell 9 | accelerator still CPU | Settings → Accelerator → GPU T4 x2 → restart |
+| OOM in smoke | batch too big | lower `--batch-size`, raise `--gradient-accumulation-steps` |
+| Session dies mid-training | Kaggle ~9–12 h limit | resume `checkpoint_last.pt` next session |
+| `DATASET_OK` overlap>0 | split bug | STOP — send manifest, do not train |
+| tokens ≪ 100M | shard exhausted | report shortfall; approve shard 1 manually |
 
 ---
 

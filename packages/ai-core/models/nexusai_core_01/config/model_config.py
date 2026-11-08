@@ -73,13 +73,32 @@ class NexusAICore01Config:
     repetition_penalty: float = 1.2
     
     # Training Configuration (for future use)
-    batch_size: int = 4
+    batch_size: int = 4  # Micro-batch size per forward/backward
     learning_rate: float = 0.0003
     weight_decay: float = 0.01
     grad_clip: float = 1.0
     epochs: int = 3
     warmup_steps: int = 100
-    
+
+    # Mixed Precision (AMP) Configuration
+    # Options: "fp32" (default, safest), "fp16" (CUDA only, uses GradScaler), "bf16" (CUDA Ampere+)
+    precision: str = "fp32"
+
+    # Gradient Accumulation
+    # Effective batch size = batch_size * gradient_accumulation_steps
+    gradient_accumulation_steps: int = 1
+
+    # Checkpointing cadence
+    checkpoint_interval_steps: int = 500
+    eval_interval_steps: int = 500
+
+    # Resume support: path to a checkpoint file to resume from (empty = fresh start)
+    resume_checkpoint: str = ""
+
+    # Tokenizer reference: path to the SentencePiece .model file used with this
+    # model. Recorded into checkpoints for provenance. Empty = unknown.
+    tokenizer_path: str = ""
+
     # Device Configuration
     device: str = "cpu"  # Will be set to "cuda" if available
     
@@ -118,6 +137,19 @@ class NexusAICore01Config:
         assert self.weight_decay >= 0, "weight_decay must be non-negative"
         assert self.grad_clip > 0, "grad_clip must be positive"
         assert self.epochs > 0, "epochs must be positive"
+
+        # Validate mixed precision
+        assert self.precision in ("fp32", "fp16", "bf16"), \
+            f"precision must be one of fp32/fp16/bf16, got {self.precision}"
+
+        # Validate gradient accumulation
+        assert self.gradient_accumulation_steps >= 1, \
+            "gradient_accumulation_steps must be >= 1"
+        assert self.batch_size >= 1, "batch_size must be >= 1"
+        assert self.checkpoint_interval_steps >= 1, \
+            "checkpoint_interval_steps must be >= 1"
+        assert self.eval_interval_steps >= 1, \
+            "eval_interval_steps must be >= 1"
     
     def estimated_parameter_count(self) -> int:
         """
@@ -187,6 +219,13 @@ class NexusAICore01Config:
             "grad_clip": self.grad_clip,
             "epochs": self.epochs,
             "warmup_steps": self.warmup_steps,
+            "precision": self.precision,
+            "gradient_accumulation_steps": self.gradient_accumulation_steps,
+            "effective_batch_size": self.batch_size * self.gradient_accumulation_steps,
+            "checkpoint_interval_steps": self.checkpoint_interval_steps,
+            "eval_interval_steps": self.eval_interval_steps,
+            "resume_checkpoint": self.resume_checkpoint,
+            "tokenizer_path": self.tokenizer_path,
             "device": self.device,
             "random_seed": self.random_seed,
             "estimated_parameters": self.estimated_parameter_count()

@@ -1,0 +1,117 @@
+{
+  "research_summary": {
+    "datasets_investigated": 9,
+    "externally_sourced_data_used": 0,
+    "newly_authored_data": 69,
+    "primary_recommendation": "Create newly authored examples specifically for love/affection topic in Bengali, English, and Romanized Bengali"
+  },
+  "datasets_investigated": [
+    {
+      "name": "DRAL Corpus (Dialogs Re-enacted Across Languages)",
+      "url": "https://www.cs.utep.edu/nigel/dral/",
+      "license": "Public Domain (CC 0)",
+      "languages": ["Spanish-English", "Bengali-English (illustrative)"],
+      "sample_count": 2893,
+      "suitability": "PARTIAL - Has Bengali-English pairs but not focused on love/affection",
+      "license_status": "Licensed for use",
+      "content_suitability": "Not specifically love/affection"
+    },
+    {
+      "name": "MediBeng",
+      "url": "https://huggingface.co/datasets/pr0mila-gh0sh/MediBeng",
+      "license": "CC-BY-4.0",
+      "languages": ["Bengali", "English"],
+      "sample_count": "Not specified",
+      "suitability": "LOW - Clinical context, not love/affection",
+      "license_status": "Licensed for use (requires attribution)",
+      "content_suitability": "Not suitable - clinical healthcare context"
+    },
+    {
+      "name": "OpenSLR Bengali-English",
+      "url": "https://openslr.org/104",
+      "license": "CC BY-SA 4.0",
+      "languages": ["Bengali", "English"],
+      "sample_count": "46.11 hours speech",
+      "suitability": "LOW - Technical tutorials with code-switching",
+      "license_status": "Licensed for use (requires attribution and share-alike)",
+      "content_suitability": "Not suitable - technical educational content"
+    },
+    {
+      "name": "RBE_Social_20000",
+      "url": "https://doi.org/10.5281/zenodo.23238816",
+      "license": "Zenodo (likely CC-BY or similar)",
+      "languages": ["Roman Bengali", "English"],
+      "sample_count": 20000,
+      "suitability": "MEDIUM - Has Roman Bengali-English, but general social conversations",
+      "license_status": "Requires verification",
+      "content_suitability": "Not specifically love/affection - general social media"
+    },
+    {
+      "name": "EmpatheticDialogues",
+      "url": "https://github.com/facebookresearch/EmpatheticDialogues",
+      "license": "Custom (check LICENSE file)",
+      "languages": ["English"],
+      "sample_count": 25000,
+      "suitability": "LOW - English only, not Bengali/Romanized Bengali",
+      "license_status": "Requires verification",
+      "content_suitability": "Emotional but English only"
+    },
+    {
+      "name": "PersonaConflicts Corpus",
+      "url": "https://github.com/mitmedialab/persona-conflicts-corpus-emnlp-2025",
+      "license": "MIT License",
+      "languages": ["English"],
+      "sample_count": 5772,
+      "suitability": "LOW - English only, conflicts not love/affection",
+      "license_status": "Licensed for use (MIT)",
+      "content_suitability": "Interpersonal conflicts, not romantic love"
+    },
+    {
+      "name": "StrataSynth Social Reasoning",
+      "url": "https://huggingface.co/datasets/StrataSynth/stratasynth-social-reasoning",
+      "license": "Unknown",
+      "languages": ["English"],
+      "sample_count": "100 conversations",
+      "suitability": "LOW - English only, synthetic",
+      "license_status": "Requires verification",
+      "content_suitability": "Has romantic tension but English only and synthetic"
+    },
+    {
+      "name": "LoveConflict",
+      "url": "https://huggingface.co/datasets/GreenGoat/LoveConflict",
+      "license": "Unknown",
+      "languages": ["Chinese"],
+      "sample_count": 185,
+      "suitability": "NOT SUITABLE - Chinese only",
+      "license_status": "Requires verification",
+      "content_suitability": "Romantic conflicts but Chinese language not suitable"
+    },
+    {
+      "name": "Russian Romantic Dialogue",
+      "url": "https://huggingface.co/datasets/DenSeduct/Russian_Romantic_Dialogue_Dataset",
+      "license": "Unknown",
+      "languages": ["Russian"],
+      "sample_count": "Not specified",
+      "suitability": "NOT SUITABLE - Russian only",
+      "license_status": "Requires verification",
+      "content_suitability": "Romantic but Russian language not suitable"
+    }
+  ],
+  "newly_authored_data": {
+    "rationale": "Existing datasets either not focused on love/affection, not in required languages (Bengali/English/Romanized Bengali), or have licensing complications. Newly authored examples ensure content relevance, language consistency, clear licensing, and quality control.",
+    "authoring_method": "Manual creation based on common Bengali/English love and affection expressions",
+    "licensing": "Created for NexusAI project, no external attribution required",
+    "quality_control": "Manual review for grammar, naturalness, and cultural appropriateness"
+  },
+  "recommendations": [
+    "Expand dataset to 1,000+ examples per language before training",
+    "Add response variations for each input to improve model diversity",
+    "Add multi-turn conversation examples for contextual understanding",
+    "Add negative examples where model should not respond with romantic affection",
+    "Consider licensing and adapting DRAL or RBE_Social_20000 if suitable examples exist",
+    "Do NOT use Chinese datasets (LoveConflict) - language mismatch",
+    "Do NOT use Russian datasets (Russian Romantic Dialogue) - language mismatch",
+    "Do NOT use clinical datasets (MediBeng) - context mismatch",
+    "Do NOT use technical datasets (OpenSLR) - context mismatch"
+  ]
+}
