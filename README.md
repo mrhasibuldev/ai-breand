@@ -42,6 +42,30 @@ Unlike many AI applications that rely on external APIs (OpenAI, Claude, Gemini),
 
 ---
 
+## 🧠 AI Brain (Core-01) — Verified Status
+
+NexusAI's next-generation independent model, **Core-01**, is a custom 6-layer Transformer (8,842,560 parameters, 8K SentencePiece tokenizer) trained on our own English-first corpus. It runs locally on CPU — no GPU or external AI needed for inference.
+
+| Capability | Status | Evidence |
+|---|---|---|
+| Own Transformer model | ✅ Implemented | `packages/ai-core/core01/transformer.py` |
+| Own tokenizer | ✅ Implemented | sp_bpe_8k, multilingual (EN/BN/Banglish) |
+| GPU training (Colab) | ✅ Implemented | Runs 1–3 completed, Run4 prepared |
+| Run3 checkpoint | ✅ Verified | sha256 `ad515c…7830`, strict load PASS |
+| CPU inference | ✅ Verified | ~382MB RAM, ~42 tok/s, offline |
+| Run4 training | ⏳ Prepared | corpus + bundle ready, awaiting Colab |
+| English generation | ⚠️ Partial | fluent but undertrained |
+| Bengali generation | ❌ Not yet | Run4 will add Bengali training |
+| Banglish | ❌ Not yet | in Run4 corpus |
+| Reliable reasoning / decision-making | ❌ Not demonstrated | eval report |
+| Memory / Agent Mode / Voice / Public API | 📋 Planned | roadmap docs |
+
+**Honest status:** the pipeline works end-to-end; the model is still early-stage and improving with each training run.
+
+📖 **Full guide:** [`docs/architecture/NEXUSAI_AI_BRAIN_COMPLETE_GUIDE.md`](docs/architecture/NEXUSAI_AI_BRAIN_COMPLETE_GUIDE.md)
+
+---
+
 ## What Makes NexusAI Independent?
 
 ### Own AI Model
