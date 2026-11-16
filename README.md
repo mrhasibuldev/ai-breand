@@ -53,10 +53,11 @@ NexusAI's next-generation independent model, **Core-01**, is a custom 6-layer Tr
 | GPU training (Colab) | ✅ Implemented | Runs 1–3 completed, Run4 prepared |
 | Run3 checkpoint | ✅ Verified | sha256 `ad515c…7830`, strict load PASS |
 | CPU inference | ✅ Verified | ~382MB RAM, ~42 tok/s, offline |
-| Run4 training | ⏳ Prepared | corpus + bundle ready, awaiting Colab |
+| Run4 training | ⏳ Prepared | single-upload bundle ready; preflight pending |
+| Multi-model brain | ✅ Implemented | registry + router; Core-01 run3 is active neural model |
 | English generation | ⚠️ Partial | fluent but undertrained |
-| Bengali generation | ❌ Not yet | Run4 will add Bengali training |
-| Banglish | ❌ Not yet | in Run4 corpus |
+| Bengali generation | ⚠️ Partial | neural path works; quality limited pre-Run4 |
+| Banglish | ⚠️ Partial | language detection works; generation unproven |
 | Reliable reasoning / decision-making | ❌ Not demonstrated | eval report |
 | Memory / Agent Mode / Voice / Public API | 📋 Planned | roadmap docs |
 
@@ -847,6 +848,18 @@ When variables/files are missing after a restart, recover in this order — **ne
 6. Run cells in order; enable each `APPROVE_*` flag only when that stage is next.
 7. If the runtime restarts → follow **Kaggle Runtime Recovery Procedure** above.
 
+### NexusAI Core-01 — Run4 Single-Upload Bundle (NEW)
+
+Run4 distribution is consolidated into **one ZIP**:
+`exports/NEXUSAI_CORE01_RUN4_SINGLE_UPLOAD_BUNDLE.zip` (~81 MB).
+It contains the preflight cell, original training bundle, corpus, and resume
+evidence plus a `manifest.json` of SHA-256 hashes. Upload that ONE file to
+Colab (or Drive) and run `docs/notebooks/COLAB_RUN4_SINGLE_UPLOAD_CELL.py`,
+which validates, extracts, and stages everything safely — then run the
+preflight cell. Full guide:
+`docs/training/NEXUSAI_CORE01_RUN4_SINGLE_UPLOAD_GUIDE.md`.
+The Run3 checkpoint stays on Drive and is never modified.
+
 ### NexusAI Core-01 — Google Colab Training Guide (Kaggle-free)
 
 Training moved fully to **Google Colab** — no Kaggle, no manual uploads. The notebook clones our public GitHub repo, downloads FineWeb `sample-10BT` shard 0 (~2 GiB), prepares the 100M-token corpus with our own `prepare_english_corpus.py`, then trains on 1× Tesla T4 (verified env: Python 3.13.16, torch 2.14.1+cu130, CUDA True).
@@ -916,3 +929,12 @@ The goal is to demonstrate that independent AI development is possible with mode
 
 For issues, questions, or contributions, please visit the GitHub repository:
 https://github.com/mrhasibuldev/ai-breand
+
+### Run3 Checkpoint — GitHub LFS Storage (NEW)
+
+The authoritative Core-01 Run3 checkpoint is now stored in the repo via
+**Git LFS** at `packages/ai-core/models/checkpoints_core01_run3/checkpoint_final.pt`
+(106,777,501 B, SHA-256 `ad515cade…7830`). Fresh Colab sessions can clone the
+repo and `git lfs pull` the checkpoint — no ZIP upload needed.
+See `docs/training/NEXUSAI_CORE01_CHECKPOINT_RECOVERY.md` and
+`docs/notebooks/COLAB_CLONE_RECOVERY_CELL.py`.

@@ -1,0 +1,34 @@
+{
+  "audit": "NEXUSAI_CORE01_RUN4_FINAL_READINESS",
+  "date": "2026-11-15",
+  "mode": "read_only",
+  "environment": {"os": "windows", "python": "3.14.6", "torch": "2.14.1+cpu", "cuda": false},
+  "repo": {"commit": "64d05e9a65bd0046bc37350e6a47496e211a258b", "uncommitted_paths": 80},
+  "checkpoint": {
+    "path": "packages/ai-core/models/checkpoints_core01_run3/checkpoint_final.pt",
+    "size": 106777501,
+    "sha256_prefix": "ad515cadea433d17",
+    "epoch": 3, "step": 1341,
+    "train_loss": 4.425850836355948, "val_loss": 4.216854669429638,
+    "status": "PRETRAINING_COMPLETED",
+    "resume_keys": ["model_state_dict","optimizer_state_dict","scheduler_state_dict","grad_scaler_state_dict","rng_state","config"]
+  },
+  "architecture": {"params": 8842560, "layers": 6, "d_model": 256, "heads": 8, "d_ff": 1024, "vocab": 8000, "max_len": 512, "family": "transformer_blocks.*"},
+  "tokenizer": {"path": "packages/ai-core/data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model", "size": 387195, "sha256_prefix": "2fcc6a87", "vocab": 8000},
+  "dataset": {"path": "packages/ai-core/data/phase2/run4_corpus/corpus_train.jsonl", "size": 385217021, "sha256": "5f8572edd816ac875a7f52915bc6326635d7a483e0ca3f33b70fffdda7e28376", "records": 216193, "malformed": 0, "exact_dup_texts": 6922},
+  "release": {"zip": "exports/NEXUSAI_CORE01_RUN4_SINGLE_UPLOAD_BUNDLE.zip", "size": 173914048, "sha256": "8b2129649c840e1b7009ea57babacd0e3831185852a070cd4391fbcdda3849ef", "version": "2.3.0", "testzip": "clean"},
+  "train_config": {"epochs_total": 5, "additional_epochs": 2, "max_steps": 8000, "batch_size": 8, "grad_accum": 4, "effective_batch": 32, "precision": "fp16", "device": "cuda", "auth_gate": true, "zero_step_guard": true},
+  "checks": {
+    "repository": "PASS", "python_torch": "PASS", "gpu": "NOT_VERIFIED",
+    "run3_checkpoint": "PASS", "architecture_compat": "PASS",
+    "tokenizer": "PASS", "dataset_integrity": "PASS",
+    "dataset_quality": "WARNING", "training_config": "PASS",
+    "resume_safety": "PASS", "checkpoint_recovery": "PASS",
+    "colab_notebook": "PASS_WITH_WARNINGS", "resource_requirements": "WARNING",
+    "r11_r2_preserved": "PASS"
+  },
+  "blockers": [],
+  "warnings": ["dataset quality limits gain", "phase10 orphan checkpoint", "production.json stale metrics", "80 uncommitted paths", "gpu unverified locally"],
+  "decision": "READY WITH WARNINGS",
+  "training_started": false
+}
