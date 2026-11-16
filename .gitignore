@@ -38,3 +38,6 @@ extract-*.mjs
 extract-*.py
 test-*.mjs
 hybrid-test-cookies.txt
+
+# LFS-tracked authoritative checkpoint (see CHECKPOINT_MANIFEST.json)
+!packages/ai-core/models/checkpoints_core01_run3/checkpoint_final.pt
