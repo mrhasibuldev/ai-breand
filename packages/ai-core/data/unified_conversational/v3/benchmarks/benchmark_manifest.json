@@ -1,0 +1,105 @@
+{
+ "benchmark": "unified_v3_benchmark",
+ "note": "authored separately; NOT in training data",
+ "cases": [
+  {
+   "id": "b01",
+   "core": "core01",
+   "capability": "bn_conversation",
+   "lang": "bn",
+   "prompt": "\u09a4\u09c1\u09ae\u09bf \u0995\u09bf \u09ac\u09be\u0982\u09b2\u09be \u09ac\u09b2\u09a4\u09c7 \u09aa\u09be\u09b0\u09cb?",
+   "criteria": "bn response, natural",
+   "method": "human_rubric"
+  },
+  {
+   "id": "b02",
+   "core": "core01",
+   "capability": "en_conversation",
+   "lang": "en",
+   "prompt": "How are you today?",
+   "criteria": "natural en reply",
+   "method": "human_rubric"
+  },
+  {
+   "id": "b03",
+   "core": "core01",
+   "capability": "banglish",
+   "lang": "banglish",
+   "prompt": "Tumi ki matha khub?",
+   "criteria": "banglish reply",
+   "method": "human_rubric"
+  },
+  {
+   "id": "b03",
+   "core": "core01",
+   "capability": "banglish",
+   "lang": "banglish",
+   "prompt": "Tumi ki matha khub?",
+   "criteria": "banglish reply",
+   "method": "human_rubric"
+  },
+  {
+   "id": "b04",
+   "core": "core02",
+   "capability": "novel_reasoning",
+   "lang": "en",
+   "prompt": "If all Zorks are Blums and all Blums are Snorks, are all Zorks Snorks?",
+   "criteria": "yes+chain",
+   "method": "exact"
+  },
+  {
+   "id": "b05",
+   "core": "core03",
+   "capability": "arithmetic",
+   "lang": "en",
+   "prompt": "What is 17 x 23?",
+   "criteria": "391",
+   "method": "exact"
+  },
+  {
+   "id": "b06",
+   "core": "core03",
+   "capability": "word_problem",
+   "lang": "bn",
+   "prompt": "\u0986\u09ae\u09be\u09b0 \u09e9\u09ea\u099f\u09bf \u0986\u09aa\u09c7\u09b2 \u0986\u099b\u09c7 \u098f\u09ac\u0982 \u09e7\u09e8\u099f\u09bf \u0995\u09bf\u09a8\u09b2\u09be\u09ae\u0964 \u09ae\u09cb\u099f \u0995\u09a4\u099f\u09bf \u09b9\u09b2\u09cb?",
+   "criteria": "46",
+   "method": "numeric"
+  },
+  {
+   "id": "b07",
+   "core": "core04",
+   "capability": "known_fact",
+   "lang": "en",
+   "prompt": "What is the capital of Bangladesh?",
+   "criteria": "Dhaka",
+   "method": "exact"
+  },
+  {
+   "id": "b08",
+   "core": "core04",
+   "capability": "unknown_refusal",
+   "lang": "en",
+   "prompt": "What will the exact population of Dhaka be in 2050?",
+   "criteria": "honest uncertainty",
+   "method": "human_rubric"
+  },
+  {
+   "id": "b09",
+   "core": "core04",
+   "capability": "ambiguity",
+   "lang": "en",
+   "prompt": "Is it good?",
+   "criteria": "asks clarification",
+   "method": "human_rubric"
+  },
+  {
+   "id": "b10",
+   "core": "core01",
+   "capability": "multi_turn_context",
+   "lang": "en",
+   "prompt": "[3-turn: trip planning with constraint introduced turn 1]",
+   "criteria": "remembers constraint",
+   "method": "human_rubric"
+  }
+ ]
+}

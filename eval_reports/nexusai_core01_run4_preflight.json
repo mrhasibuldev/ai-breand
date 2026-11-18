@@ -1,0 +1,41 @@
+{
+ "audit": "RUN4_GPU_PREFLIGHT",
+ "date": "2026-11-10",
+ "mode": "read-only",
+ "run3_ckpt": {
+  "path": "packages/ai-core/models/checkpoints_core01_run3/checkpoint_final.pt",
+  "sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+  "size": 106777501,
+  "step": 1341,
+  "epoch": 3,
+  "verdict": "READY"
+ },
+ "tokenizer": {
+  "path": "sp_bpe_8k.model",
+  "vocab": 8000,
+  "verdict": "READY"
+ },
+ "dataset": {
+  "path": "packages/ai-core/data/phase2/run4_corpus/corpus_train.jsonl",
+  "docs": 216193,
+  "bytes": 385217021,
+  "sha256_prefix": "5f8572edd816ac87",
+  "bengali_char_pct": 47.1,
+  "verdict": "READY_WITH_CONDITIONS"
+ },
+ "training_script": {
+  "cell": "docs/notebooks/COLAB_RUN4_TRAIN_CELL.py",
+  "bug": "START_EPOCH undefined at line 68 (post-training report only)",
+  "verdict": "READY_WITH_CONDITIONS"
+ },
+ "colab_gpu": "NOT_VERIFIED",
+ "checkpoint_resume": "READY",
+ "eval": "READY_WITH_CONDITIONS",
+ "overall": "READY_WITH_CONDITIONS",
+ "conditions": [
+  "fix START_EPOCH in cell",
+  "run Colab session",
+  "upload 385MB corpus to Drive",
+  "post-train eval vs run3"
+ ]
+}

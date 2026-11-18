@@ -1,0 +1,131 @@
+[
+ {
+  "id": "A_bn",
+  "input": "পাহাড় কী?",
+  "language": "bengali",
+  "intent": "CHAT",
+  "response_source": "NEURAL_MODEL",
+  "response": "Rails and Jrava is an adds of the following as one of these are: a maximumbell. Gran, Mayhellenon, Pi, Lake Soly, Ariangle, Kuke's nighter, H",
+  "diagnostics": [
+   {
+    "language": "bengali",
+    "lang_conf": 0.95,
+    "lang_reason": "bengali script",
+    "intent": "CHAT",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "engine": "core01",
+     "load_s": 0.36
+    }
+   }
+  ]
+ },
+ {
+  "id": "B_en",
+  "input": "What is a mountain?",
+  "language": "english",
+  "intent": "GENERAL_QUESTION",
+  "response_source": "NEURAL_MODEL",
+  "response": "Syaiarate is an area of the magicipl and clebtics, who was also called a stage in 170. It's highest-dody Solandela islands in a population of Aircuador. Roc",
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "GENERAL_QUESTION",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "engine": "core01",
+     "load_s": 0.36
+    }
+   }
+  ]
+ },
+ {
+  "id": "C_bl",
+  "input": "Mountain mane ki?",
+  "language": "english",
+  "intent": "CHAT",
+  "response_source": "NEURAL_MODEL",
+  "response": "The number of furs are on the city. The Bennymbon is an Over, which has a polloomant and is a greater or a lookingredients that it't beat is in it. Potesis is rice that the most",
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "CHAT",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "engine": "core01",
+     "load_s": 0.36
+    }
+   }
+  ]
+ },
+ {
+  "id": "D_unfamiliar",
+  "input": "What is the airspeed velocity of an unladen swallow in Dhaka?",
+  "language": "english",
+  "intent": "GENERAL_QUESTION",
+  "response_source": "NEURAL_MODEL",
+  "response": "The southernoon, it will have a good life to be sure. You can I do you't want to get too much as you can help your food and enjoy. If you could need to spend on a bigger or out with them about, this means that don’ve ask I'",
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "GENERAL_QUESTION",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "engine": "core01",
+     "load_s": 0.36
+    }
+   }
+  ]
+ },
+ {
+  "id": "E_prev_handler",
+  "input": "তোমার নাম কী?",
+  "language": "bengali",
+  "intent": "IDENTITY",
+  "response_source": "DETERMINISTIC_HANDLER",
+  "response": "আমি NexusAI — Hasibul তৈরি করা একটি স্বাধীন AI সহকারী। আমি নিজের Transformer মডেল ব্যবহার করি; কোনো বাইরের AI সার্ভিসে নির্ভর করি না।",
+  "diagnostics": [
+   {
+    "language": "bengali",
+    "lang_conf": 0.95,
+    "lang_reason": "bengali script",
+    "intent": "IDENTITY",
+    "model_used": null,
+    "route": "registry:identity_metadata",
+    "tool": null,
+    "neural_ran": false,
+    "fallback": false
+   }
+  ]
+ }
+]

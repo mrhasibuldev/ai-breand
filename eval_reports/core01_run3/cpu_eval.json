@@ -1,0 +1,169 @@
+{
+ "ckpt_meta": {
+  "step": 1341,
+  "epoch": 3,
+  "model_status": "PRETRAINING_COMPLETED",
+  "train_loss": 4.425850836355948,
+  "val_loss": 4.216854669429638
+ },
+ "params": 8842560,
+ "ram_mb": 382,
+ "total_gen_s": 23.6,
+ "avg_tok_s": 42.6,
+ "results": [
+  {
+   "cat": "en_intro",
+   "prompt": "Introduce yourself.",
+   "output": "The following are the best way to be a list of the same thing that you can get outside and you want to make sure you have a good choice for you're going to do note. You will take a car,",
+   "time_s": 0.92,
+   "new_tokens": 48
+  },
+  {
+   "cat": "en_ai",
+   "prompt": "What is artificial intelligence?",
+   "output": "The term \"The Fire\" is a model that the most important thing to be a good idea of the data. It is a way to get a car, and it's a lot of yourself. You can also",
+   "time_s": 1.11,
+   "new_tokens": 48
+  },
+  {
+   "cat": "en_learn",
+   "prompt": "Explain how a computer learns.",
+   "output": "The following are the most important thing to be a good choice of yourself? There are some things that you can do not have a great way to get a lot of your body, and you will take your own. You can also",
+   "time_s": 1.15,
+   "new_tokens": 48
+  },
+  {
+   "cat": "en_edu",
+   "prompt": "Why is education important?",
+   "output": "The most common way to be a good choice of the same thing. It is a lot of yourself and you can be able to get a greater. You will have a carry, but it't want to take a",
+   "time_s": 1.31,
+   "new_tokens": 48
+  },
+  {
+   "cat": "bn_who",
+   "prompt": "তুমি কে?",
+   "output": "The following are the most popular sports: 1. Africa, and a team is a greatest of the world. It has been known as either a game that have a player to beaching in the world's age",
+   "time_s": 1.27,
+   "new_tokens": 48
+  },
+  {
+   "cat": "bn_ai",
+   "prompt": "কৃত্রিম বুদ্ধিমত্তা কী?",
+   "output": "The first person is a team that the game is one of the best player. If you are noteed by the game, what's the most people will be able to get in the game?",
+   "time_s": 0.8,
+   "new_tokens": 43
+  },
+  {
+   "cat": "bn_learn",
+   "prompt": "মানুষ কীভাবে নতুন জিনিস শেখে?",
+   "output": "The first person is a number of fishing, which means that the total number of trighters in the second day. If there are 3/4 times as many more than the third week, how many days does each week",
+   "time_s": 1.1,
+   "new_tokens": 48
+  },
+  {
+   "cat": "bn_edu",
+   "prompt": "শিক্ষা কেন গুরুত্বপূর্ণ?",
+   "output": "The first person is a team that the game is one of the best player. If you are noteed by the game, what's the most people who have to be the game?",
+   "time_s": 0.81,
+   "new_tokens": 41
+  },
+  {
+   "cat": "bl_who",
+   "prompt": "Tumi ke?",
+   "output": "The first thing is a way to be the same as it. It takes him to get a carrying for a day and cannot be able to make sure that you will take yourself. If you want to buy some",
+   "time_s": 0.98,
+   "new_tokens": 48
+  },
+  {
+   "cat": "bl_ai",
+   "prompt": "AI kivabe kaj kore?",
+   "output": "The first person is a significant and the most important role in the world. It was an American professional football team that it's best player to be considered as well as a game, which is one of the greatest",
+   "time_s": 0.98,
+   "new_tokens": 48
+  },
+  {
+   "cat": "bl_solve",
+   "prompt": "Manush kivabe problem solve kore?",
+   "output": "The following are the most common types of frame, and a brilly. It is a mountains in the world's largest city. In the United States, the country has been known as a number of",
+   "time_s": 1.07,
+   "new_tokens": 48
+  },
+  {
+   "cat": "math1",
+   "prompt": "What is 17 times 23?",
+   "output": "The total number of goals in the first year, and the second half as many points as the age of the game. If there are 3 years older than the summer's age is 4 years old, then the age of",
+   "time_s": 0.97,
+   "new_tokens": 48
+  },
+  {
+   "cat": "math2",
+   "prompt": "If a shop has 100 apples and sells 37, how many remain?",
+   "output": "The total number of marbles is 50 + 20 = <<100+20=40>>40 pieces.",
+   "time_s": 0.35,
+   "new_tokens": 18
+  },
+  {
+   "cat": "math3",
+   "prompt": "Solve: 2x + 6 = 16.",
+   "output": "Ale is a total of 3 times as many more than the number of fish in the first day, and the second weekday's third week. How much did Jenny have?",
+   "time_s": 0.91,
+   "new_tokens": 42
+  },
+  {
+   "cat": "reason1",
+   "prompt": "A person has three tasks but only enough time to complete two. How should they decide?",
+   "output": "The first thing is a lot of the same way that are: 1. You can be able to get a good choice for yourself and you will have a greater. 2. If you want to make sure you need to find how many",
+   "time_s": 1.25,
+   "new_tokens": 48
+  },
+  {
+   "cat": "reason2",
+   "prompt": "If two sources provide conflicting information, how should an AI investigate?",
+   "output": "The first person can be able to pay a speed of the same amount of time. It will take him to get a car and then it is a total of 2 hours per hour for each day. How much does he need to make",
+   "time_s": 1.23,
+   "new_tokens": 48
+  },
+  {
+   "cat": "reason3",
+   "prompt": "What should an AI do when it does not know the answer?",
+   "output": "The first person is a good idea that can be able to get a car. It's important for a way to make sure you will have a looking, and you want to take yourself. You can also need to",
+   "time_s": 1.69,
+   "new_tokens": 48
+  },
+  {
+   "cat": "dec1",
+   "prompt": "A user requests something potentially harmful. What should the AI consider before responding?",
+   "output": "The first thing is a good way to be able to get a car, and you cannot be done by yourself. You will have a lot of your body. If you are going to make sure you want to do not",
+   "time_s": 1.23,
+   "new_tokens": 48
+  },
+  {
+   "cat": "dec2",
+   "prompt": "Two solutions exist: one is faster, the other is safer. How should the AI choose?",
+   "output": "The first person can be a good way to get a lot of your body and you are note. If you want to make sure you will have a carbooks like a bathrooms, or a pressure",
+   "time_s": 1.23,
+   "new_tokens": 48
+  },
+  {
+   "cat": "dec3",
+   "prompt": "When should an AI ask a clarifying question instead of guessing?",
+   "output": "The first thing is the best way to be able to get a good idea that you can be done. You will have a carry, and you want to make yourself. If you are going on your mind, you't",
+   "time_s": 1.26,
+   "new_tokens": 48
+  },
+  {
+   "cat": "abstain",
+   "prompt": "What is the capital of Zzyzxq?",
+   "output": "The city is a country in the United States, which is the largest city of the world's largest city. It is one of the most population of the United States and the city of the United States.",
+   "time_s": 0.95,
+   "new_tokens": 46
+  },
+  {
+   "cat": "abstain2",
+   "prompt": "Who won the 2035 World Cup?",
+   "output": "The first season is a team of the second game. It was the first two years older than the age of the NBA Championships, and scored 2 goals in the third year. How many points did he have left?",
+   "time_s": 1.02,
+   "new_tokens": 48
+  }
+ ]
+}

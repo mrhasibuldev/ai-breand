@@ -1,0 +1,23 @@
+{
+ "core": "core01_conversational",
+ "dataset": "unified_conversational_v4",
+ "record_count": 564,
+ "categories": [
+  "greeting",
+  "identity",
+  "thanks",
+  "farewell",
+  "smalltalk",
+  "qa",
+  "everyday_help",
+  "social",
+  "multi_turn",
+  "mixed_lang",
+  "clarification",
+  "uncertainty",
+  "tech_support"
+ ],
+ "note": "trilingual conversational+multi-turn",
+ "training_eligible": true,
+ "validation": "rule_based+pending_human_review"
+}

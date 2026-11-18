@@ -1,0 +1,7 @@
+{
+ "approved": 645,
+ "rejected": 27,
+ "reject_reasons": {
+  "dup_question": 27
+ }
+}

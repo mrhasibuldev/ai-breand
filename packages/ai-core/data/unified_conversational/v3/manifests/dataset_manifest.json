@@ -1,0 +1,103 @@
+{
+ "version": "unified_conversational_v3",
+ "seed": 42,
+ "total_records": 1947,
+ "rejected": 202,
+ "v2_carryover": 1054,
+ "splits": {
+  "train": 1755,
+  "validation": 96,
+  "test": 96
+ },
+ "groups": {
+  "total": 1933,
+  "test_groups": 96,
+  "val_groups": 96
+ },
+ "statistics": {
+  "train": {
+   "n": 1755,
+   "lang": {
+    "en": 1019,
+    "bn": 456,
+    "banglish": 262,
+    "mixed": 18
+   },
+   "category": {
+    "knowledge": 105,
+    "qa": 128,
+    "everyday_help": 122,
+    "math": 1089,
+    "instruction": 14,
+    "greeting": 6,
+    "self_correction": 8,
+    "social": 29,
+    "logic": 52,
+    "identity": 13,
+    "uncertainty": 37,
+    "tech_support": 20,
+    "multi_turn": 58,
+    "refusal": 4,
+    "reasoning": 13,
+    "smalltalk": 17,
+    "mixed_lang": 18,
+    "decision": 7,
+    "clarification": 5,
+    "farewell": 6,
+    "thanks": 4
+   },
+   "avg_turns": 1.09,
+   "multi_turn": 58
+  },
+  "validation": {
+   "n": 96,
+   "lang": {
+    "banglish": 10,
+    "en": 55,
+    "bn": 31
+   },
+   "category": {
+    "math": 61,
+    "everyday_help": 5,
+    "knowledge": 8,
+    "smalltalk": 1,
+    "qa": 7,
+    "logic": 4,
+    "uncertainty": 1,
+    "reasoning": 2,
+    "social": 1,
+    "decision": 2,
+    "multi_turn": 1,
+    "farewell": 1,
+    "instruction": 1,
+    "self_correction": 1
+   },
+   "avg_turns": 1.03,
+   "multi_turn": 1
+  },
+  "test": {
+   "n": 96,
+   "lang": {
+    "banglish": 17,
+    "en": 49,
+    "bn": 30
+   },
+   "category": {
+    "math": 66,
+    "smalltalk": 1,
+    "uncertainty": 2,
+    "qa": 9,
+    "knowledge": 6,
+    "multi_turn": 5,
+    "social": 1,
+    "logic": 2,
+    "instruction": 1,
+    "everyday_help": 3
+   },
+   "avg_turns": 1.11,
+   "multi_turn": 5
+  }
+ },
+ "schema": "messages:[{role,content}] + capabilities[] \u2014 ChatSFTDataset compatible",
+ "note": "v2 carryover + multi-turn scenario engine + authored trilingual banks + procedural verified math/logic + uncertainty/knowledge/self-correction. No external AI."
+}

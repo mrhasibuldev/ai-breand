@@ -1,18 +1,15 @@
-"""
-Production designation for Phase 1 trained model
-"""
-
 {
-  "model_name": "MediumTransformer",
-  "model_version": "1.0.0",
+  "model_name": "Core-01",
+  "model_version": "1.0.0-run3",
   "tokenizer_name": "SentencePiece BPE",
   "tokenizer_version": "1.0.0",
   "tokenizer_path": "data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
   "vocab_size": 8000,
-  "checkpoint_path": "checkpoints_medium/final_model.pt",
-  "trained_at": "2026-11-05",
-  "dataset": "Phase 10",
+  "checkpoint_path": "checkpoints_core01_run3/checkpoint_final.pt",
+  "trained_at": "2026-11-09",
+  "dataset": "english_first+run4-corpus(prepared)",
   "dataset_samples": 1812,
-  "parameters": 2452544,
-  "perplexity": 2.83
+  "parameters": 8842560,
+  "perplexity": 2.83,
+  "note": "primary via model_registry; medium kept as fallback"
 }

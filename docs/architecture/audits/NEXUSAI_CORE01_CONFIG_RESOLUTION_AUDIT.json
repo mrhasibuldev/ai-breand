@@ -1,0 +1,22 @@
+{
+  "audit": "NEXUSAI_CORE01_CONFIG_RESOLUTION",
+  "date": "2026-11-16",
+  "root_cause": "validation script passed dict/no config arg; real ctor requires NexusAICore01Config — script limitation, not model defect",
+  "config_class": "nexusai_core_01.config.model_config.NexusAICore01Config",
+  "config_construction": "NexusAICore01Config() defaults + setattr CLI overrides (pretraining_driver.build_config L94-115); ckpt config NOT used for arch",
+  "defaults": {"vocab_size": 8000, "d_model": 256, "n_heads": 8, "d_ff": 1024, "max_len": 512, "pad_id": 0, "eos_id": 3},
+  "model_ctor": "NexusAICore01(config) — core01/transformer.py",
+  "tokenizer": {"class": "core01.tokenizer_interface.NexusAITokenizer", "resolution": "args.tokenizer or config.tokenizer_path or pkg default (driver L189-194)", "packaged": "nexusai/tokenizer/sp_bpe_8k.model", "vocab": 8000},
+  "dataset": {"class": "core01.dataset.PackedTextDataset", "packing": "max_len+1 blocks, input=block[:-1], target=block[1:]", "schema": ["text","category","lang","source"], "field": "text"},
+  "loss": {"impl": "model(input_ids, targets) -> F.cross_entropy(logits.view(-1,8000), targets.view(-1), ignore_index=pad_id) mean", "shift": "dataset-level", "file": "core01/transformer.py L367-374", "accum_scaling": "loss/group_size (training.py ~L320)"},
+  "engine": {"class": "core01.training.PretrainingEngine", "optimizer": "AdamW(lr,weight_decay)", "scheduler": "LambdaLR warmup via setup_scheduler", "scaler": "torch.amp.GradScaler('cuda') fp16 only", "resume": "load_checkpoint restores model+opt+sched+scaler+rng+epoch+step"},
+  "epoch_semantics": {"loop": "range(current_epoch, epochs)", "current_epoch": 3, "epochs_arg": 5, "additional_epochs": 2, "final_epoch": 5, "step_continue": "1341->8000"},
+  "validation_cell": "docs/notebooks/CORE01_FINAL_COLAB_VALIDATION_CELL.py",
+  "checks": {
+    "config_resolution": "PASS", "strict_load": "PASS_local", "tokenizer": "PASS",
+    "dataset_pipeline": "PASS", "loss_identified": "PASS", "resume_mechanics": "PASS",
+    "live_colab_gpu": "NOT_TESTED", "training": "NOT_RUN"
+  },
+  "classification": "B_RESOLVED__PENDING_LIVE_CELL__A_IF_PASS",
+  "proposed_run4": {"epochs": 5, "max_steps": 8000, "batch": 8, "accum": 4, "precision": "fp16", "output": "/content/nexusai_run4", "executed": false}
+}

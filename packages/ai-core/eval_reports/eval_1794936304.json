@@ -1,0 +1,116 @@
+{
+ "timestamp": "2026-11-17T17:25:04.755326Z",
+ "model": "NexusAI Core-01",
+ "checkpoint": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+ "params": 8842560,
+ "device": "cpu",
+ "max_new_tokens": 32,
+ "total_s": 5.6,
+ "n": 7,
+ "empty": 3,
+ "per_lang": {
+  "bn": {
+   "n": 2,
+   "empty": 2
+  },
+  "en": {
+   "n": 2,
+   "empty": 0
+  },
+  "banglish": {
+   "n": 2,
+   "empty": 0
+  },
+  "reason": {
+   "n": 1,
+   "empty": 1
+  }
+ },
+ "results": [
+  {
+   "id": "bn",
+   "lang": "bn",
+   "prompt": "তোমার নাম কী?",
+   "output": "",
+   "warning": "EMPTY_GENERATION",
+   "empty": true,
+   "latency_ms": 71.5,
+   "repetition_flag": false,
+   "prompt_leak_flag": false,
+   "bn_script_ratio": 0.0
+  },
+  {
+   "id": "bn2",
+   "lang": "bn",
+   "prompt": "কৃত্রিম বুদ্ধিমত্তা কী?",
+   "output": "",
+   "warning": "EMPTY_GENERATION",
+   "empty": true,
+   "latency_ms": 101.3,
+   "repetition_flag": false,
+   "prompt_leak_flag": false,
+   "bn_script_ratio": 0.0
+  },
+  {
+   "id": "en",
+   "lang": "en",
+   "prompt": "What is your name?",
+   "output": "The difference between the following are some of the most important thing. If you can be a good choice for a lot of water, or a carbooks and",
+   "warning": null,
+   "empty": false,
+   "latency_ms": 1495.5,
+   "repetition_flag": false,
+   "prompt_leak_flag": false,
+   "bn_script_ratio": 0.0
+  },
+  {
+   "id": "en2",
+   "lang": "en",
+   "prompt": "Why do humans need water?",
+   "output": "First find the total number of fish: 3 * 2 = <<2*2=4>>4 pairs Then add the number of turtles by the number of oz",
+   "warning": null,
+   "empty": false,
+   "latency_ms": 1126.2,
+   "repetition_flag": false,
+   "prompt_leak_flag": false,
+   "bn_script_ratio": 0.0
+  },
+  {
+   "id": "bg",
+   "lang": "banglish",
+   "prompt": "Tumi ki korte paro?",
+   "output": "The Roman is a sundography, which is the most popular in the United States. It was also known as a country of the",
+   "warning": null,
+   "empty": false,
+   "latency_ms": 1897.7,
+   "repetition_flag": false,
+   "prompt_leak_flag": false,
+   "bn_script_ratio": 0.0
+  },
+  {
+   "id": "bg2",
+   "lang": "banglish",
+   "prompt": "Tomar naam ki?",
+   "output": "The Roman is a sunt of the city. It was founded in 1965 and the United States, which was the largest city's",
+   "warning": null,
+   "empty": false,
+   "latency_ms": 861.9,
+   "repetition_flag": false,
+   "prompt_leak_flag": false,
+   "bn_script_ratio": 0.0
+  },
+  {
+   "id": "rs",
+   "lang": "reason",
+   "prompt": "If I have 3 apples and buy 2 more, how many apples do I have?",
+   "output": "",
+   "warning": "EMPTY_GENERATION",
+   "empty": true,
+   "latency_ms": 24.5,
+   "repetition_flag": false,
+   "prompt_leak_flag": false,
+   "bn_script_ratio": 0.0
+  }
+ ],
+ "note": "Mechanical metrics only — NOT semantic quality. Human review required."
+}

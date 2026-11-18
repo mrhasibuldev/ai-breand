@@ -1,0 +1,88 @@
+{
+ "version": "unified_conversational_v1",
+ "seed": 42,
+ "total_records": 645,
+ "rejected": 27,
+ "splits": {
+  "train": 581,
+  "validation": 32,
+  "test": 32
+ },
+ "groups": {
+  "total": 643,
+  "test_groups": 32,
+  "val_groups": 32
+ },
+ "statistics": {
+  "train": {
+   "n": 581,
+   "lang": {
+    "bn": 215,
+    "en": 279,
+    "banglish": 84,
+    "mixed": 3
+   },
+   "category": {
+    "instruction": 15,
+    "math": 287,
+    "qa": 108,
+    "greeting": 6,
+    "everyday_help": 49,
+    "social": 13,
+    "knowledge": 33,
+    "identity": 13,
+    "uncertainty": 17,
+    "multi_turn": 6,
+    "refusal": 4,
+    "smalltalk": 17,
+    "mixed_lang": 3,
+    "farewell": 6,
+    "thanks": 4
+   },
+   "avg_turns": 1.01,
+   "multi_turn": 6
+  },
+  "validation": {
+   "n": 32,
+   "lang": {
+    "bn": 14,
+    "en": 14,
+    "banglish": 4
+   },
+   "category": {
+    "everyday_help": 2,
+    "math": 17,
+    "knowledge": 3,
+    "smalltalk": 1,
+    "qa": 6,
+    "uncertainty": 1,
+    "social": 1,
+    "farewell": 1
+   },
+   "avg_turns": 1.0,
+   "multi_turn": 0
+  },
+  "test": {
+   "n": 32,
+   "lang": {
+    "banglish": 5,
+    "bn": 13,
+    "en": 14
+   },
+   "category": {
+    "math": 16,
+    "smalltalk": 1,
+    "qa": 8,
+    "multi_turn": 2,
+    "knowledge": 2,
+    "instruction": 1,
+    "everyday_help": 1,
+    "uncertainty": 1
+   },
+   "avg_turns": 1.06,
+   "multi_turn": 2
+  }
+ },
+ "schema": "messages:[{role,content}] compatible with core01/sft_dataset.py",
+ "note": "Authored seeds + deterministic procedural math (verified) + documented paraphrase variants. No external AI. Question/prefix dedup; conversation-group-atomic splits."
+}

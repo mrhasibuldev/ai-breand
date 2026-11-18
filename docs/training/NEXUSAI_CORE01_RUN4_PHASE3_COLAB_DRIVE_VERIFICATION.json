@@ -1,0 +1,36 @@
+{
+ "phase": 3,
+ "date": "2026-11-11",
+ "scope": "verification_only",
+ "local_verification": "PASS",
+ "real_colab_verification": "NOT_TESTED",
+ "full_resume_verification": "PARTIAL",
+ "drive_checkpoint": "PENDING_COLAB",
+ "repo_checkpoint": {
+  "size": 106777501,
+  "sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830"
+ },
+ "bundle": {
+  "size": 81212338,
+  "sha256": "da4fe95265555ad4d37814846e0951d3eec48adb76c5a2b455aa346fde1db963"
+ },
+ "notebook": "docs/notebooks/NEXUSAI_CORE01_RUN4_SINGLE_UPLOAD.ipynb",
+ "notebook_cells": 18,
+ "resume_state": {
+  "model": true,
+  "optimizer": true,
+  "scheduler_last_epoch": 1341,
+  "scaler": true,
+  "rng": [
+   "python",
+   "numpy",
+   "torch_cpu",
+   "torch_cuda"
+  ],
+  "epoch": 3,
+  "step": 1341
+ },
+ "go_no_go": "NO_GO_FOR_TRAINING",
+ "training_started": false,
+ "assets_modified": false
+}

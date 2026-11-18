@@ -1,0 +1,8 @@
+{
+ "approved": 1947,
+ "rejected": 202,
+ "reject_reasons": {
+  "foreign_script_corruption": 33,
+  "dup_question": 169
+ }
+}

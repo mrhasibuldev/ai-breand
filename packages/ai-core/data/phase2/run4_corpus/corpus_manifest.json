@@ -1,0 +1,31 @@
+{
+ "seed": 42,
+ "components": {
+  "bangla_wikipedia_mit": {
+   "sampled": 45000,
+   "category": "bangla_general"
+  },
+  "sangraha_bengali": {
+   "sampled": 9000,
+   "category": "bangla_general"
+  },
+  "bongchat_v1": {
+   "sampled": 30000,
+   "category": "bangla_instruction"
+  },
+  "english_first": {
+   "docs": 61960,
+   "category": "english_general"
+  },
+  "tinystories": {
+   "docs": 60000,
+   "category": "english_simple"
+  },
+  "reasoning_v1": {
+   "base_docs": 3411,
+   "repeats": 3,
+   "emitted": 10233
+  }
+ },
+ "total_docs": 216193
+}

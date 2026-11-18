@@ -1,0 +1,13 @@
+{
+ "core": "core03_math_logic",
+ "dataset": "unified_conversational_v4",
+ "record_count": 485,
+ "categories": [
+  "math",
+  "logic",
+  "reasoning"
+ ],
+ "note": "verified math+logic (downsampled for balance)",
+ "training_eligible": true,
+ "validation": "rule_based+pending_human_review"
+}

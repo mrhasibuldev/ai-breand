@@ -319,6 +319,7 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     # ---- Train ----
     interrupted = False
+    steps_at_start = engine.current_step
     try:
         for epoch in range(engine.current_epoch, args.epochs):
             engine.current_epoch = epoch
@@ -341,6 +342,24 @@ def main(argv: Optional[List[str]] = None) -> int:
                 filename="checkpoint_last.pt"
             )
             print(f"epoch {epoch + 1} checkpoint -> {path}", flush=True)
+
+        # Zero-step guard: if the epoch loop ran but no optimizer step
+        # executed (e.g. epochs <= current_epoch), this is NOT training.
+        # Save a non-final forensic checkpoint and fail — never mark
+        # PRETRAINING_COMPLETED on zero work.
+        if engine.current_step == steps_at_start:
+            engine.save_checkpoint(
+                epoch=engine.current_epoch,
+                train_loss=state["last_train_loss"],
+                val_loss=state["last_val_loss"],
+                filename="checkpoint_zero_steps.pt", finalize=False
+            )
+            raise RuntimeError(
+                f"ZERO training steps executed "
+                f"(current_epoch={engine.current_epoch}, "
+                f"target_epochs={args.epochs}, step={engine.current_step}). "
+                f"Check --epochs vs checkpoint epoch; refusing to mark "
+                f"PRETRAINING_COMPLETED.")
 
         # All configured epochs completed successfully -> final checkpoint
         # marked PRETRAINING_COMPLETED (SFT gate will accept it).
@@ -392,6 +411,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     print("=" * 60)
     print(f"done. elapsed={elapsed:.0f}s "
           f"steps={engine.current_step} "
+          f"steps_executed={engine.current_step - steps_at_start} "
           f"interrupted={interrupted}")
     print(f"model_status -> checkpoint metadata reflects training state; "
           f"verify before any downstream use.")

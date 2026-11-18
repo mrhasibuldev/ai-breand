@@ -1,0 +1,95 @@
+{
+  "tests": [
+    {
+      "name": "original_ckpt_pre_hash",
+      "result": "PASS",
+      "evidence": "size=106777501 sha=ad515cadea433d17\u2026"
+    },
+    {
+      "name": "D1_synthetic_roundtrip",
+      "result": "PASS",
+      "evidence": "epoch=2 step=99"
+    },
+    {
+      "name": "D2_missing_ckpt",
+      "result": "PASS",
+      "evidence": "FileNotFoundError"
+    },
+    {
+      "name": "D3_corrupt_ckpt",
+      "result": "PASS",
+      "evidence": "UnpicklingError"
+    },
+    {
+      "name": "D4_incompatible_sd",
+      "result": "PASS",
+      "evidence": "RuntimeError"
+    },
+    {
+      "name": "E0_pre_step",
+      "result": "PASS",
+      "evidence": "step=0 epoch=0"
+    },
+    {
+      "name": "E1_run3_load",
+      "result": "PASS",
+      "evidence": "epoch=3 step=1341 (0.6s)"
+    },
+    {
+      "name": "E1b_model_params",
+      "result": "PASS",
+      "evidence": "params=8842560"
+    },
+    {
+      "name": "E1c_scaler_cpu",
+      "result": "PASS",
+      "evidence": "GradScaler=None on CPU/fp32 \u2014 scaler state skipped per load_checkpoint logic (verified in source)"
+    },
+    {
+      "name": "E1d_scheduler_restored",
+      "result": "PASS",
+      "evidence": "last_epoch=1341"
+    },
+    {
+      "name": "E2_one_step",
+      "result": "PASS",
+      "evidence": "loss=12.4020 finite=True grads_finite=True step 1341->1342 tensors_changed=99"
+    },
+    {
+      "name": "E2b_exactly_one",
+      "result": "PASS",
+      "evidence": "current_step=1342"
+    },
+    {
+      "name": "E5_temp_ckpt_saved",
+      "result": "PASS",
+      "evidence": "path=C:\\Users\\Nusaiba\\AppData\\Local\\Temp\\nexusai_smoke_q85un1g7\\smoke_step.pt size=106770075 sha=f7236ce35580ed33\u2026 status=PRETRAINING_IN_PROGRESS (finalize=False)"
+    },
+    {
+      "name": "E5b_temp_ckpt_reload",
+      "result": "PASS",
+      "evidence": "step=1342 epoch=3 weights_match=True saved_status=PRETRAINING_IN_PROGRESS"
+    },
+    {
+      "name": "F1_original_unchanged",
+      "result": "PASS",
+      "evidence": "sha_match=True"
+    }
+  ],
+  "evidence": {
+    "temp_dir": "C:\\Users\\Nusaiba\\AppData\\Local\\Temp\\nexusai_smoke_q85un1g7",
+    "temp_ckpt": "C:\\Users\\Nusaiba\\AppData\\Local\\Temp\\nexusai_smoke_q85un1g7\\smoke_step.pt",
+    "temp_ckpt_size": 106770075,
+    "temp_ckpt_sha": "f7236ce35580ed33308b8c589c872e2cded32f2253cbaed24db30a2d90b35e88",
+    "original_ckpt": "packages/ai-core/models/checkpoints_core01_run3/checkpoint_final.pt",
+    "original_sha_pre": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+    "original_sha_post": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+    "restored_epoch": 3,
+    "restored_step": 1341,
+    "post_step": 1342,
+    "loss": 12.401991844177246,
+    "smoke_status": "PRETRAINING_IN_PROGRESS",
+    "device": "cpu",
+    "precision": "fp32"
+  }
+}

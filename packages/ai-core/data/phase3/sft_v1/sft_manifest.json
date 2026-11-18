@@ -1,0 +1,22 @@
+{
+ "seed": 42,
+ "total_pairs": 536,
+ "lang_dist": {
+  "en": 345,
+  "bn": 16,
+  "banglish": 175
+ },
+ "category_dist": {
+  "identity": 12,
+  "greeting": 7,
+  "thanks": 4,
+  "facts": 25,
+  "safety": 4,
+  "math_en": 161,
+  "math_bg": 161,
+  "math_en2": 162
+ },
+ "format": "chatml-lite {messages:[user,assistant]}",
+ "note": "Deterministic templates only \u2014 no external AI. Small but clean; expand with human-reviewed data later.",
+ "sha256": "4c0d7172b673d2c8e8e69364f2a85516799c2920494214e420bb88159807ffac"
+}

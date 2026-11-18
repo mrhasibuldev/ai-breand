@@ -1,0 +1,285 @@
+{
+ "model": "run3",
+ "ckpt_sha": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+ "results": [
+  {
+   "id": "bn_name",
+   "cat": "bn",
+   "prompt": "তোমার নাম কী?",
+   "output": "",
+   "warning": "EMPTY_GENERATION",
+   "empty": true,
+   "latency_s": 0.01
+  },
+  {
+   "id": "bn_do",
+   "cat": "bn",
+   "prompt": "তুমি কী করতে পারো?",
+   "output": "",
+   "warning": "EMPTY_GENERATION",
+   "empty": true,
+   "latency_s": 0.01
+  },
+  {
+   "id": "bn_water",
+   "cat": "bn",
+   "prompt": "মানুষ কেন পানি পান করে?",
+   "output": "",
+   "warning": "EMPTY_GENERATION",
+   "empty": true,
+   "latency_s": 0.01
+  },
+  {
+   "id": "bn_tree",
+   "cat": "bn",
+   "prompt": "গাছ আমাদের কী উপকার করে?",
+   "output": "",
+   "warning": "EMPTY_GENERATION",
+   "empty": true,
+   "latency_s": 0.01
+  },
+  {
+   "id": "bn_rain",
+   "cat": "bn",
+   "prompt": "বৃষ্টি কেন হয়?",
+   "output": "",
+   "warning": "EMPTY_GENERATION",
+   "empty": true,
+   "latency_s": 0.01
+  },
+  {
+   "id": "en_name",
+   "cat": "en",
+   "prompt": "What is your name?",
+   "output": "The difference between the following are some of the most important thing. If you can be a good choice for a lot of water, or a carbooks and it's to make sure that you will have a good option.",
+   "warning": null,
+   "empty": false,
+   "latency_s": 0.76
+  },
+  {
+   "id": "en_do",
+   "cat": "en",
+   "prompt": "What can you do?",
+   "output": "",
+   "warning": "EMPTY_GENERATION",
+   "empty": true,
+   "latency_s": 0.02
+  },
+  {
+   "id": "en_water",
+   "cat": "en",
+   "prompt": "Why do humans need water?",
+   "output": "First find the total number of fish: 3 * 2 = <<2*2=4>>4 pairs Then add the number of turtles by the number of ozle: 6 + 4 + 5 = <<6+3=15>>15 feet Then multiply that amount",
+   "warning": null,
+   "empty": false,
+   "latency_s": 0.85
+  },
+  {
+   "id": "en_edu",
+   "cat": "en",
+   "prompt": "What is the purpose of education?",
+   "output": "The term \"Itor\" or a model that are the most important to be used for the data.",
+   "warning": null,
+   "empty": false,
+   "latency_s": 0.38
+  },
+  {
+   "id": "en_sun",
+   "cat": "en",
+   "prompt": "Explain why plants need sunlight.",
+   "output": "The following are the most important thing to be a good idea of yourself and you can make sure you want to get a lot of your body.",
+   "warning": null,
+   "empty": false,
+   "latency_s": 0.53
+  },
+  {
+   "id": "bg_do",
+   "cat": "banglish",
+   "prompt": "tumi ki korte paro?",
+   "output": "The laulletes is a sundrid, which is the most of the northwriter. It is a machine that it is also known as a mountained by the city in the",
+   "warning": null,
+   "empty": false,
+   "latency_s": 1.33
+  },
+  {
+   "id": "bg_water",
+   "cat": "banglish",
+   "prompt": "manush pani khay keno?",
+   "output": "The number of fish is the total number of clex = <<3*50=200>>2000",
+   "warning": null,
+   "empty": false,
+   "latency_s": 0.51
+  },
+  {
+   "id": "bg_rain",
+   "cat": "banglish",
+   "prompt": "brishti keno hoy?",
+   "output": "The lighth of the sundridge, which is a mountained by the northwritory.",
+   "warning": null,
+   "empty": false,
+   "latency_s": 0.69
+  },
+  {
+   "id": "bg_tree",
+   "cat": "banglish",
+   "prompt": "gach amader ki upokar kore?",
+   "output": "The first round of the second day, which is a total of 2 * 3 = <<2*2=4>>4 days. #### 4",
+   "warning": null,
+   "empty": false,
+   "latency_s": 0.45
+  },
+  {
+   "id": "bg_name",
+   "cat": "banglish",
+   "prompt": "tomar naam ki?",
+   "output": "The Roman is a sunt of the city. It is an American politico, which is a country in the United States and the world's largest city.",
+   "warning": null,
+   "empty": false,
+   "latency_s": 0.64
+  },
+  {
+   "id": "rs_apple",
+   "cat": "reason",
+   "prompt": "If I have 3 apples and buy 2 more, how many apples do I have?",
+   "output": "",
+   "warning": "EMPTY_GENERATION",
+   "empty": true,
+   "latency_s": 0.01
+  },
+  {
+   "id": "rs_day",
+   "cat": "reason",
+   "prompt": "If today is Monday, what day will it be after 3 days?",
+   "output": "",
+   "warning": "EMPTY_GENERATION",
+   "empty": true,
+   "latency_s": 0.02
+  },
+  {
+   "id": "rs_cat",
+   "cat": "reason",
+   "prompt": "A room has 4 corners. Each corner has one cat. How many cats are there?",
+   "output": "The total number of fish is 3 * 2 = <<2*2=4>>4 pieces of water balls in the box. #### 6",
+   "warning": null,
+   "empty": false,
+   "latency_s": 0.45
+  },
+  {
+   "id": "rs_spoon",
+   "cat": "reason",
+   "prompt": "Why does a metal spoon become hot when placed in hot tea?",
+   "output": "",
+   "warning": "EMPTY_GENERATION",
+   "empty": true,
+   "latency_s": 0.01
+  },
+  {
+   "id": "ins_sun",
+   "cat": "inst",
+   "prompt": "Answer in exactly one sentence: What is the Sun?",
+   "output": "The first person's highest number of people who are a greater. There are many different ways to be the most important for the same time, and the best way to get a lot of themselves.",
+   "warning": null,
+   "empty": false,
+   "latency_s": 0.82
+  },
+  {
+   "id": "ins_books",
+   "cat": "inst",
+   "prompt": "Give three benefits of reading books.",
+   "output": "If you have a list of the following as either a mean, how many people are there?",
+   "warning": null,
+   "empty": false,
+   "latency_s": 0.27
+  },
+  {
+   "id": "ins_bn",
+   "cat": "inst",
+   "prompt": "Explain gravity in simple Bengali.",
+   "output": "The Systemy is a mountains of the United States and the world's largest city.",
+   "warning": null,
+   "empty": false,
+   "latency_s": 0.34
+  },
+  {
+   "id": "ins_num",
+   "cat": "inst",
+   "prompt": "Reply only with the number: What is 7 + 5?",
+   "output": "",
+   "warning": "EMPTY_GENERATION",
+   "empty": true,
+   "latency_s": 0.01
+  },
+  {
+   "id": "ctx_name",
+   "cat": "ctx",
+   "prompt": "My name is Rahim. What is my name?",
+   "output": "The difference between the following are some of the city and the United States, which is a country that is located in the world's largest city.",
+   "warning": null,
+   "empty": false,
+   "latency_s": 0.45
+  },
+  {
+   "id": "ctx_sci",
+   "cat": "ctx",
+   "prompt": "I like learning science. What subject do I like?",
+   "output": "",
+   "warning": "EMPTY_GENERATION",
+   "empty": true,
+   "latency_s": 0.01
+  },
+  {
+   "id": "ctx_fact",
+   "cat": "ctx",
+   "prompt": "Explain one interesting science fact to me.",
+   "output": "The first person is a greatest of the most important thing for the best way, and it's a good idea that you can be able to get a lot of yourself.",
+   "warning": null,
+   "empty": false,
+   "latency_s": 0.57
+  },
+  {
+   "id": "know_dna",
+   "cat": "know",
+   "prompt": "What is DNA?",
+   "output": "The FIFAROUS. It was the first-BAmerican, and the CECLMA Championships in 2005.",
+   "warning": null,
+   "empty": false,
+   "latency_s": 0.49
+  },
+  {
+   "id": "know_capital",
+   "cat": "know",
+   "prompt": "What is the capital of Japan?",
+   "output": "The city is a country that is an American football team. It is a greatest player in the world's age of the United States, and the most population of the National Park.",
+   "warning": null,
+   "empty": false,
+   "latency_s": 0.67
+  },
+  {
+   "id": "open_study",
+   "cat": "open",
+   "prompt": "Explain how a student can improve their learning habits.",
+   "output": "",
+   "warning": "EMPTY_GENERATION",
+   "empty": true,
+   "latency_s": 0.01
+  },
+  {
+   "id": "open_help",
+   "cat": "open",
+   "prompt": "Write a short paragraph about helping other people.",
+   "output": "The first person's mother is the best way to get a lot of themsearch for a good choice.",
+   "warning": null,
+   "empty": false,
+   "latency_s": 0.36
+  },
+  {
+   "id": "open_env",
+   "cat": "open",
+   "prompt": "Explain why protecting the environment is important.",
+   "output": "The data of a data that can be used to use a specific task, and data for a data engineer.",
+   "warning": null,
+   "empty": false,
+   "latency_s": 0.34
+  }
+ ]
+}

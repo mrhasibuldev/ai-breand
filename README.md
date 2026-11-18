@@ -71,12 +71,17 @@ NexusAI's next-generation independent model, **Core-01**, is a custom 6-layer Tr
 
 ### Own AI Model
 
-✅ **Custom Neural Architecture**
-- NexusAI uses its own MediumTransformer architecture
-- Trained on Phase 10 dataset (1,812 samples)
-- 2.47 million parameters
-- SentencePiece BPE tokenizer with 8,000 vocabulary
+✅ **Four-Core Model Family** (shared Transformer implementation, independent weights)
+- `packages/ai-core/core01/transformer.py` — one decoder-only Transformer used by all cores
+- Core-01: 8.84M params — general/base LM (`checkpoints_core01_run3`, PRETRAINING_COMPLETED)
+- Core-02: 20.35M params — reasoning specialist (`checkpoints_core02_sft_v2`)
+- Core-03: 8.84M params — mathematics specialist (`checkpoints_core03_sft_v2`)
+- Core-04: 33.42M params — knowledge specialist (`checkpoints_core04_sft_v3`)
+- Legacy MediumTransformer: 2.45M params — emergency fallback only
+- SentencePiece BPE tokenizer with 8,000 vocabulary (shared)
 - No external AI APIs used as primary intelligence
+
+> **Honest status:** all four cores strict-load and generate genuine neural text, but none is a working conversational model yet — see [Model Inventory](#model-inventory-four-cores) and `docs/architecture/audits/NEXUSAI_FOUR_CORE_TEST_AND_BENCHMARK_REPORT.md`.
 
 ✅ **Training Infrastructure**
 - Complete training pipeline in `packages/ai-core/training/`
@@ -141,19 +146,19 @@ NexusAI's next-generation independent model, **Core-01**, is a custom 6-layer Tr
 
 ## AI Brain Architecture
 
-### Neural Network
+### Neural Network — Four-Core Family
 
-**Model**: MediumTransformer (custom implementation)
-- **Location**: `packages/ai-core/neural/medium_transformer.py`
-- **Parameters**: 2,468,928
-- **Architecture**: Decoder-only Transformer
-- **Configuration**:
-  - `d_model`: 128 (embedding dimension)
-  - `n_layers`: 2 (transformer layers)
-  - `n_heads`: 2 (attention heads)
-  - `d_ff`: 512 (feed-forward dimension)
-  - `max_len`: 128 (context length)
-  - `vocab_size`: 8,000 (vocabulary size)
+All cores share one implementation: `packages/ai-core/core01/transformer.py` (`NexusAICore01`), a decoder-only Transformer with token embeddings, sinusoidal positional encoding, pre-norm blocks, multi-head self-attention, GELU feed-forward networks, residual connections, and a final output projection. They differ only in configuration and weights — **not** in architecture code.
+
+| Core | d_model | Layers | Heads | d_ff | max_len | Params | Checkpoint | Verified role |
+|---|---|---|---|---|---|---|---|---|
+| Core-01 | 256 | 6 | 8 | 1024 | 512 | 8,842,560 | `checkpoints_core01_run3/checkpoint_final.pt` (LFS) | base/general LM — PRETRAINING_COMPLETED, not SFT'd |
+| Core-02 | 384 | 8 | 12 | 1536 | 512 | 20,347,712 | `checkpoints_core02_sft_v2/checkpoint_final.pt` | reasoning specialist — template-bound |
+| Core-03 | 256 | 6 | 8 | 1024 | 512 | 8,842,560 | `checkpoints_core03_sft_v2/checkpoint_final.pt` | math specialist — 9.2% held-out numeric accuracy |
+| Core-04 | 512 | 8 | 8 | 2048 | 512 | 33,419,072 | `checkpoints_core04_sft_v3/checkpoint_final.pt` | knowledge/memorization — narrow curated KB |
+| Medium (legacy) | 128 | 2 | 2 | 512 | 128 | 2,452,544 | `checkpoints_medium/final_model.pt` | fallback only — gibberish-prone |
+
+Model selection is handled by `packages/ai-core/ml-service/model_registry.py` (hash-validated registry) and `model_router.py` (language → intent → model). `neural_only=True` mode routes exclusively through neural cores with explicit failure errors — no silent deterministic fallback.
 
 ### Tokenizer
 
@@ -173,8 +178,8 @@ NexusAI's next-generation independent model, **Core-01**, is a custom 6-layer Tr
 - **Device**: CPU
 
 **Checkpoint**: `packages/ai-core/models/checkpoints_medium/final_model.pt`
-- **Size**: 18.76 MB
-- **Status**: ✅ Loads successfully
+- **Size**: ~29.5 MB
+- **Status**: ✅ Loads successfully (fallback only — see four-core table above)
 
 ### Inference Pipeline
 
@@ -193,7 +198,9 @@ Memory Service (check consent, retrieve memory)
     ↓
 ML Service (FastAPI)
     ↓
-Model (MediumTransformer)
+Model Registry + Router (model_registry.py / model_router.py)
+    ↓
+Core-01 / Core-02 / Core-03 / Core-04 (or labeled deterministic handler)
     ↓
 Tokenizer (SentencePiece BPE)
     ↓
@@ -450,28 +457,29 @@ Migrations are located in `packages/database-core/migrations/`:
 
 ## AI Model Details
 
-### Current Model Status
+### Current Model Status — Four-Core Family
 
-**Model**: MediumTransformer (Phase 1)
-- **Parameters**: 2,468,928
-- **Vocabulary**: 8,000 (SentencePiece BPE)
-- **Context Length**: 128 tokens
-- **Training Dataset**: Phase 10 (1,812 samples)
-- **Training Epochs**: 3
-- **Perplexity**: 2.83 (reported)
-- **Device**: CPU
+**Active production designation**: Core-01 `1.0.0-run3` (`models/production/current.json`)
+
+| Core | Params | Training | Verified generation | Honest quality |
+|---|---|---|---|---|
+| Core-01 | 8.84M | pretraining 3 epochs, loss ≈4.43 | PARTIALLY VERIFIED (38/56 non-empty) | undertrained base LM; English-biased word salad; immediate-EOS on many chat prompts |
+| Core-02 | 20.35M | SFT v2 | VERIFIED mechanical / FAILED semantic | template collapse — ~5 memorized responses for all prompts |
+| Core-03 | 8.84M | SFT v2, 8 epochs | VERIFIED mechanical / FAILED semantic | bare numbers only; 9.2% numeric accuracy on held-out test |
+| Core-04 | 33.42M | SFT v3, 318 curated records | VERIFIED mechanical / PARTIALLY VERIFIED semantic | fluent bn/en KB sentences; prompt-insensitive memorization |
+| Medium | 2.45M | Phase 10 (1,812 samples) | PARTIALLY VERIFIED | gibberish-prone; emergency fallback only |
 
 ### Model Quality
 
-**Current Status**: ⚠️ EXPERIMENTAL
+**Current Status**: ⚠️ EXPERIMENTAL — pipeline verified, intelligence not yet
 
-The current model is a foundation prototype with expected limitations:
-- **Small Dataset**: 1,812 samples is insufficient for high-quality generation
-- **Small Model**: 2.47M parameters, 128-token context window
-- **Output Quality**: Incoherent, repetitive responses
-- **Languages**: Bengali and English support is basic
+The models are independently owned and technically functional (strict checkpoint loading, genuine neural generation, honest routing), but conversational quality is early-stage:
+- **Core-01** needs SFT (Run4/Run5) to fix chat-prompt handling.
+- **Core-02/03/04** need deduplicated, broader SFT data (Dataset V5 roadmap).
+- **Tokenizer** fragments Banglish and emits UNK on unseen foreign scripts.
+- **No KV cache** — CPU inference is correct but slow for long contexts.
 
-This is an **independent AI foundation**, not a production-ready model. Future roadmap includes dataset expansion and model retraining.
+Full evidence: `docs/architecture/audits/NEXUSAI_FOUR_CORE_TEST_AND_BENCHMARK_REPORT.md` and `eval_reports/`.
 
 ### Deterministic Handlers
 
@@ -496,13 +504,16 @@ Fallbacks return hardcoded Bengali text. This is intentional error handling.
 
 ## Current Limitations
 
-### Model Limitations
+### Model Limitations (verified 2026-11-18)
 
-1. **Small Dataset**: 1,812 samples insufficient for high-quality generation
-2. **Small Model**: 2.47M parameters, limited capacity
-3. **Small Context**: 128-token context window
-4. **Poor Output Quality**: Incoherent, repetitive text
-5. **CPU Only**: No GPU support for faster inference
+1. **Core-01**: undertrained base LM — English-biased word salad, immediate EOS on many prompts (needs SFT).
+2. **Core-02**: template/slot-fill collapse — does not generalize beyond memorized patterns.
+3. **Core-03**: emits bare numbers for any input; 9.2% held-out arithmetic accuracy.
+4. **Core-04**: prompt-insensitive memorized KB recall; narrow 318-record coverage.
+5. **Tokenizer**: Banglish fragmentation, UNK on unseen scripts.
+6. **Inference**: no KV cache; CPU-only; repetition penalty is a slow Python loop.
+7. **Datasets**: core02 60% exact-duplicate train records; core03 18%; V5 not yet constructed.
+8. **Multi-turn**: single-turn inference path only.
 
 ### Architecture Limitations
 
@@ -543,11 +554,12 @@ Fallbacks return hardcoded Bengali text. This is intentional error handling.
 - Improve English coverage
 - Data quality validation
 
-### Phase C: Model Retraining
-- Train larger model (10M+ parameters)
-- Increase context window (512+ tokens)
-- Improve output quality
-- GPU training support
+### Phase C: Model Improvement (current focus)
+- Dataset V5 construction (next approved mission — the Core-05 blocker)
+- Core-01 Run4/Run5 SFT for chat-capable generation
+- Core-02/03/04 SFT retraining on deduplicated data
+- Core-05 general-purpose model (architecture audited, not implemented)
+- GPU training support (temporary Colab, separately authorized)
 
 ### Phase D: Knowledge Engine
 - Implement RAG with vector embeddings
@@ -634,7 +646,8 @@ pip install torch fastapi uvicorn pydantic sentencepiece
 **Problem**: Checkpoint file not found or incompatible
 
 **Solution**:
-- Verify checkpoint exists at `packages/ai-core/models/checkpoints_medium/final_model.pt`
+- Verify the active checkpoint exists (e.g. `packages/ai-core/models/checkpoints_core01_run3/checkpoint_final.pt` for Core-01; see the four-core table above for others)
+- Verify `.sha256` provenance matches `packages/ai-core/ml-service/model_registry.py`
 - Verify tokenizer exists at `packages/ai-core/data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model`
 - Check ML service logs for specific error
 
@@ -938,3 +951,94 @@ The authoritative Core-01 Run3 checkpoint is now stored in the repo via
 repo and `git lfs pull` the checkpoint — no ZIP upload needed.
 See `docs/training/NEXUSAI_CORE01_CHECKPOINT_RECOVERY.md` and
 `docs/notebooks/COLAB_CLONE_RECOVERY_CELL.py`.
+
+### Universal Cloud Training System (NEW — verified 2026-11-16)
+
+Provider-independent training layer in `packages/ai-core/cloud/`:
+`env_manager` (deps/CUDA detect), `hardware` (GPU/RAM/disk), `storage`
+(local/Drive/Kaggle + write tests), `adapters` (Colab/Kaggle/Generic-Linux),
+`model_loader` (strict checkpoint compat), `dataset_manager` (JSONL integrity),
+`preflight` (single readiness verdict).
+
+**Package:** `exports/NEXUSAI_UNIVERSAL_TRAINING_PACKAGE.zip`
+(173,913,680 B · SHA-256 `f20d38eee9148367068624f51b56575bac6bd719114c14d8d9bc52fffe86e644`)
+— self-contained: core01 code, cloud modules, tokenizer, Run3 checkpoint,
+Run4 dataset, preflight cell, manifest+checksums. 26/26 payload hashes verified.
+
+**Quick start (any Linux GPU cloud):**
+1. Extract ZIP → run `nexusai/docs/notebooks/UNIVERSAL_CLOUD_PREFLIGHT_CELL.py`
+2. Expect `READY` verdict (READY ≠ training authorization)
+3. Train via `core01/pretraining_driver.py` — see `docs/training/universal/NEXUSAI_TRAINING_GUIDE.md`
+
+**Verified locally:** 11 PASS / 0 FAIL / 2 NOT TESTED
+(`tests/universal/test_universal_system.py`) — env, hardware, adapters,
+dataset, tokenizer, strict model load, forward pass, synthetic train step,
+checkpoint save/load + resume restore, storage, package integrity, preflight.
+GPU + live Colab/Kaggle runs: NOT TESTED (need real cloud session).
+
+Docs: `docs/training/universal/` (audit, architecture, migration, training
+guide, test report, package manifest).
+
+### Training NexusAI on Google Colab (primary environment)
+
+**A. Prerequisites** — Google account, Colab access (free T4 OK), the
+universal package ZIP, ~2GB Drive space.
+
+**B. Drive prep** — create `MyDrive/NexusAI/` folder.
+
+**C. Upload ZIP** — upload `NEXUSAI_UNIVERSAL_TRAINING_PACKAGE.zip`
+(173,913,680 bytes · SHA-256 `f20d38eee9148367068624f51b56575bac6bd719114c14d8d9bc52fffe86e644`)
+to Drive. Verify size+hash before proceeding.
+
+**D. Notebook** — new Colab notebook.
+
+**E. GPU runtime** — `Runtime → Change runtime type → T4 GPU`. A notebook
+cannot grant itself a GPU; CPU runtime = preflight will report FAIL on cuda.
+
+**F. Mount Drive** — the setup cell does `drive.mount("/content/drive")`
+automatically (browser auth prompt once per session).
+
+**G. ZIP location** — cell auto-finds the ZIP under MyDrive or /content;
+it filters candidates by exact expected size.
+
+**H. SHA verify** — cell recomputes SHA-256 and compares to the pinned value.
+
+**I. Extract** — safe extraction to `/content/nexusai_pkg` with
+traversal/absolute-path rejection; re-runs are idempotent.
+
+**J. Deps** — verifies torch/sentencepiece/numpy/psutil; reports missing
+packages (Colab base image already has them).
+
+**K. Preflight** — run `docs/notebooks/COLAB_UNIVERSAL_SETUP_CELL.py` as ONE cell.
+
+**L. GPU/CUDA** — cell checks `torch.cuda.is_available()`, GPU name, VRAM,
+and runs a real CUDA matmul. `cuda=FAIL` → switch runtime to T4 and re-run.
+
+**M. Dataset/tokenizer** — verifies `corpus_train.jsonl` (385,217,021 B) and
+`sp_bpe_8k.model` presence inside the package.
+
+**N. Run3 checkpoint** — strict-loads `core01_run3_checkpoint_final.pt`,
+verifies SHA `ad515cade…7830`, params 8,842,560.
+
+**O. Resume readiness** — confirms optimizer/scheduler/GradScaler/RNG state
+present; epoch=3, step=1341. Driver uses TOTAL epochs: `EPOCHS=5` →
+`range(3,5)` = exactly 2 additional epochs, final epoch 5.
+
+**P. Synthetic dry-run** — 2×16-token forward+backward on random IDs;
+proves the model trains mechanically without touching real data.
+
+**Q. Report** — JSON saved to `/content/nexusai_reports/`; verdict
+READY / BLOCKED. READY ≠ authorized.
+
+**R. Troubleshooting** — see `docs/training/universal/` guides;
+common fixes: remount Drive, re-select T4, re-upload ZIP if hash fails.
+
+**S. Checkpoint backup** — copy run4 checkpoints to
+`MyDrive/NexusAI/checkpoints/core01_run4/` during/after training;
+never overwrite Run3.
+
+**T. Training start** — ONLY after explicit approval. See
+`docs/training/universal/NEXUSAI_TRAINING_GUIDE.md` for the driver command.
+
+**Live Colab/GPU status: NOT TESTED** — cell is syntax-verified and all
+logic paths tested locally; first real run happens in your Colab session.

@@ -1,0 +1,8 @@
+{
+ "seed": 42,
+ "method": "sha256(split_group) ordering",
+ "groups": 1043,
+ "test_groups": 52,
+ "val_groups": 52,
+ "note": "conversation/scenario-group atomic; v1 records re-grouped"
+}

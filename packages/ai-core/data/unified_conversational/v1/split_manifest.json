@@ -1,0 +1,8 @@
+{
+ "seed": 42,
+ "method": "sha256(split_group) ordering",
+ "groups": 643,
+ "test_groups": 32,
+ "val_groups": 32,
+ "note": "conversation-atomic; paraphrase variants share group via same base seed"
+}

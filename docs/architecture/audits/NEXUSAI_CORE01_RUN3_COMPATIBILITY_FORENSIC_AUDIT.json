@@ -1,0 +1,22 @@
+{
+  "audit": "NEXUSAI_CORE01_RUN3_COMPATIBILITY_FORENSIC",
+  "date": "2026-11-16",
+  "mode": "read_only",
+  "package": {"zip": "exports/NEXUSAI_UNIVERSAL_TRAINING_PACKAGE.zip", "size": 173913680, "sha256": "f20d38eee9148367068624f51b56575bac6bd719114c14d8d9bc52fffe86e644"},
+  "checkpoint": {"path": "checkpoints/verified/core01_run3_checkpoint_final.pt", "size": 106777501, "sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830", "epoch": 3, "step": 1341, "status": "PRETRAINING_COMPLETED", "tensors": 100},
+  "model": {"class": "core01.transformer.NexusAICore01", "params": 8842560, "layers": 6, "d_model": 256, "heads": 8, "d_ff": 1024, "vocab": 8000, "max_len": 512, "key_family": "transformer_blocks.*", "strict_load": "PASS"},
+  "tokenizer": {"file": "nexusai/tokenizer/sp_bpe_8k.model", "vocab": 8000, "special_ids": {"pad": 0, "unk": 1, "bos": 2, "eos": 3}, "ckpt_path_stale": true, "override": "--tokenizer arg / package-relative default", "status": "PASS"},
+  "dataset": {"file": "corpus_train.jsonl", "records": 216193, "schema": ["text","category","lang","source"], "malformed": 0, "sha256_prefix": "5f8572ed", "status": "PASS"},
+  "entrypoint": {"file": "core01/pretraining_driver.py", "epoch_semantics": "TOTAL (range(current_epoch, epochs))", "resume_arg": "--resume", "line_refs": {"tokenizer_resolve": "189-194", "load_checkpoint": "316", "epoch_loop": "324"}},
+  "resume_state": {"model": true, "optimizer": true, "scheduler": true, "grad_scaler": true, "rng": ["python","numpy","torch_cpu","torch_cuda"], "epoch": 3, "step": 1341, "restore_test": "PASS_synthetic"},
+  "checks": {
+    "package_identity": "PASS", "checkpoint_hash": "PASS", "strict_load": "PASS",
+    "tokenizer_compat": "PASS", "dataset_schema": "PASS", "entrypoint": "PASS",
+    "optimizer_scheduler_scaler_rng": "PASS", "forward_backward": "PASS",
+    "real_batch_gpu": "NOT_TESTED", "vram": "NOT_TESTED", "live_resume": "NOT_TESTED"
+  },
+  "unresolved": ["live GPU validation", "Drive step-checkpoints unverified", "dataset quality thin for conversation"],
+  "recommended_run4": {"epochs_total": 5, "additional_epochs": 2, "max_steps": 8000, "batch": 8, "accum": 4, "precision": "fp16", "output": "checkpoints/core01_run4/", "resume_from": "run3 ckpt (read-only)"},
+  "classification": "A_READY_FOR_FINAL_COLAB_VALIDATION",
+  "training_started": false
+}

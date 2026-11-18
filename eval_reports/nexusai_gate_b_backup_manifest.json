@@ -1,0 +1,158 @@
+{
+ "backup_ts": "2026-11-10T07:49:00.598589",
+ "files": [
+  {
+   "orig": "packages/ai-core/ml-service/main.py",
+   "backup": "backups/20261110_gateb/ml-service/main.py",
+   "size": 57854,
+   "sha256": "b8a8a0d20a778cd51ada03c83760dade463e6dfffd223d9ac826319e22a7da1f",
+   "backup_sha256": "b8a8a0d20a778cd51ada03c83760dade463e6dfffd223d9ac826319e22a7da1f",
+   "verified": true
+  },
+  {
+   "orig": "packages/ai-core/ml-service/model_router.py",
+   "backup": "backups/20261110_gateb/ml-service/model_router.py",
+   "size": 12993,
+   "sha256": "4ba9d5771d3bf3bbf0a47a717db0b0f23d2756dc5e67da296f6be2320942c7ae",
+   "backup_sha256": "4ba9d5771d3bf3bbf0a47a717db0b0f23d2756dc5e67da296f6be2320942c7ae",
+   "verified": true
+  },
+  {
+   "orig": "packages/ai-core/ml-service/model_registry.py",
+   "backup": "backups/20261110_gateb/ml-service/model_registry.py",
+   "size": 9923,
+   "sha256": "3db0a208edb973594f99f237275450be516734a2439ae65a72a213475920cabc",
+   "backup_sha256": "3db0a208edb973594f99f237275450be516734a2439ae65a72a213475920cabc",
+   "verified": true
+  },
+  {
+   "orig": "apps/api/src/intelligence-engine.ts",
+   "backup": "backups/20261110_gateb/api/intelligence-engine.ts",
+   "size": 6281,
+   "sha256": "567d727b5da857cc376e4b52413f0e810e456037ff7f7257652a03315e57a328",
+   "backup_sha256": "567d727b5da857cc376e4b52413f0e810e456037ff7f7257652a03315e57a328",
+   "verified": true
+  },
+  {
+   "orig": "packages/ai-core/models/production/current.json",
+   "backup": "backups/20261110_gateb/config/current.json",
+   "size": 544,
+   "sha256": "fd51228d754c82986415906ff08ab2ada5aa7688b660e0b8926543c9bb07669d",
+   "backup_sha256": "fd51228d754c82986415906ff08ab2ada5aa7688b660e0b8926543c9bb07669d",
+   "verified": true
+  },
+  {
+   "orig": "packages/ai-core/models\\checkpoints\\checkpoint_epoch_1.pt",
+   "size": 2200502,
+   "sha256": "b828be60a441908e19c303f4c9d2ddf89e683ba6efe2061df3f44613c061b87a",
+   "backed_up": false,
+   "note": "hash-recorded-only (large artifact)"
+  },
+  {
+   "orig": "packages/ai-core/models\\checkpoints\\checkpoint_epoch_2.pt",
+   "size": 2200502,
+   "sha256": "0646ede5166156ae091c353eb6b40cb029d5be9359c8fb4ce8ab8aa0cbb71af2",
+   "backed_up": false,
+   "note": "hash-recorded-only (large artifact)"
+  },
+  {
+   "orig": "packages/ai-core/models\\checkpoints\\checkpoint_epoch_3.pt",
+   "size": 2200502,
+   "sha256": "1c8b9a07bb90d0a2ada2b67561d7f0aaee699a079bb7c83c9069cb3ba72363bb",
+   "backed_up": false,
+   "note": "hash-recorded-only (large artifact)"
+  },
+  {
+   "orig": "packages/ai-core/models\\checkpoints\\checkpoint_epoch_4.pt",
+   "size": 2200502,
+   "sha256": "f59ff72dcc6338696211c86d1b6660a90188901612e19b4e6bc17b0a013e320c",
+   "backed_up": false,
+   "note": "hash-recorded-only (large artifact)"
+  },
+  {
+   "orig": "packages/ai-core/models\\checkpoints\\checkpoint_epoch_5.pt",
+   "size": 2200502,
+   "sha256": "1ba6b8cf40f2aaf6895f1a883e422afa109d61395d827238fd51278266f794eb",
+   "backed_up": false,
+   "note": "hash-recorded-only (large artifact)"
+  },
+  {
+   "orig": "packages/ai-core/models\\checkpoints_core01_run3\\checkpoint_final.pt",
+   "size": 106777501,
+   "sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+   "backed_up": false,
+   "note": "hash-recorded-only (large artifact)"
+  },
+  {
+   "orig": "packages/ai-core/models\\checkpoints_medium\\best_model.pt",
+   "size": 29539294,
+   "sha256": "b9c2dd94b27af4ec5fb60a1262e4f1d087085663c7ec1c9c31ea5ea0c47738fc",
+   "backed_up": false,
+   "note": "hash-recorded-only (large artifact)"
+  },
+  {
+   "orig": "packages/ai-core/models\\checkpoints_medium\\checkpoint_epoch_1.pt",
+   "size": 57965174,
+   "sha256": "3b775bd89799f200749bd97613632ecb3ea45abd6c53d53b656a18f488ed5e0c",
+   "backed_up": false,
+   "note": "hash-recorded-only (large artifact)"
+  },
+  {
+   "orig": "packages/ai-core/models\\checkpoints_medium\\checkpoint_epoch_2.pt",
+   "size": 57965174,
+   "sha256": "74d1b832876e3b9bae902e6ff814916370ac8c1152684615f1a426fcea51eb92",
+   "backed_up": false,
+   "note": "hash-recorded-only (large artifact)"
+  },
+  {
+   "orig": "packages/ai-core/models\\checkpoints_medium\\checkpoint_epoch_3.pt",
+   "size": 57965174,
+   "sha256": "952cffde8bf18f55ffcae8a5ad58d49cf2fd57c103543fb0e707f658d966e121",
+   "backed_up": false,
+   "note": "hash-recorded-only (large artifact)"
+  },
+  {
+   "orig": "packages/ai-core/models\\checkpoints_medium\\checkpoint_epoch_4.pt",
+   "size": 57965174,
+   "sha256": "e16c2d7631feb94ff387b9fa7d2ac5695f4704c39522608432a1860b53b0cb4e",
+   "backed_up": false,
+   "note": "hash-recorded-only (large artifact)"
+  },
+  {
+   "orig": "packages/ai-core/models\\checkpoints_medium\\checkpoint_epoch_5.pt",
+   "size": 57965174,
+   "sha256": "eca288cf3fd0d95bacfee118c66da00caa7b3b2c7f2132a518ea4aec19223d7d",
+   "backed_up": false,
+   "note": "hash-recorded-only (large artifact)"
+  },
+  {
+   "orig": "packages/ai-core/models\\checkpoints_medium\\final_model.pt",
+   "size": 29539569,
+   "sha256": "4f592af9846b89652eb78453eae74f185f134e6d9f05297ef3189f56ea474af8",
+   "backed_up": false,
+   "note": "hash-recorded-only (large artifact)"
+  },
+  {
+   "orig": "packages/ai-core/data/experimental/phase9_2/tokenizers/bpe_8k\\sp_bpe_8k.model",
+   "size": 387195,
+   "sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+   "backed_up": false,
+   "note": "hash-recorded-only (large artifact)"
+  },
+  {
+   "orig": "packages/ai-core/data/experimental/phase9_2/tokenizers/bpe_8k\\sp_bpe_8k.vocab",
+   "size": 137745,
+   "sha256": "8e499079703b5f749769e529d6a2a2835cea58b5f56c72332ab6f1e765c65c15",
+   "backed_up": false,
+   "note": "hash-recorded-only (large artifact)"
+  },
+  {
+   "orig": "packages/ai-core/data/phase2/run4_corpus/corpus_train.jsonl",
+   "size": 385217021,
+   "sha256": "5f8572edd816ac875a7f52915bc6326635d7a483e0ca3f33b70fffdda7e28376",
+   "backed_up": false,
+   "note": "hash-recorded-only (large artifact)"
+  }
+ ],
+ "all_verified": true
+}

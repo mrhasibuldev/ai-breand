@@ -1,0 +1,41 @@
+{
+  "version": "core01_sft_v2",
+  "description": "Versioned prompt suite for pre/post-SFT comparison. Mechanical metrics + manual rubric required.",
+  "generation_defaults": {"max_new_tokens": 48, "do_sample": false, "device": "cpu"},
+  "prompts": [
+    {"id": "bn_identity", "lang": "bn", "cat": "identity", "prompt": "তোমার নাম কী?"},
+    {"id": "bn_greet", "lang": "bn", "cat": "greeting", "prompt": "হ্যালো! তুমি কেমন আছো?"},
+    {"id": "bn_fact", "lang": "bn", "cat": "facts", "prompt": "বাংলাদেশের রাজধানী কী?"},
+    {"id": "bn_explain", "lang": "bn", "cat": "explain", "prompt": "Photosynthesis সহজ করে ব্যাখ্যা করো।"},
+    {"id": "bn_uncertain", "lang": "bn", "cat": "uncertainty", "prompt": "আগামীকাল কী হবে?"},
+    {"id": "en_identity", "lang": "en", "cat": "identity", "prompt": "What is your name?"},
+    {"id": "en_greet", "lang": "en", "cat": "greeting", "prompt": "Hello! How are you?"},
+    {"id": "en_fact", "lang": "en", "cat": "facts", "prompt": "What is the capital of Bangladesh?"},
+    {"id": "en_explain", "lang": "en", "cat": "explain", "prompt": "Explain gravity simply."},
+    {"id": "en_uncertain", "lang": "en", "cat": "uncertainty", "prompt": "What will happen tomorrow?"},
+    {"id": "bg_identity", "lang": "banglish", "cat": "identity", "prompt": "tomar naam ki?"},
+    {"id": "bg_greet", "lang": "banglish", "cat": "greeting", "prompt": "tumi kemon acho?"},
+    {"id": "bg_fact", "lang": "banglish", "cat": "facts", "prompt": "Bangladesh er capital ki?"},
+    {"id": "bg_reason", "lang": "banglish", "cat": "reasoning", "prompt": "7 + 5 koto?"},
+    {"id": "rs_apple", "lang": "en", "cat": "reasoning", "prompt": "If I have 3 apples and buy 2 more, how many apples do I have?"},
+    {"id": "rs_day", "lang": "en", "cat": "reasoning", "prompt": "If today is Monday, what day after 3 days?"},
+    {"id": "mt_name", "lang": "en", "cat": "multiturn", "prompt": "My name is Rahim.\nassistant: Nice to meet you, Rahim!\nuser: What is my name?",
+     "note": "context prompt — verify follow-up consistency"},
+    {"id": "rep_test", "lang": "en", "cat": "repetition", "prompt": "Tell me a story.",
+     "note": "check for degenerate loops"},
+    {"id": "empty_test", "lang": "bn", "cat": "empty", "prompt": "",
+     "note": "empty input must not crash; expect guard/fallback"}
+  ],
+  "manual_rubric": {
+    "relevance": "Does output address the prompt? (0=no,1=partial,2=yes)",
+    "correctness": "Are claims accurate? (0=wrong,1=uncertain,2=correct,na=n/a)",
+    "language_consistency": "bn→Bengali script, en→English, banglish→appropriate",
+    "grammar_readability": "0=gibberish,1=broken,2=readable,3=fluent",
+    "repetition": "0=severe loop,1=some,2=none",
+    "completeness": "0=truncated/empty,1=partial,2=complete",
+    "uncertainty": "Appropriate 'I don't know' vs fabrication",
+    "multiturn": "Follow-up consistency with context"
+  },
+  "comparison_fields": ["empty_rate", "nonempty_rate", "lang_match", "repetition_rate",
+                       "avg_len", "manual_relevance_mean", "per_lang_breakdown"]
+}

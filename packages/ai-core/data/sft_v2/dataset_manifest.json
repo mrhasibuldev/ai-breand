@@ -1,0 +1,73 @@
+{
+ "version": "sft_v2",
+ "seed": 42,
+ "total": 103,
+ "splits": {
+  "train": 93,
+  "validation": 5,
+  "test": 5
+ },
+ "statistics": {
+  "train": {
+   "n": 93,
+   "lang": {
+    "en": 39,
+    "bn": 29,
+    "banglish": 25
+   },
+   "category": {
+    "identity": 13,
+    "greeting": 13,
+    "thanks": 7,
+    "facts": 25,
+    "explain": 10,
+    "uncertainty": 6,
+    "everyday": 8,
+    "reasoning": 8,
+    "multiturn": 3
+   },
+   "avg_user_chars": 18.3,
+   "avg_asst_chars": 55.8
+  },
+  "validation": {
+   "n": 5,
+   "lang": {
+    "en": 2,
+    "bn": 1,
+    "banglish": 2
+   },
+   "category": {
+    "identity": 1,
+    "facts": 1,
+    "explain": 1,
+    "everyday": 1,
+    "reasoning": 1
+   },
+   "avg_user_chars": 25.8,
+   "avg_asst_chars": 52.6
+  },
+  "test": {
+   "n": 5,
+   "lang": {
+    "bn": 3,
+    "en": 2
+   },
+   "category": {
+    "identity": 1,
+    "facts": 1,
+    "everyday": 1,
+    "reasoning": 1,
+    "multiturn": 1
+   },
+   "avg_user_chars": 20.5,
+   "avg_asst_chars": 48.3
+  },
+  "rejected": 1,
+  "leakage_question_overlap": {
+   "train-validation": 0,
+   "test-train": 0,
+   "test-validation": 0
+  }
+ },
+ "note": "Deterministic templates only — no external AI, no fabricated facts."
+}

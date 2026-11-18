@@ -1,0 +1,18 @@
+{
+  "package": "NEXUSAI_UNIVERSAL_TRAINING_PACKAGE",
+  "version": "1.0.0",
+  "zip": "exports/NEXUSAI_UNIVERSAL_TRAINING_PACKAGE.zip",
+  "zip_size_bytes": 173913680,
+  "zip_sha256": "f20d38eee9148367068624f51b56575bac6bd719114c14d8d9bc52fffe86e644",
+  "payload_files": 26,
+  "payload_verification": "26/26 sha256 match inside zip",
+  "contents": {
+    "code": "core01/* (8 modules) + cloud/* (7 modules) + model config",
+    "tokenizer": "sp_bpe_8k.model + .vocab (vocab 8000)",
+    "checkpoint": "core01_run3_checkpoint_final.pt (106777501B, sha ad515cade...7830)",
+    "dataset": "corpus_train.jsonl (385217021B, 216193 records, sha 5f8572ed...)",
+    "preflight_cell": "UNIVERSAL_CLOUD_PREFLIGHT_CELL.py"
+  },
+  "excluded": ["secrets", "git internals", "experimental checkpoints", "node_modules", "__pycache__", "other datasets"],
+  "missing": ["Drive-only step checkpoints (unverified, see recovery audit)"]
+}

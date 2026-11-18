@@ -1,0 +1,28 @@
+{
+ "phase": "2",
+ "date": "2026-11-11",
+ "verdict": "LOCALLY_VERIFIED",
+ "colab_execution": "NOT_TESTED",
+ "drive_ckpt_hash": "PENDING",
+ "resume_classification": "FULL_RESUME_VERIFIED_REPO_BOUNDED_SMOKE",
+ "bundle": {
+  "path": "exports/NEXUSAI_CORE01_RUN4_SINGLE_UPLOAD_BUNDLE.zip",
+  "size": 81212338,
+  "sha256": "da4fe95265555ad4d37814846e0951d3eec48adb76c5a2b455aa346fde1db963"
+ },
+ "notebook": "docs/notebooks/NEXUSAI_CORE01_RUN4_SINGLE_UPLOAD.ipynb",
+ "tests": {
+  "phase1": "16/16 PASS",
+  "phase2": "15/15 PASS"
+ },
+ "statuses": {
+  "CHECKER_INTEGRITY": "PASS",
+  "EVIDENCE_AUTHENTICITY": "VERIFIED",
+  "CHECKPOINT_INTEGRITY_REPO": "PASS",
+  "CHECKPOINT_INTEGRITY_DRIVE": "PENDING",
+  "RESUME_READINESS": "VERIFIED_BOUNDED_SMOKE",
+  "CUDA_FP16": "NOT_TESTED",
+  "SCHEDULER": "PARTIALLY_VERIFIED",
+  "FULL_TRAINING": "NOT_EXECUTED"
+ }
+}

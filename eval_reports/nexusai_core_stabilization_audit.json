@@ -1,0 +1,84 @@
+{
+ "audit": "NEXUSAI_CORE_STABILIZATION_FORENSIC_AUDIT",
+ "date": "2026-11-10",
+ "mode": "read-only",
+ "models": {
+  "nexus-core-01": {
+   "arch": "core01 6L/256/8H/1024 ctx512",
+   "params": 8842560,
+   "ckpt": "checkpoints_core01_run3/checkpoint_final.pt",
+   "sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+   "status": "active_validated"
+  },
+  "nexus-medium": {
+   "arch": "medium 2L/128/2H/512 ctx128",
+   "params": 2468928,
+   "ckpt": "checkpoints_medium/final_model.pt",
+   "status": "fallback"
+  }
+ },
+ "run4": {
+  "status": "prepared_not_executed",
+  "corpus": "data/phase2/run4_corpus/corpus_train.jsonl",
+  "docs": 216193,
+  "tokens_est": 60400000.0,
+  "bn_pct": 60
+ },
+ "findings": [
+  {
+   "id": "F1",
+   "item": "history key mismatch",
+   "status": "VERIFIED",
+   "detail": "api sends 'history', orchestrate reads 'conversation_history' -> context dropped",
+   "files": [
+    "apps/api/src/intelligence-engine.ts:98",
+    "packages/ai-core/ml-service/main.py:633"
+   ]
+  },
+  {
+   "id": "F2",
+   "item": "core01 strict load+generate",
+   "status": "VERIFIED",
+   "detail": "25 forward calls per 25 tokens; sha256 match; vocab 8000"
+  },
+  {
+   "id": "F3",
+   "item": "external AI dependency",
+   "status": "VERIFIED_NONE",
+   "detail": "no OpenAI/Anthropic/Gemini/Groq calls in source"
+  },
+  {
+   "id": "F4",
+   "item": "retrieval",
+   "status": "VERIFIED_DISABLED",
+   "detail": "commented out; cannot answer"
+  },
+  {
+   "id": "F5",
+   "item": "run4 artifacts",
+   "status": "VERIFIED_ABSENT",
+   "detail": "no checkpoints_core01_run4 dir; checkpoints_retrained empty"
+  },
+  {
+   "id": "F6",
+   "item": "neural-only test mode",
+   "status": "FAILED_MISSING",
+   "detail": "does not exist yet"
+  },
+  {
+   "id": "F7",
+   "item": "model quality",
+   "status": "VERIFIED_WEAK",
+   "detail": "undertrained; gibberish-prone; needs run4"
+  }
+ ],
+ "implementation_plan": [
+  "backup",
+  "fix history contract ml-service side",
+  "add neural_only mode",
+  "history unit tests",
+  "neural-only eval suite",
+  "reports"
+ ],
+ "verdict": "GATE_A_COMPLETE_AWAITING_APPROVAL"
+}

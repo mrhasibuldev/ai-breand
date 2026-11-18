@@ -1,0 +1,100 @@
+{
+ "version": "unified_conversational_v2",
+ "seed": 42,
+ "total_records": 1054,
+ "rejected": 51,
+ "v1_carryover": 645,
+ "splits": {
+  "train": 950,
+  "validation": 52,
+  "test": 52
+ },
+ "groups": {
+  "total": 1043,
+  "test_groups": 52,
+  "val_groups": 52
+ },
+ "statistics": {
+  "train": {
+   "n": 950,
+   "lang": {
+    "en": 504,
+    "banglish": 141,
+    "bn": 302,
+    "mixed": 3
+   },
+   "category": {
+    "math": 582,
+    "qa": 108,
+    "instruction": 14,
+    "greeting": 6,
+    "everyday_help": 49,
+    "social": 18,
+    "knowledge": 33,
+    "identity": 13,
+    "uncertainty": 27,
+    "multi_turn": 35,
+    "refusal": 4,
+    "reasoning": 13,
+    "smalltalk": 17,
+    "decision": 7,
+    "clarification": 5,
+    "mixed_lang": 3,
+    "farewell": 6,
+    "thanks": 4,
+    "self_correction": 4,
+    "logic": 2
+   },
+   "avg_turns": 1.1,
+   "multi_turn": 35
+  },
+  "validation": {
+   "n": 52,
+   "lang": {
+    "en": 21,
+    "bn": 26,
+    "banglish": 5
+   },
+   "category": {
+    "knowledge": 4,
+    "math": 29,
+    "everyday_help": 2,
+    "smalltalk": 1,
+    "qa": 6,
+    "logic": 1,
+    "uncertainty": 1,
+    "reasoning": 2,
+    "social": 1,
+    "decision": 2,
+    "multi_turn": 1,
+    "farewell": 1,
+    "instruction": 1
+   },
+   "avg_turns": 1.06,
+   "multi_turn": 1
+  },
+  "test": {
+   "n": 52,
+   "lang": {
+    "banglish": 9,
+    "en": 26,
+    "bn": 17
+   },
+   "category": {
+    "math": 32,
+    "smalltalk": 1,
+    "uncertainty": 2,
+    "qa": 8,
+    "multi_turn": 5,
+    "social": 1,
+    "knowledge": 1,
+    "instruction": 1,
+    "everyday_help": 1
+   },
+   "avg_turns": 1.21,
+   "multi_turn": 5
+  }
+ },
+ "schema": "messages:[{role,content}] + capabilities[] \u2014 compatible with ChatSFTDataset",
+ "note": "v1 carryover + authored multi-turn scenarios + reasoning/decision/self-correction/clarification + procedural math/logic. No external AI."
+}

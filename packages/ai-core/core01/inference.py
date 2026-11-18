@@ -84,38 +84,48 @@ class InferenceEngine:
             return {
                 "generated_text": "",
                 "warning": "MODEL_STATUS_UNTRAINED_OR_RANDOM",
-                "message": f"Model status is {self.config.model_status.value}. Output will be random and meaningless.",
-                "model_status": self.config.model_status.value
+                "message": f"Model status is {status_value}. Output will be random and meaningless.",
+                "model_status": status_value
             }
         
-        # Encode prompt
-        input_ids = self.tokenizer.encode(prompt, add_special_tokens=True)
+        # Encode prompt. Training convention (PackedTextDataset):
+        # [BOS] + content + [EOS] per document. An unfinished user prompt is
+        # NOT a complete document, so we prepend BOS but do NOT append EOS —
+        # appending EOS would tell the model the document already ended.
+        content_ids = self.tokenizer.encode(prompt, add_special_tokens=False)
+        input_ids = [self.tokenizer.bos_id] + content_ids
+        # Respect max_len: keep BOS + most recent tokens
+        max_len = getattr(self.config, "max_len", 512)
+        if len(input_ids) > max_len:
+            input_ids = [self.tokenizer.bos_id] + input_ids[-(max_len - 1):]
         input_ids = torch.tensor([input_ids], dtype=torch.long).to(self.device)
+        prompt_len = input_ids.shape[1]
         
         # Generate
-        with torch.no_grad():
+        with torch.inference_mode():
             generated_ids = self.model.generate(
                 input_ids,
-                max_new_tokens=max_new_tokens or self.config.max_new_tokens,
-                temperature=temperature or self.config.temperature,
+                max_new_tokens=max_new_tokens if max_new_tokens is not None else self.config.max_new_tokens,
+                temperature=temperature if temperature is not None else self.config.temperature,
                 top_k=top_k if top_k is not None else self.config.top_k,
                 top_p=top_p if top_p is not None else self.config.top_p,
                 do_sample=do_sample,
-                repetition_penalty=repetition_penalty or self.config.repetition_penalty
+                repetition_penalty=repetition_penalty if repetition_penalty is not None else self.config.repetition_penalty
             )
         
-        # Decode
-        generated_ids = generated_ids[0].cpu().tolist()
-        generated_text = self.tokenizer.decode(generated_ids, skip_special_tokens=True)
-        
-        # Remove prompt from response
-        if generated_text.startswith(prompt):
-            generated_text = generated_text[len(prompt):].strip()
+        # Extract ONLY newly generated tokens (model.generate returns the
+        # full sequence including the prompt) and decode just those.
+        new_ids = generated_ids[0, prompt_len:].cpu().tolist()
+        generated_text = self.tokenizer.decode(new_ids, skip_special_tokens=True).strip()
         
         return {
             "generated_text": generated_text,
-            "model_status": self.config.model_status.value,
-            "warning": None
+            "model_status": (
+                self.config.model_status.value
+                if isinstance(self.config.model_status, ModelStatus)
+                else str(self.config.model_status)
+            ),
+            "warning": None if generated_text else "EMPTY_GENERATION"
         }
     
     def load_checkpoint(self, checkpoint_path: str) -> None:

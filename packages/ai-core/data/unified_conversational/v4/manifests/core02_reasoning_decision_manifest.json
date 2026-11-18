@@ -1,0 +1,17 @@
+{
+ "core": "core02_reasoning_decision",
+ "dataset": "unified_conversational_v4",
+ "record_count": 168,
+ "categories": [
+  "reasoning",
+  "decision",
+  "logic",
+  "instruction",
+  "multi_turn",
+  "self_correction",
+  "clarification"
+ ],
+ "note": "instruction+reasoning+decision",
+ "training_eligible": true,
+ "validation": "rule_based+pending_human_review"
+}

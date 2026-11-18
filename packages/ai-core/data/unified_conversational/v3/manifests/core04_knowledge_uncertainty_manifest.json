@@ -1,0 +1,15 @@
+{
+ "core": "core04_knowledge_uncertainty",
+ "dataset": "unified_conversational_v3",
+ "record_count": 316,
+ "categories": [
+  "knowledge",
+  "qa",
+  "uncertainty",
+  "refusal",
+  "self_correction"
+ ],
+ "note": "facts+uncertainty boundaries",
+ "training_eligible": true,
+ "validation": "rule_based+pending_human_review"
+}

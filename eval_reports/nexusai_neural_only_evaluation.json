@@ -1,0 +1,790 @@
+[
+ {
+  "input": "Hello.",
+  "history": [],
+  "response": "How many of the loves are in his father? Autila's sister and 3/4*1 = <<1*15=40>>40 pairs of strawberries to refish that are left from her brother, she has a total of 2*5=<<2*2=4>>4-2=3>>3 more pencils.",
+  "latency_ms": 2865.0,
+  "intent": "GREETING",
+  "response_source": "NEURAL_MODEL",
+  "language": "english",
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "GREETING",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 3.0,
+  "test_id": "en_hello"
+ },
+ {
+  "input": "Who are you?",
+  "history": [],
+  "response": "Are is a bigger brother. It was born on the Film BBA Championship, and Trogent Awards, who has been built in one of his age. He is an artistor, a professional football team's game recorded by Cricketing World Championship since",
+  "latency_ms": 1504.7,
+  "intent": "IDENTITY",
+  "response_source": "NEURAL_MODEL",
+  "language": "english",
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "IDENTITY",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 1.5,
+  "test_id": "en_who"
+ },
+ {
+  "input": "Who created you?",
+  "history": [],
+  "response": "Iron James, Frivereland has a champion of the Sanda Rob. It was a By is known as one of the Creeko Puzietician Middle East Asia. Hearian and Valley in 1886, 200",
+  "latency_ms": 1374.3,
+  "intent": "IDENTITY",
+  "response_source": "NEURAL_MODEL",
+  "language": "english",
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "IDENTITY",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 1.4,
+  "test_id": "en_creator"
+ },
+ {
+  "input": "What is artificial intelligence?",
+  "history": [],
+  "response": "Which of the following foods are some of a rubb, or red, lovers. Briano has been datically more challengths of bears than blue jugg. It also relebrushing water and white ties that are used in order to fertin",
+  "latency_ms": 1539.4,
+  "intent": "GENERAL_QUESTION",
+  "response_source": "NEURAL_MODEL",
+  "language": "english",
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "GENERAL_QUESTION",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 1.5,
+  "test_id": "en_ai"
+ },
+ {
+  "input": "Why does the sky appear blue?",
+  "history": [],
+  "response": "If you have a good option with a pair of watermble, or calls. Belly is to play a listed sundes and then you are dark-to-backetrogioric frellience. The liquid is about a",
+  "latency_ms": 1372.4,
+  "intent": "GENERAL_QUESTION",
+  "response_source": "NEURAL_MODEL",
+  "language": "english",
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "GENERAL_QUESTION",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 1.4,
+  "test_id": "en_sky"
+ },
+ {
+  "input": "Explain how a computer works.",
+  "history": [],
+  "response": "The data is the system that is in the world? Intising is an adjective is rand. There are more than the different places to be good or a way to consider, which can hold on a fifting from it’s cats at least twice as much as you can get into",
+  "latency_ms": 1520.4,
+  "intent": "CHAT",
+  "response_source": "NEURAL_MODEL",
+  "language": "english",
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "CHAT",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 1.5,
+  "test_id": "en_computer"
+ },
+ {
+  "input": "What is machine learning?",
+  "history": [],
+  "response": "A good way to do the laptop. The rading and are some ideas for a few of your body that can be important to your choice: you/malling, watermin, or an argency or more predients, trade, cause you will use it into the",
+  "latency_ms": 1515.6,
+  "intent": "GENERAL_QUESTION",
+  "response_source": "NEURAL_MODEL",
+  "language": "english",
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "GENERAL_QUESTION",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 1.5,
+  "test_id": "en_ml"
+ },
+ {
+  "input": "তুমি কে?",
+  "history": [],
+  "response": "The Bholt was a list of Rafeffice was a frament. A bathroll is the first quarter of the ball in the Northernoon, and one of the hunge-2016500s, the Moenebowb",
+  "latency_ms": 1431.4,
+  "intent": "CHAT",
+  "response_source": "NEURAL_MODEL",
+  "language": "bengali",
+  "diagnostics": [
+   {
+    "language": "bengali",
+    "lang_conf": 0.95,
+    "lang_reason": "bengali script",
+    "intent": "CHAT",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 1.4,
+  "test_id": "bn_who"
+ },
+ {
+  "input": "তোমাকে কে তৈরি করেছে?",
+  "history": [],
+  "response": "The German is a car to the first log, and a ficture of 6 plechenters. It takes the same amount to take it from each. When you've a total of 10 stage, how much will need to do they make in the end of one or two",
+  "latency_ms": 1504.9,
+  "intent": "IDENTITY",
+  "response_source": "NEURAL_MODEL",
+  "language": "bengali",
+  "diagnostics": [
+   {
+    "language": "bengali",
+    "lang_conf": 0.95,
+    "lang_reason": "bengali script",
+    "intent": "IDENTITY",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 1.5,
+  "test_id": "bn_creator"
+ },
+ {
+  "input": "কৃত্রিম বুদ্ধিমত্তা কী?",
+  "history": [],
+  "response": "If you want to do people, or with a day and you have 20 students / 60 = <<60/2=30>>30 books.",
+  "latency_ms": 431.4,
+  "intent": "CHAT",
+  "response_source": "NEURAL_MODEL",
+  "language": "bengali",
+  "diagnostics": [
+   {
+    "language": "bengali",
+    "lang_conf": 0.95,
+    "lang_reason": "bengali script",
+    "intent": "CHAT",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 0.4,
+  "test_id": "bn_ai"
+ },
+ {
+  "input": "আকাশ নীল দেখায় কেন?",
+  "history": [],
+  "response": "Tright a mountains an average of 3 feet. In the first two inches, meaning it washing per hour so that the fueling to 6 miles long 2 hours to run a third floor, 5 miles per mile is 50 miles and 4 pounds each so she has 8000=<<5*100",
+  "latency_ms": 1468.2,
+  "intent": "CHAT",
+  "response_source": "NEURAL_MODEL",
+  "language": "bengali",
+  "diagnostics": [
+   {
+    "language": "bengali",
+    "lang_conf": 0.95,
+    "lang_reason": "bengali script",
+    "intent": "CHAT",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 1.5,
+  "test_id": "bn_sky"
+ },
+ {
+  "input": "কম্পিউটার কীভাবে কাজ করে?",
+  "history": [],
+  "response": "Juli is a phenal of the bin and can be very good for anywhere. It will have been used in many sandoms, which you want to fairly to find your houses, or talk about something out, so you need to help a more c",
+  "latency_ms": 1372.3,
+  "intent": "CHAT",
+  "response_source": "NEURAL_MODEL",
+  "language": "bengali",
+  "diagnostics": [
+   {
+    "language": "bengali",
+    "lang_conf": 0.95,
+    "lang_reason": "bengali script",
+    "intent": "CHAT",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 1.4,
+  "test_id": "bn_computer"
+ },
+ {
+  "input": "Tumi ke?",
+  "history": [],
+  "response": "The dog is a big as long as many northwels. One can be used to relebrates, it has been in your body with the fair of the turnters for the rest are usually and that's sundams you have noise to stay in the",
+  "latency_ms": 1486.3,
+  "intent": "GENERAL_QUESTION",
+  "response_source": "NEURAL_MODEL",
+  "language": "banglish",
+  "diagnostics": [
+   {
+    "language": "banglish",
+    "lang_conf": 0.6,
+    "lang_reason": "1 banglish markers",
+    "intent": "GENERAL_QUESTION",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 1.5,
+  "test_id": "bl_who"
+ },
+ {
+  "input": "Tomake ke create korse?",
+  "history": [],
+  "response": "The carbters is an a machine-hmarity of a wicket. It can be done by the first, but it's ded in the trillic in each side. If you are all the balloon with you should see that can have more cause",
+  "latency_ms": 1653.9,
+  "intent": "IDENTITY",
+  "response_source": "NEURAL_MODEL",
+  "language": "english",
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "IDENTITY",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 1.7,
+  "test_id": "bl_creator"
+ },
+ {
+  "input": "AI kivabe kaj kore?",
+  "history": [],
+  "response": "What is the world that you want to create a computer network of an American sports. The best player with all time, while others are some people available in anyone. As one of this paragraphs, it is the biggest player and they have greatest in the highest in their first-ters",
+  "latency_ms": 1605.0,
+  "intent": "GENERAL_QUESTION",
+  "response_source": "NEURAL_MODEL",
+  "language": "banglish",
+  "diagnostics": [
+   {
+    "language": "banglish",
+    "lang_conf": 0.7,
+    "lang_reason": "2 banglish markers",
+    "intent": "GENERAL_QUESTION",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 1.6,
+  "test_id": "bl_ai"
+ },
+ {
+  "input": "Computer kivabe kaj kore?",
+  "history": [],
+  "response": "Cubble is the Mountaindernamin in the world's first rankets. The following are part of each other handball. For its name, there are 3 times that the most people around the two days will be reflection in the trigumback,",
+  "latency_ms": 1599.7,
+  "intent": "GENERAL_QUESTION",
+  "response_source": "NEURAL_MODEL",
+  "language": "banglish",
+  "diagnostics": [
+   {
+    "language": "banglish",
+    "lang_conf": 0.7,
+    "lang_reason": "2 banglish markers",
+    "intent": "GENERAL_QUESTION",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 1.6,
+  "test_id": "bl_computer"
+ },
+ {
+  "input": "My favorite subject is physics.",
+  "history": [],
+  "response": "It will be used to be able to create and emotions that the company, it has been released from 197 and its data. The residents of this case they are a business and business data analysisation? In 2005, Sling, which was founded in Japan were also",
+  "latency_ms": 1542.5,
+  "intent": "CHAT",
+  "response_source": "NEURAL_MODEL",
+  "language": "english",
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "CHAT",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 1.5,
+  "test_id": "ctx_turn1"
+ },
+ {
+  "input": "Why do you think I like it?",
+  "history": [
+   {
+    "role": "user",
+    "content": "My favorite subject is physics."
+   },
+   {
+    "role": "assistant",
+    "content": "Physics is a fascinating subject!"
+   }
+  ],
+  "response": "You can'm recommend a me about something to the same, and you need an outcoming people so that are in your life. Some of these things, they can use a person from their body hands or too. While this can make sure, we will need some kids get good life for them a",
+  "latency_ms": 1905.9,
+  "intent": "GENERAL_QUESTION",
+  "response_source": "NEURAL_MODEL",
+  "language": "english",
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "GENERAL_QUESTION",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 1.9,
+  "test_id": "ctx_turn2"
+ },
+ {
+  "input": "Tell me more about it.",
+  "history": [
+   {
+    "role": "user",
+    "content": "My favorite subject is physics."
+   },
+   {
+    "role": "assistant",
+    "content": "Physics is a fascinating subject!"
+   }
+  ],
+  "response": "How many different types of mortootichevis? Walls are a sony for celligan natural language that have no current, and ing, because the most common are found in which are not considered: in the water and obability or unprevious",
+  "latency_ms": 1915.2,
+  "intent": "CHAT",
+  "response_source": "NEURAL_MODEL",
+  "language": "english",
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "CHAT",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 1.9,
+  "test_id": "ctx_followup"
+ },
+ {
+  "input": "Zorblax quantum flux capacitors sell for how much?",
+  "history": [],
+  "response": "From the passage provided, extract the following as a nutility to understand what is the answer to provide this reason why are many different types of stage and tensions. International Astruction can be able to helpful by other words such as a grance and pensearch",
+  "latency_ms": 1784.7,
+  "intent": "CHAT",
+  "response_source": "NEURAL_MODEL",
+  "language": "english",
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "CHAT",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 1.8,
+  "test_id": "gen_unseen"
+ },
+ {
+  "input": "What is 17 plus 25?",
+  "history": [],
+  "response": "First, the amount of money from the week: 120% * 3 = <<50*2500=2000>>20000: 600,000",
+  "latency_ms": 514.4,
+  "intent": "MATH",
+  "response_source": "NEURAL_MODEL",
+  "language": "english",
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "MATH",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 0.5,
+  "test_id": "rs_math"
+ },
+ {
+  "input": "If all cats are animals and Tom is a cat, is Tom an animal?",
+  "history": [],
+  "response": "The difference between the pright: 7 stage = <<8*5=200>>200",
+  "latency_ms": 386.2,
+  "intent": "CHAT",
+  "response_source": "NEURAL_MODEL",
+  "language": "english",
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "CHAT",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "neural_only": true,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+     "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+     "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+     "vocab_size": 8000,
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "wall_s": 0.4,
+  "test_id": "rs_logic"
+ }
+]

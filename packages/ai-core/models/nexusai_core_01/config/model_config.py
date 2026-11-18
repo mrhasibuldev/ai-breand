@@ -234,7 +234,17 @@ class NexusAICore01Config:
     @classmethod
     def from_dict(cls, config_dict: Dict[str, Any]) -> "NexusAICore01Config":
         """Create configuration from dictionary"""
-        return cls(**{k: v for k, v in config_dict.items() if k in cls.__dataclass_fields__})
+        fields = {k: v for k, v in config_dict.items() if k in cls.__dataclass_fields__}
+        status = fields.get("model_status")
+        if status is not None and not isinstance(status, ModelStatus):
+            try:
+                fields["model_status"] = ModelStatus(status)
+            except ValueError:
+                raise ValueError(
+                    f"Invalid model_status value: {status!r}. "
+                    f"Expected one of {[s.value for s in ModelStatus]}"
+                )
+        return cls(**fields)
 
 
 # Default configuration instance

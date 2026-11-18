@@ -1,0 +1,110 @@
+{
+ "version": "unified_conversational_v4",
+ "seed": 42,
+ "total_records": 1223,
+ "rejected": 8,
+ "v3_carryover": {
+  "non_math": 673,
+  "math_kept": 460,
+  "math_total": 1274
+ },
+ "splits": {
+  "train": 1103,
+  "validation": 60,
+  "test": 60
+ },
+ "groups": {
+  "total": 1212,
+  "test_groups": 60,
+  "val_groups": 60
+ },
+ "statistics": {
+  "train": {
+   "n": 1103,
+   "lang": {
+    "bn": 290,
+    "banglish": 182,
+    "en": 604,
+    "mixed": 27
+   },
+   "category": {
+    "everyday_help": 132,
+    "math": 391,
+    "instruction": 14,
+    "greeting": 6,
+    "self_correction": 11,
+    "qa": 127,
+    "social": 29,
+    "decision": 19,
+    "knowledge": 104,
+    "identity": 13,
+    "uncertainty": 44,
+    "tech_support": 47,
+    "multi_turn": 63,
+    "mixed_lang": 27,
+    "refusal": 4,
+    "reasoning": 23,
+    "smalltalk": 17,
+    "clarification": 5,
+    "logic": 17,
+    "farewell": 6,
+    "thanks": 4
+   },
+   "avg_turns": 1.17,
+   "multi_turn": 63
+  },
+  "validation": {
+   "n": 60,
+   "lang": {
+    "en": 33,
+    "bn": 20,
+    "banglish": 6,
+    "mixed": 1
+   },
+   "category": {
+    "knowledge": 6,
+    "math": 29,
+    "everyday_help": 5,
+    "uncertainty": 1,
+    "reasoning": 2,
+    "qa": 7,
+    "social": 1,
+    "decision": 2,
+    "mixed_lang": 1,
+    "multi_turn": 1,
+    "farewell": 1,
+    "self_correction": 2,
+    "instruction": 1,
+    "tech_support": 1
+   },
+   "avg_turns": 1.05,
+   "multi_turn": 1
+  },
+  "test": {
+   "n": 60,
+   "lang": {
+    "en": 31,
+    "bn": 21,
+    "banglish": 8
+   },
+   "category": {
+    "math": 22,
+    "smalltalk": 2,
+    "uncertainty": 2,
+    "qa": 10,
+    "knowledge": 9,
+    "multi_turn": 5,
+    "social": 1,
+    "logic": 1,
+    "instruction": 1,
+    "everyday_help": 4,
+    "self_correction": 1,
+    "tech_support": 2
+   },
+   "avg_turns": 1.18,
+   "multi_turn": 5
+  }
+ },
+ "schema": "messages:[{role,content}] + capabilities[] \u2014 ChatSFTDataset compatible",
+ "note": "Curated v3 (math capped) + deep multi-turn (6-8 turns) + bn/banglish conversational boost + reasoning/decision/uncertainty expansion + foreign-script corruption guard. No external AI."
+}

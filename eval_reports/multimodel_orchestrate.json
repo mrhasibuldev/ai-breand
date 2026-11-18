@@ -1,0 +1,367 @@
+[
+ {
+  "id": "BN1",
+  "input": "কৃত্রিম বুদ্ধিমত্তা শিখে শেখে কীভাবে?",
+  "response": "The following are mountains between the sundes, and a lighthlettic grasswels. They have a variety of water in a large flow. Informs for the gasycling at a new turn, whereas bubble can be added to",
+  "intent": "CHAT",
+  "response_source": "NEURAL_MODEL",
+  "language": "bengali",
+  "latency_ms": 3167.2,
+  "diagnostics": [
+   {
+    "language": "bengali",
+    "lang_conf": 0.95,
+    "lang_reason": "bengali script",
+    "intent": "CHAT",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "error": null
+ },
+ {
+  "id": "BN2",
+  "input": "একটি সমস্যার সমাধান করার আগে কী কী বিষয় বিবেচনা করা উচিত?",
+  "response": "Airing is a domestinchenomer, which it is an although you will be the merged. You can also come to do notes this as \"gun\" or never the way. I'm a looking at an egg-tps of your",
+  "intent": "CHAT",
+  "response_source": "NEURAL_MODEL",
+  "language": "bengali",
+  "latency_ms": 1970.4,
+  "diagnostics": [
+   {
+    "language": "bengali",
+    "lang_conf": 0.95,
+    "lang_reason": "bengali script",
+    "intent": "CHAT",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "error": null
+ },
+ {
+  "id": "BN3",
+  "input": "তোমাকে কে তৈরি করেছে?",
+  "response": "আমি NexusAI — Hasibul-এর তৈরি independent AI assistant; আমি নিজের model ব্যবহার করি।",
+  "intent": "IDENTITY",
+  "response_source": "DETERMINISTIC_HANDLER",
+  "language": "bengali",
+  "latency_ms": 0.0,
+  "diagnostics": [
+   {
+    "language": "bengali",
+    "lang_conf": 0.95,
+    "lang_reason": "bengali script",
+    "intent": "IDENTITY",
+    "model_used": null,
+    "route": "registry:identity_metadata",
+    "tool": null,
+    "neural_ran": false,
+    "fallback": false
+   }
+  ],
+  "error": null
+ },
+ {
+  "id": "BN4",
+  "input": "২৫০ টাকার ২০% ছাড় দিলে কত টাকা দিতে হবে?",
+  "response": "First, the total number of children * 3 = <<3*6=14>>14 students/2*0.05=12000>>16 people",
+  "intent": "CHAT",
+  "response_source": "NEURAL_MODEL",
+  "language": "bengali",
+  "latency_ms": 678.6,
+  "diagnostics": [
+   {
+    "language": "bengali",
+    "lang_conf": 0.95,
+    "lang_reason": "bengali script",
+    "intent": "CHAT",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "error": null
+ },
+ {
+  "id": "EN1",
+  "input": "How does artificial intelligence learn?",
+  "response": "So, National Park is a good way to get it. There are three main fightership and they are some of themselves. The best time, one can consider the ball orders of each rice to make the body that you wanted to have too many people in which",
+  "intent": "GENERAL_QUESTION",
+  "response_source": "NEURAL_MODEL",
+  "language": "english",
+  "latency_ms": 1907.3,
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "GENERAL_QUESTION",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "error": null
+ },
+ {
+  "id": "EN2",
+  "input": "What is your actual model architecture?",
+  "response": "It has been a challength and can be very great way to build an idealle. A loga was a type of the erritory, or satieticially, in this methode's best things from hope about yourself before they could not",
+  "intent": "GENERAL_QUESTION",
+  "response_source": "NEURAL_MODEL",
+  "language": "english",
+  "latency_ms": 1885.3,
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "GENERAL_QUESTION",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "error": null
+ },
+ {
+  "id": "EN3",
+  "input": "Who created you?",
+  "response": "আমি NexusAI — Hasibul-এর তৈরি independent AI assistant; আমি নিজের model ব্যবহার করি।",
+  "intent": "IDENTITY",
+  "response_source": "DETERMINISTIC_HANDLER",
+  "language": "english",
+  "latency_ms": 0.1,
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "IDENTITY",
+    "model_used": null,
+    "route": "registry:identity_metadata",
+    "tool": null,
+    "neural_ran": false,
+    "fallback": false
+   }
+  ],
+  "error": null
+ },
+ {
+  "id": "EN4",
+  "input": "What is 20% off 250 taka?",
+  "response": "Cons is 310, the difference between a table and is 3000-year-mandarvi-Files per month. If each month, how much did it take to run at an average of 10/5 of gychological gradio, then the same year in his brother",
+  "intent": "GENERAL_QUESTION",
+  "response_source": "NEURAL_MODEL",
+  "language": "english",
+  "latency_ms": 1821.9,
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "GENERAL_QUESTION",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "error": null
+ },
+ {
+  "id": "BL1",
+  "input": "Artificial intelligence kivabe shikhe?",
+  "response": "The main difference between the US and Actor of Halls, which is a mellectronomestic. Miamians are many different reasons to useful people to be able to the most important computed by its current (centilities), a trouthern",
+  "intent": "GENERAL_QUESTION",
+  "response_source": "NEURAL_MODEL",
+  "language": "banglish",
+  "latency_ms": 2698.0,
+  "diagnostics": [
+   {
+    "language": "banglish",
+    "lang_conf": 0.6,
+    "lang_reason": "1 banglish markers",
+    "intent": "GENERAL_QUESTION",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "error": null
+ },
+ {
+  "id": "BL2",
+  "input": "Ekta problem solve korar age ki ki bishoy consider kora uchit?",
+  "response": "A raddynamine is a north-mphoistords of the Firectory Sanda Kell, the Mexician, and Broteinalphones. It was fiction in a serious banking for one of his career, at its",
+  "intent": "GENERAL_QUESTION",
+  "response_source": "NEURAL_MODEL",
+  "language": "banglish",
+  "latency_ms": 2200.4,
+  "diagnostics": [
+   {
+    "language": "banglish",
+    "lang_conf": 0.9,
+    "lang_reason": "4 banglish markers",
+    "intent": "GENERAL_QUESTION",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "error": null
+ },
+ {
+  "id": "RS1",
+  "input": "A shop has 12 apples. It sells 5 and buys 8 more. How many apples does it have now?",
+  "response": "If she bought 4 dozen cupcakes, how much of crayons are on candy, calculate the total amount of cookies left to be 2*4 = <<3*3=60>>60 pieces of flowers in the box she needs 20 boxes each packets for a day so he has 30+60=<<60/2=10>>10 bags that costs $.50 per weekly together",
+  "intent": "CHAT",
+  "response_source": "NEURAL_MODEL",
+  "language": "english",
+  "latency_ms": 2084.1,
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "CHAT",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "error": null
+ },
+ {
+  "id": "RS2",
+  "input": "If all roses are flowers and some flowers fade quickly, can we conclude that all roses fade quickly? Explain.",
+  "response": "From the passage provided text, it was a sport of Foodlegate's age from the US Openo Mastheadian: Northernetchan. The first earliately on Jama in the United States (A), Largeera) is an",
+  "intent": "CHAT",
+  "response_source": "NEURAL_MODEL",
+  "language": "english",
+  "latency_ms": 2299.5,
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "CHAT",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "error": null
+ },
+ {
+  "id": "RS3",
+  "input": "A person has three tasks but enough time for only two. What information should they consider before choosing?",
+  "response": "LLMSRC is one of the length centimal in history, while a high school year older than CF and New York City. The last month was also known to run the age of DNGA Championship is the Musetn BBA, who could be",
+  "intent": "CHAT",
+  "response_source": "NEURAL_MODEL",
+  "language": "english",
+  "latency_ms": 2363.8,
+  "diagnostics": [
+   {
+    "language": "english",
+    "lang_conf": 0.8,
+    "lang_reason": "latin script",
+    "intent": "CHAT",
+    "model_used": "nexus-core-01",
+    "route": "neural:nexus-core-01",
+    "tool": null,
+    "neural_ran": true,
+    "fallback": false,
+    "provenance": {
+     "model_id": "nexus-core-01",
+     "checkpoint": "checkpoint_final.pt",
+     "engine": "core01",
+     "load_s": 0.46
+    }
+   }
+  ],
+  "error": null
+ }
+]
