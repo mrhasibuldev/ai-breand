@@ -404,12 +404,15 @@ class NexusAICore01(nn.Module):
         self.eval()
         
         # Use config defaults if not provided
-        max_new_tokens = max_new_tokens or self.config.max_new_tokens
-        temperature = temperature or self.config.temperature
+        max_new_tokens = max_new_tokens if max_new_tokens is not None else self.config.max_new_tokens
+        temperature = temperature if temperature is not None else self.config.temperature
         top_k = top_k if top_k is not None else self.config.top_k
         top_p = top_p if top_p is not None else self.config.top_p
-        repetition_penalty = repetition_penalty or self.config.repetition_penalty
+        repetition_penalty = repetition_penalty if repetition_penalty is not None else self.config.repetition_penalty
         
+        finished = torch.zeros(input_ids.size(0), dtype=torch.bool,
+                               device=input_ids.device)
+        pad_id = getattr(self.config, "pad_id", 0)
         with torch.no_grad():
             for _ in range(max_new_tokens):
                 # Truncate to max_len if needed
@@ -459,11 +462,19 @@ class NexusAICore01(nn.Module):
                 else:
                     next_token = torch.argmax(logits, dim=-1, keepdim=True)
                 
+                # Freeze finished rows to pad so they stop influencing sampling
+                next_token = torch.where(
+                    finished.unsqueeze(1),
+                    torch.full_like(next_token, pad_id),
+                    next_token)
+
                 # Append to input
                 input_ids = torch.cat([input_ids, next_token], dim=1)
-                
-                # Check for EOS
-                if next_token.item() == self.config.eos_id:
+
+                # Per-row EOS: only rows that just emitted EOS finish;
+                # generation stops once every row has finished.
+                finished |= (next_token.squeeze(1) == self.config.eos_id)
+                if bool(finished.all()):
                     break
         
         return input_ids

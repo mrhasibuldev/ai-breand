@@ -42,7 +42,7 @@ MODEL_DEFS = {
         "arch_version": "1.0.0",
         "checkpoint": os.path.join(MODELS_ROOT, "checkpoints_medium/final_model.pt"),
         "checkpoint_sha256": "4f592af9846b89652eb7",   # prefix — full hash verified at load
-        "expected_params": 2468928,
+        "expected_params": 2452544,  # verified actual param count (Stage-1 audit)
         "config": {"d_model":128,"n_layers":2,"n_heads":2,"d_ff":512,"max_len":128,"vocab_size":8000},
         "tokenizer": TOKENIZER_8K,
         "tokenizer_type": "sentencepiece_bpe",
