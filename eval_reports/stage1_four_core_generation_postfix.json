@@ -1,0 +1,4538 @@
+{
+  "benchmark": "NEXUSAI Stage-1 four-core generation verification",
+  "timestamp": "2026-11-18T17:43:20Z",
+  "device": "cpu",
+  "generation_kw": {
+    "do_sample": false,
+    "max_new_tokens": 48,
+    "temperature": 0.0,
+    "top_k": 1,
+    "top_p": 1.0,
+    "repetition_penalty": 1.1
+  },
+  "prompt_count_per_model": 24,
+  "models": {
+    "nexus-core-01": {
+      "model_id": "nexus-core-01",
+      "status": "PARTIALLY VERIFIED",
+      "checks": {
+        "registry_validate": {
+          "ok": true,
+          "detail": "ok"
+        },
+        "engine_load_s": 1.04,
+        "engine_kind": "core01",
+        "strict_load": {
+          "strict_load": true,
+          "missing_keys": [],
+          "unexpected_keys": [],
+          "param_count": 8842560,
+          "param_count_expected": 8842560,
+          "weights_only_flag": false,
+          "note": "numpy metadata in Run3 ckpt requires weights_only=False; strict=True still verified"
+        },
+        "mem_mb_after_load": 338.8,
+        "mem_mb_after_gen": 270.6,
+        "param_count_match": true,
+        "tokenizer": {
+          "vocab_size": null,
+          "bos_id": 2,
+          "eos_id": 3,
+          "pad_id": 0
+        }
+      },
+      "generations": [
+        {
+          "test_id": "greet_en",
+          "category": "greeting",
+          "language": "en",
+          "prompt": "Hello! How are you today?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.02,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "greet_bn",
+          "category": "greeting",
+          "language": "bn",
+          "prompt": "তুমি কেমন আছো?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.95,
+          "generated_text": "The first person is a total of 10 + 3 = <<10+10=15>>15 students. #### 20",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "ok"
+          },
+          "generated_chars": 72,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "greet_bg",
+          "category": "greeting",
+          "language": "banglish",
+          "prompt": "Tumi kemon acho?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 1.3,
+          "generated_text": "The Roman is a sundography, which is the most popular in the United States. The city is the largest city of the world's largest city and the city islands. The city is the largest city",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "ok"
+          },
+          "generated_chars": 183,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "greet_mix",
+          "category": "greeting",
+          "language": "mixed",
+          "prompt": "Hello, তুমি কেমন আছো friend?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.02,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "conv_en",
+          "category": "conversation",
+          "language": "en",
+          "prompt": "What do you think about the weather today?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.02,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "conv_bn",
+          "category": "conversation",
+          "language": "bn",
+          "prompt": "আজকের আবহাওয়া কেমন লাগে তোমার?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.34,
+          "generated_text": "The first person is a total of 10 + 3 = <<10+3=15>>15 #### 6",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "ok"
+          },
+          "generated_chars": 60,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "conv_bg",
+          "category": "conversation",
+          "language": "banglish",
+          "prompt": "Ajke er abhawoa kemon lagche tomar?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 1.13,
+          "generated_text": "The first radio of the first season is a second-thletes. The first two years is the largest city in the world's age of the United States, and the most population of the United States.",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "ok"
+          },
+          "generated_chars": 183,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "conv_mix",
+          "category": "conversation",
+          "language": "mixed",
+          "prompt": "আজ afternoon-এ আমরা কি play করবো?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 1.03,
+          "generated_text": "First find the number of days: 3 * 2 = <<2*2=4>>4 minutes Then multiply that number by the number of hours to find the total number of miles per hour: 6 hours + 4 = <<6+4=18>>18 minutes Then divide the number",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "ok"
+          },
+          "generated_chars": 208,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "know_en",
+          "category": "knowledge",
+          "language": "en",
+          "prompt": "What is artificial intelligence?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 1.03,
+          "generated_text": "The term is the most important to be a model that is a machine of the magneticism. It is a model that is a model that is a model that is a model that is a",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "ok"
+          },
+          "generated_chars": 154,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "know_bn",
+          "category": "knowledge",
+          "language": "bn",
+          "prompt": "কৃত্রিম বুদ্ধিমত্তা কী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.02,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "know_bg",
+          "category": "knowledge",
+          "language": "banglish",
+          "prompt": "Artificial intelligence ki?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 1.17,
+          "generated_text": "The term is a multurality of the United States. The first largest city islands in the world's largest city in the world. It is the most population of the United States and the largest city in the",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "ok"
+          },
+          "generated_chars": 195,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "know_mix",
+          "category": "knowledge",
+          "language": "mixed",
+          "prompt": "Bengali আর English-এ Navigator কী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 2.17,
+          "generated_text": "The Co is a city of the United States, which is the largest city in the world. It is the most popular sports are located in the world's age of the United States and the United States.",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "ok"
+          },
+          "generated_chars": 183,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "reason_en",
+          "category": "reasoning",
+          "language": "en",
+          "prompt": "If all cats are animals and Tom is a cat, is Tom an animal?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.91,
+          "generated_text": "The total number of fish is equal to the number of pets is in the summer. The number of turtle is 3/4 = <<3*3=15>>15 pieces of water. #### 4",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "ok"
+          },
+          "generated_chars": 140,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "reason_bn",
+          "category": "reasoning",
+          "language": "bn",
+          "prompt": "যদি সব বিড়াল প্রাণী হয় এবং টম একটি বিড়াল, তাহলে টম কি প্রাণী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.39,
+          "generated_text": "The total number of fish is 3 * 2 = <<2*2=4>>4. #### 6",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "ok"
+          },
+          "generated_chars": 54,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "reason_bg",
+          "category": "reasoning",
+          "language": "banglish",
+          "prompt": "Jodi shob biral prani hoy ebong Tom ekta biral, tahole Tom ki prani?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.03,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "reason_mix",
+          "category": "reasoning",
+          "language": "mixed",
+          "prompt": "If আমি exhausted Feeling, should আমি rest or কাজ করবো?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.61,
+          "generated_text": "The first person can be a number of fish: - 2 = <<2*2=4>>4 pairs of water. #### 3",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "ok"
+          },
+          "generated_chars": 81,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "math_en",
+          "category": "mathematics",
+          "language": "en",
+          "prompt": "What is 15 plus 27?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.94,
+          "generated_text": "The total number of turtles in the second year, which is 3/4 = <<3*3=15>>15 years old. The total number of goals is 6 x 2 = <<4*2=8>>8 years old. #### 4",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "ok"
+          },
+          "generated_chars": 152,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "math_bn",
+          "category": "mathematics",
+          "language": "bn",
+          "prompt": "১৫ আর ২৭ যোগ করলে কত হয়?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.02,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "math_bg",
+          "category": "mathematics",
+          "language": "banglish",
+          "prompt": "15 plus 27 koto hoy?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.28,
+          "generated_text": "The total number of fish is 38 = <<34/2=2>>27",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "ok"
+          },
+          "generated_chars": 45,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "math_mix",
+          "category": "mathematics",
+          "language": "mixed",
+          "prompt": "আমার ৫টা apple আছে, ৩টা খেয়ে ফেললাম, কতটা বাকি?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.02,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "ctx_en",
+          "category": "followup",
+          "language": "en",
+          "prompt": "My name is Hasib. What is my name?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.59,
+          "generated_text": "The difference between the following are the city of the city, which is a number of population of countries in the United States.",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "ok"
+          },
+          "generated_chars": 129,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "ctx_bn",
+          "category": "followup",
+          "language": "bn",
+          "prompt": "আমার নাম হাসিব। আমার নাম কী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.02,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "ctx_bg",
+          "category": "followup",
+          "language": "banglish",
+          "prompt": "Amar nam Hasib. Amar nam ki?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 1.73,
+          "generated_text": "The Roman is a sundography, the mountainderney, which is a machine of the magneticheado, and the machines are in the world.",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "ok"
+          },
+          "generated_chars": 123,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "ctx_mix",
+          "category": "followup",
+          "language": "mixed",
+          "prompt": "আমি Hasib, আর তুমি? তোমার নাম কী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.47,
+          "generated_text": "The number of fish is 3/4 = <<3*3=15>>15 The total number of pairs of pennies. #### 6",
+          "provenance": {
+            "model_id": "nexus-core-01",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+            "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "core01",
+            "load_s": 0.55,
+            "neural_generation_executed": true,
+            "generation_status": "ok"
+          },
+          "generated_chars": 85,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        }
+      ],
+      "errors": [],
+      "definition": {
+        "name": "Core-01",
+        "architecture": "core01_decoder_only_transformer",
+        "arch_version": "1.0.0",
+        "checkpoint": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+        "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+        "expected_params": 8842560,
+        "config": {
+          "d_model": 256,
+          "n_layers": 6,
+          "n_heads": 8,
+          "d_ff": 1024,
+          "max_len": 512,
+          "vocab_size": 8000
+        },
+        "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+        "tokenizer_type": "sentencepiece_bpe",
+        "vocab_size": 8000,
+        "max_len": 512,
+        "languages": [
+          "en",
+          "bn",
+          "banglish",
+          "mixed"
+        ],
+        "ram_mb_est": 420,
+        "status": "candidate_primary",
+        "training_run": "core01_run3 (step 1341, 3 epochs, english_first 7.43M tok)",
+        "known_limits": "undertrained; weak reasoning/Bengali until Run4",
+        "loader": "core01",
+        "runtime_status": "available",
+        "last_error": null
+      }
+    },
+    "nexus-core-02": {
+      "model_id": "nexus-core-02",
+      "status": "VERIFIED",
+      "checks": {
+        "registry_validate": {
+          "ok": true,
+          "detail": "ok"
+        },
+        "engine_load_s": 1.45,
+        "engine_kind": "nexus_sft",
+        "strict_load": {
+          "strict_load": true,
+          "missing_keys": [],
+          "unexpected_keys": [],
+          "param_count": 20347712,
+          "param_count_expected": 20347712
+        },
+        "param_count_match": true,
+        "tokenizer": {
+          "vocab_size": null,
+          "bos_id": 2,
+          "eos_id": 3,
+          "pad_id": 0
+        },
+        "mem_mb_after_load": 489.9,
+        "mem_mb_after_gen": 443.1
+      },
+      "generations": [
+        {
+          "test_id": "greet_en",
+          "category": "greeting",
+          "language": "en",
+          "prompt": "Hello! How are you today?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.55,
+          "generated_text": "1. Boil water. 2. Add tea leaves.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 33,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "greet_bn",
+          "category": "greeting",
+          "language": "bn",
+          "prompt": "তুমি কেমন আছো?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.3,
+          "generated_text": "1. Boil water.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 14,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "greet_bg",
+          "category": "greeting",
+          "language": "banglish",
+          "prompt": "Tumi kemon acho?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.33,
+          "generated_text": "1. Boil water.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 14,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "greet_mix",
+          "category": "greeting",
+          "language": "mixed",
+          "prompt": "Hello, তুমি কেমন আছো friend?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.51,
+          "generated_text": "1. Boil water. 2. Add tea leaves.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 33,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "conv_en",
+          "category": "conversation",
+          "language": "en",
+          "prompt": "What do you think about the weather today?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.33,
+          "generated_text": "1. Boil water.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 14,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "conv_bn",
+          "category": "conversation",
+          "language": "bn",
+          "prompt": "আজকের আবহাওয়া কেমন লাগে তোমার?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.45,
+          "generated_text": "1. Boil water. 2. Add tea leaves.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 33,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "conv_bg",
+          "category": "conversation",
+          "language": "banglish",
+          "prompt": "Ajke er abhawoa kemon lagche tomar?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.53,
+          "generated_text": "No, Arif finished first.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 24,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "conv_mix",
+          "category": "conversation",
+          "language": "mixed",
+          "prompt": "আজ afternoon-এ আমরা কি play করবো?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.44,
+          "generated_text": "No, 2. Add tea leaves.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 22,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "know_en",
+          "category": "knowledge",
+          "language": "en",
+          "prompt": "What is artificial intelligence?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.35,
+          "generated_text": "1. Boil water.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 14,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "know_bn",
+          "category": "knowledge",
+          "language": "bn",
+          "prompt": "কৃত্রিম বুদ্ধিমত্তা কী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.3,
+          "generated_text": "1. Boil water.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 14,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "know_bg",
+          "category": "knowledge",
+          "language": "banglish",
+          "prompt": "Artificial intelligence ki?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.29,
+          "generated_text": "1. Boil water.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 14,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "know_mix",
+          "category": "knowledge",
+          "language": "mixed",
+          "prompt": "Bengali আর English-এ Navigator কী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.35,
+          "generated_text": "No, করিম পড়াশোনা করে।",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 22,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "reason_en",
+          "category": "reasoning",
+          "language": "en",
+          "prompt": "If all cats are animals and Tom is a cat, is Tom an animal?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.52,
+          "generated_text": "No, {a} studies.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 16,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "reason_bn",
+          "category": "reasoning",
+          "language": "bn",
+          "prompt": "যদি সব বিড়াল প্রাণী হয় এবং টম একটি বিড়াল, তাহলে টম কি প্রাণী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.48,
+          "generated_text": "No, {a} studies.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 16,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "reason_bg",
+          "category": "reasoning",
+          "language": "banglish",
+          "prompt": "Jodi shob biral prani hoy ebong Tom ekta biral, tahole Tom ki prani?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.85,
+          "generated_text": "Hyan, Arif porashona kore.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 26,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "reason_mix",
+          "category": "reasoning",
+          "language": "mixed",
+          "prompt": "If আমি exhausted Feeling, should আমি rest or কাজ করবো?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.56,
+          "generated_text": "No, {a} studies.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 16,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "math_en",
+          "category": "mathematics",
+          "language": "en",
+          "prompt": "What is 15 plus 27?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.53,
+          "generated_text": "1. Boil water. 2. Add tea leaves.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 33,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "math_bn",
+          "category": "mathematics",
+          "language": "bn",
+          "prompt": "১৫ আর ২৭ যোগ করলে কত হয়?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.56,
+          "generated_text": "1. Boil water. 2. Add tea leaves.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 33,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "math_bg",
+          "category": "mathematics",
+          "language": "banglish",
+          "prompt": "15 plus 27 koto hoy?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 1.39,
+          "generated_text": "1. Boil water. 2. Add tea leaves.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 33,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "math_mix",
+          "category": "mathematics",
+          "language": "mixed",
+          "prompt": "আমার ৫টা apple আছে, ৩টা খেয়ে ফেললাম, কতটা বাকি?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.56,
+          "generated_text": "No, that is a contradiction.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 28,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "ctx_en",
+          "category": "followup",
+          "language": "en",
+          "prompt": "My name is Hasib. What is my name?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.3,
+          "generated_text": "1. Boil water.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 14,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "ctx_bn",
+          "category": "followup",
+          "language": "bn",
+          "prompt": "আমার নাম হাসিব। আমার নাম কী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.56,
+          "generated_text": "1. Boil water. 2. Add tea leaves.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 33,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "ctx_bg",
+          "category": "followup",
+          "language": "banglish",
+          "prompt": "Amar nam Hasib. Amar nam ki?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.39,
+          "generated_text": "No, করিম পড়াশোনা করে।",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 22,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "ctx_mix",
+          "category": "followup",
+          "language": "mixed",
+          "prompt": "আমি Hasib, আর তুমি? তোমার নাম কী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.39,
+          "generated_text": "No, A key costs less.",
+          "provenance": {
+            "model_id": "nexus-core-02",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.1,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 21,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        }
+      ],
+      "errors": [],
+      "definition": {
+        "name": "Core-02",
+        "architecture": "core_decoder_only_transformer_sft",
+        "arch_version": "1.0.0",
+        "checkpoint": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt",
+        "checkpoint_sha256": "906d6024511f3e8ab48f36d077be391e2eae47573fa4ba29ba8e550c690cbb18",
+        "expected_params": 20347712,
+        "config": {
+          "d_model": 384,
+          "n_layers": 8,
+          "n_heads": 12,
+          "d_ff": 1536,
+          "max_len": 512,
+          "vocab_size": 8000
+        },
+        "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+        "tokenizer_type": "sentencepiece_bpe",
+        "vocab_size": 8000,
+        "max_len": 512,
+        "languages": [
+          "en",
+          "bn",
+          "banglish"
+        ],
+        "ram_mb_est": 900,
+        "status": "specialist_reasoning",
+        "training_run": "core02_sft_v2 (clean question-level split)",
+        "known_limits": "template-trained; held-out generalization limited",
+        "loader": "nexus_sft",
+        "core_id": "core02",
+        "chat_format": true,
+        "runtime_status": "available",
+        "last_error": null
+      }
+    },
+    "nexus-core-03": {
+      "model_id": "nexus-core-03",
+      "status": "VERIFIED",
+      "checks": {
+        "registry_validate": {
+          "ok": true,
+          "detail": "ok"
+        },
+        "engine_load_s": 0.64,
+        "engine_kind": "nexus_sft",
+        "strict_load": {
+          "strict_load": true,
+          "missing_keys": [],
+          "unexpected_keys": [],
+          "param_count": 8842560,
+          "param_count_expected": 8842560
+        },
+        "param_count_match": true,
+        "tokenizer": {
+          "vocab_size": null,
+          "bos_id": 2,
+          "eos_id": 3,
+          "pad_id": 0
+        },
+        "mem_mb_after_load": 463.6,
+        "mem_mb_after_gen": 438.4
+      },
+      "generations": [
+        {
+          "test_id": "greet_en",
+          "category": "greeting",
+          "language": "en",
+          "prompt": "Hello! How are you today?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.14,
+          "generated_text": "15.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 3,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "greet_bn",
+          "category": "greeting",
+          "language": "bn",
+          "prompt": "তুমি কেমন আছো?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.14,
+          "generated_text": "83.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 3,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "greet_bg",
+          "category": "greeting",
+          "language": "banglish",
+          "prompt": "Tumi kemon acho?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.16,
+          "generated_text": "2/8.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 4,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "greet_mix",
+          "category": "greeting",
+          "language": "mixed",
+          "prompt": "Hello, তুমি কেমন আছো friend?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.13,
+          "generated_text": "15.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 3,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "conv_en",
+          "category": "conversation",
+          "language": "en",
+          "prompt": "What do you think about the weather today?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.13,
+          "generated_text": "78.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 3,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "conv_bn",
+          "category": "conversation",
+          "language": "bn",
+          "prompt": "আজকের আবহাওয়া কেমন লাগে তোমার?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.14,
+          "generated_text": "43.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 3,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "conv_bg",
+          "category": "conversation",
+          "language": "banglish",
+          "prompt": "Ajke er abhawoa kemon lagche tomar?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.17,
+          "generated_text": "210.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 4,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "conv_mix",
+          "category": "conversation",
+          "language": "mixed",
+          "prompt": "আজ afternoon-এ আমরা কি play করবো?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.12,
+          "generated_text": "7.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 2,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "know_en",
+          "category": "knowledge",
+          "language": "en",
+          "prompt": "What is artificial intelligence?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.12,
+          "generated_text": "15.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 3,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "know_bn",
+          "category": "knowledge",
+          "language": "bn",
+          "prompt": "কৃত্রিম বুদ্ধিমত্তা কী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.13,
+          "generated_text": "29.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 3,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "know_bg",
+          "category": "knowledge",
+          "language": "banglish",
+          "prompt": "Artificial intelligence ki?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.14,
+          "generated_text": "78.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 3,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "know_mix",
+          "category": "knowledge",
+          "language": "mixed",
+          "prompt": "Bengali আর English-এ Navigator কী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.15,
+          "generated_text": "63.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 3,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "reason_en",
+          "category": "reasoning",
+          "language": "en",
+          "prompt": "If all cats are animals and Tom is a cat, is Tom an animal?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.17,
+          "generated_text": "29.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 3,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "reason_bn",
+          "category": "reasoning",
+          "language": "bn",
+          "prompt": "যদি সব বিড়াল প্রাণী হয় এবং টম একটি বিড়াল, তাহলে টম কি প্রাণী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.18,
+          "generated_text": "210.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 4,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "reason_bg",
+          "category": "reasoning",
+          "language": "banglish",
+          "prompt": "Jodi shob biral prani hoy ebong Tom ekta biral, tahole Tom ki prani?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.2,
+          "generated_text": "210.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 4,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "reason_mix",
+          "category": "reasoning",
+          "language": "mixed",
+          "prompt": "If আমি exhausted Feeling, should আমি rest or কাজ করবো?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.17,
+          "generated_text": "29.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 3,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "math_en",
+          "category": "mathematics",
+          "language": "en",
+          "prompt": "What is 15 plus 27?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.14,
+          "generated_text": "22.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 3,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "math_bn",
+          "category": "mathematics",
+          "language": "bn",
+          "prompt": "১৫ আর ২৭ যোগ করলে কত হয়?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.14,
+          "generated_text": "52।",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 3,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "math_bg",
+          "category": "mathematics",
+          "language": "banglish",
+          "prompt": "15 plus 27 koto hoy?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.14,
+          "generated_text": "62.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 3,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "math_mix",
+          "category": "mathematics",
+          "language": "mixed",
+          "prompt": "আমার ৫টা apple আছে, ৩টা খেয়ে ফেললাম, কতটা বাকি?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.16,
+          "generated_text": "210.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 4,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "ctx_en",
+          "category": "followup",
+          "language": "en",
+          "prompt": "My name is Hasib. What is my name?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.12,
+          "generated_text": "7.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 2,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "ctx_bn",
+          "category": "followup",
+          "language": "bn",
+          "prompt": "আমার নাম হাসিব। আমার নাম কী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.15,
+          "generated_text": "2/8.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 4,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "ctx_bg",
+          "category": "followup",
+          "language": "banglish",
+          "prompt": "Amar nam Hasib. Amar nam ki?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.15,
+          "generated_text": "29.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 3,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "ctx_mix",
+          "category": "followup",
+          "language": "mixed",
+          "prompt": "আমি Hasib, আর তুমি? তোমার নাম কী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.14,
+          "generated_text": "7.",
+          "provenance": {
+            "model_id": "nexus-core-03",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+            "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 0.51,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 2,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        }
+      ],
+      "errors": [],
+      "definition": {
+        "name": "Core-03",
+        "architecture": "core_decoder_only_transformer_sft",
+        "arch_version": "1.0.0",
+        "checkpoint": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt",
+        "checkpoint_sha256": "1ff83fb9ecd93944969c4086c206e2647c844c182c420b857e2f12b558d5e956",
+        "expected_params": 8842560,
+        "config": {
+          "d_model": 256,
+          "n_layers": 6,
+          "n_heads": 8,
+          "d_ff": 1024,
+          "max_len": 512,
+          "vocab_size": 8000
+        },
+        "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+        "tokenizer_type": "sentencepiece_bpe",
+        "vocab_size": 8000,
+        "max_len": 512,
+        "languages": [
+          "en",
+          "bn",
+          "banglish"
+        ],
+        "ram_mb_est": 420,
+        "status": "specialist_math",
+        "training_run": "core03_sft_v2 (clean question-level split, 8 epochs)",
+        "known_limits": "procedural math only; no general reasoning",
+        "loader": "nexus_sft",
+        "core_id": "core03",
+        "chat_format": true,
+        "runtime_status": "available",
+        "last_error": null
+      }
+    },
+    "nexus-core-04": {
+      "model_id": "nexus-core-04",
+      "status": "VERIFIED",
+      "checks": {
+        "registry_validate": {
+          "ok": true,
+          "detail": "ok"
+        },
+        "engine_load_s": 2.12,
+        "engine_kind": "nexus_sft",
+        "strict_load": {
+          "strict_load": true,
+          "missing_keys": [],
+          "unexpected_keys": [],
+          "param_count": 33419072,
+          "param_count_expected": 33419072
+        },
+        "param_count_match": true,
+        "tokenizer": {
+          "vocab_size": null,
+          "bos_id": 2,
+          "eos_id": 3,
+          "pad_id": 0
+        },
+        "mem_mb_after_load": 778.1,
+        "mem_mb_after_gen": 681.4
+      },
+      "generations": [
+        {
+          "test_id": "greet_en",
+          "category": "greeting",
+          "language": "en",
+          "prompt": "Hello! How are you today?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 2.27,
+          "generated_text": "আগ্নেয়গিরি হলো এমন একটি খোলা অংশ দিয়ে lava, ছাই ও গ্যাস বেরিয়ে আসে।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 70,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "greet_bn",
+          "category": "greeting",
+          "language": "bn",
+          "prompt": "তুমি কেমন আছো?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 1.06,
+          "generated_text": "সেতু হলো এমন একটি জায়গা যা বই ও নির্মিত হয়।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 45,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "greet_bg",
+          "category": "greeting",
+          "language": "banglish",
+          "prompt": "Tumi kemon acho?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 1.44,
+          "generated_text": "সেতু হলো এমন একটি জায়গাভাবিকভাবে পুনরায় উৎপন্ন হয়।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 53,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "greet_mix",
+          "category": "greeting",
+          "language": "mixed",
+          "prompt": "Hello, তুমি কেমন আছো friend?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 2.08,
+          "generated_text": "আগ্নেয়গিরি হলো এমন একটি খোলা অংশ দিয়ে ঘনীভবন ও গ্যাস বেরিয়ে আসে।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 67,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "conv_en",
+          "category": "conversation",
+          "language": "en",
+          "prompt": "What do you think about the weather today?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 3.24,
+          "generated_text": "Chlorophyll is the green pigment in plants that captures sunlight for photosynthesis-এর জন্য সূর্যের আলো ধরে।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 109,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "conv_bn",
+          "category": "conversation",
+          "language": "bn",
+          "prompt": "আজকের আবহাওয়া কেমন লাগে তোমার?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 1.7,
+          "generated_text": "সেতু হলো এমন একটি বড় এলাকা যা গাছপালা দিয়ে ঘনভাবে পুনরায় উৎপন্ন হয়।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 71,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "conv_bg",
+          "category": "conversation",
+          "language": "banglish",
+          "prompt": "Ajke er abhawoa kemon lagche tomar?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.61,
+          "generated_text": "সেবা দেয়।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 10,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "conv_mix",
+          "category": "conversation",
+          "language": "mixed",
+          "prompt": "আজ afternoon-এ আমরা কি play করবো?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 2.44,
+          "generated_text": "নবায়নযোগ্য শক্তি এমন উৎস থেকে আসে যা স্বাভাবিকভাবে পুনরায় উৎপন্ন হয় — যেমন solar, wind ও hydro power।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 104,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "know_en",
+          "category": "knowledge",
+          "language": "en",
+          "prompt": "What is artificial intelligence?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 2.42,
+          "generated_text": "Artificial intelligence is the simulation of human intelligence by machines, especially computers.",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 98,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "know_bn",
+          "category": "knowledge",
+          "language": "bn",
+          "prompt": "কৃত্রিম বুদ্ধিমত্তা কী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 1.66,
+          "generated_text": "সেতু হলো এমন একটি বড় এলাকা যা গাছপালা দিয়ে ঘনভাবে পুনর জন্য পশুপালন করা হয়।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 78,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "know_bg",
+          "category": "knowledge",
+          "language": "banglish",
+          "prompt": "Artificial intelligence ki?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 1.2,
+          "generated_text": "কৃত্রিম বুদ্ধিমত্তা হলো মেশিন, বিশেষ করে কম্পিউটারের মাধ্যমে মানব বুদ্ধিমত্তার অনুকরণ।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 86,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "know_mix",
+          "category": "knowledge",
+          "language": "mixed",
+          "prompt": "Bengali আর English-এ Navigator কী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 1.75,
+          "generated_text": "কৃত্রিম বুদ্ধিমত্তা হলো এমন একটি জায়গা যা বই ও অন্যান্য পড়ার উপকরণ।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 69,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "reason_en",
+          "category": "reasoning",
+          "language": "en",
+          "prompt": "If all cats are animals and Tom is a cat, is Tom an animal?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.54,
+          "generated_text": "সেবা দেয়।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 10,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "reason_bn",
+          "category": "reasoning",
+          "language": "bn",
+          "prompt": "যদি সব বিড়াল প্রাণী হয় এবং টম একটি বিড়াল, তাহলে টম কি প্রাণী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.61,
+          "generated_text": "সেবা দেয়।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 10,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "reason_bg",
+          "category": "reasoning",
+          "language": "banglish",
+          "prompt": "Jodi shob biral prani hoy ebong Tom ekta biral, tahole Tom ki prani?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.92,
+          "generated_text": "ইন্টারনেট একটি বয়ে যায়।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 25,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "reason_mix",
+          "category": "reasoning",
+          "language": "mixed",
+          "prompt": "If আমি exhausted Feeling, should আমি rest or কাজ করবো?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.57,
+          "generated_text": "সেবা দেয়।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 10,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "math_en",
+          "category": "mathematics",
+          "language": "en",
+          "prompt": "What is 15 plus 27?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 3.61,
+          "generated_text": "Gravity is the force that carries genetic instructions in living organisms.",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 75,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "math_bn",
+          "category": "mathematics",
+          "language": "bn",
+          "prompt": "১৫ আর ২৭ যোগ করলে কত হয়?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 3.42,
+          "generated_text": "DNA হলো অণু যা জীবদম হলো এমন একটি খোত যা sunlight ধরে।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 54,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "math_bg",
+          "category": "mathematics",
+          "language": "banglish",
+          "prompt": "15 plus 27 koto hoy?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 1.08,
+          "generated_text": "টেবিল হলো একটি আসবা দেয়।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 25,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "math_mix",
+          "category": "mathematics",
+          "language": "mixed",
+          "prompt": "আমার ৫টা apple আছে, ৩টা খেয়ে ফেললাম, কতটা বাকি?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 2.25,
+          "generated_text": "কৃত্রিম বুদ্ধিমত্তা হলো এমন একটি জায়গা যা sunlight for res hydro power।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 72,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "ctx_en",
+          "category": "followup",
+          "language": "en",
+          "prompt": "My name is Hasib. What is my name?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 1.91,
+          "generated_text": "নবায়নযোগ্য শক্তি এমন একটি জায়গাভাবিকভাবে পুনরায় উৎপন্ন হয়।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 62,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "ctx_bn",
+          "category": "followup",
+          "language": "bn",
+          "prompt": "আমার নাম হাসিব। আমার নাম কী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 2.24,
+          "generated_text": "নবায়নযোগ্য শক্তি এমন একটি জায়গা যা বই ও অন্যান্য পড়ার উপকরণ।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 63,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "ctx_bg",
+          "category": "followup",
+          "language": "banglish",
+          "prompt": "Amar nam Hasib. Amar nam ki?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 1.77,
+          "generated_text": "কৃত্রিম বুদ্ধিমত্তা হলো একটি সারি যা sunlight ধরে।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 50,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "ctx_mix",
+          "category": "followup",
+          "language": "mixed",
+          "prompt": "আমি Hasib, আর তুমি? তোমার নাম কী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 1.97,
+          "generated_text": "নবায়নযোগ্য শক্তি এমন একটি জায়গাভাবিকভাবে পুনরায় উৎপন্ন হয়।",
+          "provenance": {
+            "model_id": "nexus-core-04",
+            "checkpoint": "checkpoint_final.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+            "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "nexus_sft",
+            "load_s": 1.56,
+            "neural_generation_executed": false,
+            "generation_status": "ok"
+          },
+          "generated_chars": 62,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        }
+      ],
+      "errors": [],
+      "definition": {
+        "name": "Core-04",
+        "architecture": "core_decoder_only_transformer_sft",
+        "arch_version": "1.0.0",
+        "checkpoint": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+        "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+        "expected_params": 33419072,
+        "config": {
+          "d_model": 512,
+          "n_layers": 8,
+          "n_heads": 8,
+          "d_ff": 2048,
+          "max_len": 512,
+          "vocab_size": 8000
+        },
+        "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+        "tokenizer_type": "sentencepiece_bpe",
+        "vocab_size": 8000,
+        "max_len": 512,
+        "languages": [
+          "en",
+          "bn"
+        ],
+        "ram_mb_est": 1400,
+        "status": "specialist_knowledge",
+        "training_run": "core04_sft_v3 (full curated KB, 318 recs, 8 epochs — memorization model)",
+        "known_limits": "small curated corpus; no live knowledge; narrow coverage",
+        "loader": "nexus_sft",
+        "core_id": "core04",
+        "chat_format": true,
+        "runtime_status": "available",
+        "last_error": null
+      }
+    },
+    "nexus-medium": {
+      "model_id": "nexus-medium",
+      "status": "PARTIALLY VERIFIED",
+      "checks": {
+        "registry_validate": {
+          "ok": true,
+          "detail": "ok"
+        },
+        "engine_load_s": 0.33,
+        "engine_kind": "medium",
+        "strict_load": {
+          "strict_load": true,
+          "missing_keys": [],
+          "unexpected_keys": [],
+          "param_count": 2452544,
+          "param_count_expected": 2452544
+        },
+        "param_count_match": true,
+        "tokenizer": {
+          "vocab_size": 8000,
+          "bos_id": 2,
+          "eos_id": 3,
+          "pad_id": 0
+        },
+        "mem_mb_after_load": 680.1,
+        "mem_mb_after_gen": 680.9
+      },
+      "generations": [
+        {
+          "test_id": "greet_en",
+          "category": "greeting",
+          "language": "en",
+          "prompt": "Hello! How are you today?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.01,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "greet_bn",
+          "category": "greeting",
+          "language": "bn",
+          "prompt": "তুমি কেমন আছো?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.15,
+          "generated_text": "আমি অনলাইন কোর্স এবং নতুন প্রযুক্তি এবং নতুন প্রযুক্তি এবং নতুন প্রযুক্তি এবং নতুন প্রযুক্তি এবং কম পছন্দ করি। তুমি?",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "ok"
+          },
+          "generated_chars": 116,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "greet_bg",
+          "category": "greeting",
+          "language": "banglish",
+          "prompt": "Tumi kemon acho?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.01,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "greet_mix",
+          "category": "greeting",
+          "language": "mixed",
+          "prompt": "Hello, তুমি কেমন আছো friend?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.01,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "conv_en",
+          "category": "conversation",
+          "language": "en",
+          "prompt": "What do you think about the weather today?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.01,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "conv_bn",
+          "category": "conversation",
+          "language": "bn",
+          "prompt": "আজকের আবহাওয়া কেমন লাগে তোমার?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.11,
+          "generated_text": "হ্যাঁ, আমি অনলাইন কোর্স এবং নতুন প্রযুক্তি এবং নতুন প্রযুক্তি এবং নতুন প্রযুক্তি এবং কম।",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "ok"
+          },
+          "generated_chars": 88,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "conv_bg",
+          "category": "conversation",
+          "language": "banglish",
+          "prompt": "Ajke er abhawoa kemon lagche tomar?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.01,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "conv_mix",
+          "category": "conversation",
+          "language": "mixed",
+          "prompt": "আজ afternoon-এ আমরা কি play করবো?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.01,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "know_en",
+          "category": "knowledge",
+          "language": "en",
+          "prompt": "What is artificial intelligence?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.01,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "know_bn",
+          "category": "knowledge",
+          "language": "bn",
+          "prompt": "কৃত্রিম বুদ্ধিমত্তা কী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.12,
+          "generated_text": "আমার প্রিয় কী? আমি অনলাইন কোর্স এবং নতুন প্রযুক্তি এবং নতুন প্রযুক্তি এবং নতুন প্রযুক্তি এবং কম।",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "ok"
+          },
+          "generated_chars": 97,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "know_bg",
+          "category": "knowledge",
+          "language": "banglish",
+          "prompt": "Artificial intelligence ki?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.01,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "know_mix",
+          "category": "knowledge",
+          "language": "mixed",
+          "prompt": "Bengali আর English-এ Navigator কী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.01,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "reason_en",
+          "category": "reasoning",
+          "language": "en",
+          "prompt": "If all cats are animals and Tom is a cat, is Tom an animal?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.01,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "reason_bn",
+          "category": "reasoning",
+          "language": "bn",
+          "prompt": "যদি সব বিড়াল প্রাণী হয় এবং টম একটি বিড়াল, তাহলে টম কি প্রাণী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.01,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "reason_bg",
+          "category": "reasoning",
+          "language": "banglish",
+          "prompt": "Jodi shob biral prani hoy ebong Tom ekta biral, tahole Tom ki prani?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.01,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "reason_mix",
+          "category": "reasoning",
+          "language": "mixed",
+          "prompt": "If আমি exhausted Feeling, should আমি rest or কাজ করবো?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.02,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "math_en",
+          "category": "mathematics",
+          "language": "en",
+          "prompt": "What is 15 plus 27?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.01,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "math_bn",
+          "category": "mathematics",
+          "language": "bn",
+          "prompt": "১৫ আর ২৭ যোগ করলে কত হয়?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.01,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "math_bg",
+          "category": "mathematics",
+          "language": "banglish",
+          "prompt": "15 plus 27 koto hoy?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.01,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "math_mix",
+          "category": "mathematics",
+          "language": "mixed",
+          "prompt": "আমার ৫টা apple আছে, ৩টা খেয়ে ফেললাম, কতটা বাকি?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.01,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "ctx_en",
+          "category": "followup",
+          "language": "en",
+          "prompt": "My name is Hasib. What is my name?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.01,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "ctx_bn",
+          "category": "followup",
+          "language": "bn",
+          "prompt": "আমার নাম হাসিব। আমার নাম কী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.09,
+          "generated_text": "আমি অনলাইন কোর্স এবং নতুন প্রযুক্তি এবং নতুন প্রযুক্তি এবং কম এবং কম।",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "ok"
+          },
+          "generated_chars": 69,
+          "status": "ok",
+          "quality_flags": [
+            "MECHANICAL_OK"
+          ]
+        },
+        {
+          "test_id": "ctx_bg",
+          "category": "followup",
+          "language": "banglish",
+          "prompt": "Amar nam Hasib. Amar nam ki?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.01,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        },
+        {
+          "test_id": "ctx_mix",
+          "category": "followup",
+          "language": "mixed",
+          "prompt": "আমি Hasib, আর তুমি? তোমার নাম কী?",
+          "gen_kw": {
+            "do_sample": false,
+            "max_new_tokens": 48,
+            "temperature": 0.0,
+            "top_k": 1,
+            "top_p": 1.0,
+            "repetition_penalty": 1.1
+          },
+          "max_new_tokens": 48,
+          "duration_s": 0.01,
+          "generated_text": "",
+          "provenance": {
+            "model_id": "nexus-medium",
+            "checkpoint": "final_model.pt",
+            "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+            "checkpoint_sha256": "4f592af9846b89652eb7",
+            "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+            "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+            "vocab_size": 8000,
+            "engine": "medium",
+            "load_s": 0.16,
+            "neural_generation_executed": true,
+            "generation_status": "empty"
+          },
+          "generated_chars": 0,
+          "status": "EMPTY_OUTPUT",
+          "quality_flags": [
+            "EMPTY"
+          ]
+        }
+      ],
+      "errors": [],
+      "definition": {
+        "name": "MediumTransformer",
+        "architecture": "medium_transformer",
+        "arch_version": "1.0.0",
+        "checkpoint": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+        "checkpoint_sha256": "4f592af9846b89652eb7",
+        "expected_params": 2452544,
+        "config": {
+          "d_model": 128,
+          "n_layers": 2,
+          "n_heads": 2,
+          "d_ff": 512,
+          "max_len": 128,
+          "vocab_size": 8000
+        },
+        "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+        "tokenizer_type": "sentencepiece_bpe",
+        "vocab_size": 8000,
+        "max_len": 128,
+        "languages": [
+          "en",
+          "bn"
+        ],
+        "ram_mb_est": 60,
+        "status": "fallback",
+        "training_run": "Phase 10 (1,812 samples)",
+        "known_limits": "very weak; gibberish-prone; retained as emergency fallback only",
+        "loader": "medium",
+        "runtime_status": "available",
+        "last_error": null
+      }
+    }
+  }
+}

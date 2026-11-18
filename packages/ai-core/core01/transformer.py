@@ -409,6 +409,9 @@ class NexusAICore01(nn.Module):
         top_k = top_k if top_k is not None else self.config.top_k
         top_p = top_p if top_p is not None else self.config.top_p
         repetition_penalty = repetition_penalty if repetition_penalty is not None else self.config.repetition_penalty
+        # Clamp: temperature<=0 divides logits by zero -> inf/NaN.
+        # Any positive scale preserves argmax order, so greedy is unaffected.
+        temperature = max(temperature, 1e-8)
         
         finished = torch.zeros(input_ids.size(0), dtype=torch.bool,
                                device=input_ids.device)

@@ -118,6 +118,122 @@ def test_core01_engine_generate_returns_dict():
     assert "model_status" in r
 
 
+def _fake_forward_eos_schedule(model, eos_at_step, vocab=128):
+    """Replace model.forward with a scripted logit producer.
+
+    eos_at_step: dict {row_index: step_at_which_eos_argmax} (1-based gen step).
+    Non-EOS rows always argmax token 50. Returns the installed callable info.
+    """
+    import torch
+    state = {"step": 0}
+    def fake(input_ids):
+        state["step"] += 1
+        b, s = input_ids.shape
+        logits = torch.full((b, s, vocab), -10.0)
+        # default next-token = 50 for every position
+        logits[:, :, 50] = 10.0
+        # at the final position, scripted rows get EOS argmax
+        for row, step in eos_at_step.items():
+            if state["step"] == step:
+                logits[row, -1, :] = -10.0
+                logits[row, -1, model.config.eos_id] = 20.0
+        return logits
+    model.forward = fake
+    return state
+
+
+def test_f2_none_uses_config_default():
+    import torch
+    model = _tiny_model()
+    ids = torch.randint(3, 100, (1, 5))
+    # None must fall back to config values without error
+    out = model.generate(ids, max_new_tokens=3, do_sample=False,
+                         temperature=None, top_k=None, top_p=None,
+                         repetition_penalty=None)
+    assert out.shape[0] == 1
+
+
+def test_f2_positive_values_accepted():
+    import torch
+    model = _tiny_model()
+    ids = torch.randint(3, 100, (1, 5))
+    out = model.generate(ids, max_new_tokens=3, do_sample=True,
+                         temperature=0.7, top_k=10, top_p=0.9,
+                         repetition_penalty=1.2)
+    assert out.shape[0] == 1
+
+
+def test_f2_boundary_top_k_equals_vocab():
+    import torch
+    model = _tiny_model()
+    ids = torch.randint(3, 100, (1, 5))
+    out = model.generate(ids, max_new_tokens=2, do_sample=False,
+                         temperature=1.0, top_k=128, top_p=1.0,
+                         repetition_penalty=1.0)
+    assert out.shape[0] == 1
+
+
+def test_f3_batch4_mixed_eos_positions():
+    import torch
+    model = _tiny_model()
+    b, s = 4, 5
+    ids = torch.randint(3, 100, (b, s))
+    # rows 0,2 emit EOS at step 2; rows 1,3 at step 4
+    _fake_forward_eos_schedule(model, {0: 2, 2: 2, 1: 4, 3: 4})
+    out = model.generate(ids, max_new_tokens=6, do_sample=False,
+                         temperature=1.0, top_k=1, top_p=1.0,
+                         repetition_penalty=1.0)
+    assert out.shape[0] == 4
+    # finished rows must be pad (0) after their EOS token
+    eos_id = model.config.eos_id
+    for row, step in ((0, 2), (2, 2), (1, 4), (3, 4)):
+        gen = out[row, s:].tolist()
+        assert gen[step - 1] == eos_id, f"row {row}: expected EOS at gen pos {step-1}, got {gen}"
+        assert all(t == 0 for t in gen[step:]), f"row {row}: tokens after EOS not pad: {gen}"
+
+
+def test_f3_all_rows_finish_early_exit():
+    import torch
+    model = _tiny_model()
+    ids = torch.randint(3, 100, (2, 5))
+    _fake_forward_eos_schedule(model, {0: 1, 1: 1})
+    out = model.generate(ids, max_new_tokens=10, do_sample=False,
+                         temperature=1.0, top_k=1, top_p=1.0,
+                         repetition_penalty=1.0)
+    # both EOS at step1 -> total len = prompt + 1 only
+    assert out.shape[1] == ids.shape[1] + 1, out.shape
+
+
+def test_f3_partial_finish_rows_independent():
+    import torch
+    model = _tiny_model()
+    ids = torch.randint(3, 100, (3, 5))
+    # only row 1 finishes at step 2; rows 0,2 never EOS -> run full length
+    _fake_forward_eos_schedule(model, {1: 2})
+    out = model.generate(ids, max_new_tokens=5, do_sample=False,
+                         temperature=1.0, top_k=1, top_p=1.0,
+                         repetition_penalty=1.0)
+    assert out.shape[1] == ids.shape[1] + 5
+    gen1 = out[1, ids.shape[1]:].tolist()
+    assert gen1[1] == model.config.eos_id
+    assert all(t == 0 for t in gen1[2:])
+    # unfinished rows keep generating token 50
+    assert all(t == 50 for t in out[0, ids.shape[1]:].tolist())
+    assert all(t == 50 for t in out[2, ids.shape[1]:].tolist())
+
+
+def test_f2_temperature_zero_sampling_no_nan():
+    """temperature=0.0 with do_sample=True must not produce inf/NaN logits."""
+    import torch
+    model = _tiny_model()
+    ids = torch.randint(3, 100, (1, 5))
+    out = model.generate(ids, max_new_tokens=4, do_sample=True,
+                         temperature=0.0, top_k=0, top_p=1.0,
+                         repetition_penalty=1.0)
+    assert out.shape[0] == 1
+    assert torch.isfinite(out).all()
+
+
 if __name__ == "__main__":
     for name, fn in [
         ("F2 explicit temperature=0.0/repetition_penalty=1.0 accepted",
@@ -132,8 +248,30 @@ if __name__ == "__main__":
          test_registry_validates_all_four_cores),
         ("Core-01 engine generate contract",
          test_core01_engine_generate_returns_dict),
+        ("F2 temperature=None uses config default",
+         test_f2_none_uses_config_default),
+        ("F2 positive sampling values accepted",
+         test_f2_positive_values_accepted),
+        ("F2 boundary top_k==vocab accepted",
+         test_f2_boundary_top_k_equals_vocab),
+        ("F3 batch=4 staggered EOS positions",
+         test_f3_batch4_mixed_eos_positions),
+        ("F3 all rows finish -> early exit",
+         test_f3_all_rows_finish_early_exit),
+        ("F3 partial finish keeps rows independent",
+         test_f3_partial_finish_rows_independent),
+        ("F2 temperature=0.0 sampling produces no NaN",
+         test_f2_temperature_zero_sampling_no_nan),
     ]:
         t(name, fn)
     n_fail = sum(1 for _, s, _ in RESULTS if s == "FAIL")
     print(f"\n{len(RESULTS)} tests, {n_fail} failures")
     sys.exit(1 if n_fail else 0)
+
+
+# ---------------------------------------------------------------------------
+# Extended coverage (mission requirements): F2 None/zero/positive/boundary/
+# invalid; F3 batch 1/2/4, staggered EOS, all-finish, partial-finish.
+# ---------------------------------------------------------------------------
+
+

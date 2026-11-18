@@ -80,12 +80,20 @@ def _mem_mb():
 def strict_load_check(model, checkpoint_path):
     """Independent strict state-dict verification (separate from registry)."""
     import torch
-    ckpt = torch.load(checkpoint_path, map_location="cpu", weights_only=True)
+    weights_only_used = True
+    try:
+        ckpt = torch.load(checkpoint_path, map_location="cpu", weights_only=True)
+    except Exception:
+        # Trusted local checkpoint containing numpy-serialized metadata
+        # (e.g. Core-01 Run3 rng_state). Fall back, and record the flag.
+        weights_only_used = False
+        ckpt = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
     state = ckpt.get("model_state_dict", ckpt)
     res = model.load_state_dict(state, strict=True)
     n_params = sum(p.numel() for p in model.parameters())
     return {
         "strict_load": True,
+        "weights_only_flag": weights_only_used,
         "missing_keys": list(res.missing_keys),
         "unexpected_keys": list(res.unexpected_keys),
         "param_count": n_params,

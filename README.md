@@ -1,1044 +1,400 @@
-# NexusAI — Personal AI Health & Wellness Companion
+<div align="center">
 
-NexusAI is an independent AI-powered application designed to assist users with health and wellness goals through conversational AI interactions. What makes NexusAI unique is that it uses its own trained AI model — not external AI services like OpenAI or Claude.
+# 🧠 NexusAI
+
+### An Independently Developed AI Brain
+
+*Own weights. Own code. Own data. No external AI APIs.*
+
+[![Models](https://img.shields.io/badge/models-4%20cores%20%2B%20fallback-blue)]()
+[![License](https://img.shields.io/badge/status-experimental-orange)]()
+[![Inference](https://img.shields.io/badge/inference-CPU%20verified-brightgreen)]()
+
+</div>
 
 ---
 
 ## Table of Contents
 
-- [What is NexusAI?](#what-is-nexusai)
-- [What Makes NexusAI Independent?](#what-makes-nexusai-independent)
-- [Current Implementation Status](#current-implementation-status)
-- [AI Brain Architecture](#ai-brain-architecture)
-- [How It Works](#how-it-works)
-- [Technology Stack](#technology-stack)
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Running the Project](#running-the-project)
-- [Environment Variables](#environment-variables)
-- [Database Setup](#database-setup)
-- [AI Model Details](#ai-model-details)
-- [Current Limitations](#current-limitations)
-- [Future Roadmap](#future-roadmap)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [Core-01 Kaggle Pretraining Guide](#core-01-kaggle-pretraining-guide)
-- [License](#license)
+- [1. Project Identity](#1-project-identity)
+- [2. Architecture Overview](#2-architecture-overview)
+- [3. Model Inventory](#3-model-inventory)
+- [4. Current Capabilities](#4-current-capabilities)
+- [5. Technology Stack](#5-technology-stack)
+- [6. Requirements](#6-requirements)
+- [7. Local Setup Guide](#7-local-setup-guide)
+- [8. Running NexusAI](#8-running-nexusai)
+- [9. Dataset Documentation](#9-dataset-documentation)
+- [10. Model Training Guide](#10-model-training-guide)
+- [11. Model Evaluation Guide](#11-model-evaluation-guide)
+- [12. Backup & Recovery](#12-backup--recovery)
+- [13. Development & Contributing](#13-development--contributing)
+- [14. Known Limitations](#14-known-limitations)
+- [15. Roadmap](#15-roadmap)
+- [16. Documentation Index](#16-documentation-index)
+- [17. License & Credits](#17-license--credits)
+- [বাংলা briefly — Project Overview](#বাংলায়-সংক্ষিপ্ত-পরিচিতি)
 
 ---
 
-## What is NexusAI?
+## 1. Project Identity
 
-NexusAI is a full-stack AI application built from the ground up with its own:
+**NexusAI** is a full-stack application whose goal is to become a genuinely independent artificial intelligence — an "AI Brain" owned end-to-end by the project: model architectures, weights, tokenizer, datasets, training pipeline, inference engine, and application.
 
-- **Neural Architecture**: Custom Transformer model
-- **Tokenizer**: SentencePiece BPE with 8,000-token vocabulary
-- **Training Pipeline**: End-to-end training infrastructure
-- **Inference Engine**: Python FastAPI ML service
-- **Memory System**: Consent-aware memory retrieval
-- **Database**: PostgreSQL (Neon) with comprehensive schema
+### Core principles
 
-Unlike many AI applications that rely on external APIs (OpenAI, Claude, Gemini), NexusAI trains and runs its own model. This gives you complete control over your data and AI behavior.
+- **No external AI inference.** No OpenAI, Anthropic, Gemini, or any third-party model API anywhere in the response path. Every neural token is produced by NexusAI's own weights running NexusAI's own code.
+- **Honest labeling.** Deterministic handlers (greetings, math tools, metadata answers) are explicitly labeled as such in routing traces — never disguised as neural output.
+- **Evidence over claims.** Every capability claim in this repository links to a reproducible test, checkpoint hash, or benchmark report.
+- **Ownership.** All checkpoints carry SHA-256 provenance; weights are distributed through controlled channels (Git LFS / out-of-band bundles), not silently.
 
----
+### Current development status
 
-## 🧠 AI Brain (Core-01) — Verified Status
+**PARTIALLY VERIFIED foundation.** The complete pipeline — web app → API → model registry/router → ML service → neural inference — is implemented and tested end-to-end. All four model cores strict-load and produce genuine neural text. **No core is yet a working conversational model** — see [§14 Known Limitations](#14-known-limitations) for the honest, measured assessment.
 
-NexusAI's next-generation independent model, **Core-01**, is a custom 6-layer Transformer (8,842,560 parameters, 8K SentencePiece tokenizer) trained on our own English-first corpus. It runs locally on CPU — no GPU or external AI needed for inference.
-
-| Capability | Status | Evidence |
-|---|---|---|
-| Own Transformer model | ✅ Implemented | `packages/ai-core/core01/transformer.py` |
-| Own tokenizer | ✅ Implemented | sp_bpe_8k, multilingual (EN/BN/Banglish) |
-| GPU training (Colab) | ✅ Implemented | Runs 1–3 completed, Run4 prepared |
-| Run3 checkpoint | ✅ Verified | sha256 `ad515c…7830`, strict load PASS |
-| CPU inference | ✅ Verified | ~382MB RAM, ~42 tok/s, offline |
-| Run4 training | ⏳ Prepared | single-upload bundle ready; preflight pending |
-| Multi-model brain | ✅ Implemented | registry + router; Core-01 run3 is active neural model |
-| English generation | ⚠️ Partial | fluent but undertrained |
-| Bengali generation | ⚠️ Partial | neural path works; quality limited pre-Run4 |
-| Banglish | ⚠️ Partial | language detection works; generation unproven |
-| Reliable reasoning / decision-making | ❌ Not demonstrated | eval report |
-| Memory / Agent Mode / Voice / Public API | 📋 Planned | roadmap docs |
-
-**Honest status:** the pipeline works end-to-end; the model is still early-stage and improving with each training run.
-
-📖 **Full guide:** [`docs/architecture/NEXUSAI_AI_BRAIN_COMPLETE_GUIDE.md`](docs/architecture/NEXUSAI_AI_BRAIN_COMPLETE_GUIDE.md)
+> All architecture diagrams in this README are original NexusAI project documentation assets, created for this repository.
 
 ---
 
-## What Makes NexusAI Independent?
+## 2. Architecture Overview
 
-### Own AI Model
-
-✅ **Four-Core Model Family** (shared Transformer implementation, independent weights)
-- `packages/ai-core/core01/transformer.py` — one decoder-only Transformer used by all cores
-- Core-01: 8.84M params — general/base LM (`checkpoints_core01_run3`, PRETRAINING_COMPLETED)
-- Core-02: 20.35M params — reasoning specialist (`checkpoints_core02_sft_v2`)
-- Core-03: 8.84M params — mathematics specialist (`checkpoints_core03_sft_v2`)
-- Core-04: 33.42M params — knowledge specialist (`checkpoints_core04_sft_v3`)
-- Legacy MediumTransformer: 2.45M params — emergency fallback only
-- SentencePiece BPE tokenizer with 8,000 vocabulary (shared)
-- No external AI APIs used as primary intelligence
-
-> **Honest status:** all four cores strict-load and generate genuine neural text, but none is a working conversational model yet — see [Model Inventory](#model-inventory-four-cores) and `docs/architecture/audits/NEXUSAI_FOUR_CORE_TEST_AND_BENCHMARK_REPORT.md`.
-
-✅ **Training Infrastructure**
-- Complete training pipeline in `packages/ai-core/training/`
-- Dataset acquisition and cleaning scripts
-- Checkpoint management and versioning
-- Evaluation and metrics tracking
-
-✅ **Inference Service**
-- Python FastAPI ML service
-- Loads trained checkpoint from local storage
-- Processes Bengali and English inputs
-- No dependency on external inference providers
-
-### Data Privacy
-
-✅ **Consent-First Design**
-- Memory system requires explicit user consent
-- Guest conversations isolated from persistent storage
-- User data remains in your database
-- No data sent to external AI providers
-
----
-
-## Current Implementation Status
-
-### ✅ Fully Implemented
-
-| Component | Status | Description |
-|-----------|--------|-------------|
-| Frontend (Next.js) | ✅ Complete | React 19, TypeScript, responsive design |
-| Backend API (Fastify) | ✅ Complete | REST API, authentication, conversation management |
-| ML Service (FastAPI) | ✅ Complete | Python inference service with trained model |
-| Database (PostgreSQL) | ✅ Complete | Neon PostgreSQL with comprehensive schema |
-| Authentication | ✅ Complete | Self-managed with bcrypt, HTTP-only cookies |
-| AI Orchestration | ✅ Complete | Intelligence engine, context builder, memory service |
-| Consent System | ✅ Complete | Consent records, memory approval workflow |
-| Trained Model | ✅ Complete | 2.47M parameters, BPE 8K tokenizer |
-| Tokenizer | ✅ Complete | SentencePiece BPE with 8,000 vocabulary |
-| Training Pipeline | ✅ Complete | Scripts, datasets, checkpoint management |
-
-### ⚠️ Partially Implemented
-
-| Component | Status | Description |
-|-----------|--------|-------------|
-| Profile Image Upload | ⚠️ Partial | localStorage only (not cross-device) |
-| Memory Runtime Testing | ⚠️ Blocked | No isolated PostgreSQL test environment |
-
-### ❌ Not Implemented (Future Roadmap)
-
-| Component | Status | Description |
-|-----------|--------|-------------|
-| Public Model API | ❌ Planned | Developer-facing API for model access |
-| Developer Platform | ❌ Planned | Dashboard, analytics, API key management |
-| Email Verification | ❌ Planned | Email verification during registration |
-| Password Reset | ❌ Planned | Password reset flow |
-| Model Expansion | ❌ Planned | Larger model (10M+ params) |
-| Dataset Expansion | ❌ Planned | Larger dataset (10,000+ samples) |
-| Cloud Storage | ❌ Planned | S3/R2/Cloudflare for profile images |
-| Knowledge Engine | ❌ Planned | RAG with vector embeddings |
-
----
-
-## AI Brain Architecture
-
-### Neural Network — Four-Core Family
-
-All cores share one implementation: `packages/ai-core/core01/transformer.py` (`NexusAICore01`), a decoder-only Transformer with token embeddings, sinusoidal positional encoding, pre-norm blocks, multi-head self-attention, GELU feed-forward networks, residual connections, and a final output projection. They differ only in configuration and weights — **not** in architecture code.
-
-| Core | d_model | Layers | Heads | d_ff | max_len | Params | Checkpoint | Verified role |
-|---|---|---|---|---|---|---|---|---|
-| Core-01 | 256 | 6 | 8 | 1024 | 512 | 8,842,560 | `checkpoints_core01_run3/checkpoint_final.pt` (LFS) | base/general LM — PRETRAINING_COMPLETED, not SFT'd |
-| Core-02 | 384 | 8 | 12 | 1536 | 512 | 20,347,712 | `checkpoints_core02_sft_v2/checkpoint_final.pt` | reasoning specialist — template-bound |
-| Core-03 | 256 | 6 | 8 | 1024 | 512 | 8,842,560 | `checkpoints_core03_sft_v2/checkpoint_final.pt` | math specialist — 9.2% held-out numeric accuracy |
-| Core-04 | 512 | 8 | 8 | 2048 | 512 | 33,419,072 | `checkpoints_core04_sft_v3/checkpoint_final.pt` | knowledge/memorization — narrow curated KB |
-| Medium (legacy) | 128 | 2 | 2 | 512 | 128 | 2,452,544 | `checkpoints_medium/final_model.pt` | fallback only — gibberish-prone |
-
-Model selection is handled by `packages/ai-core/ml-service/model_registry.py` (hash-validated registry) and `model_router.py` (language → intent → model). `neural_only=True` mode routes exclusively through neural cores with explicit failure errors — no silent deterministic fallback.
-
-### Tokenizer
-
-**Type**: SentencePiece BPE (Byte Pair Encoding)
-- **Location**: `packages/ai-core/data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model`
-- **Vocabulary Size**: 8,000 tokens
-- **Special Tokens**: PAD=0, UNK=1, BOS=2, EOS=3
-- **Languages**: Bengali and English
-
-### Training
-
-**Dataset**: Phase 10
-- **Samples**: 1,812
-- **Languages**: Bengali and English
-- **Training Epochs**: 3
-- **Perplexity**: 2.83 (reported)
-- **Device**: CPU
-
-**Checkpoint**: `packages/ai-core/models/checkpoints_medium/final_model.pt`
-- **Size**: ~29.5 MB
-- **Status**: ✅ Loads successfully (fallback only — see four-core table above)
-
-### Inference Pipeline
-
+```mermaid
+flowchart TD
+    U([User]) --> W["🌐 Web App<br/>Next.js 15 · React 19<br/>port 3000"]
+    W --> A["⚡ API<br/>Fastify + TypeScript<br/>port 4000"]
+    A --> M["🧠 ML Service<br/>FastAPI + PyTorch<br/>port 8000"]
+    M --> R{"Model Router<br/>language → intent"}
+    R -->|"MATH intent"| C3["Core-03<br/>8.8M · math SFT"]
+    R -->|"KNOWLEDGE intent"| C4["Core-04<br/>33.4M · knowledge SFT"]
+    R -->|"REASONING intent"| C2["Core-02<br/>20.3M · reasoning SFT"]
+    R -->|"default / neural-only"| C1["Core-01<br/>8.8M · base LM"]
+    R -->|"legacy fallback"| MD["Medium<br/>2.5M · fallback only"]
+    R -.->|"labeled deterministic<br/>(never neural)"| D["Deterministic handlers<br/>greeting / math tool / metadata"]
+    C1 & C2 & C3 & C4 & MD --> T["Shared Transformer<br/>core01/transformer.py"]
+    T --> TK["Tokenizer<br/>SentencePiece BPE · 8K vocab"]
+    T --> CK[("Checkpoints *.pt<br/>+ SHA-256 provenance")]
 ```
-User Message
-    ↓
-Frontend (Next.js)
-    ↓
-Backend API (Fastify)
-    ↓
-Intelligence Engine
-    ↓
-Context Builder (load history)
-    ↓
-Memory Service (check consent, retrieve memory)
-    ↓
-ML Service (FastAPI)
-    ↓
-Model Registry + Router (model_registry.py / model_router.py)
-    ↓
-Core-01 / Core-02 / Core-03 / Core-04 (or labeled deterministic handler)
-    ↓
-Tokenizer (SentencePiece BPE)
-    ↓
-Neural Inference
-    ↓
-Response
+
+**Key accuracy note:** Core-01 through Core-04 are **four separately configured model instances with different weights and sizes sharing ONE Transformer implementation** (`packages/ai-core/core01/transformer.py`). They are not four different architectures. Core-05 is a *proposed* future model — not implemented.
+
+### Request-to-response flow
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant W as Web (3000)
+    participant A as API (4000)
+    participant M as ML Service (8000)
+    participant R as Router
+    participant C as Neural Core
+    U->>W: chat message
+    W->>A: POST /api/v1/chat
+    A->>M: POST /inference or /orchestrate
+    M->>R: brain.respond(message, neural_only?)
+    R->>C: registry.generate(model_id, prompt)
+    C-->>R: neural text + provenance (checkpoint, sha256)
+    R-->>M: response + trace (route, model_used, neural_ran)
+    M-->>A: InferenceResponse
+    A-->>W: stored + returned
+    W-->>U: rendered reply
 ```
 
 ---
 
-## How It Works
+## 3. Model Inventory
 
-### Conversation Flow
+All values verified 2026-11-18 by strict `load_state_dict(strict=True)` + SHA-256 validation (`ml-service/model_registry.py`).
 
-1. **User enters message** in chat interface
-2. **Frontend** sends message to backend API at `/api/v1/chat`
-3. **Backend** validates request and calls Intelligence Engine
-4. **Intelligence Engine**:
-   - Calls Context Builder to load conversation history (last 10 messages, 2000 tokens)
-   - Calls Memory Service to retrieve relevant memory (if consent granted)
-   - Sends request to ML Service with context
-5. **ML Service**:
-   - Loads trained model checkpoint
-   - Tokenizes input with SentencePiece BPE
-   - Runs neural inference
-   - Decodes output tokens
-   - Returns response
-6. **Backend** stores conversation and messages in database
-7. **Frontend** displays response to user
+| Model | Params | Architecture (shared impl, own config) | Checkpoint | Strict load | Generation | Specialization | Known limitations |
+|---|---|---|---|---|---|---|---|
+| **nexus-core-01** | 8,842,560 | d256·L6·H8·ff1024·len512 | `checkpoints_core01_run3/checkpoint_final.pt` (Git LFS) | ✅ VERIFIED | ⚠️ PARTIAL (38/56 non-empty) | general/base LM | undertrained; English-biased word salad; immediate-EOS on many chat prompts |
+| **nexus-core-02** | 20,347,712 | d384·L8·H12·ff1536·len512 | `checkpoints_core02_sft_v2/checkpoint_final.pt` | ✅ VERIFIED | ⚠️ PARTIAL | reasoning specialist | template collapse — ~5 memorized responses for all prompts; 60% train-set duplication |
+| **nexus-core-03** | 8,842,560 | d256·L6·H8·ff1024·len512 | `checkpoints_core03_sft_v2/checkpoint_final.pt` | ✅ VERIFIED | ⚠️ PARTIAL | mathematics specialist | emits bare numbers; **9.2%** held-out numeric accuracy |
+| **nexus-core-04** | 33,419,072 | d512·L8·H8·ff2048·len512 | `checkpoints_core04_sft_v3/checkpoint_final.pt` | ✅ VERIFIED | ⚠️ PARTIAL | knowledge/memorization | prompt-insensitive recall over 318-record curated KB |
+| **nexus-medium** | 2,452,544 | d128·L2·H2·ff512·len128 | `checkpoints_medium/final_model.pt` | ✅ VERIFIED | ❌ WEAK (4/24) | legacy fallback only | gibberish-prone; retained as emergency fallback |
 
-### Authentication Flow
-
-1. **User registers** with email and password
-2. **Backend** hashes password with bcrypt
-3. **Backend** creates account in database
-4. **Backend** creates session and sets HTTP-only cookie
-5. **Subsequent requests** include cookie for authentication
-6. **Session validation** checks cookie against database
-
-### Memory and Consent
-
-1. **User grants consent** for memory storage
-2. **Memory Service** checks consent before retrieval
-3. **If consent granted**, relevant memory is retrieved and included in context
-4. **If consent denied**, memory is not retrieved
-5. **Guest mode** conversations remain in-memory only (not persistent)
+**Tokenizer (shared):** SentencePiece BPE, vocab 8,000 — `data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model`; pad=0, unk=1, bos=2, eos=3. Known limits: Banglish fragmentation, UNK on unseen foreign scripts.
 
 ---
 
-## Technology Stack
+## 4. Current Capabilities
 
-### Frontend
-- **Framework**: Next.js 15.5.24
-- **UI Library**: React 19
-- **Language**: TypeScript
-- **Icons**: lucide-react
-- **Styling**: CSS with CSS variables
+### ✅ Implemented & verified
+- Four-core model registry with SHA-256-gated loading and strict state-dict checks
+- Language→intent model router with honest provenance traces
+- `neural_only` chat mode — neural cores only, explicit failure errors, zero deterministic substitution
+- CPU inference for all registered models
+- SFT dataset serialization with response-only loss masking
+- Pretraining driver with zero-step completion guard
+- Colab GPU training cells with authorization + checkpoint-hash gates (Run4 prepared, not executed)
+- Reproducible verification suites (`evaluation/`, `tests/four_core/`)
 
-### Backend
-- **Framework**: Fastify 5.12.5
-- **Language**: TypeScript
-- **Authentication**: bcrypt, HTTP-only cookies
-- **CORS**: @fastify/cors
+### ⚠️ Implemented but partially verified
+- Neural text generation (mechanically verified; semantically weak — see §14)
+- Bengali generation (works mechanically; quality limited to core-04's memorized KB sentences)
+- Multi-turn (single-turn inference path; context only via inline history text)
+- API↔ML integration (verified live: `/inference` → routed neural response)
 
-### ML Service
-- **Framework**: FastAPI (Python)
-- **ML Library**: PyTorch
-- **Tokenizer**: SentencePiece
-- **Model**: Custom MediumTransformer
+### 📋 Planned (not implemented)
+- Dataset V5 construction · Core-05 model · Core-01 Run5/SFT · KV-cache decoding · quantized inference · public model API · agent/voice capabilities · consent-based memory runtime
 
-### Database
-- **Provider**: PostgreSQL via Neon
-- **Schema**: nexus (custom schema)
-- **Access Layer**: Custom PostgreSQL client
-
-### Development Tools
-- **Package Manager**: pnpm 11.19.0
-- **Node Version**: >=22 <25
-- **Type Checking**: TypeScript
-- **Testing**: Vitest (infrastructure exists, no test files yet)
+### ❌ Not implemented
+- External AI provider integration (intentionally — prohibited by design)
+- Production-grade conversational quality (no core qualifies)
 
 ---
 
-## Project Structure
+## 5. Technology Stack
 
-```
-ai-breand/
-├── apps/
-│   ├── web/              # Next.js frontend
-│   │   ├── app/          # React components and pages
-│   │   └── lib/          # API clients and services
-│   ├── api/              # Fastify backend
-│   │   ├── src/
-│   │   │   ├── routes/   # API endpoints
-│   │   │   ├── middleware/ # Auth middleware
-│   │   │   ├── intelligence-engine.ts
-│   │   │   ├── context-builder.ts
-│   │   │   └── memory-service.ts
-│   │   └── server.ts
-│   └── worker/           # Background worker (not actively used)
-├── packages/
-│   ├── ai-core/          # AI Brain implementation
-│   │   ├── ml-service/   # Python FastAPI ML service
-│   │   ├── neural/       # Neural network architectures
-│   │   ├── training/     # Training scripts
-│   │   ├── models/       # Model checkpoints
-│   │   └── data/         # Datasets and tokenizers
-│   ├── database-core/    # PostgreSQL client and migrations
-│   ├── auth-core/        # Authentication utilities
-│   ├── repositories/     # Data access layer
-│   ├── storage-core/     # Storage abstraction
-│   └── config/           # Configuration utilities
-├── docs/                 # Documentation
-├── .env.example          # Environment variable template
-└── README.md             # This file
-```
+### Current (verified)
+| Layer | Technology |
+|---|---|
+| Web | Next.js 15, React 19, TypeScript |
+| API | Fastify, TypeScript, pnpm 11 workspaces |
+| ML service | FastAPI, PyTorch 2.x, SentencePiece, uvicorn |
+| Model | Custom decoder-only Transformer (`core01/transformer.py`) |
+| Tokenizer | SentencePiece BPE 8K (own trained asset) |
+| Database | Neon PostgreSQL (schema `nexus`) |
+| Monorepo | pnpm workspaces: `apps/{web,api,worker}`, `packages/*` |
+| GPU training | Google Colab (temporary, authorized cells only) |
+
+### Recommended future additions
+See `docs/architecture/future/NEXUSAI_RECOMMENDED_TECHNOLOGY_STACK.md` — includes KV caching, gradient checkpointing, dataset near-dup tooling, CI, and optional C++/CUDA/Triton paths *only where profiling justifies*. **No external AI services are recommended anywhere.**
 
 ---
 
-## Installation
+## 6. Requirements
 
-### Prerequisites
+| Requirement | Verified value |
+|---|---|
+| OS | Windows/Linux/macOS (developed on Windows) |
+| Node.js | ≥22 <25 (verified on v24.15.0) |
+| pnpm | 11.x (verified 11.19.0) |
+| Python | 3.11–3.14 (verified 3.14.6) |
+| PyTorch | ≥2.0 CPU; CUDA build for GPU training |
+| RAM | ~8 GB comfortable for CPU inference of all cores (core-04 peaks ~775 MB) |
+| GPU | not required for inference; T4-class for authorized Colab training |
+| Storage | ~2 GB for code+datasets; ~1 GB for checkpoints; check `du` before cloning corpora |
 
-- Node.js >=22 <25
-- pnpm 11.19.0
-- Python 3.14 (for ML service)
-- PostgreSQL database (Neon recommended)
-- PyTorch (for ML service)
+---
 
-### Step 1: Clone Repository
+## 7. Local Setup Guide
 
+> Beginner-friendly. All commands verified against this repository.
+
+### Step 1 — Prerequisites
+Install [Node.js 22–24](https://nodejs.org), [pnpm](https://pnpm.io) (`npm i -g pnpm`), and [Python 3.11+](https://python.org) with pip.
+
+### Step 2 — Clone
 ```bash
 git clone https://github.com/mrhasibuldev/ai-breand.git
 cd ai-breand
 ```
 
-### Step 2: Install Dependencies
-
+### Step 3 — Install JS dependencies
 ```bash
 pnpm install
 ```
 
-### Step 3: Configure Environment Variables
-
-```bash
-cp .env.example .env
-```
-
-Edit `.env` with your actual configuration:
-- `DATABASE_URL`: PostgreSQL connection string from Neon
-- `COOKIE_SECRET`: Random string for cookie signing
-- `AI_SERVICE_URL`: http://127.0.0.1:8000 (ML service URL)
-
-### Step 4: Install Python Dependencies
-
-```bash
-cd packages/ai-core
-pip install torch fastapi uvicorn pydantic sentencepiece
-```
-
-### Step 5: Set Up Database
-
-- Get PostgreSQL connection string from Neon: https://neon.tech
-- Add `DATABASE_URL` to `.env`
-- Migrations will run automatically on first backend startup
-
----
-
-## Running the Project
-
-### Start All Services (Recommended)
-
-```bash
-pnpm dev
-```
-
-This starts:
-- Frontend: http://localhost:3000
-- Backend: http://localhost:4000
-- ML Service: http://127.0.0.1:8000
-
-### Start Services Individually
-
-**Backend API** (Terminal 1):
-```bash
-cd apps/api
-pnpm run dev
-```
-
-**Frontend Web** (Terminal 2):
-```bash
-cd apps/web
-pnpm run dev
-```
-
-**ML Service** (Terminal 3):
+### Step 4 — Python ML environment
 ```bash
 cd packages/ai-core/ml-service
-python main.py
+python -m venv .venv
+.venv\Scripts\activate          # Windows
+# source .venv/bin/activate     # Linux/macOS
+pip install -r requirements.txt
 ```
 
-### Access the Application
-
-- **Frontend**: http://localhost:3000
-- **Backend API**: http://localhost:4000
-- **ML Service**: http://127.0.0.1:8000
-
----
-
-## Environment Variables
-
-| Variable | Required | Purpose | Example |
-|----------|----------|---------|---------|
-| NODE_ENV | Yes | Environment mode | development |
-| WEB_PORT | Yes | Frontend port | 3000 |
-| API_PORT | Yes | Backend port | 4000 |
-| API_ORIGIN | Yes | Backend origin | http://localhost:4000 |
-| WEB_ORIGIN | Yes | Frontend origin | http://localhost:3000 |
-| NEXT_PUBLIC_API_ORIGIN | Yes | API origin for frontend | http://localhost:4000 |
-| DATABASE_PROVIDER | Yes | Database provider | postgresql |
-| DATABASE_URL | Yes | PostgreSQL connection string | postgresql://... |
-| COOKIE_SECRET | Yes | Cookie signing secret | generate-random-string |
-| AI_SERVICE_URL | Yes | ML service URL | http://127.0.0.1:8000 |
-
----
-
-## Database Setup
-
-### Database Technology
-
-- **Provider**: PostgreSQL via Neon
-- **Schema**: nexus (custom schema)
-- **Connection**: PostgreSQL connection string via DATABASE_URL
-
-### Key Tables
-
-- `accounts` - User accounts
-- `auth_sessions` - Session management
-- `user_profiles` - User profile data
-- `conversations` - Chat conversations
-- `messages` - Chat messages
-- `memory_records` - AI memory with consent
-- `consent_records` - User consent tracking
-- `knowledge_documents` - Knowledge base documents
-- `knowledge_chunks` - Document chunks for RAG
-
-### Migrations
-
-Migrations are located in `packages/database-core/migrations/`:
-- 001_bootstrap.sql through 017_add_memory_consent_fk.sql
-- Migrations run automatically on backend startup
-
----
-
-## AI Model Details
-
-### Current Model Status — Four-Core Family
-
-**Active production designation**: Core-01 `1.0.0-run3` (`models/production/current.json`)
-
-| Core | Params | Training | Verified generation | Honest quality |
-|---|---|---|---|---|
-| Core-01 | 8.84M | pretraining 3 epochs, loss ≈4.43 | PARTIALLY VERIFIED (38/56 non-empty) | undertrained base LM; English-biased word salad; immediate-EOS on many chat prompts |
-| Core-02 | 20.35M | SFT v2 | VERIFIED mechanical / FAILED semantic | template collapse — ~5 memorized responses for all prompts |
-| Core-03 | 8.84M | SFT v2, 8 epochs | VERIFIED mechanical / FAILED semantic | bare numbers only; 9.2% numeric accuracy on held-out test |
-| Core-04 | 33.42M | SFT v3, 318 curated records | VERIFIED mechanical / PARTIALLY VERIFIED semantic | fluent bn/en KB sentences; prompt-insensitive memorization |
-| Medium | 2.45M | Phase 10 (1,812 samples) | PARTIALLY VERIFIED | gibberish-prone; emergency fallback only |
-
-### Model Quality
-
-**Current Status**: ⚠️ EXPERIMENTAL — pipeline verified, intelligence not yet
-
-The models are independently owned and technically functional (strict checkpoint loading, genuine neural generation, honest routing), but conversational quality is early-stage:
-- **Core-01** needs SFT (Run4/Run5) to fix chat-prompt handling.
-- **Core-02/03/04** need deduplicated, broader SFT data (Dataset V5 roadmap).
-- **Tokenizer** fragments Banglish and emits UNK on unseen foreign scripts.
-- **No KV cache** — CPU inference is correct but slow for long contexts.
-
-Full evidence: `docs/architecture/audits/NEXUSAI_FOUR_CORE_TEST_AND_BENCHMARK_REPORT.md` and `eval_reports/`.
-
-### Deterministic Handlers
-
-The system uses deterministic handlers for better UX on common inputs:
-- Greetings (Hello, Hi)
-- Farewells (Goodbye, Bye)
-- Thanks (Thank you)
-- Help requests
-
-These bypass neural model and return pre-defined responses. This is intentional.
-
-### Fallback Behavior
-
-The system has fallback mechanisms for:
-- Unknown intents
-- Language detection failures
-- Model output validation failures
-
-Fallbacks return hardcoded Bengali text. This is intentional error handling.
-
----
-
-## Current Limitations
-
-### Model Limitations (verified 2026-11-18)
-
-1. **Core-01**: undertrained base LM — English-biased word salad, immediate EOS on many prompts (needs SFT).
-2. **Core-02**: template/slot-fill collapse — does not generalize beyond memorized patterns.
-3. **Core-03**: emits bare numbers for any input; 9.2% held-out arithmetic accuracy.
-4. **Core-04**: prompt-insensitive memorized KB recall; narrow 318-record coverage.
-5. **Tokenizer**: Banglish fragmentation, UNK on unseen scripts.
-6. **Inference**: no KV cache; CPU-only; repetition penalty is a slow Python loop.
-7. **Datasets**: core02 60% exact-duplicate train records; core03 18%; V5 not yet constructed.
-8. **Multi-turn**: single-turn inference path only.
-
-### Architecture Limitations
-
-1. **No Public API**: Developer-facing API not implemented
-2. **No Developer Platform**: Dashboard, analytics, API key management missing
-3. **Memory Runtime Testing**: Blocked (no isolated PostgreSQL test environment)
-4. **No Automated Tests**: Test infrastructure exists but no test files
-5. **Manual Testing Required**: End-to-end testing requires browser interaction
-
-### Feature Limitations
-
-1. **Profile Images**: localStorage only (not cross-device)
-2. **No Email Verification**: Email addresses not verified
-3. **No Password Reset**: Users cannot reset forgotten passwords
-4. **No Cloud Storage**: Profile images not stored in cloud
-5. **No Content Filtering**: AI responses not filtered for harmful content
-
-### Infrastructure Limitations
-
-1. **Rate Limiting**: In-memory only (not database-backed)
-2. **No Session Cleanup**: Expired sessions not automatically cleaned
-3. **No Retry Logic**: Failed AI requests not retried
-4. **No Monitoring**: No centralized logging or observability
-
----
-
-## Future Roadmap
-
-### Phase A: Foundation (Current)
-- ✅ Architecture documentation
-- ✅ AI Brain foundation
-- ✅ Consent system
-- ✅ Basic inference
-
-### Phase B: Dataset Expansion
-- Expand dataset to 10,000+ samples
-- Improve Bengali coverage
-- Improve English coverage
-- Data quality validation
-
-### Phase C: Model Improvement (current focus)
-- Dataset V5 construction (next approved mission — the Core-05 blocker)
-- Core-01 Run4/Run5 SFT for chat-capable generation
-- Core-02/03/04 SFT retraining on deduplicated data
-- Core-05 general-purpose model (architecture audited, not implemented)
-- GPU training support (temporary Colab, separately authorized)
-
-### Phase D: Knowledge Engine
-- Implement RAG with vector embeddings
-- Document chunking and retrieval
-- Knowledge base management
-- Vector database integration
-
-### Phase E: Storage Migration
-- Migrate profile images to cloud storage (S3/R2)
-- Implement signed URLs
-- Add image compression
-- Implement CDN
-
-### Phase F: Public API Platform
-- Developer-facing API
-- API key management
-- Usage tracking
-- Rate limiting per API key
-
-### Phase G: Developer Platform
-- Developer dashboard
-- Analytics and metrics
-- API documentation
-- Developer accounts
-
-### Phase H: Model Registry
-- Model version management
-- A/B testing
-- Model deployment pipeline
-- Model rollback
-
-### Phase I: Observability
-- Centralized logging
-- Metrics collection
-- Error tracking
-- Performance monitoring
-
-### Phase J: Security Hardening
-- Email verification
-- Password reset flow
-- Two-factor authentication
-- Content filtering
-
-### Phase K: Production Deployment
-- Infrastructure automation
-- CI/CD pipeline
-- Load testing
-- Disaster recovery
-
----
-
-## Troubleshooting
-
-### ML Service Won't Start
-
-**Problem**: ModuleNotFoundError for torch or fastapi
-
-**Solution**:
+### Step 5 — Environment variables
 ```bash
-cd packages/ai-core
-pip install torch fastapi uvicorn pydantic sentencepiece
+cp .env.example .env            # then edit .env with YOUR values
+```
+Minimum for local dev: `DATABASE_URL` (Neon), `COOKIE_SECRET` (`openssl rand -base64 32`), `AI_SERVICE_URL=http://127.0.0.1:8000`. **Never commit `.env`.**
+
+### Step 6 — Start services (three terminals)
+```bash
+pnpm dev            # web (3000) + api (4000) + worker
+pnpm dev:ml         # ML service (8000)
 ```
 
-### Backend Won't Connect to Database
-
-**Problem**: Connection refused or invalid DATABASE_URL
-
-**Solution**:
-- Verify DATABASE_URL in `.env` is correct
-- Check Neon database is active
-- Ensure database user has correct permissions
-
-### Frontend Can't Reach Backend
-
-**Problem**: CORS errors or connection refused
-
-**Solution**:
-- Verify API_ORIGIN and NEXT_PUBLIC_API_ORIGIN in `.env`
-- Ensure backend is running on port 4000
-- Check CORS configuration in backend
-
-### Model Loading Fails
-
-**Problem**: Checkpoint file not found or incompatible
-
-**Solution**:
-- Verify the active checkpoint exists (e.g. `packages/ai-core/models/checkpoints_core01_run3/checkpoint_final.pt` for Core-01; see the four-core table above for others)
-- Verify `.sha256` provenance matches `packages/ai-core/ml-service/model_registry.py`
-- Verify tokenizer exists at `packages/ai-core/data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model`
-- Check ML service logs for specific error
-
-### AI Responses are Poor Quality
-
-**Problem**: Incoherent or repetitive text
-
-**Solution**:
-- This is expected with current small dataset (1,812 samples)
-- Model quality will improve with dataset expansion (Phase B)
-- Current model is experimental foundation
+### Step 7 — Verify
+```bash
+curl http://127.0.0.1:8000/health        # {"status":"ok",...}
+curl http://127.0.0.1:8000/model/status  # Core-01 loaded, 8,842,560 params
+curl http://localhost:4000/health        # API (if exposed)
+open http://localhost:3000               # web app
+```
 
 ---
 
-## Contributing
+## 8. Running NexusAI
 
-Contributions are welcome! This is an independent AI project with significant room for improvement.
-
-### Areas for Contribution
-
-1. **Dataset Expansion**: Add more Bengali and English training samples
-2. **Model Architecture**: Experiment with larger architectures
-3. **Testing**: Add unit tests, integration tests, E2E tests
-4. **Documentation**: Improve documentation and examples
-5. **Features**: Implement roadmap features
-
-### Development Workflow
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
----
-
-## Core-01 Kaggle Pretraining Guide
-
-> **Purpose:** Permanent setup, recovery, and training manual for **NexusAI Core-01** — our independently initialized decoder-only Transformer — on Kaggle. Written so a beginner can reproduce everything from a fresh account.
->
-> **Honesty rule:** ✅ = real verified output exists. ⏳ = pending/unverified. ❌ = failed. Never assume a step succeeded — check the printed output.
-
-### What is Core-01?
-
-Our own language model — **not** GPT, Llama, Mistral, or any pretrained model. It learns only from data we prepare.
-
-| Property | Value |
-|---|---|
-| Architecture | Decoder-only Transformer, causal attention |
-| Parameters | **8,842,560** |
-| Vocabulary | 8,000 SentencePiece BPE (pad=0, unk=1, bos=2, eos=3) |
-| Tokenizer | `sp_bpe_8k.model` |
-| d_model / layers / heads | 256 / 6 / 8 |
-| Feed-forward / activation | 1,024 / GELU · Pre-LayerNorm · sinusoidal positions |
-| Context length | 512 tokens |
-| Status | **UNTRAINED** — full pretraining NOT completed |
-
-### Why our own model?
-
-External models are someone else's brain. Core-01 gives us control over weights, data, privacy, and behavior — the foundation of the NexusAI "own AI brain" goal.
-
-### Verified artifacts
-
-| Item | Location | Details |
-|---|---|---|
-| Package ZIP | `exports/nexusai_core01_kaggle_package.zip` (Desktop copy: `C:\Users\Nusaiba\Desktop\nexusai_core01_kaggle_package.zip`) | 306,348 B · 15 files · SHA-256 `1b0c66f03457eb764b08dacde5594e4093581b2b3f116ad9e3176a97d33be970` |
-| Notebook | `docs/notebooks/nexusai_core01_fineweb_pretraining.ipynb` | 23 physical cells = logical Cells 1–12 |
-| Prep script | `packages/ai-core/data/prepare_english_corpus.py` (also inside ZIP at `data/`) | local-Parquet only, never downloads |
-| Driver | `packages/ai-core/core01/pretraining_driver.py` (inside ZIP at `core01/`) | CLI entry point |
-| Tokenizer | `data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model` + `.vocab` | Kaggle sha256 `2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052` |
-
-### Kaggle account details (verified)
-
-- Notebook: `NexusAI-Core-Training`
-- Dataset owner: `atoplay` · Dataset: `nexusai-core01-package`
-- Input path: `/kaggle/input/datasets/atoplay/nexusai-core01-package/nexusai_core01_kaggle_package/`
-
-### Cell-by-cell progress (historical evidence)
-
-| Cell | Stage | Status | Evidence |
+| Service | Command | Port | Health check |
 |---|---|---|---|
-| 2 | Environment check | ✅ VERIFIED SUCCESS (CPU session) | Python 3.13.18/16 · torch 2.11.0 (cpu build seen once, cu130 in recovery) · sentencepiece 0.2.2 · pyarrow 23.0.1 · ~20.9 GB disk · ~33.7 GB RAM. **CPU env ≠ GPU ready** |
-| 3 | Package setup | ✅ VERIFIED SUCCESS | Package found as **extracted dir** (ZIP candidate absent → sha check skipped); `PACKAGE_OK=True`; extracted to `/kaggle/working/nexusai_core01/pkg/` |
-| 4 | Tokenizer | ✅ VERIFIED SUCCESS | vocab 8,000 · IDs 0/1/2/3 · encode/decode round-trip True |
-| 5 | FineWeb verify | ✅ VERIFIED SUCCESS | `FINEWEB_VERIFIED=True` (license `odc-by`, lang `en`, shard-0 size verified) |
-| 6 | FineWeb download | ✅ PREVIOUSLY VERIFIED | `APPROVE_FINEWEB_DOWNLOAD=True` → shard 0 (~2.0 GiB) downloaded in earlier session |
-| 7 | Corpus preparation | ✅ PREVIOUSLY VERIFIED | See "Verified corpus results" below — 100,499,546 tokens, exit 0 |
-| 8 | Dataset audit | ✅ PREVIOUSLY VERIFIED | `DATASET_OK=True`, overlap 0, driver loaded 103,846 docs |
-| 9 | GPU verification | ✅ PREVIOUSLY VERIFIED | Tesla T4 · CUDA True · sm_75 · fp16 path · `GPU_OK=True` |
-| 10 | GPU smoke test | ❌ **FAILED — NOT VERIFIED** | `NameError: PACKAGE_OK is not defined` after runtime restart; driver never launched; 200-step smoke **never ran** |
-| 11 | Full training approval | ⏳ PENDING | gate exists, not enabled |
-| 12 | Full pretraining | ❌ **NOT STARTED** | no evidence of any completed training |
+| Web | `pnpm --filter @nexusai/web dev` (or `pnpm dev`) | 3000 | open browser |
+| API | `pnpm --filter @nexusai/api dev` | 4000 | `GET /health` |
+| ML | `cd packages/ai-core/ml-service && python main.py` | 8000 | `GET /health`, `GET /model/status` |
 
-> ⚠️ Cells 6–9 results are **historical** — they were verified in an earlier Kaggle session. `/kaggle/working/` contents may not persist; always re-verify before relying on them (see Recovery section).
+**Model selection** is automatic via `model_router.py`: language detection → intent classification → specialist (core-03 math / core-04 knowledge / core-02 reasoning) or primary core-01; `nexus-medium` is the labeled legacy fallback. `neural_only=True` (env `NEURAL_ONLY_CHAT`) restricts to neural cores with explicit error on failure.
 
-### Verified corpus results (historical, Cell 7/8)
-
-| Metric | Value |
-|---|---|
-| Source | FineWeb `sample-10BT`, shard 0, license ODC-By-1.0 |
-| Target / buffer / val / seed | 100,000,000 / 0.005 / 0.015 / 42 |
-| Inspected docs | 105,475 |
-| Accepted docs | 105,427 (48 duplicates rejected) |
-| **Total tokens (Core-01 tokenizer)** | **100,499,546** |
-| Train | 103,846 docs / 99,011,035 tokens |
-| Val | 1,581 docs / 1,488,511 tokens |
-| Audit | overlap=0, empty=0, dup-in-output=0, `DATASET_OK=True`, driver loaded all docs |
-| Outputs | `english_train.jsonl`, `english_val.jsonl`, `manifest.json`, `preparation_report.md`, `deduplication_report.json` |
-
-### Kaggle Runtime Restart & Recovery Incident
-
-**What happened:** During the earlier workflow, Cell 10 (GPU smoke test) was authorized and executed — but failed immediately with:
-
-```
-NameError: name 'PACKAGE_OK' is not defined
+**Test inference directly:**
+```bash
+curl -X POST http://127.0.0.1:8000/inference \
+  -H "Content-Type: application/json" \
+  -d '{"message":"What is artificial intelligence?"}'
+# → response + "model":"NexusBrain/nexus-core-04" provenance
 ```
 
-A recovery diagnostic was then run (read-only; no downloads, prep, or training). Verified findings:
+**Logs:** ML service prints to stdout; API logs `[API]`; use `pnpm dev` parallel output.
 
-- Python 3.13.16 · torch 2.11.0+cu130 · **CUDA True** · GPU **Tesla T4** · VRAM **14.56 GB**
-- **Missing from `/kaggle/working/`:** package working dir, tokenizer, FineWeb shard, prepared dataset, train/val files, smoke checkpoint dir
-- **Missing variables:** `PACKAGE_OK`, `TOKENIZER_OK`, `DATASET_OK`, `DOWNLOAD_OK`, `PREP_DONE`, `PACKAGE_ROOT`, `TOKENIZER_PATH`, `train_path`, `val_path`, `PREPARED_DIR`
-- `GPU_OK` remained set (it was re-created by Cell 9 in that session)
-- The attached package dataset was still accessible at `/kaggle/input/datasets/atoplay/nexusai-core01-package/nexusai_core01_kaggle_package/`
+**Common failures:** `ModuleNotFoundError` → install ml-service requirements; `CHECKPOINT missing` → verify `.pt` files exist (they are gitignored — restore from backup/bundle); `COOKIE_SECRET required` → set in `.env`; poor responses → expected, see §14.
 
-**Explanation (beginner terms):**
-- `/kaggle/input/` = attached datasets (persistent, survives restarts)
-- `/kaggle/working/` = notebook working storage (can be wiped on runtime restart/crash/timeout)
-- Python variables live only in the running kernel — a restart erases them all
-- The earlier prepared corpus therefore **must be regenerated** if `/kaggle/working` was cleared
+---
 
-**Cause:** not independently established — described as a **suspected Kaggle runtime reset/restart** (consistent with status-code-56-style session drops seen previously). Do not claim a definitive root cause.
+## 9. Dataset Documentation
 
-### Kaggle Runtime Recovery Procedure
+| Dataset | Location | Records (verified) | Status |
+|---|---|---|---|
+| Core-02 reasoning SFT | `packages/ai-core/data/core02_reasoning/` | 2,386 train / 132 val / 132 test | ⚠️ 60% exact-duplicate train records (documented defect) |
+| Core-03 math SFT | `packages/ai-core/data/core03_math/` | 1,576 / 87 / 87 | ⚠️ 18% duplicates; 1 cross-split leak |
+| Core-04 knowledge SFT | `packages/ai-core/data/core04_knowledge/` (+`_full`) | 256 / 31 / 31 (+318 full) | clean; small curated KB |
+| Unified conversational V1–V4 | `data/unified_conversational/v{1..4}/` | manifests+checksums committed; `.jsonl` gitignored | verified structure; V1≈645, V2≈1,054, V3/V4 record-dir format |
+| **V5** | — | — | ❌ **NOT CONSTRUCTED** — builders exist (`build_unified_conv_v5*.py`), dataset absent; next authorized mission |
 
-When variables/files are missing after a restart, recover in this order — **never skip verification, never auto-repeat expensive steps:**
+Format: JSONL `{"messages":[{"role":"user","content":...},{"role":"assistant","content":...}], ...}` with `dataset_manifest.json` + `checksums.sha256` per dataset. Splits are content-hash based; leakage checked (essentially clean). `*.jsonl` is gitignored by policy — datasets distribute out-of-band; manifests and checksums are committed.
 
-1. **Env check** — re-run Cell 2; confirm torch/CUDA/GPU.
-2. **Input check** — confirm `/kaggle/input/datasets/atoplay/nexusai-core01-package/` still exists.
-3. **Restore package** — re-run Cell 3 → recreates `PACKAGE_OK`, `PACKAGE_ROOT`, paths.
-4. **Tokenizer** — re-run Cell 4 → `TOKENIZER_OK`.
-5. **FineWeb verify** — re-run Cell 5 (read-only).
-6. **Shard** — Cell 6 checks `SHARD_PATH` size before downloading; if `.part`/full file exists it skips re-download. Only set `APPROVE_FINEWEB_DOWNLOAD=True` if the shard is actually missing.
-7. **Corpus** — Cell 7 prep script is resume-safe (row-group checkpoints in `prep_state.json`); re-run only if outputs are missing/incomplete.
-8. **Audit** — re-run Cell 8 → `DATASET_OK`.
-9. **GPU** — re-run Cell 9 → `GPU_OK`.
-10. **Smoke test** — re-run Cell 10 **only after re-reading its code and getting explicit owner approval.**
+---
 
-> ⚠️ **Runtime Recovery ≠ Training Resume.** Recovery rebuilds environment+data. Training resume continues a checkpointed run (next section).
+## 10. Model Training Guide
 
-### Checkpoint Management & Training Resume
+> **Documentation only — no training was run for this release.** Commands below reference existing scripts; GPU runs require separate authorization.
 
-- A **checkpoint** = saved snapshot of model weights + optimizer + scheduler + GradScaler + RNG + step/epoch + status. It is the "save game" of training.
-- Checkpoints are written **atomically** (`.tmp` → `os.replace`) with `.backup` copies — a crash cannot leave a half-written file.
-- Files in `--output-dir`: `checkpoint_step{N}.pt` (periodic), `checkpoint_last.pt` (epoch end — primary resume point), `checkpoint_final.pt` (only on genuine completion → `PRETRAINING_COMPLETED`), `checkpoint_interrupted.pt` (Ctrl+C, stays `PRETRAINING_IN_PROGRESS`), `checkpoint_error.pt` (exception forensics), `checkpoint_maxsteps.pt`.
-- Checkpoint interval is configured by `--checkpoint-interval` (driver arg, verified in `pretraining_driver.py`).
-- **Resume:** the driver supports `--resume <checkpoint filename inside --output-dir>` — verified in code (`args.resume` → `engine.load_checkpoint`). Exact procedure for cross-session resume on Kaggle: download `checkpoints_full/` output before session end → attach as Kaggle Dataset → re-run driver with `--resume checkpoint_last.pt`.
-- Resume restores model/optimizer/scheduler/RNG/epoch/step but **not** DataLoader sampler/batch position → **approximate, epoch-granular** — documented limitation.
-- Before session end, download `/kaggle/working/nexusai_core01/checkpoints_full/` (Kaggle Output → download, or save as Dataset) — working storage may not persist.
+### Concepts
+- **Checkpoint**: a `.pt` file containing `model_state_dict` + optimizer/scheduler/RNG state + metadata (epoch, step, loss, status). Verified by SHA-256 sidecars.
+- **Tokenizer**: SentencePiece BPE model file (`sp_bpe_8k.model`) — maps text↔token IDs. Trained once; treated as a fixed asset.
+- **Pretraining**: next-token prediction on raw corpus (`core01/pretraining_driver.py`, `training.py`).
+- **SFT**: supervised fine-tuning on conversations with response-only loss masking (`core01/sft_dataset.py`).
+- **Instruction tuning / reasoning training**: SFT variants requiring appropriately formatted datasets (V5 roadmap).
 
-### The 12 notebook cells — plain-language guide
+### Existing verified pipeline
+1. **Prepare data** — builders `packages/ai-core/data/build_*.py` emit `train/validation/test.jsonl` + manifest + checksums.
+2. **Validate** — check manifest counts, duplicates, split leakage (see §9 findings).
+3. **Configure** — per-core config in `models/nexusai_core_0X/config/model_config.py`.
+4. **Train (CPU smoke / Colab GPU)** — `core01/training.py` supports AMP, grad-accum, resume, zero-step guard. Colab cells in `docs/notebooks/` (e.g., `COLAB_RUN4_TRAIN_CELL.py` — authorization-gated, verifies Run3 checkpoint SHA-256 before resuming).
+5. **Checkpoint** — versioned dirs `checkpoints_core0X_<run>/`; never overwrite.
+6. **Evaluate** — `eval_core.py`, `four_core_test_suite.py`, verification scripts (§11).
+7. **Deploy locally** — register in `model_registry.py` with SHA-256; CPU inference verified path.
 
-| Cell | CPU/GPU | Downloads? | Changes files? | Approval? | Success looks like | If it fails |
-|---|---|---|---|---|---|---|
-| 1 Overview | — | no | no | no | read markdown | — |
-| 2 Env check | CPU | no | no | no | versions + disk printed | missing pkg → `!pip install -q sentencepiece pyarrow` |
-| 3 Package | CPU | no | extracts to `/kaggle/working/.../pkg` only | no | `PACKAGE_OK = True` | see Troubleshooting |
-| 4 Tokenizer | CPU | no | no | no | `vocab_size: 8000`, round-trip True | wrong path → check Cell 3 |
-| 5 FineWeb verify | CPU | metadata only (HEAD/API) | no | no | `FINEWEB_VERIFIED: True` | internet off → Settings → Internet ON |
-| 6 Download | CPU | **YES — shard 0 ~2.0 GiB** | writes `raw/…shard0.parquet` | **`APPROVE_FINEWEB_DOWNLOAD`** | `DOWNLOAD_OK: True` + sha256 | disk short → free space; never auto-fetches more shards |
-| 7 Corpus prep | CPU | no | writes `prepared_dataset/` | **`APPROVE_CORPUS_PREPARATION`** | `PREP_DONE` + 5 output files | see Troubleshooting |
-| 8 Dataset audit | CPU | no | no | no | `DATASET_OK: True` | token shortfall → report, don't train |
-| 9 GPU check | GPU probe | no | no | no | `GPU_OK: True`, T4 + 14.56 GB | CUDA unavailable → Accelerator → GPU T4 x2 |
-| 10 Smoke test | **GPU** | no | writes `checkpoints_smoke/` | **`APPROVE_GPU_SMOKE_TEST`** | ~200 steps, finite loss, ckpt saved | OOM → lower batch / raise accum |
-| 11 Full training | **GPU** | no | writes `checkpoints_full/` | **`APPROVE_FULL_TRAINING`** | `checkpoint_final.pt` = COMPLETED | session end → resume |
-| 12 Status | — | no | no | no | status board | — |
+### Core-05 (PLANNED — not implemented)
+Audit complete (`docs/architecture/audits/NEXUSAI_CORE05_STAGE0_TRAINING_READINESS_AUDIT.md`): ~45.9M params designed, **blocked on missing Dataset V5**. No config/weights exist.
 
-> ⚠️ Enable `APPROVE_*` flags **one at a time**, only after reading that cell's plan. Never enable all four together.
+---
 
-### FineWeb dataset facts (verified)
+## 11. Model Evaluation Guide
 
-- Repo `HuggingFaceFW/fineweb` · config `sample-10BT` · English · **ODC-By 1.0** (attribution: *"FineWeb by Hugging Face"*) + Common Crawl ToS.
-- `sample-10BT` = 15 shards; shard 0 = **2,147,292,183 bytes (~2.0 GiB)**; Range requests supported.
-- Only shard 0 downloaded; prep stops at ~100M **real SentencePiece tokens** (never GPT-2 estimates), 0.5% buffer, 1.5% val, seed 42.
-- The older ~3.47M-token corpus is too small — FineWeb replaces it for pretraining. Bengali needs a separate approved data strategy later.
+```bash
+# Five-model strict-load + generation matrix (24 prompts × 5 models)
+python packages/ai-core/evaluation/verify_four_core_generation.py \
+  --models nexus-core-01,nexus-core-02,nexus-core-03,nexus-core-04,nexus-medium \
+  --max-new-tokens 48 --out eval_reports/stage1_four_core_generation.json
 
-### Beginner glossary
+# Held-out per-core suite + numeric oracle (core-03)
+python packages/ai-core/evaluation/four_core_test_suite.py \
+  --out eval_reports/four_core_test_suite.json
 
-| Term | Plain meaning |
+# Repair/regression tests (13 tests)
+python packages/ai-core/tests/four_core/test_generation_repairs.py
+```
+
+**Reading results:** `strict_load` = state-dict compatibility; `generated_text` = genuine neural output (UTF-8 preserved); `EMPTY_OUTPUT` = model emitted EOS immediately; `numeric_oracle` = deterministic math check (verifies, never replaces, the model); `surface_sim` = token overlap with references (NOT a correctness metric for template models). Latest reports: `eval_reports/stage1_four_core_generation_postfix.json`, `four_core_test_suite.json`.
+
+---
+
+## 12. Backup & Recovery
+
+- **What to back up:** source, configs, tokenizer, all `checkpoints_*/`, datasets (incl. gitignored `.jsonl`), docs, eval reports, `.env.example` (never real `.env`).
+- **Verified backup (2026-11-18):** `C:\Users\Nusaiba\Desktop\nexusai_backup_20261118\nexusai_full_backup_20261118.zip` — 1.88 GB, 1,543 files, SHA-256 manifest, `testzip()` OK, checkpoint hashes verified inside archive.
+- **Checkpoint integrity:** every `.pt` has a `.sha256` sidecar; registry re-hashes on `validate()`.
+- **Restore:** unzip backup over repo root, or copy individual checkpoint dirs back; verify hashes before use.
+- **Never** overwrite a checkpoint in place — write new versioned dirs.
+
+---
+
+## 13. Development & Contributing
+
+- **Structure:** `apps/{web,api,worker}` (TS), `packages/*` (shared cores), `packages/ai-core/` (models, data, ml-service, evaluation, tests), `docs/` (architecture, audits, notebooks).
+- **Conventions:** TypeScript strict; Python 3.11+; tests are standalone runnable scripts (`test_*.py` print PASS/FAIL); commits use conventional prefixes (`feat|fix|docs`).
+- **Adding a model:** create `models/nexusai_core_0X/config/model_config.py`, register in `model_registry.py` `MODEL_DEFS` with checkpoint path + SHA-256 + `expected_params`, add router mapping if specialized.
+- **Adding benchmarks:** extend `PROMPT_MATRIX` in `verify_four_core_generation.py` or add cases to `four_core_test_suite.py`.
+- **Safety:** no `git add -A`; no secrets; no checkpoint overwrites; run `pnpm check` + Python test scripts before PR.
+
+---
+
+## 14. Known Limitations
+
+*Verified 2026-11-18 — do not read this as marketing.*
+
+| Limitation | Evidence |
 |---|---|
-| Runtime | The live Python process inside the notebook. Restart = all variables + `/kaggle/working` files may be lost. |
-| CUDA | NVIDIA's GPU computing platform — lets PyTorch use the GPU. |
-| GPU / VRAM | Graphics card / its memory (T4 = 14.56 GB). Model+batches must fit in VRAM. |
-| Tokenizer | Tool that splits text into tokens the model understands (ours: SentencePiece, 8,000 vocab). |
-| Training dataset | Text the model learns from (train split). |
-| Validation dataset | Held-out text used to measure progress honestly (val split). |
-| Pretraining | First stage: model learns language patterns from raw text (next-token prediction). |
-| Training step | One optimizer update after processing a batch. |
-| Loss | Error score — lower = better. We watch it go down. |
-| Checkpoint | Saved model+optimizer snapshot for resume/safety. |
-| Runtime recovery | Rebuilding notebook state after a restart (Cells 2–9). |
-| Training resume | Continuing from a checkpoint in a later session (`--resume`). |
-
-### Rebuilding the NexusAI Core-01 Kaggle Environment from Scratch
-
-1. Kaggle account → verify phone if prompted.
-2. **Dataset:** Datasets → New Dataset → upload `nexusai_core01_kaggle_package.zip` → Create.
-3. **Notebook:** `NexusAI-Core-Training` → File → Import `nexusai_core01_fineweb_pretraining.ipynb`.
-4. Right panel → **Input → Add Input → Your Work → nexusai-core01-package**.
-5. **Settings:** Internet ON · Add-ons `sentencepiece`, `pyarrow` if Cell 2 reports missing · Accelerator CPU for Cells 2–8, GPU T4 x2 for Cells 9–11.
-6. Run cells in order; enable each `APPROVE_*` flag only when that stage is next.
-7. If the runtime restarts → follow **Kaggle Runtime Recovery Procedure** above.
-
-### NexusAI Core-01 — Run4 Single-Upload Bundle (NEW)
-
-Run4 distribution is consolidated into **one ZIP**:
-`exports/NEXUSAI_CORE01_RUN4_SINGLE_UPLOAD_BUNDLE.zip` (~81 MB).
-It contains the preflight cell, original training bundle, corpus, and resume
-evidence plus a `manifest.json` of SHA-256 hashes. Upload that ONE file to
-Colab (or Drive) and run `docs/notebooks/COLAB_RUN4_SINGLE_UPLOAD_CELL.py`,
-which validates, extracts, and stages everything safely — then run the
-preflight cell. Full guide:
-`docs/training/NEXUSAI_CORE01_RUN4_SINGLE_UPLOAD_GUIDE.md`.
-The Run3 checkpoint stays on Drive and is never modified.
-
-### NexusAI Core-01 — Google Colab Training Guide (Kaggle-free)
-
-Training moved fully to **Google Colab** — no Kaggle, no manual uploads. The notebook clones our public GitHub repo, downloads FineWeb `sample-10BT` shard 0 (~2 GiB), prepares the 100M-token corpus with our own `prepare_english_corpus.py`, then trains on 1× Tesla T4 (verified env: Python 3.13.16, torch 2.14.1+cu130, CUDA True).
-
-**One-time setup**
-
-1. Open **https://colab.research.google.com** → sign in.
-2. **File → Upload notebook** → `docs/notebooks/NexusAI_Core01_Google_Colab_Training.ipynb`.
-3. **Runtime → Change runtime type → T4 GPU**.
-4. Run cells top-to-bottom. Everything else is automatic.
-
-**The 3 approval gates (all `False` by default — enable one at a time)**
-
-| Cell | Flag | What it authorizes |
-|---|---|---|
-| 9 | `APPROVE_DATASET_PREPARATION` | FineWeb shard-0 download (~2 GiB) + 100M-token corpus prep (~30–60 min) |
-| 17 | `APPROVE_SMOKE_TEST` | ~200-step GPU pipeline test on real data |
-| 19 | `APPROVE_FULL_TRAINING` | real pretraining; checkpoints→Drive every 500 steps |
-
-**Drive layout (auto-created):** `MyDrive/NexusAI/{source_data,data,package,tokenizer,checkpoints,logs,reports}`
-
-**Resume after disconnect:** new session → re-run Cells 2–16 → Cell 19 with `--resume checkpoint_last.pt`.
-
-**Links:** full guide `docs/notebooks/NEXUSAI_CORE01_COLAB_SETUP.md` · audit `docs/architecture/audits/NEXUSAI_CORE01_COLAB_MIGRATION_AUDIT.md` · Kaggle guide above kept for history.
-
-### Training Session Log
-
-| Session ID | Date/time | Notebook | Runtime | GPU | VRAM | Python | Torch | Package | Tokenizer | Dataset | Tokens | Config (bs/lr/prec) | Steps | Train loss | Val loss | Checkpoints | Errors | Fixes | Status |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| S1 | 2026-11-07 | NexusAI-Core-Training | CPU then GPU T4 | Tesla T4 | 14.56 GB | 3.13.x | 2.11.0 | ✅ dir-found (sha skipped) | ✅ | ✅ 100.5M tok | 100,499,546 | smoke bs32/lr3e-4/fp16 (planned) | 0 | — | — | none saved | Cell10 NameError (runtime restart) | recovery diagnostic only | **UNTRAINED** |
-
-> Fill one row per real session using **actual outputs only**. Update this table when new stages complete.
-
-### Troubleshooting
-
-| Symptom | Meaning | Safe fix |
-|---|---|---|
-| `PACKAGE_OK is not defined` | kernel restarted; variables lost | Re-run Cells 2–9 in order (Recovery Procedure) |
-| `zip candidates: []` but dir found | dataset attached as folder | Normal — sha check skipped; re-upload ZIP if hash verify wanted |
-| `PACKAGE INIT FAILED` | required file missing | verify dataset contents; re-upload ZIP |
-| `sha256 match: False` | old package version | upload current ZIP as new dataset version |
-| `sentencepiece/pyarrow MISSING` | deps absent | `!pip install -q sentencepiece` / `pyarrow` |
-| Download fails / disk error | shard ~2 GiB + margin | check Cell 2 disk; free `/kaggle/working` |
-| `CUDA unavailable` Cell 9 | accelerator still CPU | Settings → Accelerator → GPU T4 x2 → restart |
-| OOM in smoke | batch too big | lower `--batch-size`, raise `--gradient-accumulation-steps` |
-| Session dies mid-training | Kaggle ~9–12 h limit | resume `checkpoint_last.pt` next session |
-| `DATASET_OK` overlap>0 | split bug | STOP — send manifest, do not train |
-| tokens ≪ 100M | shard exhausted | report shortfall; approve shard 1 manually |
+| No working conversational model | core-01 38/56 non-empty, English word-salad; 18 immediate-EOS |
+| Core-02 template collapse | identical `1. Boil water.`-style outputs across all 24 prompts |
+| Core-03 unreliable math | 8/87 = 9.2% held-out numeric accuracy; bare numbers for any input |
+| Core-04 narrow memorization | fluent but prompt-insensitive; 318-record KB only |
+| Banglish fragmentation | tokenizer audit: 0.41 tok/char, `Programming`→`Pro gr am ming` |
+| CPU-only, no KV cache | ~0.1–1.2 s/gen; O(n²) context cost |
+| Single-turn inference | no multi-turn state in generation path |
+| Dataset defects | core02 60% / core03 18% exact-duplicate train records |
+| V5 absent | Core-05 training BLOCKED until V5 built |
+| App tests need env | `pnpm test` requires `COOKIE_SECRET`/DB env — 166 env-dependent failures without `.env` (pre-existing, unrelated to model code) |
 
 ---
 
-## License
+## 15. Roadmap
 
-This project is licensed under the MIT License.
+- [x] Four-core registry, router, strict loading, neural-only mode
+- [x] Stage-1/2 forensic audit + three defect repairs (F2/F3/Q4)
+- [x] Reproducible verification suites + regression tests
+- [ ] Dataset V5 construction *(next authorized mission)*
+- [ ] Core-01 Run4/Run5 SFT for chat-capable generation
+- [ ] Core-02/03/04 retraining on deduplicated data
+- [ ] KV-cache decoding + quantized CPU inference
+- [ ] Core-05 implementation + staged training
+- [ ] Multi-turn context, reasoning, self-correction
+- [ ] Consent-based memory runtime, voice, agents, public API
 
 ---
 
-## Acknowledgments
+## 16. Documentation Index
 
-NexusAI is an independent AI project with its own trained model, tokenizer, and training pipeline. It does not use external AI APIs as primary intelligence.
-
-The goal is to demonstrate that independent AI development is possible with modern tools and techniques.
+- `docs/architecture/audits/NEXUSAI_FOUR_CORE_COMPLETE_FORENSIC_AUDIT.md`
+- `docs/architecture/audits/NEXUSAI_STAGE1_FOUR_CORE_GENERATION_VERIFICATION.md`
+- `docs/architecture/audits/NEXUSAI_STAGE2_ROOT_CAUSE_DIAGNOSIS.md`
+- `docs/architecture/audits/NEXUSAI_FOUR_CORE_REPAIR_REPORT.md`
+- `docs/architecture/audits/NEXUSAI_FOUR_CORE_TEST_AND_BENCHMARK_REPORT.md`
+- `docs/architecture/audits/NEXUSAI_FOUR_CORE_CHECKPOINT_AND_MODEL_INVENTORY.md`
+- `docs/architecture/NEXUSAI_FOUR_CORE_SYSTEM_ARCHITECTURE.md`
+- `docs/architecture/NEXUSAI_FOUR_CORE_OPERATIONS_AND_INFERENCE.md`
+- `docs/architecture/NEXUSAI_FOUR_CORE_RELEASE_REPORT.md`
+- `docs/architecture/future/NEXUSAI_RECOMMENDED_TECHNOLOGY_STACK.md`
+- `docs/architecture/future/NEXUSAI_CORE05_*` (7 Core-05 planning docs)
+- `docs/BANGLA_DEVELOPMENT_GUIDE.md` — Bengali developer guide
+- `eval_reports/` — machine-readable benchmark JSONs
 
 ---
 
-## Support
+## 17. License & Credits
 
-For issues, questions, or contributions, please visit the GitHub repository:
-https://github.com/mrhasibuldev/ai-breand
+No `LICENSE` file exists in the repository — **no license is currently declared**; all rights remain with the project owner pending an explicit license decision. All architecture diagrams in this README were created for the NexusAI project. Third-party components (PyTorch, FastAPI, Next.js, SentencePiece, etc.) remain under their respective licenses.
 
-### Run3 Checkpoint — GitHub LFS Storage (NEW)
+---
 
-The authoritative Core-01 Run3 checkpoint is now stored in the repo via
-**Git LFS** at `packages/ai-core/models/checkpoints_core01_run3/checkpoint_final.pt`
-(106,777,501 B, SHA-256 `ad515cade…7830`). Fresh Colab sessions can clone the
-repo and `git lfs pull` the checkpoint — no ZIP upload needed.
-See `docs/training/NEXUSAI_CORE01_CHECKPOINT_RECOVERY.md` and
-`docs/notebooks/COLAB_CLONE_RECOVERY_CELL.py`.
+## বাংলায় সংক্ষিপ্ত পরিচিতি (Bengali Overview)
 
-### Universal Cloud Training System (NEW — verified 2026-11-16)
+**NexusAI** হলো একটি সম্পূর্ণ স্বদেশীয় AI প্রকল্প — এর নিজস্ব model, নিজের trained weights, নিজের tokenizer এবং নিজের inference engine আছে। এটি কোনো বাইরের AI API (যেমন OpenAI বা Gemini) ব্যবহার করে না — সব intelligent text 우리 model-ই generate করে।
 
-Provider-independent training layer in `packages/ai-core/cloud/`:
-`env_manager` (deps/CUDA detect), `hardware` (GPU/RAM/disk), `storage`
-(local/Drive/Kaggle + write tests), `adapters` (Colab/Kaggle/Generic-Linux),
-`model_loader` (strict checkpoint compat), `dataset_manager` (JSONL integrity),
-`preflight` (single readiness verdict).
+**বর্তমান অবস্থা (সৎ মূল্যায়ন):**
+- চারটি model core (Core-01 থেকে Core-04)적으로 কাজ করে — checkpoint load হয়, neural text generate হয়।
+- তবে এখনো কোনো model-ই ভালো conversational partner নয়: Core-01 undertrained, Core-02 template_bound, Core-03-এর math accuracy মাত্র ~৯%, Core-04 মাত্র ছোট knowledge base মনে রাখে।
+- পরের ধাপ: Dataset V5 তৈরি → Core-01-কে SFT করা → ধীরে ধীরে capability বাড়ানো।
 
-**Package:** `exports/NEXUSAI_UNIVERSAL_TRAINING_PACKAGE.zip`
-(173,913,680 B · SHA-256 `f20d38eee9148367068624f51b56575bac6bd719114c14d8d9bc52fffe86e644`)
-— self-contained: core01 code, cloud modules, tokenizer, Run3 checkpoint,
-Run4 dataset, preflight cell, manifest+checksums. 26/26 payload hashes verified.
-
-**Quick start (any Linux GPU cloud):**
-1. Extract ZIP → run `nexusai/docs/notebooks/UNIVERSAL_CLOUD_PREFLIGHT_CELL.py`
-2. Expect `READY` verdict (READY ≠ training authorization)
-3. Train via `core01/pretraining_driver.py` — see `docs/training/universal/NEXUSAI_TRAINING_GUIDE.md`
-
-**Verified locally:** 11 PASS / 0 FAIL / 2 NOT TESTED
-(`tests/universal/test_universal_system.py`) — env, hardware, adapters,
-dataset, tokenizer, strict model load, forward pass, synthetic train step,
-checkpoint save/load + resume restore, storage, package integrity, preflight.
-GPU + live Colab/Kaggle runs: NOT TESTED (need real cloud session).
-
-Docs: `docs/training/universal/` (audit, architecture, migration, training
-guide, test report, package manifest).
-
-### Training NexusAI on Google Colab (primary environment)
-
-**A. Prerequisites** — Google account, Colab access (free T4 OK), the
-universal package ZIP, ~2GB Drive space.
-
-**B. Drive prep** — create `MyDrive/NexusAI/` folder.
-
-**C. Upload ZIP** — upload `NEXUSAI_UNIVERSAL_TRAINING_PACKAGE.zip`
-(173,913,680 bytes · SHA-256 `f20d38eee9148367068624f51b56575bac6bd719114c14d8d9bc52fffe86e644`)
-to Drive. Verify size+hash before proceeding.
-
-**D. Notebook** — new Colab notebook.
-
-**E. GPU runtime** — `Runtime → Change runtime type → T4 GPU`. A notebook
-cannot grant itself a GPU; CPU runtime = preflight will report FAIL on cuda.
-
-**F. Mount Drive** — the setup cell does `drive.mount("/content/drive")`
-automatically (browser auth prompt once per session).
-
-**G. ZIP location** — cell auto-finds the ZIP under MyDrive or /content;
-it filters candidates by exact expected size.
-
-**H. SHA verify** — cell recomputes SHA-256 and compares to the pinned value.
-
-**I. Extract** — safe extraction to `/content/nexusai_pkg` with
-traversal/absolute-path rejection; re-runs are idempotent.
-
-**J. Deps** — verifies torch/sentencepiece/numpy/psutil; reports missing
-packages (Colab base image already has them).
-
-**K. Preflight** — run `docs/notebooks/COLAB_UNIVERSAL_SETUP_CELL.py` as ONE cell.
-
-**L. GPU/CUDA** — cell checks `torch.cuda.is_available()`, GPU name, VRAM,
-and runs a real CUDA matmul. `cuda=FAIL` → switch runtime to T4 and re-run.
-
-**M. Dataset/tokenizer** — verifies `corpus_train.jsonl` (385,217,021 B) and
-`sp_bpe_8k.model` presence inside the package.
-
-**N. Run3 checkpoint** — strict-loads `core01_run3_checkpoint_final.pt`,
-verifies SHA `ad515cade…7830`, params 8,842,560.
-
-**O. Resume readiness** — confirms optimizer/scheduler/GradScaler/RNG state
-present; epoch=3, step=1341. Driver uses TOTAL epochs: `EPOCHS=5` →
-`range(3,5)` = exactly 2 additional epochs, final epoch 5.
-
-**P. Synthetic dry-run** — 2×16-token forward+backward on random IDs;
-proves the model trains mechanically without touching real data.
-
-**Q. Report** — JSON saved to `/content/nexusai_reports/`; verdict
-READY / BLOCKED. READY ≠ authorized.
-
-**R. Troubleshooting** — see `docs/training/universal/` guides;
-common fixes: remount Drive, re-select T4, re-upload ZIP if hash fails.
-
-**S. Checkpoint backup** — copy run4 checkpoints to
-`MyDrive/NexusAI/checkpoints/core01_run4/` during/after training;
-never overwrite Run3.
-
-**T. Training start** — ONLY after explicit approval. See
-`docs/training/universal/NEXUSAI_TRAINING_GUIDE.md` for the driver command.
-
-**Live Colab/GPU status: NOT TESTED** — cell is syntax-verified and all
-logic paths tested locally; first real run happens in your Colab session.
+বিস্তারিত বাংলা গাইড: `docs/BANGLA_DEVELOPMENT_GUIDE.md`
