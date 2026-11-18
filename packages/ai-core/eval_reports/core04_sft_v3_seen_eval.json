@@ -1,0 +1,131 @@
+{
+ "core": "core04",
+ "ckpt": "models/checkpoints_core04_sft_v3/checkpoint_final.pt",
+ "model_status": "UNTRAINED",
+ "device": "cpu",
+ "n_records": 30,
+ "categories": {
+  "classify|en": {
+   "n": 1,
+   "exact_match": 0.0,
+   "contains": 0.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "blue is a color.",
+     "gen": "dog is a color."
+    }
+   ]
+  },
+  "explain|bn": {
+   "n": 3,
+   "exact_match": 1.0,
+   "contains": 1.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "ভূমিকম্প হলো ভূত্বকের নিচে নড়াচড়ার কারণে পৃথিবীর পৃষ্ঠের কাঁপুনি।",
+     "gen": "ভূমিকম্প হলো ভূত্বকের নিচে নড়াচড়ার কারণে পৃথিবীর পৃষ্ঠের কাঁপুনি।"
+    },
+    {
+     "ref": "বন হলো এমন একটি বড় এলাকা যা গাছপালা দিয়ে ঘনভাবে ঢাকা।",
+     "gen": "বন হলো এমন একটি বড় এলাকা যা গাছপালা দিয়ে ঘনভাবে ঢাকা।"
+    },
+    {
+     "ref": "ব্যাটারি chemical energy সঞ্চয় করে এবং ব্যবহারের সময় তাকে electrical energy-তে রূপান্তর করে।",
+     "gen": "ব্যাটারি chemical energy সঞ্চয় করে এবং ব্যবহারের সময় তাকে electrical energy-তে রূপান্তর করে।"
+    }
+   ]
+  },
+  "explain|en": {
+   "n": 5,
+   "exact_match": 0.6,
+   "contains": 0.8,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "Oxygen is a chemical element essential for respiration in most living organisms.",
+     "gen": "Oxygen is a chemical element essential for respiration in most living organisms."
+    },
+    {
+     "ref": "A train is a connected series of vehicles that runs on rails to transport passengers or goods.",
+     "gen": "A train is a connected series of vehicles that runs on rails to transport passengers or goods."
+    },
+    {
+     "ref": "An algorithm is a step-by-step procedure for solving a problem or performing a task.",
+     "gen": "An algorithm is a step- that captep procedure for solving a problem or performing a task."
+    }
+   ]
+  },
+  "qa|bn": {
+   "n": 9,
+   "exact_match": 0.7778,
+   "contains": 0.8889,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "উপগ্রহ হলো একটি বস্তু যা মাধ্যাকর্ষণের কারণে গ্রহ বা তারকা প্রদক্ষিণে ঘোরে।",
+     "gen": "উপগ্রহ হলো একটি বস্তু যা মাধ্যাকর্ষণের কারণে গ্রহ বা তারকা প্রদক্ষিণে ঘোরে।"
+    },
+    {
+     "ref": "মাধ্যাকর্ষণ হলো বস্তুগুলোর পরস্পরের দিকে আকর্ষণ বল; পৃথিবীর মাধ্যাকর্ষণ সবকিছু নিচের দিকে টানে।",
+     "gen": "মাধ্যাকর্ষণ হলো বস্তুগুলোর পরস্পরের দিকে আকর্ষণ; পৃথিবীর মাধ্যাকর্ষণ সবকিছু নিচের দিকে টানে।"
+    },
+    {
+     "ref": "লাইব্রেরি হলো এমন একটি জায়গা যা বই ও অন্যান্য পড়ার উপকরণ সংগ্রহ ও বিতরণ করে।",
+     "gen": "লাইব্রেরি হলো এমন একটি জায়গা যা বই ও অন্যান্য পড়ার উপকরণ সংগ্রহ ও বিতরণ করে।"
+    }
+   ]
+  },
+  "qa|en": {
+   "n": 10,
+   "exact_match": 0.9,
+   "contains": 0.9,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "Gravity is the force that attracts objects toward each other; Earth's gravity pulls objects downward.",
+     "gen": "Gravity is the force that attracts objects toward each other; Earth's gravity pulls objects downward."
+    },
+    {
+     "ref": "A compass is a navigation tool that points toward Earth's magnetic north.",
+     "gen": "A compass is a navigation tool that points toward Earth's magnetic north."
+    },
+    {
+     "ref": "Climate is the long-term average weather pattern of a region over many years.",
+     "gen": "Climate is the long-term average weather pattern of a region over many years."
+    }
+   ]
+  },
+  "summarize|en": {
+   "n": 1,
+   "exact_match": 0.0,
+   "contains": 0.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "Computers process data using a CPU, memory, and storage.",
+     "gen": "Computers."
+    }
+   ]
+  },
+  "uncertainty|bn": {
+   "n": 1,
+   "exact_match": 0.0,
+   "contains": 0.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "আমার কাছে হালনাগাদ তথ্য নেই; আমার জ্ঞানের একটি cutoff আছে, তাই বর্তমান সংখ্যা বলতে পারি না।",
+     "gen": "আমার কাছে হালনাগাদিাদি গড় আবহাওয়া।"
+    }
+   ]
+  }
+ },
+ "overall": {
+  "n": 30,
+  "exact_match": 0.7333,
+  "contains": 0.8,
+  "empty_rate": 0.0
+ }
+}

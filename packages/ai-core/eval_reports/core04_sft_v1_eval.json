@@ -1,0 +1,75 @@
+{
+ "core": "core04",
+ "ckpt": "models/checkpoints_core04_sft_v1/checkpoint_final.pt",
+ "model_status": "UNTRAINED",
+ "device": "cpu",
+ "n_records": 12,
+ "categories": {
+  "explain|en": {
+   "n": 4,
+   "exact_match": 0.0,
+   "contains": 0.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "Chlorophyll is the green pigment in plants that captures sunlight for photosynthesis.",
+     "gen": "An algorithmical elevation, usually formed by movement beneath the crust through Earth's systems."
+    },
+    {
+     "ref": "A school is an institution where students learn academic subjects and skills.",
+     "gen": "A computer is a large natural elevation of Earth's surface caused by tectonic activity pull."
+    },
+    {
+     "ref": "The solar system consists of the Sun and the planets, moons, asteroids and comets orbiting it.",
+     "gen": "A computer is the molecare institution providing medical energy when used."
+    }
+   ]
+  },
+  "qa|bn": {
+   "n": 3,
+   "exact_match": 0.0,
+   "contains": 0.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "হাসপাতাল হলো একটি স্বাস্থ্যসেবা প্রতিষ্ঠান যা রোগীদের চিকিৎসা সেবা দেয়।",
+     "gen": "সৌরজগতে সূর্য এবং তার চারপাশেহে genetic নির্দেশনা অনুসরণ করে তথ্যের একটি cutoff আছে, water or performing a problem or performing a task."
+    },
+    {
+     "ref": "জলচক্র বর্ণনা করে বাষ্পীভবন, ঘনীভবন ও বৃষ্টিপাতের মাধ্যমে পানি কীভাবে চলাচল করে।",
+     "gen": "A computer is the long-termical elevation, usually formed by movement beneath the crust through Earth's systems."
+    },
+    {
+     "ref": "জলবায়ু হলো কোনো অঞ্চলের দীর্ঘমেয়াদি গড় আবহাওয়া।",
+     "gen": "A forest is a large navigation of Earth's surface caused by movement beneath the crust through Earth's systems."
+    }
+   ]
+  },
+  "qa|en": {
+   "n": 5,
+   "exact_match": 0.0,
+   "contains": 0.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "Renewable energy comes from sources that naturally replenish, like solar, wind and hydro power.",
+     "gen": "An algorithmical elevation of Earth's interacting with their physical environment."
+    },
+    {
+     "ref": "Oxygen is a chemical element essential for respiration in most living organisms.",
+     "gen": "A computer is the molecare institution providing medical energy when used."
+    },
+    {
+     "ref": "A school is an institution where students learn academic subjects and skills.",
+     "gen": "A computer is a large navigation of Earth's surface caused by movement beneath the crust."
+    }
+   ]
+  }
+ },
+ "overall": {
+  "n": 12,
+  "exact_match": 0.0,
+  "contains": 0.0,
+  "empty_rate": 0.0
+ }
+}

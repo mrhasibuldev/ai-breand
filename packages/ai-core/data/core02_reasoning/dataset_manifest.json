@@ -1,0 +1,63 @@
+{
+ "version": "core02_reasoning_v1",
+ "seed": 42,
+ "total": 2650,
+ "splits": {
+  "train": 2386,
+  "validation": 132,
+  "test": 132
+ },
+ "statistics": {
+  "train": {
+   "n": 2386,
+   "lang": {
+    "en": 1667,
+    "bn": 467,
+    "banglish": 252
+   },
+   "category": {
+    "uncertainty": 86,
+    "constraint": 117,
+    "ordering": 863,
+    "multistep": 129,
+    "comparison": 171,
+    "deduction": 770,
+    "contradiction": 100,
+    "planning": 150
+   }
+  },
+  "validation": {
+   "n": 132,
+   "lang": {
+    "en": 86,
+    "banglish": 26,
+    "bn": 20
+   },
+   "category": {
+    "ordering": 68,
+    "comparison": 12,
+    "deduction": 16,
+    "constraint": 17,
+    "multistep": 13,
+    "uncertainty": 6
+   }
+  },
+  "test": {
+   "n": 132,
+   "lang": {
+    "en": 97,
+    "banglish": 22,
+    "bn": 13
+   },
+   "category": {
+    "uncertainty": 8,
+    "multistep": 8,
+    "ordering": 69,
+    "constraint": 16,
+    "comparison": 17,
+    "deduction": 14
+   }
+  }
+ },
+ "note": "Deterministic logic templates \u2014 held-out test uses same generators with different seed draws; generalization limited, honest caveat."
+}

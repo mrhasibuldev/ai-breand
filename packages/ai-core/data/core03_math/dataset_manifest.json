@@ -1,0 +1,56 @@
+{
+ "version": "core03_math_v1",
+ "seed": 42,
+ "total": 1750,
+ "splits": {
+  "train": 1576,
+  "validation": 87,
+  "test": 87
+ },
+ "statistics": {
+  "train": {
+   "n": 1576,
+   "lang": {
+    "en": 1123,
+    "bn": 270,
+    "banglish": 183
+   },
+   "category": {
+    "algebra": 135,
+    "arith": 990,
+    "wordprob": 176,
+    "percent": 175,
+    "fraction": 100
+   }
+  },
+  "validation": {
+   "n": 87,
+   "lang": {
+    "bn": 14,
+    "en": 65,
+    "banglish": 8
+   },
+   "category": {
+    "arith": 57,
+    "wordprob": 12,
+    "percent": 9,
+    "algebra": 9
+   }
+  },
+  "test": {
+   "n": 87,
+   "lang": {
+    "en": 62,
+    "bn": 16,
+    "banglish": 9
+   },
+   "category": {
+    "wordprob": 12,
+    "arith": 53,
+    "percent": 16,
+    "algebra": 6
+   }
+  }
+ },
+ "note": "Procedural verified arithmetic \u2014 answers computed, not memorized. Split by content hash."
+}

@@ -1,0 +1,107 @@
+{
+ "core": "core04",
+ "ckpt": "models/checkpoints_core04_sft_v3/checkpoint_final.pt",
+ "model_status": "UNTRAINED",
+ "device": "cpu",
+ "n_records": 31,
+ "categories": {
+  "explain|bn": {
+   "n": 3,
+   "exact_match": 0.6667,
+   "contains": 0.6667,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "নদী হলো স্বাভাবিক পানির স্রোত যা সমুদ্র, হ্রদ বা অন্য নদীর দিকে বয়ে যায়।",
+     "gen": "নদী হলো স্বাভাবিক পানির স্রোত যা সমুদ্র, হ্রদীর দিকে বয়ে যায়।"
+    },
+    {
+     "ref": "স্কুল হলো এমন একটি প্রতিষ্ঠান যেখানে শিক্ষার্থীরা academic বিষয় ও দক্ষতা শেখে।",
+     "gen": "স্কুল হলো এমন একটি প্রতিষ্ঠান যেখানে শিক্ষার্থীরা academic বিষয় ও দক্ষতা শেখে।"
+    },
+    {
+     "ref": "ইন্টারনেট একটি বিশ্বব্যাপী নেটওয়ার্ক যা কম্পিউটারগুলোকে তথ্য ভাগাভাগি করতে সংযুক্ত করে।",
+     "gen": "ইন্টারনেট একটি বিশ্বব্যাপী নেটওয়ার্ক যা কম্পিউটারগুলোকে তথ্য ভাগাভাগি করতে সংযুক্ত করে।"
+    }
+   ]
+  },
+  "explain|en": {
+   "n": 6,
+   "exact_match": 0.5,
+   "contains": 0.8333,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "A hospital is a healthcare institution providing medical treatment to patients.",
+     "gen": "A hospital is a healthcare institution providing medical treatment to patients."
+    },
+    {
+     "ref": "A hospital is a healthcare institution providing medical treatment to patients.",
+     "gen": "হাসপাতাল হলো একটি স্বাস্থ্যসেবা প্রতিষ্ঠান যা রোগীদের চিকিৎসা সেবা দেয়।"
+    },
+    {
+     "ref": "An algorithm is a step-by-step procedure for solving a problem or performing a task.",
+     "gen": "An algorithm is a step-step procedure for solving a problem or performing a task."
+    }
+   ]
+  },
+  "qa|bn": {
+   "n": 12,
+   "exact_match": 0.5833,
+   "contains": 0.6667,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "নদী হলো স্বাভাবিক পানির স্রোত যা সমুদ্র, হ্রদ বা অন্য নদীর দিকে বয়ে যায়।",
+     "gen": "নদী হলো স্বাভাবিক পানির স্রোত যা সমুদ্র, হ্রদীর দিকে আক হ্রদীর দিকে বয়ে যায়।"
+    },
+    {
+     "ref": "নদী হলো স্বাভাবিক পানির স্রোত যা সমুদ্র, হ্রদ বা অন্য নদীর দিকে বয়ে যায়।",
+     "gen": "নদী হলো স্বাভাবিক পানির স্রোত যা সমুদ্র, হ্রদীর দিকে বয়ে যায়।"
+    },
+    {
+     "ref": "নদী হলো স্বাভাবিক পানির স্রোত যা সমুদ্র, হ্রদ বা অন্য নদীর দিকে বয়ে যায়।",
+     "gen": "নদী হলো স্বাভাবিক পানির স্রোত যা সমুদ্র, হ্রদীর দিকে বয়ে যায়।"
+    }
+   ]
+  },
+  "qa|en": {
+   "n": 9,
+   "exact_match": 0.7778,
+   "contains": 1.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "A hospital is a healthcare institution providing medical treatment to patients.",
+     "gen": "A hospital is a healthcare institution providing medical treatment to patients."
+    },
+    {
+     "ref": "A hospital is a healthcare institution providing medical treatment to patients.",
+     "gen": "A hospital is a healthcare institution providing medical treatment to patients."
+    },
+    {
+     "ref": "A hospital is a healthcare institution providing medical treatment to patients.",
+     "gen": "A hospital is a healthcare institution providing medical treatment to patients."
+    }
+   ]
+  },
+  "uncertainty|en": {
+   "n": 1,
+   "exact_match": 1.0,
+   "contains": 1.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "I cannot know current events; my training data has a cutoff.",
+     "gen": "I cannot know current events; my training data has a cutoff."
+    }
+   ]
+  }
+ },
+ "overall": {
+  "n": 31,
+  "exact_match": 0.6452,
+  "contains": 0.8065,
+  "empty_rate": 0.0
+ }
+}

@@ -1,0 +1,175 @@
+{
+ "core": "core02",
+ "ckpt": "models/checkpoints_core02_sft_v2/checkpoint_final.pt",
+ "model_status": "UNTRAINED",
+ "device": "cpu",
+ "n_records": 132,
+ "categories": {
+  "comparison|en": {
+   "n": 17,
+   "exact_match": 0.3529,
+   "contains": 0.8235,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "A cup costs less.",
+     "gen": "A cup costs less."
+    },
+    {
+     "ref": "A cup costs less.",
+     "gen": "A cup costs less."
+    },
+    {
+     "ref": "A cup costs less.",
+     "gen": "A cup costs less."
+    }
+   ]
+  },
+  "constraint|en": {
+   "n": 16,
+   "exact_match": 0.5625,
+   "contains": 0.875,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "No, Rahim must sit before Mita.",
+     "gen": "No, Rahim must sit before Mit before Mit before Mit before Mit before Mit before Mit before Mit before Mit before Mit before Mit before Mita, slowest: No, slowest: No, slowest: No, slowest: No, slowes"
+    },
+    {
+     "ref": "No, Rahim must sit before Mita.",
+     "gen": "No, Rahim must sit before Mit before Mit before Mit before Mit before Mit before Mit before Mit before Mit before Mit before Mit before Mita, slowest: No, slowest: No, slowest: No, slowest: No, slowes"
+    },
+    {
+     "ref": "No, Karim must sit before Tanvir.",
+     "gen": "No, before Tanvir must ses, Tanvir porashona kore."
+    }
+   ]
+  },
+  "deduction|banglish": {
+   "n": 14,
+   "exact_match": 1.0,
+   "contains": 1.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "Hyan, Rina porashona kore.",
+     "gen": "Hyan, Rina porashona kore."
+    },
+    {
+     "ref": "Hyan, Rina porashona kore.",
+     "gen": "Hyan, Rina porashona kore."
+    },
+    {
+     "ref": "Hyan, Rina porashona kore.",
+     "gen": "Hyan, Rina porashona kore."
+    }
+   ]
+  },
+  "multistep|en": {
+   "n": 8,
+   "exact_match": 0.25,
+   "contains": 0.375,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "Fastest: Nadia, then Rina, then Arif, slowest: Salma.",
+     "gen": "Fastest: Nadia, then Rina, then Arif, slowest: Salma."
+    },
+    {
+     "ref": "Fastest: Tanvir, then Rina, then Nadia, slowest: Lima.",
+     "gen": "Fastest: Tanvir, then Nadia, then Nadia, slowest: Rina."
+    },
+    {
+     "ref": "Fastest: Lima, then Karim, then Nadia, slowest: Salma.",
+     "gen": "Fastest: Lima, then Karima, then Nadia, slowest: Salma."
+    }
+   ]
+  },
+  "ordering|banglish": {
+   "n": 8,
+   "exact_match": 0.625,
+   "contains": 0.625,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "Mita prothome sesh korse.",
+     "gen": "Mit before Jamal prothome sesh korse."
+    },
+    {
+     "ref": "Nadia prothome sesh korse.",
+     "gen": "No, then Tanvir prothome sesh korse."
+    },
+    {
+     "ref": "Karim prothome sesh korse.",
+     "gen": "Karim prothome sesh korse."
+    }
+   ]
+  },
+  "ordering|bn": {
+   "n": 13,
+   "exact_match": 1.0,
+   "contains": 1.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "নাদিয়া প্রথম শেষ করেছে।",
+     "gen": "নাদিয়া প্রথম শেষ করেছে।"
+    },
+    {
+     "ref": "নাদিয়া প্রথম শেষ করেছে।",
+     "gen": "নাদিয়া প্রথম শেষ করেছে।"
+    },
+    {
+     "ref": "সালমা প্রথম শেষ করেছে।",
+     "gen": "সালমা প্রথম শেষ করেছে।"
+    }
+   ]
+  },
+  "ordering|en": {
+   "n": 48,
+   "exact_match": 0.8542,
+   "contains": 0.8542,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "Salma finished first.",
+     "gen": "Salma finished first."
+    },
+    {
+     "ref": "Tanvir finished first.",
+     "gen": "Tanvir finished first."
+    },
+    {
+     "ref": "Karim finished last.",
+     "gen": "Karim finished last."
+    }
+   ]
+  },
+  "uncertainty|en": {
+   "n": 8,
+   "exact_match": 1.0,
+   "contains": 1.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "Not necessarily — we only know {a} is taller than {b}.",
+     "gen": "Not necessarily — we only know {a} is taller than {b}."
+    },
+    {
+     "ref": "Not necessarily — we only know {a} is taller than {b}.",
+     "gen": "Not necessarily — we only know {a} is taller than {b}."
+    },
+    {
+     "ref": "Not necessarily — we only know {a} is taller than {b}.",
+     "gen": "Not necessarily — we only know {a} is taller than {b}."
+    }
+   ]
+  }
+ },
+ "overall": {
+  "n": 132,
+  "exact_match": 0.7424,
+  "contains": 0.8485,
+  "empty_rate": 0.0
+ }
+}

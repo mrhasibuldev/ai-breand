@@ -1,0 +1,255 @@
+{
+ "core": "core02",
+ "ckpt": "models/checkpoints_core02_sft_v1/checkpoint_final.pt",
+ "model_status": "UNTRAINED",
+ "device": "cpu",
+ "n_records": 132,
+ "categories": {
+  "comparison|en": {
+   "n": 9,
+   "exact_match": 1.0,
+   "contains": 1.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "A cup costs less.",
+     "gen": "A cup costs less."
+    },
+    {
+     "ref": "A key costs less.",
+     "gen": "A key costs less."
+    },
+    {
+     "ref": "A apple costs less.",
+     "gen": "A apple costs less."
+    }
+   ]
+  },
+  "constraint|en": {
+   "n": 10,
+   "exact_match": 0.8,
+   "contains": 0.9,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "No, Salma must sit before Karim.",
+     "gen": "No, Salma must sit before Karim."
+    },
+    {
+     "ref": "No, Salma must sit before Rina.",
+     "gen": "No, Salma must sit before Rina."
+    },
+    {
+     "ref": "No, Jamal must sit before Tanvir.",
+     "gen": "Jamal must sit before Tanvir."
+    }
+   ]
+  },
+  "contradiction|en": {
+   "n": 9,
+   "exact_match": 1.0,
+   "contains": 1.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "No, that is a contradiction.",
+     "gen": "No, that is a contradiction."
+    },
+    {
+     "ref": "No, that is a contradiction.",
+     "gen": "No, that is a contradiction."
+    },
+    {
+     "ref": "No, that is a contradiction.",
+     "gen": "No, that is a contradiction."
+    }
+   ]
+  },
+  "deduction|banglish": {
+   "n": 8,
+   "exact_match": 1.0,
+   "contains": 1.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "Hyan, Tanvir porashona kore.",
+     "gen": "Hyan, Tanvir porashona kore."
+    },
+    {
+     "ref": "Hyan, Karim porashona kore.",
+     "gen": "Hyan, Karim porashona kore."
+    },
+    {
+     "ref": "Hyan, Rina porashona kore.",
+     "gen": "Hyan, Rina porashona kore."
+    }
+   ]
+  },
+  "deduction|bn": {
+   "n": 10,
+   "exact_match": 1.0,
+   "contains": 1.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "হ্যাঁ, লিনা পড়াশোনা করে।",
+     "gen": "হ্যাঁ, লিনা পড়াশোনা করে।"
+    },
+    {
+     "ref": "হ্যাঁ, রহিম পড়াশোনা করে।",
+     "gen": "হ্যাঁ, রহিম পড়াশোনা করে।"
+    },
+    {
+     "ref": "হ্যাঁ, রহিম পড়াশোনা করে।",
+     "gen": "হ্যাঁ, রহিম পড়াশোনা করে।"
+    }
+   ]
+  },
+  "deduction|en": {
+   "n": 28,
+   "exact_match": 1.0,
+   "contains": 1.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "By the stated rule yes, though in reality penguins cannot fly.",
+     "gen": "By the stated rule yes, though in reality penguins cannot fly."
+    },
+    {
+     "ref": "By the stated rule yes, though in reality penguins cannot fly.",
+     "gen": "By the stated rule yes, though in reality penguins cannot fly."
+    },
+    {
+     "ref": "By the stated rule yes, though in reality penguins cannot fly.",
+     "gen": "By the stated rule yes, though in reality penguins cannot fly."
+    }
+   ]
+  },
+  "multistep|en": {
+   "n": 5,
+   "exact_match": 0.0,
+   "contains": 0.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "Fastest: Tanvir, then Lima, then Rahim, slowest: Arif.",
+     "gen": "Fastest: Tanvir, then Lima, then Rahima, then Rahima."
+    },
+    {
+     "ref": "Fastest: Arif, then Jamal, then Salma, slowest: Mita.",
+     "gen": "Fastest: Arif, then Jamal, then Jamal, then Salma, slowest: Rina."
+    },
+    {
+     "ref": "Fastest: Rahim, then Jamal, then Mita, slowest: Karim.",
+     "gen": "Fastest: Rahim, then Jamal, then Jamal, then Jamal, slowest: Karim."
+    }
+   ]
+  },
+  "ordering|banglish": {
+   "n": 8,
+   "exact_match": 0.875,
+   "contains": 0.875,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "Nadia prothome sesh korse.",
+     "gen": "Nadia prothome sesh korse."
+    },
+    {
+     "ref": "Nadia prothome sesh korse.",
+     "gen": "Nadia prothome sesh korse."
+    },
+    {
+     "ref": "Jamal prothome sesh korse.",
+     "gen": "Jamal prothome sesh korse."
+    }
+   ]
+  },
+  "ordering|bn": {
+   "n": 9,
+   "exact_match": 1.0,
+   "contains": 1.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "আরিফ প্রথম শেষ করেছে।",
+     "gen": "আরিফ প্রথম শেষ করেছে।"
+    },
+    {
+     "ref": "করিম প্রথম শেষ করেছে।",
+     "gen": "করিম প্রথম শেষ করেছে।"
+    },
+    {
+     "ref": "করিম প্রথম শেষ করেছে।",
+     "gen": "করিম প্রথম শেষ করেছে।"
+    }
+   ]
+  },
+  "ordering|en": {
+   "n": 25,
+   "exact_match": 0.96,
+   "contains": 0.96,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "Tanvir finished last.",
+     "gen": "Tanvir finished last."
+    },
+    {
+     "ref": "Nadia finished last.",
+     "gen": "Nadia finished last."
+    },
+    {
+     "ref": "Rina finished last.",
+     "gen": "Rina finished last."
+    }
+   ]
+  },
+  "planning|en": {
+   "n": 5,
+   "exact_match": 1.0,
+   "contains": 1.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "1. Boil water. 2. Add tea leaves. 3. Pour hot water. 4. Wait and strain.",
+     "gen": "1. Boil water. 2. Add tea leaves. 3. Pour hot water. 4. Wait and strain."
+    },
+    {
+     "ref": "1. Boil water. 2. Add tea leaves. 3. Pour hot water. 4. Wait and strain.",
+     "gen": "1. Boil water. 2. Add tea leaves. 3. Pour hot water. 4. Wait and strain."
+    },
+    {
+     "ref": "1. Boil water. 2. Add tea leaves. 3. Pour hot water. 4. Wait and strain.",
+     "gen": "1. Boil water. 2. Add tea leaves. 3. Pour hot water. 4. Wait and strain."
+    }
+   ]
+  },
+  "uncertainty|en": {
+   "n": 6,
+   "exact_match": 1.0,
+   "contains": 1.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "Not necessarily — we only know {a} is taller than {b}.",
+     "gen": "Not necessarily — we only know {a} is taller than {b}."
+    },
+    {
+     "ref": "Not necessarily — we only know {a} is taller than {b}.",
+     "gen": "Not necessarily — we only know {a} is taller than {b}."
+    },
+    {
+     "ref": "Not necessarily — we only know {a} is taller than {b}.",
+     "gen": "Not necessarily — we only know {a} is taller than {b}."
+    }
+   ]
+  }
+ },
+ "overall": {
+  "n": 132,
+  "exact_match": 0.9318,
+  "contains": 0.9394,
+  "empty_rate": 0.0
+ }
+}

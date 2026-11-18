@@ -1,0 +1,51 @@
+{
+ "version": "core04_knowledge_v1",
+ "seed": 42,
+ "total": 318,
+ "splits": {
+  "train": 256,
+  "validation": 31,
+  "test": 31
+ },
+ "statistics": {
+  "train": {
+   "n": 256,
+   "lang": {
+    "bn": 111,
+    "en": 145
+   },
+   "category": {
+    "explain": 81,
+    "qa": 159,
+    "summarize": 4,
+    "uncertainty": 2,
+    "classify": 10
+   }
+  },
+  "validation": {
+   "n": 31,
+   "lang": {
+    "bn": 14,
+    "en": 17
+   },
+   "category": {
+    "explain": 9,
+    "qa": 18,
+    "classify": 4
+   }
+  },
+  "test": {
+   "n": 31,
+   "lang": {
+    "bn": 15,
+    "en": 16
+   },
+   "category": {
+    "qa": 21,
+    "explain": 9,
+    "uncertainty": 1
+   }
+  }
+ },
+ "note": "Static curated facts only \u2014 NO live/current knowledge claims. Uncertainty behavior trained explicitly. All facts are self-contained and verifiable; no third-party corpus used."
+}

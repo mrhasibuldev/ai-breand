@@ -1,0 +1,155 @@
+{
+ "core": "core03",
+ "ckpt": "models/checkpoints_core03_sft_v1/checkpoint_final.pt",
+ "model_status": "UNTRAINED",
+ "device": "cpu",
+ "n_records": 87,
+ "categories": {
+  "algebra|en": {
+   "n": 6,
+   "exact_match": 0.1667,
+   "contains": 0.1667,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "x = 15.",
+     "gen": "x = 2."
+    },
+    {
+     "ref": "x = 4.",
+     "gen": "x = 2."
+    },
+    {
+     "ref": "x = 4.",
+     "gen": "x = 2."
+    }
+   ]
+  },
+  "arith|banglish": {
+   "n": 9,
+   "exact_match": 0.0,
+   "contains": 0.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "-6.",
+     "gen": "-2."
+    },
+    {
+     "ref": "54.",
+     "gen": "64."
+    },
+    {
+     "ref": "-22.",
+     "gen": "-2."
+    }
+   ]
+  },
+  "arith|bn": {
+   "n": 21,
+   "exact_match": 0.0,
+   "contains": 0.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "728।",
+     "gen": "64।"
+    },
+    {
+     "ref": "432।",
+     "gen": "64।"
+    },
+    {
+     "ref": "1512।",
+     "gen": "64।"
+    }
+   ]
+  },
+  "arith|en": {
+   "n": 23,
+   "exact_match": 0.087,
+   "contains": 0.087,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "258.",
+     "gen": "66."
+    },
+    {
+     "ref": "12.",
+     "gen": "11."
+    },
+    {
+     "ref": "5.",
+     "gen": "9."
+    }
+   ]
+  },
+  "fraction|en": {
+   "n": 7,
+   "exact_match": 0.8571,
+   "contains": 0.8571,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "2/4.",
+     "gen": "2/4."
+    },
+    {
+     "ref": "2/7.",
+     "gen": "2/1."
+    },
+    {
+     "ref": "2/3.",
+     "gen": "2/3."
+    }
+   ]
+  },
+  "percent|en": {
+   "n": 13,
+   "exact_match": 0.0769,
+   "contains": 0.0769,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "32.",
+     "gen": "4."
+    },
+    {
+     "ref": "54.",
+     "gen": "64."
+    },
+    {
+     "ref": "3.",
+     "gen": "22."
+    }
+   ]
+  },
+  "wordprob|en": {
+   "n": 8,
+   "exact_match": 0.0,
+   "contains": 0.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "69.",
+     "gen": "22."
+    },
+    {
+     "ref": "170.",
+     "gen": "65."
+    },
+    {
+     "ref": "55.",
+     "gen": "-2."
+    }
+   ]
+  }
+ },
+ "overall": {
+  "n": 87,
+  "exact_match": 0.1149,
+  "contains": 0.1149,
+  "empty_rate": 0.0
+ }
+}

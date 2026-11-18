@@ -1,0 +1,107 @@
+{
+ "core": "core04",
+ "ckpt": "models/checkpoints_core04_sft_v2/checkpoint_final.pt",
+ "model_status": "UNTRAINED",
+ "device": "cpu",
+ "n_records": 31,
+ "categories": {
+  "explain|bn": {
+   "n": 3,
+   "exact_match": 0.0,
+   "contains": 0.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "নদী হলো স্বাভাবিক পানির স্রোত যা সমুদ্র, হ্রদ বা অন্য নদীর দিকে বয়ে যায়।",
+     "gen": "বন হলো এমন একটি বড় এলাকা যা জীবদেহে genetic নির্দেশনা বিতরণ করে।"
+    },
+    {
+     "ref": "স্কুল হলো এমন একটি প্রতিষ্ঠান যেখানে শিক্ষার্থীরা academic বিষয় ও দক্ষতা শেখে।",
+     "gen": "মরুভূমি হলো এমন শুষ্ক অঞ্চল যেখানে প্রতি বছর খুব কম বৃষ্টি হয়।"
+    },
+    {
+     "ref": "ইন্টারনেট একটি বিশ্বব্যাপী নেটওয়ার্ক যা কম্পিউটারগুলোকে তথ্য ভাগাভাগি করতে সংযুক্ত করে।",
+     "gen": "মরুভূমি হলো অক্সি গড় আবহাওয়া।"
+    }
+   ]
+  },
+  "explain|en": {
+   "n": 6,
+   "exact_match": 0.0,
+   "contains": 0.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "A hospital is a healthcare institution providing medical treatment to patients.",
+     "gen": "A forest is a large area covered densely with trees and other vegetation of human intelligence by machines, especially computers."
+    },
+    {
+     "ref": "A hospital is a healthcare institution providing medical treatment to patients.",
+     "gen": "মরুভূমি হলো এমন জমি হলো অণু যা জীব ও অন্যান্য পড়ার উপকরণ সংগ্রহ ও বিতরণ করে।"
+    },
+    {
+     "ref": "An algorithm is a step-by-step procedure for solving a problem or performing a task.",
+     "gen": "পাহাড় হলো ভূমিরভাগ পৃষ্ঠ ঢাকা।"
+    }
+   ]
+  },
+  "qa|bn": {
+   "n": 12,
+   "exact_match": 0.0,
+   "contains": 0.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "নদী হলো স্বাভাবিক পানির স্রোত যা সমুদ্র, হ্রদ বা অন্য নদীর দিকে বয়ে যায়।",
+     "gen": "বন হলো একটি বড় এলাকা যা জীবদক্ষপায়ী।"
+    },
+    {
+     "ref": "নদী হলো স্বাভাবিক পানির স্রোত যা সমুদ্র, হ্রদ বা অন্য নদীর দিকে বয়ে যায়।",
+     "gen": "লাইব্রেরি হলো একটি জায়গা যা বই ও অন্যান্য।"
+    },
+    {
+     "ref": "নদী হলো স্বাভাবিক পানির স্রোত যা সমুদ্র, হ্রদ বা অন্য নদীর দিকে বয়ে যায়।",
+     "gen": "বন হলো একটি বড় এলাকা যা জীবদেহে genetic নির্দেশনা বহন করে।"
+    }
+   ]
+  },
+  "qa|en": {
+   "n": 9,
+   "exact_match": 0.0,
+   "contains": 0.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "A hospital is a healthcare institution providing medical treatment to patients.",
+     "gen": "A forest is a large area covered densely with trees and other vegetation."
+    },
+    {
+     "ref": "A hospital is a healthcare institution providing medical treatment to patients.",
+     "gen": "A forest is a large area covered densely with trees and other vegetation of human intelligence by machines, especially computers."
+    },
+    {
+     "ref": "A hospital is a healthcare institution providing medical treatment to patients.",
+     "gen": "A forest is a large area covered densely with trees and other vegetation."
+    }
+   ]
+  },
+  "uncertainty|en": {
+   "n": 1,
+   "exact_match": 0.0,
+   "contains": 0.0,
+   "empty_rate": 0.0,
+   "samples": [
+    {
+     "ref": "I cannot know current events; my training data has a cutoff.",
+     "gen": "লাইব্রেরি হলো এমন একটি জায়গা যা বই ও অন্যান্য পড়ার উপকরণ সংগ্রহ ও বিতরণ করে।"
+    }
+   ]
+  }
+ },
+ "overall": {
+  "n": 31,
+  "exact_match": 0.0,
+  "contains": 0.0,
+  "empty_rate": 0.0
+ }
+}
