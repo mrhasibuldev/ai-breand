@@ -89,6 +89,9 @@ export async function aiRoutes(app: FastifyInstance) {
         if (error.message.includes('empty')) {
           return reply.status(502).send({ error: 'AI generated empty response' });
         }
+        if (error.message.startsWith('NEURAL_')) {
+          return reply.status(502).send({ error: error.message.replace('NEURAL_','') });
+        }
       }
       
       return reply.status(500).send({ error: 'AI processing failed' });

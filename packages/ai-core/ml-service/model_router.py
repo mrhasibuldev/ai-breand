@@ -123,6 +123,10 @@ class NexusBrain:
     FALLBACK_MODEL = "nexus-medium"
     # intent -> specialist model (only used when registry validates+loads it)
     SPECIALISTS = {"MATH":"nexus-core-03","REASONING":"nexus-core-02","KNOWLEDGE":"nexus-core-04"}
+    # Neural-only mode: core02 excluded (template slot-fill, per audit);
+    # nexus-medium excluded (unverified conversational capability).
+    NEURAL_ONLY_SPECIALISTS = {"MATH":"nexus-core-03","KNOWLEDGE":"nexus-core-04"}
+    NEURAL_ONLY_ELIGIBLE = ["nexus-core-01","nexus-core-03","nexus-core-04"]
 
     def __init__(self, registry=registry):
         self.reg=registry
@@ -140,6 +144,17 @@ class NexusBrain:
                 print(f"[Brain] model {mid} failed: {e}")
                 continue
         return None,None,None
+
+    def _try_model(self, mid, prompt):
+        """Single neural attempt via registry. Returns (text,prov) or (None,None)."""
+        try:
+            txt,prov=self.reg.generate(mid,prompt,max_new_tokens=96,
+                                       temperature=0.7,do_sample=True)
+            if txt and len(txt.strip())>=3 and not self._is_degenerate(txt):
+                return txt,prov
+        except Exception as e:
+            print(f"[Brain] model {mid} failed: {e}")
+        return None,None
 
     def _try_specialist(self, intent, message):
         """Route to task specialist if registered+loadable. Returns
@@ -183,20 +198,45 @@ class NexusBrain:
                "neural_ran":False,"fallback":False,"neural_only":bool(neural_only)}
 
         if neural_only:
-            # Isolated test mode: straight to neural, no canned/tool/fallback substitution.
+            # NEURAL-ONLY mode (NEURAL_ONLY_CHAT): every message reaches an
+            # eligible neural core. No canned/tool/fallback text is ever
+            # produced. Failures return explicit error codes.
             prompt=message
             if conversation_history:
                 ctx=" ".join(h.get("content","") for h in conversation_history[-3:] if isinstance(h,dict))
                 if ctx: prompt=ctx+" "+message
-            txt,prov,mid=self._generate_neural(prompt,lang)
-            trace["neural_ran"]=True
-            if txt:
-                trace["model_used"]=mid; trace["route"]=f"neural:{mid}"
-                trace["provenance"]=prov
-                return {"response":txt,"trace":trace,"latency_ms":round((time.time()-t0)*1000,1)}
+            trace["neural_only"]=True
+            attempts=[]
+            # ordered candidates: intent specialist first, then core-01
+            spec=self.NEURAL_ONLY_SPECIALISTS.get(intent)
+            candidates=[c for c in (spec,self.PRIMARY) if c in self.NEURAL_ONLY_ELIGIBLE]
+            seen=set(); candidates=[c for c in candidates if not (c in seen or seen.add(c))]
+            for mid in candidates:
+                try:
+                    ok,_=self.reg.validate(mid)
+                except Exception:
+                    ok=False
+                if not ok:
+                    attempts.append({"model":mid,"result":"validation_failed"})
+                    continue
+                txt,prov=self._try_model(mid,prompt)
+                trace["neural_ran"]=True
+                if txt:
+                    attempts.append({"model":mid,"result":"generated",
+                                     "provenance":prov})
+                    trace["attempts"]=attempts
+                    trace["model_used"]=mid; trace["route"]=f"neural:{mid}"
+                    trace["provenance"]=prov
+                    return {"response":txt,"trace":trace,
+                            "latency_ms":round((time.time()-t0)*1000,1)}
+                attempts.append({"model":mid,"result":"generation_failed"})
+            trace["attempts"]=attempts
             trace["route"]="neural_failed"
-            return {"response":"","trace":trace,"latency_ms":round((time.time()-t0)*1000,1),
-                    "error":"neural generation failed"}
+            return {"response":"","trace":trace,
+                    "latency_ms":round((time.time()-t0)*1000,1),
+                    "error":{"code":"MODEL_GENERATION_FAILED",
+                             "detail":"no eligible neural core produced output",
+                             "attempts":attempts}}
 
         # --- deterministic, honest handlers (labeled, not neural) ---
         if intent=="GREETING":

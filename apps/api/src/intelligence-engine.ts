@@ -114,7 +114,18 @@ export class NexusAIIntelligenceEngine implements IntelligenceEngine {
       }
 
       const data = await response.json();
-      
+
+      // Neural-only contract: an empty response or explicit error source
+      // must surface as an error — never as a fake conversational answer.
+      const src = data.response_source || '';
+      const neuralFailSources = ['MODEL_GENERATION_FAILED','MODEL_UNAVAILABLE',
+        'MODEL_LOAD_FAILED','INVALID_MODEL_OUTPUT','GENERATION_TIMEOUT',
+        'SAFETY_BLOCKED'];
+      if (!data.response || neuralFailSources.includes(src)) {
+        const code = data.rejection_reason || src || 'MODEL_GENERATION_FAILED';
+        throw new Error(`NEURAL_${code}`);
+      }
+
       return {
         text: data.response || data.message || data.text || 'No response from AI',
         safetyMode: request.safetyMode,
@@ -129,6 +140,10 @@ export class NexusAIIntelligenceEngine implements IntelligenceEngine {
     } catch (error) {
       if (error instanceof Error && error.name === 'AbortError') {
         throw new Error('AI service timeout');
+      }
+      // Preserve explicit neural-failure codes — do not mask them as generic outages.
+      if (error instanceof Error && error.message.startsWith('NEURAL_')) {
+        throw error;
       }
       throw new Error(`AI service unavailable: ${error}`);
     }

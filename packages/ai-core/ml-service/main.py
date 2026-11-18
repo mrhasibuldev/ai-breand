@@ -158,6 +158,38 @@ autonomous_running = False
 # In-memory conversation context storage (session-based)
 conversation_contexts: Dict[str, List[Dict]] = {}
 
+# Conversation history normalization (Gate B history-contract fix).
+# Accepts 'conversation_history' (orchestrator contract) or 'history' (API contract).
+# Precedence: 'conversation_history' wins when both are present and non-empty;
+# conflicts are logged, never silently merged. Most recent messages kept.
+MAX_HISTORY_MESSAGES = 12
+MAX_HISTORY_CHARS = 2000
+
+def _normalize_history(body_data: dict, current_message: str = "") -> list:
+    ch = body_data.get('conversation_history')
+    h = body_data.get('history')
+    ch_ok = isinstance(ch, list) and len(ch) > 0
+    h_ok = isinstance(h, list) and len(h) > 0
+    if ch_ok and h_ok and ch != h:
+        print("[history] conflict: 'conversation_history' used over 'history'")
+    chosen = ch if ch_ok else (h if h_ok else [])
+    out = []
+    for m in chosen[-MAX_HISTORY_MESSAGES:]:
+        if isinstance(m, dict):
+            role = m.get('role') or m.get('sender_role') or 'user'
+            content = m.get('content') if m.get('content') is not None else m.get('text', '')
+        elif isinstance(m, str):
+            role, content = 'user', m
+        else:
+            continue
+        content = str(content).strip()[:MAX_HISTORY_CHARS]
+        if content:
+            out.append({'role': str(role), 'content': content})
+    # prevent current message duplication if it appears as last history entry
+    if current_message and out and out[-1]['content'].strip() == str(current_message).strip():
+        out = out[:-1]
+    return out
+
 # Simple language detection using Unicode ranges
 def detect_language(text: str) -> str:
     """
@@ -259,7 +291,11 @@ def load_model_if_needed():
             try:
                 with open(production_config_path, 'r', encoding='utf-8') as f:
                     production_config = json.load(f)
-                checkpoint_path = os.path.join(ai_core_dir, production_config["checkpoint_path"])
+                # current.json paths are relative to models/ (see model_registry.py)
+                rel = production_config["checkpoint_path"]
+                checkpoint_path = os.path.join(ai_core_dir, "models", rel)
+                if not os.path.exists(checkpoint_path):
+                    checkpoint_path = os.path.join(ai_core_dir, rel)
                 print(f"[ML Service] Loaded production designation from {production_config_path}")
                 print(f"[ML Service] Production model: {production_config['model_name']} v{production_config['model_version']}")
             except Exception as e:
@@ -274,7 +310,9 @@ def load_model_if_needed():
         checkpoint_vocab_size = None
         
         if os.path.exists(checkpoint_path):
-            checkpoint = torch.load(checkpoint_path, map_location="cpu")
+            # Trusted local artifact; contains numpy RNG state requiring
+            # weights_only=False (same as model_registry medium loader)
+            checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
             # Try to get vocab size from checkpoint
             if "tokenizer_vocab" in checkpoint:
                 checkpoint_vocab_size = len(checkpoint["tokenizer_vocab"])
@@ -286,8 +324,36 @@ def load_model_if_needed():
             raise FileNotFoundError(f"Checkpoint not found at {checkpoint_path}")
         
         # Load checkpoint to get configuration
-        checkpoint = torch.load(checkpoint_path, map_location="cpu")
-        
+        checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
+
+        # Core-01 checkpoints use transformer_blocks.* keys — the legacy
+        # MediumTransformer path cannot load them. Route to the verified
+        # model_registry Core-01 engine instead (same path as /orchestrate).
+        _sd = checkpoint.get("model_state_dict", checkpoint)
+        if any(k.startswith("transformer_blocks.") for k in _sd):
+            print("[ML Service] Core-01 checkpoint detected — using registry engine")
+            sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+            from model_registry import registry
+            _reg = registry.load("nexus-core-01", device="cpu")
+            _eng = _reg["engine"]
+
+            class _Core01Generator:
+                def __init__(self, eng): self._eng = eng
+                def generate(self, prompt, max_new_tokens=50, **kw):
+                    r = _eng.generate(prompt, max_new_tokens=max_new_tokens,
+                                      do_sample=False)
+                    return r.get("generated_text", "")
+
+            generator = _Core01Generator(_eng)
+            model = _eng.model
+            tokenizer = _eng.tokenizer
+            loaded_model_name = "NexusAI Core-01"
+            loaded_checkpoint_path = checkpoint_path
+            loaded_max_len = getattr(_eng.config, "max_len", 512)
+            model_loaded = True
+            print(f"[ML Service] Core-01 engine ready — params: {model.count_parameters():,}")
+            return
+
         # Use checkpoint config if available
         if "config" in checkpoint:
             config = checkpoint["config"]
@@ -362,6 +428,9 @@ def load_model_if_needed():
                 if skip_special_tokens:
                     token_ids = [tid for tid in token_ids if tid not in [self.pad_id, self.unk_id, self.bos_id, self.eos_id]]
                 return self.sp.decode(token_ids)
+
+            def get_vocab_size(self):
+                return self.sp.get_piece_size()
         
         class SimpleTextGenerator:
             """Simple generator that supports sampling parameters"""
@@ -522,6 +591,136 @@ def load_rag_if_needed():
         print(f"[ML Service] Error loading RAG system: {e}")
         rag_loaded = False
 
+# ---------- Monitoring & Evaluation ----------
+import threading, datetime, statistics
+_METRICS_LOCK = threading.Lock()
+_METRICS = {"requests": 0, "neural": 0, "deterministic": 0, "tool": 0,
+            "fallback": 0, "errors": 0, "empty_outputs": 0,
+            "latencies_ms": [], "by_route": {}, "started_at":
+            datetime.datetime.utcnow().isoformat() + "Z"}
+_METRICS_DIR = os.path.join(ai_core_dir, "logs")
+_METRICS_LOG = os.path.join(_METRICS_DIR, "inference_metrics.jsonl")
+_EVAL_DIR = os.path.join(ai_core_dir, "eval_reports")
+os.makedirs(_METRICS_DIR, exist_ok=True)
+os.makedirs(_EVAL_DIR, exist_ok=True)
+
+def _metric(event):
+    """Record one inference event; append JSONL; keep bounded latency window."""
+    with _METRICS_LOCK:
+        _METRICS["requests"] += 1
+        route = event.get("route", "unknown")
+        _METRICS["by_route"][route] = _METRICS["by_route"].get(route, 0) + 1
+        for k in ("neural", "deterministic", "tool", "fallback"):
+            if event.get(k): _METRICS[k] += 1
+        if event.get("error"): _METRICS["errors"] += 1
+        if event.get("empty"): _METRICS["empty_outputs"] += 1
+        if event.get("latency_ms") is not None:
+            _METRICS["latencies_ms"].append(event["latency_ms"])
+            if len(_METRICS["latencies_ms"]) > 1000:
+                _METRICS["latencies_ms"] = _METRICS["latencies_ms"][-1000:]
+    try:
+        with open(_METRICS_LOG, "a", encoding="utf-8") as f:
+            f.write(json.dumps({"ts": datetime.datetime.utcnow().isoformat() + "Z",
+                                **event}, ensure_ascii=False) + "\n")
+    except Exception:
+        pass
+
+_EVAL_PROMPTS = [
+    ("bn", "bn", "তোমার নাম কী?"), ("bn2", "bn", "কৃত্রিম বুদ্ধিমত্তা কী?"),
+    ("en", "en", "What is your name?"), ("en2", "en", "Why do humans need water?"),
+    ("bg", "banglish", "Tumi ki korte paro?"), ("bg2", "banglish", "Tomar naam ki?"),
+    ("rs", "reason", "If I have 3 apples and buy 2 more, how many apples do I have?"),
+]
+_BN_RE = None
+
+def _eval_engine_generate(prompt, max_new=32):
+    """Run the live Core-01 engine directly (bypasses router handlers)."""
+    if not model_loaded:
+        load_model_if_needed()
+    if generator is None:
+        return "", "NO_GENERATOR"
+    # generator may be _Core01Generator adapter or legacy — use engine if reachable
+    eng = getattr(generator, "_eng", None)
+    if eng is not None:
+        r = eng.generate(prompt, max_new_tokens=max_new, do_sample=False)
+        return r.get("generated_text", ""), r.get("warning")
+    return generator.generate(prompt, max_new_tokens=max_new), None
+
+@app.get("/metrics", response_model=Dict)
+async def metrics():
+    """In-memory + persisted inference metrics."""
+    with _METRICS_LOCK:
+        lat = _METRICS["latencies_ms"]
+        return {
+            "uptime_since": _METRICS["started_at"],
+            "requests": _METRICS["requests"],
+            "by_kind": {"neural": _METRICS["neural"], "deterministic": _METRICS["deterministic"],
+                        "tool": _METRICS["tool"], "fallback": _METRICS["fallback"],
+                        "errors": _METRICS["errors"], "empty_outputs": _METRICS["empty_outputs"]},
+            "by_route": dict(_METRICS["by_route"]),
+            "latency_ms": {"avg": round(statistics.mean(lat), 1) if lat else None,
+                           "p50": round(statistics.median(lat), 1) if lat else None,
+                           "max": round(max(lat), 1) if lat else None,
+                           "count": len(lat)},
+            "log_file": _METRICS_LOG,
+        }
+
+@app.post("/eval/run", response_model=Dict)
+async def eval_run(max_new_tokens: int = 32):
+    """Run fixed multilingual prompt suite through live engine.
+    Mechanical metrics only — NOT a semantic quality benchmark."""
+    global _BN_RE
+    import re as _re
+    _BN_RE = _re.compile(r"[ঀ-৿]")
+    if not model_loaded:
+        load_model_if_needed()
+    results = []
+    t0 = time.time()
+    for pid, lg, prompt in _EVAL_PROMPTS:
+        t = time.time()
+        try:
+            out, warn = _eval_engine_generate(prompt, max_new_tokens)
+        except Exception as e:
+            out, warn = "", f"EXC:{e}"
+        lat = round((time.time() - t) * 1000, 1)
+        words = out.split()
+        uniq = len(set(w.lower() for w in words)) / max(len(words), 1)
+        results.append({
+            "id": pid, "lang": lg, "prompt": prompt, "output": out,
+            "warning": warn, "empty": not out.strip(), "latency_ms": lat,
+            "repetition_flag": len(words) >= 8 and uniq < 0.3,
+            "prompt_leak_flag": out.strip().lower().startswith(prompt.strip().lower()[:20]),
+            "bn_script_ratio": round(len(_BN_RE.findall(out)) / max(len(out), 1), 3),
+        })
+        _metric({"route": "eval", "latency_ms": lat,
+                 "empty": not out.strip(), "eval_id": pid})
+    n = len(results); empty = sum(1 for r in results if r["empty"])
+    per_lang = {}
+    for lg in ("bn", "en", "banglish", "reason"):
+        sub = [r for r in results if r["lang"] == lg]
+        per_lang[lg] = {"n": len(sub), "empty": sum(1 for r in sub if r["empty"])}
+    report = {
+        "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
+        "model": loaded_model_name, "checkpoint": loaded_checkpoint_path,
+        "params": model.count_parameters() if model is not None else None,
+        "device": "cpu", "max_new_tokens": max_new_tokens,
+        "total_s": round(time.time() - t0, 1),
+        "n": n, "empty": empty, "per_lang": per_lang, "results": results,
+        "note": "Mechanical metrics only — NOT semantic quality. Human review required.",
+    }
+    fname = f"eval_{int(time.time())}.json"
+    with open(os.path.join(_EVAL_DIR, fname), "w", encoding="utf-8") as f:
+        json.dump(report, f, indent=1, ensure_ascii=False)
+    return {"status": "ok", "n": n, "empty": empty, "per_lang": per_lang,
+            "total_s": report["total_s"], "report_file": os.path.join(_EVAL_DIR, fname),
+            "results": results}
+
+@app.get("/eval/reports", response_model=Dict)
+async def eval_reports():
+    """List past eval reports."""
+    files = sorted(os.listdir(_EVAL_DIR), reverse=True)[:20]
+    return {"dir": _EVAL_DIR, "reports": files}
+
 @app.get("/health", response_model=HealthResponse)
 async def health_check():
     """Health check endpoint"""
@@ -577,6 +776,38 @@ async def inference(request: InferenceRequest):
         if len(request.message) > 1000:
             raise HTTPException(status_code=400, detail="Message too long (max 1000 characters)")
 
+        # ---- SAFETY GUARD: input screening ----
+        try:
+            from safety_guard import check_input, fallback_message as _fb2
+            _gin2 = check_input(request.message)
+            if not _gin2["safe"]:
+                _metric({"route": "safety_guard:input", "deterministic": True,
+                         "reason": _gin2["reason"], "endpoint": "inference"})
+                return InferenceResponse(
+                    response=_fb2(_gin2["reason"]), model="safety-guard",
+                    latency_ms=0, conversation_id=request.conversation_id)
+        except Exception as _se3:
+            print(f"[ML Service] safety_guard input check failed (open): {_se3}")
+
+        # Multi-model brain path
+        try:
+            from model_router import brain as _brain2
+            _r2 = _brain2.respond(request.message)
+            _t2 = _r2.get("trace", {})
+            _metric({"route": _t2.get("route"), "neural": bool(_t2.get("neural_ran")),
+                     "deterministic": _t2.get("route","").startswith("deterministic"),
+                     "tool": bool(_t2.get("tool")), "fallback": bool(_t2.get("fallback")),
+                     "latency_ms": _r2.get("latency_ms"),
+                     "empty": not _r2.get("response","").strip(), "endpoint": "inference"})
+            return InferenceResponse(
+                response=_r2["response"],
+                model=f"NexusBrain/{_t2.get('model_used') or _t2.get('route','tool')}",
+                latency_ms=_r2.get("latency_ms", 0),
+                conversation_id=request.conversation_id,
+            )
+        except Exception as _be2:
+            print(f"[ML Service] Brain path failed in /inference: {_be2}")
+
         # Run inference
         start_time = time.time()
         response_text = generator.generate(
@@ -586,6 +817,9 @@ async def inference(request: InferenceRequest):
             do_sample=True
         )
         latency_ms = (time.time() - start_time) * 1000
+        _metric({"route": "legacy:generator", "neural": True,
+                 "latency_ms": latency_ms,
+                 "empty": not (response_text or "").strip(), "endpoint": "inference"})
 
         # Validate output - return even if poor quality for integration testing
         if not response_text:
@@ -630,10 +864,107 @@ async def orchestrate(request: Request):
 
         message = body_data.get('message', '')
         conversation_id = body_data.get('conversation_id')
-        conversation_history = body_data.get('conversation_history', [])
         memory = body_data.get('memory', [])
         request_id = body_data.get('request_id')
         diagnostic_mode = body_data.get('diagnostic_mode', False)
+        neural_only = bool(body_data.get('neural_only', False))
+        # NEURAL_ONLY_CHAT feature flag (server-side env, default OFF):
+        # when enabled, EVERY conversational message must reach an eligible
+        # neural core; no canned/tool/fallback text may be produced.
+        _NEURAL_ONLY_CHAT = os.environ.get("NEURAL_ONLY_CHAT", "").lower() in ("1","true","yes","on")
+        if _NEURAL_ONLY_CHAT:
+            neural_only = True
+        conversation_history = _normalize_history(body_data, message)
+
+        # ---- SAFETY GUARD: input screening (injection/harm/empty/oversize) ----
+        try:
+            from safety_guard import check_input, check_output, fallback_message as _fb
+            _gin = check_input(message or "")
+            if not _gin["safe"]:
+                _metric({"route": "safety_guard:input", "deterministic": True,
+                         "reason": _gin["reason"], "endpoint": "orchestrate"})
+                if _NEURAL_ONLY_CHAT:
+                    # Neural-only: structured block status, NO canned answer text.
+                    return OrchestratorResponse(
+                        response="", latency_ms=0,
+                        intent="SAFETY_BLOCK", response_source="SAFETY_BLOCKED",
+                        language="unknown",
+                        diagnostics=[{"route": "safety_guard:input",
+                                      "reason": _gin["reason"], "category": _gin["category"],
+                                      "neural_only": True}],
+                        raw_neural_output=None, rejection_reason=_gin["reason"])
+                return OrchestratorResponse(
+                    response=_fb(_gin["reason"]), latency_ms=0,
+                    intent="SAFETY_BLOCK", response_source="DETERMINISTIC_HANDLER",
+                    language="unknown",
+                    diagnostics=[{"route": "safety_guard:input",
+                                  "reason": _gin["reason"], "category": _gin["category"]}],
+                    raw_neural_output=None, rejection_reason=_gin["reason"])
+        except Exception as _se:
+            print(f"[ML Service] safety_guard input check failed (open): {_se}")
+
+        # ---- MULTI-MODEL BRAIN PATH (registry + router) ----
+        # Routes through NexusBrain: language detect -> intent -> registry model.
+        # Falls back to legacy path below only if brain import fails.
+        try:
+            from model_router import brain as _brain
+            _br = _brain.respond(message, conversation_history or None, neural_only=neural_only)
+            _tr = _br.get("trace", {})
+            _metric({"route": _tr.get("route"), "neural": bool(_tr.get("neural_ran")),
+                     "deterministic": str(_tr.get("route","")).startswith("deterministic"),
+                     "tool": bool(_tr.get("tool")), "fallback": bool(_tr.get("fallback")),
+                     "latency_ms": _br.get("latency_ms"),
+                     "empty": not _br.get("response","").strip(), "endpoint": "orchestrate"})
+            # ---- SAFETY GUARD: neural output sanity ----
+            if _tr.get("neural_ran"):
+                try:
+                    _gout = check_output(_br.get("response",""), source="neural")
+                    if not _gout["ok"]:
+                        _metric({"route": "safety_guard:output", "fallback": True,
+                                 "reason": _gout["reason"], "endpoint": "orchestrate"})
+                        _tr["safety_override"] = _gout["reason"]
+                        if _NEURAL_ONLY_CHAT:
+                            # Neural-only: explicit generation failure, no substitution.
+                            _tr["generation_error"] = "INVALID_MODEL_OUTPUT"
+                            _tr["invalid_reason"] = _gout["reason"]
+                            _br["response"] = ""
+                            _br["error"] = {"code": "INVALID_MODEL_OUTPUT",
+                                            "detail": _gout["reason"]}
+                        else:
+                            _br["response"] = _fb(_gout["reason"].replace("degenerate_repetition","degenerate").replace("too_short","neural_empty").replace("no_linguistic_content","degenerate"))
+                            _tr["fallback"] = True
+                except Exception as _se2:
+                    print(f"[ML Service] safety_guard output check failed (open): {_se2}")
+            _err = _br.get("error")
+            if _NEURAL_ONLY_CHAT:
+                # Neural-only contract: NEURAL_MODEL on success, explicit
+                # error source otherwise. Never DETERMINISTIC_HANDLER/FALLBACK.
+                if _br.get("response","").strip() and _tr.get("neural_ran") and not _tr.get("fallback") and not _tr.get("generation_error"):
+                    _src = "NEURAL_MODEL"
+                elif _tr.get("generation_error"):
+                    _src = "INVALID_MODEL_OUTPUT"
+                elif _err and _err.get("code"):
+                    _src = _err["code"]
+                else:
+                    _src = "MODEL_GENERATION_FAILED"
+            else:
+                _src = "NEURAL_MODEL" if _tr.get("neural_ran") and not _tr.get("fallback") else (
+                       "TOOL" if _tr.get("tool") else
+                       "FALLBACK" if _tr.get("fallback") else "DETERMINISTIC_HANDLER")
+            return OrchestratorResponse(
+                response=_br["response"],
+                latency_ms=_br.get("latency_ms", 0),
+                intent=_tr.get("intent","UNKNOWN"),
+                response_source=_src,
+                language=_tr.get("language","unknown"),
+                diagnostics=[_tr],
+                raw_neural_output=(_br.get("trace",{}).get("provenance") or {}).get("model_id") if diagnostic_mode else None,
+                rejection_reason=(None if _src=="NEURAL_MODEL" else
+                                  ((_err or {}).get("code") or _tr.get("safety_override")
+                                   or (_tr.get("generation_error")) or _src)),
+            )
+        except Exception as _be:
+            print(f"[ML Service] Brain path failed, using legacy: {_be}")
 
         if not model_loaded:
             load_model_if_needed()
