@@ -23,6 +23,11 @@ export type ModelResponse = {
   readonly text: string;
   readonly safetyMode: SafetyMode;
   readonly providerAlias: string;
+  readonly responseSource?: string | null;
+  readonly rejectionReason?: string | null;
+  readonly intent?: string | null;
+  readonly modelUsed?: string | null;
+  readonly neuralRan?: boolean | null;
   readonly contextInfo?: {
     conversationId: string;
     messageCount: number;
@@ -89,7 +94,10 @@ export class NexusAIIntelligenceEngine implements IntelligenceEngine {
 
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 10000);
+      // Configurable timeout: cold neural loads can exceed 10s on low-RAM
+      // hosts. AI_SERVICE_TIMEOUT_MS overrides; default unchanged.
+      const timeoutMs = Number(process.env.AI_SERVICE_TIMEOUT_MS) || 10000;
+      const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
       const requestBody = JSON.stringify({
         message,
@@ -114,6 +122,9 @@ export class NexusAIIntelligenceEngine implements IntelligenceEngine {
       }
 
       const data = await response.json();
+      const mlTrace = Array.isArray(data?.diagnostics) && data.diagnostics.length > 0
+        ? data.diagnostics[0]
+        : undefined;
 
       // Neural-only contract: an empty response or explicit error source
       // must surface as an error — never as a fake conversational answer.
@@ -130,6 +141,11 @@ export class NexusAIIntelligenceEngine implements IntelligenceEngine {
         text: data.response || data.message || data.text || 'No response from AI',
         safetyMode: request.safetyMode,
         providerAlias: 'nexusai-python-ml',
+        responseSource: data.response_source ?? null,
+        rejectionReason: data.rejection_reason ?? null,
+        intent: mlTrace?.intent ?? null,
+        modelUsed: mlTrace?.model_used ?? null,
+        neuralRan: mlTrace?.neural_ran ?? null,
         contextInfo: {
           conversationId,
           messageCount: conversationContext.messages.length,
@@ -176,7 +192,7 @@ export class NexusAIIntelligenceEngine implements IntelligenceEngine {
         const historyData = (item as any).history;
         if (Array.isArray(historyData)) {
           for (const msg of historyData) {
-            if (typeof msg === 'object' && msg !== null && 'role' in item && 'content' in item) {
+            if (typeof msg === 'object' && msg !== null && 'role' in msg && 'content' in msg) {
               history.push({
                 role: msg.role,
                 content: msg.content,

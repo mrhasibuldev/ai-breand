@@ -4,7 +4,7 @@ import { InMemoryAuthRateLimit } from '../apps/api/src/rate-limit.js';
 
 describe('reported development-foundation findings', () => {
   it('limits authentication by IP and normalized email and returns a retry interval', async () => {
-    const app = buildApp({ env: { NODE_ENV: 'test' } });
+    const app = await buildApp({ env: { NODE_ENV: 'test' } });
     try {
       for (let attempt = 0; attempt < 5; attempt += 1) {
         await app.inject({
@@ -30,7 +30,7 @@ describe('reported development-foundation findings', () => {
   });
 
   it('fails closed when the development auth limiter is unavailable', async () => {
-    const app = buildApp({
+    const app = await buildApp({
       env: { NODE_ENV: 'test' },
       rateLimit: { check: async () => Promise.reject(new Error('private limiter detail')) },
     });
@@ -62,7 +62,7 @@ describe('reported development-foundation findings', () => {
   });
 
   it('rejects unsupported logout payload fields and accepts the normalized empty request', async () => {
-    const app = buildApp({ env: { NODE_ENV: 'test' } });
+    const app = await buildApp({ env: { NODE_ENV: 'test' } });
     try {
       const registration = await app.inject({
         method: 'POST',

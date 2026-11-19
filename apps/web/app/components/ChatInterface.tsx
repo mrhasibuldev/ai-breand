@@ -20,6 +20,27 @@ import { ConversationMessage, Conversation } from './conversation-types';
 import { useAuth } from './AuthContext';
 
 /**
+ * Compact provenance label for assistant messages.
+ * Only claims "neural" when the ML service explicitly reported NEURAL_MODEL.
+ */
+function provenanceLabel(source: string, modelUsed?: string | null): string {
+  switch (source) {
+    case 'NEURAL_MODEL':
+      return modelUsed && modelUsed !== 'none(tool)' ? `Neural · ${modelUsed}` : 'Neural Model';
+    case 'DETERMINISTIC_HANDLER':
+      return 'Deterministic';
+    case 'TOOL':
+      return 'Deterministic tool';
+    case 'FALLBACK':
+      return 'Fallback';
+    case 'TEMPLATE':
+      return 'Template';
+    default:
+      return 'Unknown source';
+  }
+}
+
+/**
  * Chat Interface Component
  */
 export default function ChatInterface() {
@@ -195,6 +216,14 @@ export default function ChatInterface() {
     }
     abortControllerRef.current = new AbortController();
 
+    // Bounded request timeout — distinct from user-initiated cancellation.
+    // API->ML is itself bounded (~10s), so 60s is generous headroom.
+    let timedOut = false;
+    const aiTimeoutId = setTimeout(() => {
+      timedOut = true;
+      abortControllerRef.current?.abort();
+    }, 60000);
+
     const userMsg: ConversationMessage = {
       id: crypto.randomUUID(),
       role: 'user',
@@ -269,7 +298,8 @@ export default function ChatInterface() {
         role: 'assistant',
         content: data.response,
         timestamp: new Date(),
-        responseSource: data.response_source,
+        responseSource: data.responseSource ?? data.response_source ?? null,
+        modelUsed: data.modelUsed ?? data.model_used ?? null,
       };
 
       setGuestConversations(prev => {
@@ -286,12 +316,19 @@ export default function ChatInterface() {
 
       console.log(`[ChatInterface] Guest request ${requestId} completed with ${conversationHistory.length} context messages`);
     } catch (error) {
+      // Intentional user cancellation is not an error — no error bubble.
+      if (!timedOut && (error as { name?: string })?.name === 'AbortError') {
+        console.log(`[ChatInterface] Guest request ${requestId} cancelled by user`);
+        return;
+      }
       console.error('[ChatInterface] Guest request failed:', error);
 
       // Determine error type and show appropriate message
       let errorMessage: string;
 
-      if (error instanceof Error) {
+      if (timedOut || (error instanceof Error && error.name === 'AbortError')) {
+        errorMessage = "দুঃখিত, অনুরোধের সময়সীমা অতিক্রম করেছে। অনুগ্রহ করে পরে আবার চেষ্টা করুন।";
+      } else if (error instanceof Error) {
         if (error.message === 'AI service unavailable') {
           errorMessage = "দুঃখিত, AI সার্ভিসটি বর্তমানে উপলব্ধ নেই। অনুগ্রহ করে পরে আবার চেষ্টা করুন।";
         } else if (error.message === 'AI service timeout') {
@@ -329,6 +366,7 @@ export default function ChatInterface() {
         return prev;
       });
     } finally {
+      clearTimeout(aiTimeoutId);
       setIsTyping(false);
       setActiveRequestId(null);
     }
@@ -355,6 +393,13 @@ export default function ChatInterface() {
       abortControllerRef.current.abort();
     }
     abortControllerRef.current = new AbortController();
+
+    // Bounded request timeout — distinct from user-initiated cancellation.
+    let timedOut = false;
+    const aiTimeoutId = setTimeout(() => {
+      timedOut = true;
+      abortControllerRef.current?.abort();
+    }, 60000);
 
     // Get conversation history for context (Phase 2)
     const activeConv = getActiveConversation();
@@ -415,16 +460,25 @@ export default function ChatInterface() {
         role: 'assistant',
         content: data.response,
         timestamp: new Date(),
+        responseSource: data.responseSource ?? data.response_source ?? null,
+        modelUsed: data.modelUsed ?? data.model_used ?? null,
       };
 
       await addMessage(conversationId, aiMessage);
     } catch (error) {
+      // Intentional user cancellation is not an error — no error bubble.
+      if (!timedOut && (error as { name?: string })?.name === 'AbortError') {
+        console.log(`[ChatInterface] Request ${requestId} cancelled by user`);
+        return;
+      }
       console.log(`[ChatInterface] Request ${requestId} failed:`, error);
 
       // Determine error type and show appropriate message
       let errorMessage: string;
 
-      if (error instanceof Error) {
+      if (timedOut || (error instanceof Error && error.name === 'AbortError')) {
+        errorMessage = "দুঃখিত, অনুরোধের সময়সীমা অতিক্রম করেছে। অনুগ্রহ করে পরে আবার চেষ্টা করুন।";
+      } else if (error instanceof Error) {
         if (error.message === 'AI service unavailable') {
           errorMessage = "দুঃখিত, AI সার্ভিসটি বর্তমানে উপলব্ধ নেই। অনুগ্রহ করে পরে আবার চেষ্টা করুন।";
         } else if (error.message === 'AI service timeout') {
@@ -467,6 +521,7 @@ export default function ChatInterface() {
         return new Map(prev).set(conversationId, updated);
       });
     } finally {
+      clearTimeout(aiTimeoutId);
       setIsTyping(false);
       setActiveRequestId(null);
       console.log(`[ChatInterface] Request ${requestId} cleanup complete`);
@@ -516,6 +571,9 @@ export default function ChatInterface() {
             </div>
             <div className="message-content">
               <div className="message-text">{message.content}</div>
+              {message.role === 'assistant' && !message.isError && message.responseSource && (
+                <div className="message-provenance">{provenanceLabel(message.responseSource, message.modelUsed)}</div>
+              )}
             </div>
           </div>
         ))}

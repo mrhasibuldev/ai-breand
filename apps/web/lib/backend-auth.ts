@@ -114,8 +114,15 @@ export async function getSession(): Promise<SessionResponse> {
     credentials: 'include',
   });
 
-  if (!response.ok) {
+  // Only a definitive 401 means "not authenticated". Any other failure
+  // (5xx, DB cold start, proxy error) is transient — throw so callers
+  // preserve the existing session instead of forcing Guest Mode.
+  if (response.status === 401 || response.status === 403) {
     return { authenticated: false };
+  }
+
+  if (!response.ok) {
+    throw new Error(`Session check failed: HTTP ${response.status}`);
   }
 
   return response.json();

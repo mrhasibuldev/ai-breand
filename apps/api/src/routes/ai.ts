@@ -76,6 +76,11 @@ export async function aiRoutes(app: FastifyInstance) {
         messageId: crypto.randomUUID(),
         latencyMs,
         provider: response.providerAlias,
+        responseSource: response.responseSource ?? null,
+        rejectionReason: response.rejectionReason ?? null,
+        intent: response.intent ?? null,
+        modelUsed: response.modelUsed ?? null,
+        neuralRan: response.neuralRan ?? null,
         contextInfo: response.contextInfo,
       });
     } catch (error) {

@@ -283,7 +283,7 @@ class ModelRegistry:
                                   if m.get("tokenizer") and os.path.exists(m["tokenizer"]) else None),
               "vocab_size":m.get("vocab_size"),
               "engine":eng["kind"],"load_s":eng.get("load_s"),
-              "neural_generation_executed":eng["kind"] in ("core01","medium"),
+              "neural_generation_executed":eng["kind"] in ("core01","medium","nexus_sft"),
               "generation_status":"ok" if (txt or "").strip() else "empty"}
         return (txt or "").strip(), prov
 

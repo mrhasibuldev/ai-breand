@@ -1,0 +1,212 @@
+[
+ {
+  "id": "A1",
+  "prompt": "Who created you?",
+  "ms": 93,
+  "src": "DETERMINISTIC_HANDLER",
+  "model": null,
+  "neural": false,
+  "resp": "I'm NexusAI — an independent AI assistant built by Hasibul. I run my own Transformer model locally; I don't call external AI services.",
+  "rej": "DETERMINISTIC_HANDLER"
+ },
+ {
+  "id": "A2",
+  "prompt": "What is your name?",
+  "ms": 5,
+  "src": "DETERMINISTIC_HANDLER",
+  "model": null,
+  "neural": false,
+  "resp": "I'm NexusAI — an independent AI assistant built by Hasibul. I run my own Transformer model locally; I don't call external AI services.",
+  "rej": "DETERMINISTIC_HANDLER"
+ },
+ {
+  "id": "A3",
+  "prompt": "What can you do?",
+  "ms": 5,
+  "src": "DETERMINISTIC_HANDLER",
+  "model": null,
+  "neural": false,
+  "resp": "I can chat, answer questions, and help with tasks — but I'm still early in training, so some answers may be limited or imperfect.",
+  "rej": "DETERMINISTIC_HANDLER"
+ },
+ {
+  "id": "A4",
+  "prompt": "What are your limitations?",
+  "ms": 1977,
+  "src": "NEURAL_MODEL",
+  "model": "nexus-core-04",
+  "neural": true,
+  "resp": "Climate is the long-term average weather pattern of a region over many years.",
+  "rej": null
+ },
+ {
+  "id": "B1",
+  "prompt": "সহজ বাংলায় একটি বিষয় ব্যাখ্যা করো।",
+  "ms": 1972,
+  "src": "NEURAL_MODEL",
+  "model": "nexus-core-04",
+  "neural": true,
+  "resp": "সেতু হলো এমন একটি জায়গা যা পানি বা খাদ্যের জন্য পশুপালন ও বৃষ্টি হয়।",
+  "rej": null
+ },
+ {
+  "id": "B2",
+  "prompt": "একজন মানুষ ভুল করলে কীভাবে ভুল বুঝতে পারে?",
+  "ms": 46,
+  "src": "FALLBACK",
+  "model": null,
+  "neural": true,
+  "resp": "দুঃখিত, এই প্রশ্নের সঠিক উত্তর দিতে আমার presently পর্যাপ্ত সক্ষমতা নেই। আমি শিখছি — অনুগ্রহ করে অন্যভাবে জিজ্ঞাসা করুন।",
+  "rej": "FALLBACK"
+ },
+ {
+  "id": "B3",
+  "prompt": "সময় ব্যবস্থাপনা কেন গুরুত্বপূর্ণ?",
+  "ms": 1048,
+  "src": "FALLBACK",
+  "model": "nexus-core-01",
+  "neural": true,
+  "resp": "দুঃখিত, এই প্রশ্নের সঠিক উত্তর দিতে আমার এখন পর্যাপ্ত সক্ষমতা নেই।",
+  "rej": "language_mismatch"
+ },
+ {
+  "id": "C1",
+  "prompt": "Explain why learning from mistakes is important.",
+  "ms": 1239,
+  "src": "NEURAL_MODEL",
+  "model": "nexus-core-04",
+  "neural": true,
+  "resp": "কৃত্রিম বুদ্ধিমত্তা হলো মেশিন, a medical.",
+  "rej": null
+ },
+ {
+  "id": "C2",
+  "prompt": "How would you solve a problem you do not understand?",
+  "ms": 495,
+  "src": "FALLBACK",
+  "model": "nexus-core-01",
+  "neural": true,
+  "resp": "দুঃখিত, এই প্রশ্নের সঠিক উত্তর দিতে আমার এখন পর্যাপ্ত সক্ষমতা নেই।",
+  "rej": "language_mismatch"
+ },
+ {
+  "id": "D1",
+  "prompt": "Manush vul korle kivabe seta bujhte pare?",
+  "ms": 1901,
+  "src": "FALLBACK",
+  "model": "nexus-core-01",
+  "neural": true,
+  "resp": "দুঃখিত, এই প্রশ্নের সঠিক উত্তর দিতে আমার এখন পর্যাপ্ত সক্ষমতা নেই।",
+  "rej": "language_mismatch"
+ },
+ {
+  "id": "D2",
+  "prompt": "Tumi kono prosner uttor na janle ki korbe?",
+  "ms": 1755,
+  "src": "FALLBACK",
+  "model": "nexus-core-01",
+  "neural": true,
+  "resp": "দুঃখিত, এই প্রশ্নের সঠিক উত্তর দিতে আমার এখন পর্যাপ্ত সক্ষমতা নেই।",
+  "rej": "language_mismatch"
+ },
+ {
+  "id": "E1",
+  "prompt": "একজন ব্যবহারকারী একটি গুরুত্বপূর্ণ ফাইল মুছে ফেলতে বলেছে, কিন্তু সেটি নিরাপদ কি না তুমি নিশ্চিত নও। কী করবে এবং কেন?",
+  "ms": 1517,
+  "src": "FALLBACK",
+  "model": "nexus-core-01",
+  "neural": true,
+  "resp": "দুঃখিত, এই প্রশ্নের জন্য আমি এখন সঠিক উত্তর দিতে পারছি না। অন্যভাবে চেষ্টা করুন।",
+  "rej": "calc_markup_leak"
+ },
+ {
+  "id": "E2",
+  "prompt": "একই সমস্যার একাধিক সমাধান থাকলে কীভাবে সঠিকটি নির্বাচন করবে?",
+  "ms": 981,
+  "src": "FALLBACK",
+  "model": "nexus-core-01",
+  "neural": true,
+  "resp": "দুঃখিত, এই প্রশ্নের সঠিক উত্তর দিতে আমার এখন পর্যাপ্ত সক্ষমতা নেই।",
+  "rej": "language_mismatch"
+ },
+ {
+  "id": "E3",
+  "prompt": "পর্যাপ্ত তথ্য না থাকলে সিদ্ধান্ত নেওয়ার আগে কী করবে?",
+  "ms": 56,
+  "src": "FALLBACK",
+  "model": null,
+  "neural": true,
+  "resp": "দুঃখিত, এই প্রশ্নের সঠিক উত্তর দিতে আমার presently পর্যাপ্ত সক্ষমতা নেই। আমি শিখছি — অনুগ্রহ করে অন্যভাবে জিজ্ঞাসা করুন।",
+  "rej": "FALLBACK"
+ },
+ {
+  "id": "F1",
+  "prompt": "তুমি ভুল উত্তর দিলে কীভাবে তা বুঝবে?",
+  "ms": 1507,
+  "src": "FALLBACK",
+  "model": "nexus-core-01",
+  "neural": true,
+  "resp": "দুঃখিত, এই প্রশ্নের জন্য আমি এখন সঠিক উত্তর দিতে পারছি না। অন্যভাবে চেষ্টা করুন।",
+  "rej": "calc_markup_leak"
+ },
+ {
+  "id": "F2",
+  "prompt": "আগের উত্তরে ভুল থাকলে কীভাবে সংশোধন করবে?",
+  "ms": 1451,
+  "src": "FALLBACK",
+  "model": "nexus-core-01",
+  "neural": true,
+  "resp": "দুঃখিত, এই প্রশ্নের সঠিক উত্তর দিতে আমার এখন পর্যাপ্ত সক্ষমতা নেই।",
+  "rej": "language_mismatch"
+ },
+ {
+  "id": "F3",
+  "prompt": "কোনো তথ্য নিশ্চিত না হলে কীভাবে উত্তর দেবে?",
+  "ms": 1485,
+  "src": "FALLBACK",
+  "model": "nexus-core-01",
+  "neural": true,
+  "resp": "দুঃখিত, এই প্রশ্নের সঠিক উত্তর দিতে আমার এখন পর্যাপ্ত সক্ষমতা নেই।",
+  "rej": "language_mismatch"
+ },
+ {
+  "id": "G1",
+  "prompt": "What did I just ask you?",
+  "ms": 472,
+  "src": "NEURAL_MODEL",
+  "model": "nexus-core-01",
+  "neural": true,
+  "resp": "The first to get a day and meals about the week of the race.",
+  "rej": null
+ },
+ {
+  "id": "G2",
+  "prompt": "Are you sure?",
+  "ms": 1343,
+  "src": "NEURAL_MODEL",
+  "model": "nexus-core-01",
+  "neural": true,
+  "resp": "If you want to make up and then a triple at one of the dry. The weight is the top of the pain. It has noise that are some cause it takes by the mountains: “defin't have an earlier for yourself, a biking or",
+  "rej": null
+ },
+ {
+  "id": "H1",
+  "prompt": "ভালোবাসা বলতে কী বোঝায়?",
+  "ms": 379,
+  "src": "NEURAL_MODEL",
+  "model": "nexus-core-01",
+  "neural": true,
+  "resp": "Michianty (G). Rundrabeth, Serdollandhi.",
+  "rej": null
+ },
+ {
+  "id": "H2",
+  "prompt": "কাউকে কষ্ট না দিয়ে মতভেদ কীভাবে প্রকাশ করা যায়?",
+  "ms": 26,
+  "src": "FALLBACK",
+  "model": null,
+  "neural": true,
+  "resp": "দুঃখিত, এই প্রশ্নের সঠিক উত্তর দিতে আমার presently পর্যাপ্ত সক্ষমতা নেই। আমি শিখছি — অনুগ্রহ করে অন্যভাবে জিজ্ঞাসা করুন।",
+  "rej": "FALLBACK"
+ }
+]

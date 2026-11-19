@@ -1,0 +1,365 @@
+{
+  "audit": "web_chat_mode_forensic",
+  "mode": "normal",
+  "neural_only_env": "OFF (default)",
+  "registry": {
+    "nexus-core-01": {
+      "checkpoint": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt"
+    },
+    "nexus-core-02": {
+      "checkpoint": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core02_sft_v2/checkpoint_final.pt"
+    },
+    "nexus-core-03": {
+      "checkpoint": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core03_sft_v2/checkpoint_final.pt"
+    },
+    "nexus-core-04": {
+      "checkpoint": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt"
+    },
+    "nexus-medium": {
+      "checkpoint": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt"
+    }
+  },
+  "results": [
+    {
+      "test": 1,
+      "prompt": "তোমার নাম কী এবং তোমাকে কে তৈরি করেছে?",
+      "lang": {
+        "lang": "bengali",
+        "confidence": 0.95,
+        "reason": "bengali script"
+      },
+      "intent": "IDENTITY",
+      "response": "আমি NexusAI — Hasibul তৈরি করা একটি স্বাধীন AI সহকারী। আমি নিজের Transformer মডেল ব্যবহার করি; কোনো বাইরের AI সার্ভিসে নির্ভর করি না।",
+      "latency_ms": 0.0,
+      "trace": {
+        "language": "bengali",
+        "lang_conf": 0.95,
+        "lang_reason": "bengali script",
+        "intent": "IDENTITY",
+        "model_used": null,
+        "route": "registry:identity_metadata",
+        "tool": null,
+        "neural_ran": false,
+        "fallback": false,
+        "neural_only": false
+      },
+      "error": null
+    },
+    {
+      "test": 2,
+      "prompt": "একটি ঘরে ৫টি মোমবাতি জ্বলছিল। বাতাসে ২টি নিভে গেল। সকালে ঘরে কয়টি মোমবাতি থাকবে?",
+      "lang": {
+        "lang": "bengali",
+        "confidence": 0.95,
+        "reason": "bengali script"
+      },
+      "intent": "CHAT",
+      "response": "দুঃখিত, এই প্রশ্নের সঠিক উত্তর দিতে আমার presently পর্যাপ্ত সক্ষমতা নেই। আমি শিখছি — অনুগ্রহ করে অন্যভাবে জিজ্ঞাসা করুন।",
+      "latency_ms": 2001.0,
+      "trace": {
+        "language": "bengali",
+        "lang_conf": 0.95,
+        "lang_reason": "bengali script",
+        "intent": "CHAT",
+        "model_used": null,
+        "route": "fallback",
+        "tool": null,
+        "neural_ran": true,
+        "fallback": true,
+        "neural_only": false
+      },
+      "error": null
+    },
+    {
+      "test": 3,
+      "prompt": "রহিম করিমের চেয়ে লম্বা। করিম সুমনের চেয়ে লম্বা। তাহলে সবচেয়ে খাটো কে?",
+      "lang": {
+        "lang": "bengali",
+        "confidence": 0.95,
+        "reason": "bengali script"
+      },
+      "intent": "CHAT",
+      "response": "In the United States, Rafael Niko island and Africa's name former. The first quarter of this year is the most famous for a second highestraft in an indexpectedly regardless period, which researching on the three months.",
+      "latency_ms": 1979.2,
+      "trace": {
+        "language": "bengali",
+        "lang_conf": 0.95,
+        "lang_reason": "bengali script",
+        "intent": "CHAT",
+        "model_used": "nexus-core-01",
+        "route": "neural:nexus-core-01",
+        "tool": null,
+        "neural_ran": true,
+        "fallback": false,
+        "neural_only": false,
+        "provenance": {
+          "model_id": "nexus-core-01",
+          "checkpoint": "checkpoint_final.pt",
+          "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+          "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+          "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+          "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+          "vocab_size": 8000,
+          "engine": "core01",
+          "load_s": 0.66,
+          "neural_generation_executed": true,
+          "generation_status": "ok"
+        }
+      },
+      "error": null
+    },
+    {
+      "test": 4,
+      "prompt": "১৫টি আম ৩ জনের মধ্যে সমান ভাগ করলে প্রত্যেকে কয়টি আম পাবে? ধাপে ধাপে বোঝাও।",
+      "lang": {
+        "lang": "bengali",
+        "confidence": 0.95,
+        "reason": "bengali script"
+      },
+      "intent": "CHAT",
+      "response": ":348697 million - 1.2 = <<21=22>>27 #### 9",
+      "latency_ms": 549.1,
+      "trace": {
+        "language": "bengali",
+        "lang_conf": 0.95,
+        "lang_reason": "bengali script",
+        "intent": "CHAT",
+        "model_used": "nexus-core-01",
+        "route": "neural:nexus-core-01",
+        "tool": null,
+        "neural_ran": true,
+        "fallback": false,
+        "neural_only": false,
+        "provenance": {
+          "model_id": "nexus-core-01",
+          "checkpoint": "checkpoint_final.pt",
+          "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+          "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+          "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+          "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+          "vocab_size": 8000,
+          "engine": "core01",
+          "load_s": 0.66,
+          "neural_generation_executed": true,
+          "generation_status": "ok"
+        }
+      },
+      "error": null
+    },
+    {
+      "test": 5,
+      "prompt": "মানুষ যদি কোনো প্রশ্নের উত্তর না জানে, তাহলে তার কী করা উচিত?",
+      "lang": {
+        "lang": "bengali",
+        "confidence": 0.95,
+        "reason": "bengali script"
+      },
+      "intent": "CHAT",
+      "response": "দুঃখিত, এই প্রশ্নের সঠিক উত্তর দিতে আমার presently পর্যাপ্ত সক্ষমতা নেই। আমি শিখছি — অনুগ্রহ করে অন্যভাবে জিজ্ঞাসা করুন।",
+      "latency_ms": 40.3,
+      "trace": {
+        "language": "bengali",
+        "lang_conf": 0.95,
+        "lang_reason": "bengali script",
+        "intent": "CHAT",
+        "model_used": null,
+        "route": "fallback",
+        "tool": null,
+        "neural_ran": true,
+        "fallback": true,
+        "neural_only": false
+      },
+      "error": null
+    },
+    {
+      "test": 6,
+      "prompt": "একজন দোকানদারের কাছে ১০টি কলা ছিল। সে ৩টি বিক্রি করল এবং ২টি বন্ধুকে দিল। এখন তার কাছে কয়টি কলা আছে? ধাপে ধাপে বাংলায় বোঝাও।",
+      "lang": {
+        "lang": "bengali",
+        "confidence": 0.95,
+        "reason": "bengali script"
+      },
+      "intent": "CHAT",
+      "response": "+ 40% = <<40+10=320>>3500 pounds. #### 100",
+      "latency_ms": 492.8,
+      "trace": {
+        "language": "bengali",
+        "lang_conf": 0.95,
+        "lang_reason": "bengali script",
+        "intent": "CHAT",
+        "model_used": "nexus-core-01",
+        "route": "neural:nexus-core-01",
+        "tool": null,
+        "neural_ran": true,
+        "fallback": false,
+        "neural_only": false,
+        "provenance": {
+          "model_id": "nexus-core-01",
+          "checkpoint": "checkpoint_final.pt",
+          "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+          "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+          "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+          "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+          "vocab_size": 8000,
+          "engine": "core01",
+          "load_s": 0.66,
+          "neural_generation_executed": true,
+          "generation_status": "ok"
+        }
+      },
+      "error": null
+    },
+    {
+      "test": 7,
+      "prompt": "তুমি কি বাংলায় কথা বলতে পারো? নিজের ভাষায় AI কী, সহজভাবে বোঝাও।",
+      "lang": {
+        "lang": "mixed",
+        "confidence": 0.9,
+        "reason": "bengali+latin script"
+      },
+      "intent": "GENERAL_QUESTION",
+      "response": "তুমি কোন ভূমিকা পালন করেছিলেন। তুমি?",
+      "latency_ms": 129.1,
+      "trace": {
+        "language": "mixed",
+        "lang_conf": 0.9,
+        "lang_reason": "bengali+latin script",
+        "intent": "GENERAL_QUESTION",
+        "model_used": "nexus-medium",
+        "route": "neural:nexus-medium",
+        "tool": null,
+        "neural_ran": true,
+        "fallback": false,
+        "neural_only": false,
+        "provenance": {
+          "model_id": "nexus-medium",
+          "checkpoint": "final_model.pt",
+          "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_medium/final_model.pt",
+          "checkpoint_sha256": "4f592af9846b89652eb7",
+          "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+          "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+          "vocab_size": 8000,
+          "engine": "medium",
+          "load_s": 0.14,
+          "neural_generation_executed": true,
+          "generation_status": "ok"
+        }
+      },
+      "error": null
+    },
+    {
+      "test": 8,
+      "prompt": "আমি বললাম আমার কাছে একটি লাল বল আছে। এরপর বললাম বলটি নীল। বলটির আসল রং কী, নাকি তথ্যটি অস্পষ্ট? ব্যাখ্যা করো।",
+      "lang": {
+        "lang": "bengali",
+        "confidence": 0.95,
+        "reason": "bengali script"
+      },
+      "intent": "KNOWLEDGE",
+      "response": "DNA হলো একটি সুসংগাদি।",
+      "latency_ms": 5307.9,
+      "trace": {
+        "language": "bengali",
+        "lang_conf": 0.95,
+        "lang_reason": "bengali script",
+        "intent": "KNOWLEDGE",
+        "model_used": "nexus-core-04",
+        "route": "neural:nexus-core-04",
+        "tool": null,
+        "neural_ran": true,
+        "fallback": false,
+        "neural_only": false,
+        "provenance": {
+          "model_id": "nexus-core-04",
+          "checkpoint": "checkpoint_final.pt",
+          "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core04_sft_v3/checkpoint_final.pt",
+          "checkpoint_sha256": "e46383195d328b9105950939f66b0c36c6363f5b6bc5247c210efa99b5d17c48",
+          "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+          "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+          "vocab_size": 8000,
+          "engine": "nexus_sft",
+          "load_s": 1.8,
+          "neural_generation_executed": false,
+          "generation_status": "ok"
+        }
+      },
+      "error": null
+    },
+    {
+      "test": 9,
+      "prompt": "একজন মানুষ তোমাকে বলল, সে পরীক্ষায় ফেল করেছে এবং খুব মন খারাপ। তুমি তাকে কীভাবে সাহায্য করবে?",
+      "lang": {
+        "lang": "bengali",
+        "confidence": 0.95,
+        "reason": "bengali script"
+      },
+      "intent": "CHAT",
+      "response": "First find the total number of object by multiplying: 3 = <<3*3=18>>18 Then multiply that number by the number of fair to find how many falls will subtract the percentage of chipops that amount she needed with the same number of rotings each tundows that are left.",
+      "latency_ms": 1920.7,
+      "trace": {
+        "language": "bengali",
+        "lang_conf": 0.95,
+        "lang_reason": "bengali script",
+        "intent": "CHAT",
+        "model_used": "nexus-core-01",
+        "route": "neural:nexus-core-01",
+        "tool": null,
+        "neural_ran": true,
+        "fallback": false,
+        "neural_only": false,
+        "provenance": {
+          "model_id": "nexus-core-01",
+          "checkpoint": "checkpoint_final.pt",
+          "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+          "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+          "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+          "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+          "vocab_size": 8000,
+          "engine": "core01",
+          "load_s": 0.66,
+          "neural_generation_executed": true,
+          "generation_status": "ok"
+        }
+      },
+      "error": null
+    },
+    {
+      "test": 10,
+      "prompt": "তোমার কাছে কোনো তথ্য না থাকলে তুমি কি উত্তর বানিয়ে বলবে, নাকি জানো না বলবে? কেন?",
+      "lang": {
+        "lang": "bengali",
+        "confidence": 0.95,
+        "reason": "bengali script"
+      },
+      "intent": "CHAT",
+      "response": "Bydamer is a bomburn in a tarmer cubble, and the evertensation. As a magneticism is made by Genellowstalandootola, Socians of the natural culturity, or",
+      "latency_ms": 1921.8,
+      "trace": {
+        "language": "bengali",
+        "lang_conf": 0.95,
+        "lang_reason": "bengali script",
+        "intent": "CHAT",
+        "model_used": "nexus-core-01",
+        "route": "neural:nexus-core-01",
+        "tool": null,
+        "neural_ran": true,
+        "fallback": false,
+        "neural_only": false,
+        "provenance": {
+          "model_id": "nexus-core-01",
+          "checkpoint": "checkpoint_final.pt",
+          "checkpoint_path": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\models\\checkpoints_core01_run3/checkpoint_final.pt",
+          "checkpoint_sha256": "ad515cadea433d1782e9f1d5f8806d850ee519b86b42b4b9db11c3b3f4bb7830",
+          "tokenizer": "C:\\Users\\Nusaiba\\Desktop\\Ai Breand\\packages\\ai-core\\data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model",
+          "tokenizer_sha256": "2fcc6a87c9ded27d1f8ad6c2dc0ff747ca4dc52db68ffde9a6e229b2cd3d8052",
+          "vocab_size": 8000,
+          "engine": "core01",
+          "load_s": 0.66,
+          "neural_generation_executed": true,
+          "generation_status": "ok"
+        }
+      },
+      "error": null
+    }
+  ]
+}

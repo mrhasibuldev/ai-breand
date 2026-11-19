@@ -54,23 +54,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setUser(null);
       }
     } catch (error) {
-      // On timeout or network error, preserve existing user state during initialization
-      // After initialization, errors may indicate actual logout
-      if (!initialized) {
-        console.log('[Auth] Initial session check failed, retrying...', error);
-        // Don't change user state on initial load failure
-        // Will retry with polling
-      } else {
-        // After initialization, treat errors as unauthenticated
-        // Unless it's a timeout (preserve state for network issues)
-        if (error instanceof Error && error.message === 'Request timeout') {
-          // Keep existing user state silently
-          console.log('[Auth] Session check timeout, preserving existing state');
-          return;
-        }
-        console.log('[Auth] Session check failed after initialization, treating as unauthenticated', error);
-        setUser(null);
-      }
+      // getSession() only resolves {authenticated:false} on a definitive
+      // 401/403. Anything thrown here is transient (timeout, network,
+      // 5xx, API restart) — preserve the session; never force Guest Mode
+      // on a temporary failure.
+      console.log('[Auth] Session check failed (transient), preserving existing state:', error);
     } finally {
       setLoading(false);
       setInitialized(true);

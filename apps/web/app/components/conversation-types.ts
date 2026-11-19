@@ -10,7 +10,8 @@ export interface ConversationMessage {
   content: string;
   timestamp: Date;
   isError?: boolean;
-  responseSource?: string;
+  responseSource?: string | null;
+  modelUsed?: string | null;
 }
 
 export interface Conversation {

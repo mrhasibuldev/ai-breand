@@ -229,8 +229,9 @@ export async function buildApp(
         }
       }
 
-      // Development mode: allow localhost without origin
-      if (config.nodeEnv === 'development' && request.ip === '127.0.0.1' || request.ip === '::1') {
+      // Non-production localhost exception (development/test only).
+      // Production always requires a trusted Origin/Referer.
+      if (config.nodeEnv !== 'production' && (request.ip === '127.0.0.1' || request.ip === '::1')) {
         return;
       }
 

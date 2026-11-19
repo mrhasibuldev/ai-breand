@@ -26,7 +26,7 @@ const deniedConsent = {
 
 describe('Phase 13 Part 1 API slice', () => {
   it('uses the Phase 07 envelope, snake_case, server request ID and no-store contract', async () => {
-    const app = buildApp();
+    const app = await buildApp();
     const denied = await app.inject({
       method: 'GET',
       url: '/api/v1/me/profile',
@@ -75,7 +75,7 @@ describe('Phase 13 Part 1 API slice', () => {
   });
 
   it('rejects non-contract request field names with structured validation details', async () => {
-    const app = buildApp();
+    const app = await buildApp();
     const registered = await register(app, 'validation@example.com', 'validation-register');
     const response = await app.inject({
       method: 'PATCH',
@@ -96,7 +96,7 @@ describe('Phase 13 Part 1 API slice', () => {
   });
 
   it('records an explicit memory choice before onboarding completes', async () => {
-    const app = buildApp();
+    const app = await buildApp();
     const registered = await register(app, 'choice@example.com', 'register-choice');
     const headers = { cookie: String(registered.headers['set-cookie']) };
     await app.inject({
@@ -130,7 +130,7 @@ describe('Phase 13 Part 1 API slice', () => {
   });
 
   it('rejects invalid wellness data and prevents account ownership overrides', async () => {
-    const app = buildApp();
+    const app = await buildApp();
     const a = await register(app, 'a@example.com', 'register-a');
     const b = await register(app, 'b@example.com', 'register-b');
     const aData = responseData<{ account_id: string }>(a);
@@ -174,7 +174,7 @@ describe('Phase 13 Part 1 API slice', () => {
   });
 
   it('rejects prohibited clinical free text without persisting it', async () => {
-    const app = buildApp();
+    const app = await buildApp();
     const registered = await register(app, 'safety@example.com', 'safety-register');
     const headers = { cookie: String(registered.headers['set-cookie']) };
     const legitimateStyle = 'Use gentle, practical encouragement for everyday routines';
@@ -245,7 +245,7 @@ describe('Phase 13 Part 1 API slice', () => {
         if (resolved.sessionId === principal.sessionId) revoked = true;
       },
     };
-    const app = buildApp({ identity });
+    const app = await buildApp({ identity });
     const missing = await app.inject({
       method: 'POST',
       url: '/api/v1/auth/logout',
@@ -276,14 +276,14 @@ describe('Phase 13 Part 1 API slice', () => {
   });
 
   it('executes the first request for a valid idempotency key normally', async () => {
-    const app = buildApp();
+    const app = await buildApp();
     const response = await register(app, 'first@example.com', 'first-request-key');
     expect(response.statusCode).toBe(201);
     expect(responseData<{ account_id: string }>(response).account_id).toEqual(expect.any(String));
   });
 
   it('replays the original registration result for an exact retry', async () => {
-    const app = buildApp();
+    const app = await buildApp();
     const first = await register(app, 'replay@example.com', 'registration-replay');
     const replay = await register(app, 'replay@example.com', 'registration-replay');
 
@@ -294,7 +294,7 @@ describe('Phase 13 Part 1 API slice', () => {
   });
 
   it('prevents duplicate side effects when identical requests arrive together', async () => {
-    const app = buildApp();
+    const app = await buildApp();
     const [first, duplicate] = await Promise.all([
       register(app, 'concurrent@example.com', 'concurrent-registration'),
       register(app, 'concurrent@example.com', 'concurrent-registration'),
@@ -306,7 +306,7 @@ describe('Phase 13 Part 1 API slice', () => {
   });
 
   it('rejects the same key when the normalized payload changes', async () => {
-    const app = buildApp();
+    const app = await buildApp();
     const first = await register(app, 'one@example.com', 'reused-key');
     const conflicting = await register(app, 'two@example.com', 'reused-key');
 
@@ -318,7 +318,7 @@ describe('Phase 13 Part 1 API slice', () => {
   });
 
   it('scopes equivalent idempotency keys independently for different users', async () => {
-    const app = buildApp();
+    const app = await buildApp();
     const a = await register(app, 'scope-a@example.com', 'scope-register-a');
     const b = await register(app, 'scope-b@example.com', 'scope-register-b');
     const sharedKey = 'equivalent-consent-key';
@@ -349,7 +349,7 @@ describe('Phase 13 Part 1 API slice', () => {
   });
 
   it('replays consent and does not append a duplicate record', async () => {
-    const app = buildApp();
+    const app = await buildApp();
     const registered = await register(app, 'consent@example.com', 'consent-register');
     const headers = {
       cookie: String(registered.headers['set-cookie']),
@@ -380,7 +380,7 @@ describe('Phase 13 Part 1 API slice', () => {
   });
 
   it('replays the original login result without issuing another session', async () => {
-    const app = buildApp();
+    const app = await buildApp();
     await register(app, 'login@example.com', 'login-register');
     const request = {
       method: 'POST' as const,
@@ -398,7 +398,7 @@ describe('Phase 13 Part 1 API slice', () => {
   });
 
   it('replays an already completed logout safely', async () => {
-    const app = buildApp();
+    const app = await buildApp();
     const registered = await register(app, 'logout@example.com', 'logout-register');
     const headers = {
       cookie: String(registered.headers['set-cookie']),

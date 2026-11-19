@@ -106,7 +106,7 @@ describe('implementation foundation boundaries', () => {
     });
   });
 
-  it('validates production configuration without inventing provider requirements', () => {
+  it('validates production configuration without inventing provider requirements', async () => {
     expect(() => readRuntimeConfig({ NODE_ENV: 'production' })).toThrow('DATABASE_URL');
     expect(readRuntimeConfig({ NODE_ENV: 'test' }).ready).toBe(true);
     const configuredButUnavailable = {
@@ -114,7 +114,7 @@ describe('implementation foundation boundaries', () => {
       DATABASE_URL: 'postgresql://configured-but-not-connected.invalid/nexusai',
     };
     expect(readRuntimeConfig(configuredButUnavailable).ready).toBe(false);
-    expect(() => buildApp({ env: configuredButUnavailable })).toThrow(
+    await expect(buildApp({ env: configuredButUnavailable })).rejects.toThrow(
       'Production persistent storage is unavailable',
     );
   });

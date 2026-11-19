@@ -71,7 +71,7 @@ describe('HIGH #4 bounded wellness storage policy', () => {
   it.each(prohibited)(
     'rejects clinical input case %# atomically without echoing it',
     async (text) => {
-      const app = buildApp();
+      const app = await buildApp();
       try {
         const registration = await app.inject({
           method: 'POST',
@@ -187,7 +187,7 @@ describe('HIGH #4 bounded wellness storage policy', () => {
     'take',
   ])('accepts wellness content case %# through the API and reads it back', async (text) => {
     expect(evaluateWellnessFreeText(text).allowed).toBe(true);
-    const app = buildApp();
+    const app = await buildApp();
     try {
       const registration = await app.inject({
         method: 'POST',
@@ -231,11 +231,11 @@ describe('HIGH #5 development data boundary', () => {
     expect(() => new SliceStore(environment)).toThrow('development/test-only');
   });
 
-  it('cannot override a production process with development options', () => {
+  it('cannot override a production process with development options', async () => {
     vi.stubEnv('NODE_ENV', 'production');
     expect(() => new SliceStore()).toThrow('development/test-only');
     expect(() => new SliceStore('development')).toThrow('development/test-only');
-    expect(() => buildApp({ env: { NODE_ENV: 'development' } })).toThrow('development/test-only');
+    await expect(buildApp({ env: { NODE_ENV: 'development' } })).rejects.toThrow('development/test-only');
   });
 
   it('refuses reads and writes from an existing store when the process becomes production', () => {
@@ -265,9 +265,9 @@ describe('HIGH #5 development data boundary', () => {
 
   it.each([undefined, 'postgresql://unavailable.invalid/nexusai'])(
     'fails production startup with URL case %# even with an external identity',
-    (url) => {
+    async (url) => {
       const identity = providerAdapter();
-      expect(() =>
+      await expect(
         buildApp({
           identity,
           env: {
@@ -275,13 +275,13 @@ describe('HIGH #5 development data boundary', () => {
             ...(url ? { DATABASE_URL: url } : {}),
           },
         }),
-      ).toThrow();
+      ).rejects.toThrow();
       expect(identity.resolvePrincipal).not.toHaveBeenCalled();
     },
   );
 
   it.each(['development', 'test'])('preserves %s readiness', async (environment) => {
-    const app = buildApp({ env: { NODE_ENV: environment } });
+    const app = await buildApp({ env: { NODE_ENV: environment } });
     try {
       expect((await app.inject('/health/ready')).statusCode).toBe(200);
     } finally {
@@ -319,7 +319,7 @@ function providerAdapter() {
 describe('HIGH #6 provider-neutral logout', () => {
   it('isolates sessions sharing a key, replays revocation, and denies missing/invalid sessions', async () => {
     const identity = providerAdapter();
-    const app = buildApp({ identity });
+    const app = await buildApp({ identity });
     const logout = (token?: string, key = 'shared-key') =>
       app.inject({
         method: 'POST',
@@ -363,7 +363,7 @@ describe('HIGH #6 provider-neutral logout', () => {
     async (principal) => {
       const identity = providerAdapter();
       identity.resolvePrincipal.mockResolvedValue(principal);
-      const app = buildApp({ identity });
+      const app = await buildApp({ identity });
       try {
         const result = await app.inject({
           method: 'POST',
@@ -381,7 +381,7 @@ describe('HIGH #6 provider-neutral logout', () => {
   it('does not cache a failed revocation or expose provider error contents', async () => {
     const identity = providerAdapter();
     identity.logout.mockRejectedValueOnce(new Error('private provider failure'));
-    const app = buildApp({ identity });
+    const app = await buildApp({ identity });
     const request = {
       method: 'POST' as const,
       url: '/api/v1/auth/logout',
@@ -409,7 +409,7 @@ describe('HIGH #6 provider-neutral logout', () => {
         return { clearSessionCookie: 'external_session=; Path=/; HttpOnly; Max-Age=0' };
       },
     };
-    const app = buildApp({ identity });
+    const app = await buildApp({ identity });
     const request = {
       method: 'POST' as const,
       url: '/api/v1/auth/logout',

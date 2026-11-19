@@ -1,0 +1,125 @@
+{
+  "suite": "phase1_regression_10_final",
+  "results": [
+    {
+      "test": 1,
+      "prompt": "তোমার নাম কী এবং তোমাকে কে তৈরি করেছে?",
+      "response": "আমি NexusAI — Hasibul তৈরি করা একটি স্বাধীন AI সহকারী। আমি নিজের Transformer মডেল ব্যবহার করি; কোনো বাইরের AI সার্ভিসে নির্ভর করি না।",
+      "responseSource": "DETERMINISTIC_HANDLER",
+      "rejectionReason": "DETERMINISTIC_HANDLER",
+      "intent": "IDENTITY",
+      "modelUsed": null,
+      "neuralRan": false,
+      "latencyMs": 5,
+      "error": null
+    },
+    {
+      "test": 2,
+      "prompt": "একটি ঘরে ৫টি মোমবাতি জ্বলছিল। বাতাসে ২টি নিভে গেল। সকালে ঘরে কয়টি মোমবাতি থাকবে?",
+      "response": "দুঃখিত, এই প্রশ্নের সঠিক উত্তর দিতে আমার এখন পর্যাপ্ত সক্ষমতা নেই।",
+      "responseSource": "FALLBACK",
+      "rejectionReason": "language_mismatch",
+      "intent": "CHAT",
+      "modelUsed": "nexus-core-01",
+      "neuralRan": true,
+      "latencyMs": 1623,
+      "error": null
+    },
+    {
+      "test": 3,
+      "prompt": "রহিম করিমের চেয়ে লম্বা। করিম সুমনের চেয়ে লম্বা। তাহলে সবচেয়ে খাটো কে?",
+      "response": "দুঃখিত, এই প্রশ্নের সঠিক উত্তর দিতে আমার এখন পর্যাপ্ত সক্ষমতা নেই।",
+      "responseSource": "FALLBACK",
+      "rejectionReason": "language_mismatch",
+      "intent": "CHAT",
+      "modelUsed": "nexus-core-01",
+      "neuralRan": true,
+      "latencyMs": 1724,
+      "error": null
+    },
+    {
+      "test": 4,
+      "prompt": "১৫টি আম ৩ জনের মধ্যে সমান ভাগ করলে প্রত্যেকে কয়টি আম পাবে? ধাপে ধাপে বোঝাও।",
+      "response": "15 ÷ 3 = 5 (নির্ণায়ক ক্যালকুলেটর)",
+      "responseSource": "TOOL",
+      "rejectionReason": "TOOL",
+      "intent": "MATH",
+      "modelUsed": "none(tool)",
+      "neuralRan": false,
+      "latencyMs": 7,
+      "error": null
+    },
+    {
+      "test": 5,
+      "prompt": "মানুষ যদি কোনো প্রশ্নের উত্তর না জানে, তাহলে তার কী করা উচিত?",
+      "response": "দুঃখিত, এই প্রশ্নের জন্য আমি এখন সঠিক উত্তর দিতে পারছি না। অন্যভাবে চেষ্টা করুন।",
+      "responseSource": "FALLBACK",
+      "rejectionReason": "calc_markup_leak",
+      "intent": "CHAT",
+      "modelUsed": "nexus-core-01",
+      "neuralRan": true,
+      "latencyMs": 385,
+      "error": null
+    },
+    {
+      "test": 6,
+      "prompt": "একজন দোকানদারের কাছে ১০টি কলা ছিল। সে ৩টি বিক্রি করল এবং ২টি বন্ধুকে দিল। এখন তার কাছে কয়টি কলা আছে? ধাপে ধাপে বাংলায় বোঝাও।",
+      "response": "10 - 5 = 5 (নির্ণায়ক ক্যালকুলেটর)",
+      "responseSource": "TOOL",
+      "rejectionReason": "TOOL",
+      "intent": "MATH",
+      "modelUsed": "none(tool)",
+      "neuralRan": false,
+      "latencyMs": 4,
+      "error": null
+    },
+    {
+      "test": 7,
+      "prompt": "তুমি কি বাংলায় কথা বলতে পারো? নিজের ভাষায় AI কী, সহজভাবে বোঝাও।",
+      "response": "দুঃখিত, এই প্রশ্নের জন্য আমি এখন সঠিক উত্তর দিতে পারছি না। অন্যভাবে চেষ্টা করুন।",
+      "responseSource": "FALLBACK",
+      "rejectionReason": "calc_markup_leak",
+      "intent": "GENERAL_QUESTION",
+      "modelUsed": "nexus-core-01",
+      "neuralRan": true,
+      "latencyMs": 1066,
+      "error": null
+    },
+    {
+      "test": 8,
+      "prompt": "আমি বললাম আমার কাছে একটি লাল বল আছে। এরপর বললাম বলটি নীল। বলটির আসল রং কী, নাকি তথ্যটি অস্পষ্ট? ব্যাখ্যা করো।",
+      "response": "DNA হলো একটি সুসংগাদি।",
+      "responseSource": "NEURAL_MODEL",
+      "rejectionReason": null,
+      "intent": "KNOWLEDGE",
+      "modelUsed": "nexus-core-04",
+      "neuralRan": true,
+      "latencyMs": 2069,
+      "error": null
+    },
+    {
+      "test": 9,
+      "prompt": "একজন মানুষ তোমাকে বলল, সে পরীক্ষায় ফেল করেছে এবং খুব মন খারাপ। তুমি তাকে কীভাবে সাহায্য করবে?",
+      "response": "দুঃখিত, এই প্রশ্নের জন্য আমি এখন সঠিক উত্তর দিতে পারছি না। অন্যভাবে চেষ্টা করুন।",
+      "responseSource": "FALLBACK",
+      "rejectionReason": "calc_markup_leak",
+      "intent": "CHAT",
+      "modelUsed": "nexus-core-01",
+      "neuralRan": true,
+      "latencyMs": 1500,
+      "error": null
+    },
+    {
+      "test": 10,
+      "prompt": "তোমার কাছে কোনো তথ্য না থাকলে তুমি কি উত্তর বানিয়ে বলবে, নাকি জানো না বলবে? কেন?",
+      "response": "দুঃখিত, এই প্রশ্নের জন্য আমি এখন সঠিক উত্তর দিতে পারছি না। অন্যভাবে চেষ্টা করুন।",
+      "responseSource": "FALLBACK",
+      "rejectionReason": "calc_markup_leak",
+      "intent": "CHAT",
+      "modelUsed": "nexus-core-01",
+      "neuralRan": true,
+      "latencyMs": 537,
+      "error": null
+    }
+  ]
+}

@@ -137,7 +137,7 @@ describe('goal domain validation and development storage', () => {
 
 describe('goal API contract, ownership, idempotency, and lifecycle', () => {
   it('denies unauthenticated access and returns private success envelopes with correlated request IDs', async () => {
-    const app = buildApp();
+    const app = await buildApp();
     try {
       const denied = await app.inject({ method: 'GET', url: '/api/v1/me/goals' });
       expect(denied.statusCode).toBe(401);
@@ -163,7 +163,7 @@ describe('goal API contract, ownership, idempotency, and lifecycle', () => {
   });
 
   it('creates, lists, reads, edits, archives, and soft-deletes goals using snake_case projections', async () => {
-    const app = buildApp();
+    const app = await buildApp();
     try {
       const user = await register(app, 'goal-crud@example.com', 'goal-crud-register');
       const headers = { cookie: user.cookie, 'idempotency-key': 'goal-create-1' };
@@ -259,7 +259,7 @@ describe('goal API contract, ownership, idempotency, and lifecycle', () => {
   });
 
   it('prevents cross-account read, edit, and delete without revealing existence', async () => {
-    const app = buildApp();
+    const app = await buildApp();
     try {
       const owner = await register(app, 'goal-owner@example.com', 'goal-owner-register');
       const other = await register(app, 'goal-other@example.com', 'goal-other-register');
@@ -304,7 +304,7 @@ describe('goal API contract, ownership, idempotency, and lifecycle', () => {
   });
 
   it('rejects owner overrides, malformed requests, unsafe text, and changed idempotency payloads atomically', async () => {
-    const app = buildApp();
+    const app = await buildApp();
     try {
       const user = await register(app, 'goal-validation@example.com', 'goal-validation-register');
       const headers = { cookie: user.cookie, 'idempotency-key': 'goal-validation-create' };
@@ -373,7 +373,7 @@ describe('goal API contract, ownership, idempotency, and lifecycle', () => {
   });
 
   it('replays exact create retries once and paginates in stable order', async () => {
-    const app = buildApp();
+    const app = await buildApp();
     try {
       const user = await register(app, 'goal-retry@example.com', 'goal-retry-register');
       const headers = { cookie: user.cookie, 'idempotency-key': 'goal-exact-retry' };

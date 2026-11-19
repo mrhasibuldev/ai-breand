@@ -157,6 +157,19 @@ autonomous_running = False
 
 # In-memory conversation context storage (session-based)
 conversation_contexts: Dict[str, List[Dict]] = {}
+# Bound total tracked conversations to prevent unbounded memory growth;
+# per-conversation message lists are already capped at 10 entries.
+MAX_CONVERSATION_CONTEXTS = 500
+
+def _ctx_append(conversation_id: str, entry: dict) -> None:
+    if conversation_id not in conversation_contexts:
+        if len(conversation_contexts) >= MAX_CONVERSATION_CONTEXTS:
+            for k in list(conversation_contexts.keys())[:MAX_CONVERSATION_CONTEXTS // 4]:
+                conversation_contexts.pop(k, None)
+        conversation_contexts[conversation_id] = []
+    conversation_contexts[conversation_id].append(entry)
+    if len(conversation_contexts[conversation_id]) > 10:
+        conversation_contexts[conversation_id] = conversation_contexts[conversation_id][-10:]
 
 # Conversation history normalization (Gate B history-contract fix).
 # Accepts 'conversation_history' (orchestrator contract) or 'history' (API contract).
@@ -918,7 +931,9 @@ async def orchestrate(request: Request):
             # ---- SAFETY GUARD: neural output sanity ----
             if _tr.get("neural_ran"):
                 try:
-                    _gout = check_output(_br.get("response",""), source="neural")
+                    _gout = check_output(_br.get("response",""), source="neural",
+                                         expected_lang=_tr.get("language"),
+                                         input_text=message)
                     if not _gout["ok"]:
                         _metric({"route": "safety_guard:output", "fallback": True,
                                  "reason": _gout["reason"], "endpoint": "orchestrate"})
@@ -1047,17 +1062,12 @@ async def orchestrate(request: Request):
 
         # Step 3: Store message in conversation context (legacy in-memory storage)
         if conversation_id:
-            if conversation_id not in conversation_contexts:
-                conversation_contexts[conversation_id] = []
-            conversation_contexts[conversation_id].append({
+            _ctx_append(conversation_id, {
                 "role": "user",
                 "content": message,
                 "language": language,
                 "timestamp": time.time()
             })
-            # Keep only last 10 messages to avoid unbounded growth
-            if len(conversation_contexts[conversation_id]) > 10:
-                conversation_contexts[conversation_id] = conversation_contexts[conversation_id][-10:]
 
         # Step 3: Intent Classification (Multilingual)
         intent = "UNKNOWN"
@@ -1294,13 +1304,12 @@ async def orchestrate(request: Request):
 
         # Step 6: Store assistant response in context
         if conversation_id:
-            if conversation_id in conversation_contexts:
-                conversation_contexts[conversation_id].append({
-                    "role": "assistant",
-                    "content": response_text,
-                    "language": language,
-                    "timestamp": time.time()
-                })
+            _ctx_append(conversation_id, {
+                "role": "assistant",
+                "content": response_text,
+                "language": language,
+                "timestamp": time.time()
+            })
 
         # Step 7: Build diagnostics
         if response_source == "DETERMINISTIC_HANDLER":

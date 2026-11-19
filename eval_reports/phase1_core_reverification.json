@@ -1,0 +1,42 @@
+{
+ "nexus-core-01": {
+  "kind": "core01",
+  "params": 8842560,
+  "expected": 8842560,
+  "missing": 0,
+  "unexpected": 0,
+  "prov_neural": true,
+  "gen_nonempty": false,
+  "note": "empty gen at temp0 on greeting; known EOS behavior"
+ },
+ "nexus-core-02": {
+  "kind": "nexus_sft",
+  "params": 20347712,
+  "expected": 20347712,
+  "missing": 0,
+  "unexpected": 0,
+  "prov_neural": true,
+  "gen_nonempty": true,
+  "sample": "1. Boil water."
+ },
+ "nexus-core-03": {
+  "kind": "nexus_sft",
+  "params": 8842560,
+  "expected": 8842560,
+  "missing": 0,
+  "unexpected": 0,
+  "prov_neural": true,
+  "gen_nonempty": true,
+  "sample": "17."
+ },
+ "nexus-core-04": {
+  "kind": "nexus_sft",
+  "params": 33419072,
+  "expected": 33419072,
+  "missing": 0,
+  "unexpected": 0,
+  "prov_neural": true,
+  "gen_nonempty": true,
+  "sample": "Photosynthesis is"
+ }
+}

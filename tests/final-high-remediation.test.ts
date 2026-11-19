@@ -5,7 +5,7 @@ describe('Final HIGH #2 public API regressions', () => {
   it.each(['/api/v1/not-an-operation', '/api/v1/me/not-an-operation'])(
     'returns the normative not-found error for %s',
     async (url) => {
-      const app = buildApp();
+      const app = await buildApp();
       try {
         const response = await app.inject({
           method: 'GET',
@@ -31,7 +31,7 @@ describe('Final HIGH #2 public API regressions', () => {
   );
 
   it('accepts only the approved consent fields and replays across onboarding completion', async () => {
-    const app = buildApp();
+    const app = await buildApp();
     try {
       const registration = await app.inject({
         method: 'POST',
@@ -109,7 +109,7 @@ describe('Final HIGH #2 public API regressions', () => {
     'I want healthier eating habits.',
     'I feel stressed and want relaxation techniques.',
   ])('stores legitimate wellness text through the API, case %#', async (text) => {
-    const app = buildApp();
+    const app = await buildApp();
     try {
       const registration = await app.inject({
         method: 'POST',

@@ -47,6 +47,17 @@ CAPABILITY=re.compile(r'(what can you do|your (capabilities|features)|capability
 KNOWLEDGE = re.compile(r'(what is|what are|define|explain|describe|summarize|summary|classify|category|meaning of|বুঝাও|ব্যাখ্যা|বর্ণনা|সারাংশ)',re.I)
 REASONING = re.compile(r'(if .+ then|suppose|assume|order|arrange|sequence|logic|logical|constraint|plan|steps to|which is (better|best|more|less)|compare|comparison|because|therefore|conclusion)',re.I)
 
+# Bengali digits ০-৯ -> ASCII 0-9 so math detection/tools see real numbers.
+_BN_DIGIT_TRANS = str.maketrans("০১২৩৪৫৬৭৮৯", "0123456789")
+def _norm_bn_digits(t: str) -> str:
+    return t.translate(_BN_DIGIT_TRANS)
+
+# Bengali math vocabulary (division/multiplication/add/subtract/percent and
+# common word-problem markers). Requires a digit to be present to classify
+# as MATH — avoids hijacking ordinary Bengali sentences containing যোগ etc.
+BENGALI_MATH_RE = re.compile(
+    r'(ভাগ|গুণ|যোগ|বিয়োগ|বিয়োগ|সমান\s*ভাগ|শতকরা|জনের\s*মধ্যে|প্রতি\s*জনে|বিক্রি|দিল|খরচ|হারাল|উধার)')
+
 def classify_intent_v2(text: str, lang: str) -> str:
     t=text.strip()
     if GREETING.match(t): return "GREETING"
@@ -54,7 +65,13 @@ def classify_intent_v2(text: str, lang: str) -> str:
     if THANKS.search(t): return "THANKS"
     if IDENTITY.search(t): return "IDENTITY"
     if CAPABILITY.search(t): return "CAPABILITY"
-    if any(p.search(t) for p in MATH_PATTERNS): return "MATH"
+    mn=_norm_bn_digits(t)
+    if any(p.search(mn) for p in MATH_PATTERNS): return "MATH"
+    if BENGALI_MATH_RE.search(t) and re.search(r'\d', mn): return "MATH"
+    # digit OPERATOR digit + question marker -> math (covers "১২ × ৮ কত?").
+    # '-' excluded: hyphenated numbers ("2-3 cats") are not arithmetic.
+    if re.search(r'\d\s*[+×x*/÷]\s*\d', mn) \
+            and re.search(r'কত|কয়|কতট|what|equal|\?', t, re.I): return "MATH"
     if REASONING.search(t): return "REASONING"
     if KNOWLEDGE.search(t): return "KNOWLEDGE"
     if re.match(r'^(what|how|why|when|where|who|which|is|are|can|does|do)\b',t,re.I): return "GENERAL_QUESTION"
@@ -64,21 +81,42 @@ def classify_intent_v2(text: str, lang: str) -> str:
 
 # ------------------------- math tool (labeled, deterministic) -----------
 def try_math_tool(text: str):
-    """Deterministic arithmetic ONLY. Returns (answer,used) — never neural."""
-    m=re.search(r'(\d+)\s*(?:\+|plus)\s*(\d+)',text,re.I)
+    """Deterministic arithmetic ONLY. Returns (answer,used) — never neural.
+    Bengali digits are normalized to ASCII first; Bengali math keywords and
+    two simple word-problem shapes (equal-share division, give-away
+    subtraction) are handled conservatively."""
+    text=_norm_bn_digits(text)
+    m=re.search(r'(\d+)\s*(?:\+|plus|যোগ)\s*(\d+)',text,re.I)
     if m: return str(int(m.group(1))+int(m.group(2))),True
-    m=re.search(r'(\d+)\s*(?:\-|minus)\s*(\d+)',text,re.I)
+    m=re.search(r'(\d+)\s*(?:\-|minus|বিয়োগ|বিয়োগ)\s*(\d+)',text,re.I)
     if m: return str(int(m.group(1))-int(m.group(2))),True
-    m=re.search(r'(\d+)\s*(?:x|×|\*|times|multiplied by)\s*(\d+)',text,re.I)
+    m=re.search(r'(\d+)\s*(?:x|×|\*|times|multiplied by|গুণ)\s*(\d+)',text,re.I)
     if m: return str(int(m.group(1))*int(m.group(2))),True
-    m=re.search(r'(\d+)\s*(?:÷|/|divided by)\s*(\d+)',text,re.I)
+    m=re.search(r'(\d+)\s*(?:÷|/|divided by|ভাগ)\s*(\d+)',text,re.I)
     if m:
         d=int(m.group(2))
         if d: return str(int(m.group(1))//d),True
+    # "N কে/টিকে M দিয়ে ভাগ" -> N//M ; "N থেকে M বিয়োগ" -> N-M
+    m=re.search(r'(\d+)\s*(?:কে|টিকে|টি)?\s*(\d+)\s*(?:দিয়ে|দ্বারা)?\s*ভাগ',text)
+    if m:
+        d=int(m.group(2))
+        if d: return str(int(m.group(1))//d),True
+    m=re.search(r'(\d+)\s*থেকে\s*(\d+)\s*(?:বিয়োগ|বিয়োগ|কাটো|কেটে)',text)
+    if m: return str(int(m.group(1))-int(m.group(2))),True
     m=re.search(r'(\d+)%\s*(?:off\s*)?(?:of\s*)?(\d+)',text,re.I) or re.search(r'(\d+)\s*টাকার\s*(\d+)%\s*ছাড়',text)
     if m:
         pct,base=int(m.group(1)),int(m.group(2))
         return f"{base} - {pct}% = {base - base*pct//100} (মোট {base*pct//100} ছাড়)",True
+    # Bengali word problems (conservative, labeled deterministic):
+    nums=[int(x) for x in re.findall(r'\d+',text)]
+    # equal-share division: "syman vag" / "joner moddhe"
+    if len(nums)>=2 and re.search(r'সমান\s*ভাগ|জনের\s*মধ্যে|প্রতি\s*জনে',text):
+        d=nums[1]
+        if d: return f"{nums[0]} ÷ {d} = {nums[0]//d}",True
+    # give-away subtraction: sell/give/spend/lost markers, first minus rest
+    if len(nums)>=2 and re.search(r'বিক্রি|দিল|খরচ|হারাল|উধার|বাকি|নষ্ট',text):
+        rest=sum(nums[1:])
+        return f"{nums[0]} - {rest} = {nums[0]-rest}",True
     return None,False
 
 # ------------------------- fallback (language-aware) ---------------------
@@ -263,12 +301,9 @@ class NexusBrain:
             return {"response":pick(CAPABILITY_ANSWER,lang if lang!='unknown' else 'english'),
                     "trace":trace,"latency_ms":round((time.time()-t0)*1000,1)}
         if intent=="MATH":
-            stxt,sprov,smid=self._try_specialist("MATH",message)
-            if stxt:
-                trace["neural_ran"]=True; trace["model_used"]=smid
-                trace["route"]=f"neural:{smid}"; trace["provenance"]=sprov
-                return {"response":stxt,"trace":trace,
-                        "latency_ms":round((time.time()-t0)*1000,1)}
+            # Deterministic calculator first: for parseable arithmetic it is
+            # exact and honestly labeled; the neural specialist is only tried
+            # when the tool cannot parse the request.
             ans,used=try_math_tool(message)
             if used:
                 trace["route"]="tool:deterministic_math"
@@ -277,6 +312,12 @@ class NexusBrain:
                 suffix={"bengali":" (নির্ণায়ক ক্যালকুলেটর)","english":" (deterministic calculator)",
                         "banglish":" (deterministic calculator)","mixed":" (calculator)"}
                 return {"response":f"{ans}{pick(suffix,lang)}","trace":trace,
+                        "latency_ms":round((time.time()-t0)*1000,1)}
+            stxt,sprov,smid=self._try_specialist("MATH",message)
+            if stxt:
+                trace["neural_ran"]=True; trace["model_used"]=smid
+                trace["route"]=f"neural:{smid}"; trace["provenance"]=sprov
+                return {"response":stxt,"trace":trace,
                         "latency_ms":round((time.time()-t0)*1000,1)}
 
         # --- specialist neural path (reasoning/knowledge) ---
