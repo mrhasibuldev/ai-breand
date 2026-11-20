@@ -4,11 +4,11 @@
 
 ### An Independently Developed AI Brain
 
-*Own weights. Own code. Own data. No external AI APIs.*
+_Own weights. Own code. Own data. No external AI APIs._
 
-[![Models](https://img.shields.io/badge/models-5%20cores-blue)]()
-[![License](https://img.shields.io/badge/status-experimental-orange)]()
-[![Inference](https://img.shields.io/badge/inference-CPU%20verified-brightgreen)]()
+[![Models](https://img.shields.io/badge/models-5%20cores-blue)](<>)
+[![License](https://img.shields.io/badge/status-experimental-orange)](<>)
+[![Inference](https://img.shields.io/badge/inference-CPU%20verified-brightgreen)](<>)
 
 </div>
 
@@ -76,7 +76,7 @@ flowchart TD
     T --> CK[("Checkpoints *.pt<br/>+ SHA-256 provenance")]
 ```
 
-**Key accuracy note:** Core-01 through Core-04 are **four separately configured model instances with different weights and sizes sharing ONE Transformer implementation** (`packages/ai-core/core01/transformer.py`). They are not four different architectures. Core-05 is a *proposed* future model — not implemented.
+**Key accuracy note:** Core-01 through Core-04 are **four separately configured model instances with different weights and sizes sharing ONE Transformer implementation** (`packages/ai-core/core01/transformer.py`). They are not four different architectures. Core-05 is a _proposed_ future model — not implemented.
 
 ### Request-to-response flow
 
@@ -106,13 +106,13 @@ sequenceDiagram
 
 All values verified 2026-11-18 by strict `load_state_dict(strict=True)` + SHA-256 validation (`ml-service/model_registry.py`).
 
-| Model | Params | Architecture (shared impl, own config) | Checkpoint | Strict load | Generation | Specialization | Known limitations |
-|---|---|---|---|---|---|---|---|
-| **nexus-core-01** | 8,842,560 | d256·L6·H8·ff1024·len512 | `checkpoints_core01_run3/checkpoint_final.pt` (Git LFS) | ✅ VERIFIED | ⚠️ PARTIAL (38/56 non-empty) | general/base LM | undertrained; English-biased word salad; immediate-EOS on many chat prompts |
-| **nexus-core-02** | 20,347,712 | d384·L8·H12·ff1536·len512 | `checkpoints_core02_sft_v2/checkpoint_final.pt` (Git LFS) | ✅ VERIFIED | ⚠️ PARTIAL | reasoning specialist | template collapse — ~5 memorized responses for all prompts; 60% train-set duplication |
-| **nexus-core-03** | 8,842,560 | d256·L6·H8·ff1024·len512 | `checkpoints_core03_sft_v2/checkpoint_final.pt` (Git LFS) | ✅ VERIFIED | ⚠️ PARTIAL | mathematics specialist | emits bare numbers; **9.2%** held-out numeric accuracy |
-| **nexus-core-04** | 33,419,072 | d512·L8·H8·ff2048·len512 | `checkpoints_core04_sft_v3/checkpoint_final.pt` (Git LFS) | ✅ VERIFIED | ⚠️ PARTIAL | knowledge/memorization | prompt-insensitive recall over 318-record curated KB |
-| **nexus-medium** | 2,452,544 | d128·L2·H2·ff512·len128 | `checkpoints_medium/final_model.pt` | ✅ VERIFIED | ❌ WEAK (4/24) | legacy fallback only | gibberish-prone; retained as emergency fallback |
+| Model             | Params     | Architecture (shared impl, own config) | Checkpoint                                                | Strict load | Generation                   | Specialization         | Known limitations                                                                     |
+| ----------------- | ---------- | -------------------------------------- | --------------------------------------------------------- | ----------- | ---------------------------- | ---------------------- | ------------------------------------------------------------------------------------- |
+| **nexus-core-01** | 8,842,560  | d256·L6·H8·ff1024·len512               | `checkpoints_core01_run3/checkpoint_final.pt` (Git LFS)   | ✅ VERIFIED | ⚠️ PARTIAL (38/56 non-empty) | general/base LM        | undertrained; English-biased word salad; immediate-EOS on many chat prompts           |
+| **nexus-core-02** | 20,347,712 | d384·L8·H12·ff1536·len512              | `checkpoints_core02_sft_v2/checkpoint_final.pt` (Git LFS) | ✅ VERIFIED | ⚠️ PARTIAL                   | reasoning specialist   | template collapse — ~5 memorized responses for all prompts; 60% train-set duplication |
+| **nexus-core-03** | 8,842,560  | d256·L6·H8·ff1024·len512               | `checkpoints_core03_sft_v2/checkpoint_final.pt` (Git LFS) | ✅ VERIFIED | ⚠️ PARTIAL                   | mathematics specialist | emits bare numbers; **9.2%** held-out numeric accuracy                                |
+| **nexus-core-04** | 33,419,072 | d512·L8·H8·ff2048·len512               | `checkpoints_core04_sft_v3/checkpoint_final.pt` (Git LFS) | ✅ VERIFIED | ⚠️ PARTIAL                   | knowledge/memorization | prompt-insensitive recall over 318-record curated KB                                  |
+| **nexus-medium**  | 2,452,544  | d128·L2·H2·ff512·len128                | `checkpoints_medium/final_model.pt`                       | ✅ VERIFIED | ❌ WEAK (4/24)               | legacy fallback only   | gibberish-prone; retained as emergency fallback                                       |
 
 **Tokenizer (shared):** SentencePiece BPE, vocab 8,000 — `data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model`; pad=0, unk=1, bos=2, eos=3. Known limits: Banglish fragmentation, UNK on unseen foreign scripts.
 
@@ -121,6 +121,7 @@ All values verified 2026-11-18 by strict `load_state_dict(strict=True)` + SHA-25
 ## 4. Current Capabilities
 
 ### ✅ Implemented & verified
+
 - Four-core model registry with SHA-256-gated loading and strict state-dict checks
 - Language→intent model router with honest provenance traces
 - `neural_only` chat mode — neural cores only, explicit failure errors, zero deterministic substitution
@@ -135,15 +136,18 @@ All values verified 2026-11-18 by strict `load_state_dict(strict=True)` + SHA-25
 - Git LFS distribution of all five registered cores
 
 ### ⚠️ Implemented but partially verified
+
 - Neural text generation (mechanically verified; semantically weak — see §14)
 - Bengali generation (works mechanically; quality limited to core-04's memorized KB sentences)
 - Multi-turn (single-turn inference path; context only via inline history text)
 - API↔ML integration (verified live: `/inference` → routed neural response)
 
 ### 📋 Planned (not implemented)
+
 - Dataset V5 construction · Core-05 model · Core-01 Run5/SFT · KV-cache decoding · quantized inference · public model API · agent/voice capabilities · consent-based memory runtime
 
 ### ❌ Not implemented
+
 - External AI provider integration (intentionally — prohibited by design)
 - Production-grade conversational quality (no core qualifies)
 
@@ -152,34 +156,36 @@ All values verified 2026-11-18 by strict `load_state_dict(strict=True)` + SHA-25
 ## 5. Technology Stack
 
 ### Current (verified)
-| Layer | Technology |
-|---|---|
-| Web | Next.js 15, React 19, TypeScript |
-| API | Fastify, TypeScript, pnpm 11 workspaces |
-| ML service | FastAPI, PyTorch 2.x, SentencePiece, uvicorn |
-| Model | Custom decoder-only Transformer (`core01/transformer.py`) |
-| Tokenizer | SentencePiece BPE 8K (own trained asset) |
-| Database | Neon PostgreSQL (schema `nexus`) |
-| Monorepo | pnpm workspaces: `apps/{web,api,worker}`, `packages/*` |
-| GPU training | Google Colab (temporary, authorized cells only) |
+
+| Layer        | Technology                                                |
+| ------------ | --------------------------------------------------------- |
+| Web          | Next.js 15, React 19, TypeScript                          |
+| API          | Fastify, TypeScript, pnpm 11 workspaces                   |
+| ML service   | FastAPI, PyTorch 2.x, SentencePiece, uvicorn              |
+| Model        | Custom decoder-only Transformer (`core01/transformer.py`) |
+| Tokenizer    | SentencePiece BPE 8K (own trained asset)                  |
+| Database     | Neon PostgreSQL (schema `nexus`)                          |
+| Monorepo     | pnpm workspaces: `apps/{web,api,worker}`, `packages/*`    |
+| GPU training | Google Colab (temporary, authorized cells only)           |
 
 ### Recommended future additions
-See `docs/architecture/future/NEXUSAI_RECOMMENDED_TECHNOLOGY_STACK.md` — includes KV caching, gradient checkpointing, dataset near-dup tooling, CI, and optional C++/CUDA/Triton paths *only where profiling justifies*. **No external AI services are recommended anywhere.**
+
+See `docs/architecture/future/NEXUSAI_RECOMMENDED_TECHNOLOGY_STACK.md` — includes KV caching, gradient checkpointing, dataset near-dup tooling, CI, and optional C++/CUDA/Triton paths _only where profiling justifies_. **No external AI services are recommended anywhere.**
 
 ---
 
 ## 6. Requirements
 
-| Requirement | Verified value |
-|---|---|
-| OS | Windows/Linux/macOS (developed on Windows) |
-| Node.js | ≥22 <25 (verified on v24.15.0) |
-| pnpm | 11.x (verified 11.19.0) |
-| Python | 3.11–3.14 (verified 3.14.6) |
-| PyTorch | ≥2.0 CPU; CUDA build for GPU training |
-| RAM | ~8 GB comfortable for CPU inference of all cores (core-04 peaks ~775 MB) |
-| GPU | not required for inference; T4-class for authorized Colab training |
-| Storage | ~2 GB for code+datasets; ~1 GB for checkpoints; check `du` before cloning corpora |
+| Requirement | Verified value                                                                    |
+| ----------- | --------------------------------------------------------------------------------- |
+| OS          | Windows/Linux/macOS (developed on Windows)                                        |
+| Node.js     | ≥22 <25 (verified on v24.15.0)                                                    |
+| pnpm        | 11.x (verified 11.19.0)                                                           |
+| Python      | 3.11–3.14 (verified 3.14.6)                                                       |
+| PyTorch     | ≥2.0 CPU; CUDA build for GPU training                                             |
+| RAM         | ~8 GB comfortable for CPU inference of all cores (core-04 peaks ~775 MB)          |
+| GPU         | not required for inference; T4-class for authorized Colab training                |
+| Storage     | ~2 GB for code+datasets; ~1 GB for checkpoints; check `du` before cloning corpora |
 
 ---
 
@@ -188,9 +194,11 @@ See `docs/architecture/future/NEXUSAI_RECOMMENDED_TECHNOLOGY_STACK.md` — inclu
 > Beginner-friendly. All commands verified against this repository.
 
 ### Step 1 — Prerequisites
+
 Install [Node.js 22–24](https://nodejs.org), [pnpm](https://pnpm.io) (`npm i -g pnpm`), and [Python 3.11+](https://python.org) with pip.
 
 ### Step 2 — Clone
+
 ```bash
 git clone https://github.com/mrhasibuldev/ai-breand.git
 cd ai-breand
@@ -199,11 +207,13 @@ git lfs pull           # downloads ~430 MB of checkpoints + tokenizer
 ```
 
 ### Step 3 — Install JS dependencies
+
 ```bash
 pnpm install
 ```
 
 ### Step 4 — Python ML environment
+
 ```bash
 cd packages/ai-core/ml-service
 python -m venv .venv
@@ -213,18 +223,22 @@ pip install -r requirements.txt
 ```
 
 ### Step 5 — Environment variables
+
 ```bash
 cp .env.example .env            # then edit .env with YOUR values
 ```
+
 Minimum for local dev: `DATABASE_URL` (Neon), `COOKIE_SECRET` (`openssl rand -base64 32`), `AI_SERVICE_URL=http://127.0.0.1:8000`. **Never commit `.env`.**
 
 ### Step 6 — Start services (three terminals)
+
 ```bash
 pnpm dev            # web (3000) + api (4000) + worker
 pnpm dev:ml         # ML service (8000)
 ```
 
 ### Step 7 — Verify
+
 ```bash
 curl http://127.0.0.1:8000/health        # {"status":"ok",...}
 curl http://127.0.0.1:8000/model/status  # Core-01 loaded, 8,842,560 params
@@ -236,15 +250,16 @@ open http://localhost:3000               # web app
 
 ## 8. Running NexusAI
 
-| Service | Command | Port | Health check |
-|---|---|---|---|
-| Web | `pnpm --filter @nexusai/web dev` (or `pnpm dev`) | 3000 | open browser |
-| API | `pnpm --filter @nexusai/api dev` | 4000 | `GET /health` |
-| ML | `cd packages/ai-core/ml-service && python main.py` | 8000 | `GET /health`, `GET /model/status` |
+| Service | Command                                            | Port | Health check                       |
+| ------- | -------------------------------------------------- | ---- | ---------------------------------- |
+| Web     | `pnpm --filter @nexusai/web dev` (or `pnpm dev`)   | 3000 | open browser                       |
+| API     | `pnpm --filter @nexusai/api dev`                   | 4000 | `GET /health`                      |
+| ML      | `cd packages/ai-core/ml-service && python main.py` | 8000 | `GET /health`, `GET /model/status` |
 
 **Model selection** is automatic via `model_router.py`: language detection → intent classification → specialist (core-03 math / core-04 knowledge / core-02 reasoning) or primary core-01; `nexus-medium` is the labeled legacy fallback. `neural_only=True` (env `NEURAL_ONLY_CHAT`) restricts to neural cores with explicit error on failure.
 
 **Test inference directly:**
+
 ```bash
 curl -X POST http://127.0.0.1:8000/inference \
   -H "Content-Type: application/json" \
@@ -260,13 +275,13 @@ curl -X POST http://127.0.0.1:8000/inference \
 
 ## 9. Dataset Documentation
 
-| Dataset | Location | Records (verified) | Status |
-|---|---|---|---|
-| Core-02 reasoning SFT | `packages/ai-core/data/core02_reasoning/` | 2,386 train / 132 val / 132 test | ⚠️ 60% exact-duplicate train records (documented defect) |
-| Core-03 math SFT | `packages/ai-core/data/core03_math/` | 1,576 / 87 / 87 | ⚠️ 18% duplicates; 1 cross-split leak |
-| Core-04 knowledge SFT | `packages/ai-core/data/core04_knowledge/` (+`_full`) | 256 / 31 / 31 (+318 full) | clean; small curated KB |
-| Unified conversational V1–V4 | `data/unified_conversational/v{1..4}/` | manifests+checksums committed; `.jsonl` gitignored | verified structure; V1≈645, V2≈1,054, V3/V4 record-dir format |
-| **V5** | — | — | ❌ **NOT CONSTRUCTED** — builders exist (`build_unified_conv_v5*.py`), dataset absent; next authorized mission |
+| Dataset                      | Location                                             | Records (verified)                                 | Status                                                                                                         |
+| ---------------------------- | ---------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Core-02 reasoning SFT        | `packages/ai-core/data/core02_reasoning/`            | 2,386 train / 132 val / 132 test                   | ⚠️ 60% exact-duplicate train records (documented defect)                                                       |
+| Core-03 math SFT             | `packages/ai-core/data/core03_math/`                 | 1,576 / 87 / 87                                    | ⚠️ 18% duplicates; 1 cross-split leak                                                                          |
+| Core-04 knowledge SFT        | `packages/ai-core/data/core04_knowledge/` (+`_full`) | 256 / 31 / 31 (+318 full)                          | clean; small curated KB                                                                                        |
+| Unified conversational V1–V4 | `data/unified_conversational/v{1..4}/`               | manifests+checksums committed; `.jsonl` gitignored | verified structure; V1≈645, V2≈1,054, V3/V4 record-dir format                                                  |
+| **V5**                       | —                                                    | —                                                  | ❌ **NOT CONSTRUCTED** — builders exist (`build_unified_conv_v5*.py`), dataset absent; next authorized mission |
 
 Format: JSONL `{"messages":[{"role":"user","content":...},{"role":"assistant","content":...}], ...}` with `dataset_manifest.json` + `checksums.sha256` per dataset. Splits are content-hash based; leakage checked (essentially clean). `*.jsonl` is gitignored by policy — datasets distribute out-of-band; manifests and checksums are committed.
 
@@ -277,6 +292,7 @@ Format: JSONL `{"messages":[{"role":"user","content":...},{"role":"assistant","c
 > **Documentation only — no training was run for this release.** Commands below reference existing scripts; GPU runs require separate authorization.
 
 ### Concepts
+
 - **Checkpoint**: a `.pt` file containing `model_state_dict` + optimizer/scheduler/RNG state + metadata (epoch, step, loss, status). Verified by SHA-256 sidecars.
 - **Tokenizer**: SentencePiece BPE model file (`sp_bpe_8k.model`) — maps text↔token IDs. Trained once; treated as a fixed asset.
 - **Pretraining**: next-token prediction on raw corpus (`core01/pretraining_driver.py`, `training.py`).
@@ -284,6 +300,7 @@ Format: JSONL `{"messages":[{"role":"user","content":...},{"role":"assistant","c
 - **Instruction tuning / reasoning training**: SFT variants requiring appropriately formatted datasets (V5 roadmap).
 
 ### Existing verified pipeline
+
 1. **Prepare data** — builders `packages/ai-core/data/build_*.py` emit `train/validation/test.jsonl` + manifest + checksums.
 2. **Validate** — check manifest counts, duplicates, split leakage (see §9 findings).
 3. **Configure** — per-core config in `models/nexusai_core_0X/config/model_config.py`.
@@ -293,6 +310,7 @@ Format: JSONL `{"messages":[{"role":"user","content":...},{"role":"assistant","c
 7. **Deploy locally** — register in `model_registry.py` with SHA-256; CPU inference verified path.
 
 ### Core-05 (PLANNED — not implemented)
+
 Audit complete (`docs/architecture/audits/NEXUSAI_CORE05_STAGE0_TRAINING_READINESS_AUDIT.md`): ~45.9M params designed, **blocked on missing Dataset V5**. No config/weights exist.
 
 ---
@@ -339,20 +357,20 @@ python packages/ai-core/tests/four_core/test_generation_repairs.py
 
 ## 14. Known Limitations
 
-*Verified 2026-11-18 — do not read this as marketing.*
+_Verified 2026-11-18 — do not read this as marketing._
 
-| Limitation | Evidence |
-|---|---|
-| No working conversational model | core-01 38/56 non-empty, English word-salad; 18 immediate-EOS |
-| Core-02 template collapse | identical `1. Boil water.`-style outputs across all 24 prompts |
-| Core-03 unreliable math | 8/87 = 9.2% held-out numeric accuracy; bare numbers for any input |
-| Core-04 narrow memorization | fluent but prompt-insensitive; 318-record KB only |
-| Banglish fragmentation | tokenizer audit: 0.41 tok/char, `Programming`→`Pro gr am ming` |
-| CPU-only, no KV cache | ~0.1–1.2 s/gen; O(n²) context cost |
-| Single-turn inference | no multi-turn state in generation path |
-| Dataset defects | core02 60% / core03 18% exact-duplicate train records |
-| V5 absent | Core-05 training BLOCKED until V5 built |
-| App tests need env | **RESOLVED** — `vitest.config.ts` provides isolated test env; suite is 203/203 passing |
+| Limitation                      | Evidence                                                                               |
+| ------------------------------- | -------------------------------------------------------------------------------------- |
+| No working conversational model | core-01 38/56 non-empty, English word-salad; 18 immediate-EOS                          |
+| Core-02 template collapse       | identical `1. Boil water.`-style outputs across all 24 prompts                         |
+| Core-03 unreliable math         | 8/87 = 9.2% held-out numeric accuracy; bare numbers for any input                      |
+| Core-04 narrow memorization     | fluent but prompt-insensitive; 318-record KB only                                      |
+| Banglish fragmentation          | tokenizer audit: 0.41 tok/char, `Programming`→`Pro gr am ming`                         |
+| CPU-only, no KV cache           | ~0.1–1.2 s/gen; O(n²) context cost                                                     |
+| Single-turn inference           | no multi-turn state in generation path                                                 |
+| Dataset defects                 | core02 60% / core03 18% exact-duplicate train records                                  |
+| V5 absent                       | Core-05 training BLOCKED until V5 built                                                |
+| App tests need env              | **RESOLVED** — `vitest.config.ts` provides isolated test env; suite is 203/203 passing |
 
 ---
 
@@ -365,11 +383,16 @@ python packages/ai-core/tests/four_core/test_generation_repairs.py
 - [x] Neural output guard hardening: Bengali letter-ratio language check + English wrong-language/low-relevance rejection → honest fallback
 - [x] Git LFS delivery of all five registered cores (clone-retrievable checkpoints)
 - [x] 203/203 Vitest + 44/44 + 13/13 Python stabilization suites green
-- [ ] Dataset V5 construction *(next authorized mission)*
+- [x] Multi-model, voice, and visual interface foundations (types and interfaces only)
+- [ ] Dataset V5 construction _(next authorized mission)_
 - [ ] Core-01 Run4/Run5 SFT for chat-capable generation
 - [ ] Core-02/03/04 retraining on deduplicated data
 - [ ] KV-cache decoding + quantized CPU inference
 - [ ] Core-05 implementation + staged training
+- [ ] ASR model training (blocked by hardware - requires 32GB RAM + RTX 3080)
+- [ ] TTS model training (blocked by hardware - requires 32GB RAM + RTX 3080)
+- [ ] Live voice implementation (blocked by hardware)
+- [ ] 2050 Universe visual implementation (blocked by hardware)
 - [ ] Multi-turn context, reasoning, self-correction
 - [ ] Consent-based memory runtime, voice, agents, public API
 
@@ -382,13 +405,21 @@ NexusAI is designed for long-term evolution: **build the architecture once, then
 ### Multi-Model Architecture
 
 **Current Foundation (VERIFIED):**
+
 - Model registry with SHA-256 validation (`model_registry.py`)
 - Language detection and intent routing (`model_router.py`)
 - Specialist routing (Core-02 reasoning, Core-03 math, Core-04 knowledge)
 - Fallback mechanism (Core-01 primary, Medium legacy)
 
-**Planned Enhancements:**
-- Standardized model interface (`NexusAIModel`)
+**Implemented (INTERFACES ONLY):**
+
+- Standardized model interface (`packages/ai-core/model-interface/model-interface.ts`)
+- Model capability types (ModelCapabilities, ResourceRequirements)
+- Generation options and result types
+- Model metadata interface
+
+**Planned Enhancements (BLOCKED by hardware):**
+
 - Dynamic model loading/unloading (lazy loading, resource-aware)
 - Capability-based routing (task → capability → model)
 - Multi-level fallback chain (specialist → primary → generic → legacy)
@@ -399,16 +430,27 @@ NexusAI is designed for long-term evolution: **build the architecture once, then
 ### Unified Conversation Engine
 
 **Current State (PARTIALLY VERIFIED):**
+
 - ConversationContext.tsx (React context)
 - ConversationManager (TypeScript)
 - Database-based conversation storage (Neon PostgreSQL)
 - In-memory context for session-only history
 
-**Planned Unified Engine:**
-- Single engine for text and voice input
+**Implemented (INTERFACES ONLY):**
+
+- Unified conversation engine interface (`packages/ai-core/conversation-engine/conversation-engine.ts`)
+- UnifiedConversationEngine interface
+- ConversationContext and ConversationMessage types
+- GenerationRequest and GenerationResponse types
+- Support for both text and voice input types
+
+**Planned Implementation (BLOCKED by hardware):**
+
+- Actual unified engine implementation
 - Persistent context across sessions (database migration to local)
-- Streaming response support (future)
-- Cancellation and error handling
+- Streaming response support
+- ASR integration
+- TTS integration
 - No duplicate conversation systems
 
 **Flow:** Text/ASR → Unified Engine → Model Router → Neural Model → Text/TTS Response
@@ -416,17 +458,29 @@ NexusAI is designed for long-term evolution: **build the architecture once, then
 ### Live Voice Architecture
 
 **Current Status (VERIFIED NOT EXISTENT):**
+
 - No ASR model
 - No TTS model
 - No audio processing components
 
-**Planned Pipeline:**
+**Implemented (INTERFACES ONLY):**
+
+- Voice interface types (`packages/ai-core/voice-interface/voice-interface.ts`)
+- NexusAIASR interface (independent ASR model interface)
+- NexusAITTS interface (independent TTS model interface)
+- VoiceSessionManager interface
+- VoiceProfile types (multiple voice support)
+- VoiceState types (IDLE, LISTENING, THINKING, SPEAKING, INTERRUPTED, ERROR)
+
+**Planned Pipeline (BLOCKED by hardware - requires 32GB RAM + RTX 3080 GPU):**
+
 ```
 Microphone → Audio Input → ASR → Text → NexusAI Conversation Engine
 → Model Router → Generated Response → TTS → Speaker
 ```
 
 **Independent Development (NON-NEGOTIABLE):**
+
 - No external ASR APIs (Google, OpenAI, etc.)
 - No external TTS APIs (ElevenLabs, etc.)
 - No cloud speech services
@@ -434,6 +488,7 @@ Microphone → Audio Input → ASR → Text → NexusAI Conversation Engine
 - Local inference
 
 **Phases:**
+
 1. ASR research and prototype (CTC-based, ~50M params)
 2. TTS research and prototype (Tacotron 2, ~50M params)
 3. Audio processing engine (VAD, segmentation, streaming)
@@ -445,19 +500,37 @@ Microphone → Audio Input → ASR → Text → NexusAI Conversation Engine
 ### Multiple Voice System
 
 **Planned Capabilities:**
+
 - Multiple voice profiles (Bengali, English, bilingual)
 - Voice selection in Settings
 - Speaking speed and pitch adjustment
 - Future custom voice creation (with consent)
 
 **Architecture:**
+
 - Voice profile registry (independent of reasoning model)
 - TTS model separate from Core models
 - Changing TTS model does not require Core replacement
 
 ### 2050-Style UI Architecture
 
-**Planned Visual Experience:**
+**Current Status (VERIFIED NOT EXISTENT):**
+
+- No visual components
+- No animation system
+- No 2050 Universe renderer
+
+**Implemented (INTERFACES ONLY):**
+
+- Visual interface types (`packages/ai-core/visual-interface/visual-interface.ts`)
+- VisualStateController interface
+- VisualState types (IDLE, LISTENING, THINKING, SPEAKING, INTERRUPTION)
+- QualityLevel types (LOW, MEDIUM, HIGH)
+- Quality presets for different hardware
+- Galaxy, Particle, and Sphere configuration types
+
+**Planned Visual Experience (BLOCKED by hardware constraints):**
+
 - Futuristic cosmic environment
 - Central energy sphere
 - Thousands of rotating galaxies (GPU instancing)
@@ -472,52 +545,62 @@ Microphone → Audio Input → ASR → Text → NexusAI Conversation Engine
 ### Implementation Phases
 
 **Phase 0: Stabilization** (1-2 weeks)
+
 - Verify Homepage, Chat, New Chat functionality
 - Storage cleanup (20GB free)
 - Browser verification
 
 **Phase 1: Multi-Model Foundation** (4-6 weeks)
+
 - Standardized model interface
 - Dynamic loading/unloading
 - Capability-based routing
 
 **Phase 2: Unified Conversation Engine** (4-6 weeks)
+
 - Unified text+voice engine
 - Persistent context
 - Cancellation support
 
 **Phase 3: Model Improvements** (8-12 weeks, requires hardware upgrade)
+
 - Core-01 Run4/Run5 SFT
 - Core-02/03/04 retraining
 - Dataset V5 construction
 - Core-05 implementation
 
 **Phase 4: ASR Research & Prototype** (8-12 weeks, requires 32GB RAM + RTX 3080)
+
 - ASR architecture research
 - Dataset acquisition (500-1000 hours speech)
 - ASR prototype (CTC-based)
 
 **Phase 5: TTS Research & Prototype** (8-12 weeks, requires 32GB RAM + RTX 3080)
+
 - TTS architecture research
 - Dataset acquisition (20-50 hours speech)
 - TTS prototype (Tacotron 2)
 
 **Phase 6: Live Voice Integration** (6-8 weeks)
+
 - Audio processing engine
 - Voice session manager
 - ASR/TTS integration
 
 **Phase 7: Voice Profile System** (4-6 weeks)
+
 - Voice profile registry
 - Predefined voices
 - Settings UI
 
 **Phase 8: 2050 Universe Visuals** (6-8 weeks)
+
 - Universe renderer (Three.js)
 - Five animation states
 - Audio-visual reactivity
 
 **Phase 9: Testing & Validation** (4-6 weeks)
+
 - Performance benchmarks
 - Security audit
 - Browser compatibility
@@ -576,6 +659,7 @@ No `LICENSE` file exists in the repository — **no license is currently declare
 **NexusAI** হলো একটি সম্পূর্ণ স্বদেশীয় AI প্রকল্প — এর নিজস্ব model, নিজের trained weights, নিজের tokenizer এবং নিজের inference engine আছে। এটি কোনো বাইরের AI API (যেমন OpenAI বা Gemini) ব্যবহার করে না — সব intelligent text 우리 model-ই generate করে।
 
 **বর্তমান অবস্থা (সৎ মূল্যায়ন):**
+
 - চারটি model core (Core-01 থেকে Core-04)적으로 কাজ করে — checkpoint load হয়, neural text generate হয়।
 - তবে এখনো কোনো model-ই ভালো conversational partner নয়: Core-01 undertrained, Core-02 template_bound, Core-03-এর math accuracy মাত্র ~৯%, Core-04 মাত্র ছোট knowledge base মনে রাখে।
 - পরের ধাপ: Dataset V5 তৈরি → Core-01-কে SFT করা → ধীরে ধীরে capability বাড়ানো।
