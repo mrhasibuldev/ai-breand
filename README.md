@@ -383,16 +383,16 @@ _Verified 2026-11-18 — do not read this as marketing._
 - [x] Neural output guard hardening: Bengali letter-ratio language check + English wrong-language/low-relevance rejection → honest fallback
 - [x] Git LFS delivery of all five registered cores (clone-retrievable checkpoints)
 - [x] 203/203 Vitest + 44/44 + 13/13 Python stabilization suites green
-- [x] Multi-model, voice, and visual interface foundations (types and interfaces only)
+- [x] Multi-model, voice, and visual interface foundations (types and interfaces only - local only)
 - [ ] Dataset V5 construction _(next authorized mission)_
 - [ ] Core-01 Run4/Run5 SFT for chat-capable generation
 - [ ] Core-02/03/04 retraining on deduplicated data
 - [ ] KV-cache decoding + quantized CPU inference
 - [ ] Core-05 implementation + staged training
-- [ ] ASR model training (blocked by hardware - requires 32GB RAM + RTX 3080)
-- [ ] TTS model training (blocked by hardware - requires 32GB RAM + RTX 3080)
-- [ ] Live voice implementation (blocked by hardware)
-- [ ] 2050 Universe visual implementation (blocked by hardware)
+- [ ] ASR model training (BLOCKED - requires 32GB RAM + RTX 3080 GPU)
+- [ ] TTS model training (BLOCKED - requires 32GB RAM + RTX 3080 GPU)
+- [ ] Live voice implementation (BLOCKED - requires hardware upgrade)
+- [ ] 2050 Universe visual implementation (BLOCKED - requires GPU)
 - [ ] Multi-turn context, reasoning, self-correction
 - [ ] Consent-based memory runtime, voice, agents, public API
 
