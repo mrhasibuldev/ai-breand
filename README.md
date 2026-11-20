@@ -6,7 +6,7 @@
 
 *Own weights. Own code. Own data. No external AI APIs.*
 
-[![Models](https://img.shields.io/badge/models-4%20cores%20%2B%20fallback-blue)]()
+[![Models](https://img.shields.io/badge/models-5%20cores-blue)]()
 [![License](https://img.shields.io/badge/status-experimental-orange)]()
 [![Inference](https://img.shields.io/badge/inference-CPU%20verified-brightgreen)]()
 
@@ -108,9 +108,9 @@ All values verified 2026-11-18 by strict `load_state_dict(strict=True)` + SHA-25
 | Model | Params | Architecture (shared impl, own config) | Checkpoint | Strict load | Generation | Specialization | Known limitations |
 |---|---|---|---|---|---|---|---|
 | **nexus-core-01** | 8,842,560 | d256·L6·H8·ff1024·len512 | `checkpoints_core01_run3/checkpoint_final.pt` (Git LFS) | ✅ VERIFIED | ⚠️ PARTIAL (38/56 non-empty) | general/base LM | undertrained; English-biased word salad; immediate-EOS on many chat prompts |
-| **nexus-core-02** | 20,347,712 | d384·L8·H12·ff1536·len512 | `checkpoints_core02_sft_v2/checkpoint_final.pt` | ✅ VERIFIED | ⚠️ PARTIAL | reasoning specialist | template collapse — ~5 memorized responses for all prompts; 60% train-set duplication |
-| **nexus-core-03** | 8,842,560 | d256·L6·H8·ff1024·len512 | `checkpoints_core03_sft_v2/checkpoint_final.pt` | ✅ VERIFIED | ⚠️ PARTIAL | mathematics specialist | emits bare numbers; **9.2%** held-out numeric accuracy |
-| **nexus-core-04** | 33,419,072 | d512·L8·H8·ff2048·len512 | `checkpoints_core04_sft_v3/checkpoint_final.pt` | ✅ VERIFIED | ⚠️ PARTIAL | knowledge/memorization | prompt-insensitive recall over 318-record curated KB |
+| **nexus-core-02** | 20,347,712 | d384·L8·H12·ff1536·len512 | `checkpoints_core02_sft_v2/checkpoint_final.pt` (Git LFS) | ✅ VERIFIED | ⚠️ PARTIAL | reasoning specialist | template collapse — ~5 memorized responses for all prompts; 60% train-set duplication |
+| **nexus-core-03** | 8,842,560 | d256·L6·H8·ff1024·len512 | `checkpoints_core03_sft_v2/checkpoint_final.pt` (Git LFS) | ✅ VERIFIED | ⚠️ PARTIAL | mathematics specialist | emits bare numbers; **9.2%** held-out numeric accuracy |
+| **nexus-core-04** | 33,419,072 | d512·L8·H8·ff2048·len512 | `checkpoints_core04_sft_v3/checkpoint_final.pt` (Git LFS) | ✅ VERIFIED | ⚠️ PARTIAL | knowledge/memorization | prompt-insensitive recall over 318-record curated KB |
 | **nexus-medium** | 2,452,544 | d128·L2·H2·ff512·len128 | `checkpoints_medium/final_model.pt` | ✅ VERIFIED | ❌ WEAK (4/24) | legacy fallback only | gibberish-prone; retained as emergency fallback |
 
 **Tokenizer (shared):** SentencePiece BPE, vocab 8,000 — `data/experimental/phase9_2/tokenizers/bpe_8k/sp_bpe_8k.model`; pad=0, unk=1, bos=2, eos=3. Known limits: Banglish fragmentation, UNK on unseen foreign scripts.
@@ -128,6 +128,10 @@ All values verified 2026-11-18 by strict `load_state_dict(strict=True)` + SHA-25
 - Pretraining driver with zero-step completion guard
 - Colab GPU training cells with authorization + checkpoint-hash gates (Run4 prepared, not executed)
 - Reproducible verification suites (`evaluation/`, `tests/four_core/`)
+- Session preservation on transient backend failures (401/403-only logout)
+- Bounded AI-request timeout + clean user-cancel handling in chat UI
+- Neural output validation: language-mismatch, degenerate-repetition, markup-leak, and English low-relevance rejection with honest fallback
+- Git LFS distribution of all five registered cores
 
 ### ⚠️ Implemented but partially verified
 - Neural text generation (mechanically verified; semantically weak — see §14)
@@ -189,6 +193,8 @@ Install [Node.js 22–24](https://nodejs.org), [pnpm](https://pnpm.io) (`npm i -
 ```bash
 git clone https://github.com/mrhasibuldev/ai-breand.git
 cd ai-breand
+git lfs install        # required once — model checkpoints are Git LFS objects
+git lfs pull           # downloads ~430 MB of checkpoints + tokenizer
 ```
 
 ### Step 3 — Install JS dependencies
@@ -247,7 +253,7 @@ curl -X POST http://127.0.0.1:8000/inference \
 
 **Logs:** ML service prints to stdout; API logs `[API]`; use `pnpm dev` parallel output.
 
-**Common failures:** `ModuleNotFoundError` → install ml-service requirements; `CHECKPOINT missing` → verify `.pt` files exist (they are gitignored — restore from backup/bundle); `COOKIE_SECRET required` → set in `.env`; poor responses → expected, see §14.
+**Common failures:** `ModuleNotFoundError` → install ml-service requirements; `CHECKPOINT missing` → run `git lfs pull` (core checkpoints are Git LFS objects; medium is a regular git file); `COOKIE_SECRET required` → set in `.env`; poor responses → expected, see §14.
 
 ---
 
@@ -345,7 +351,7 @@ python packages/ai-core/tests/four_core/test_generation_repairs.py
 | Single-turn inference | no multi-turn state in generation path |
 | Dataset defects | core02 60% / core03 18% exact-duplicate train records |
 | V5 absent | Core-05 training BLOCKED until V5 built |
-| App tests need env | `pnpm test` requires `COOKIE_SECRET`/DB env — 166 env-dependent failures without `.env` (pre-existing, unrelated to model code) |
+| App tests need env | **RESOLVED** — `vitest.config.ts` provides isolated test env; suite is 203/203 passing |
 
 ---
 
@@ -354,6 +360,10 @@ python packages/ai-core/tests/four_core/test_generation_repairs.py
 - [x] Four-core registry, router, strict loading, neural-only mode
 - [x] Stage-1/2 forensic audit + three defect repairs (F2/F3/Q4)
 - [x] Reproducible verification suites + regression tests
+- [x] Full-stack stabilization: CSRF fix, bounded ML context, provenance truthfulness, session-preservation on transient failures, chat timeout/cancel handling
+- [x] Neural output guard hardening: Bengali letter-ratio language check + English wrong-language/low-relevance rejection → honest fallback
+- [x] Git LFS delivery of all five registered cores (clone-retrievable checkpoints)
+- [x] 203/203 Vitest + 44/44 + 13/13 Python stabilization suites green
 - [ ] Dataset V5 construction *(next authorized mission)*
 - [ ] Core-01 Run4/Run5 SFT for chat-capable generation
 - [ ] Core-02/03/04 retraining on deduplicated data
@@ -372,6 +382,12 @@ python packages/ai-core/tests/four_core/test_generation_repairs.py
 - `docs/architecture/audits/NEXUSAI_FOUR_CORE_REPAIR_REPORT.md`
 - `docs/architecture/audits/NEXUSAI_FOUR_CORE_TEST_AND_BENCHMARK_REPORT.md`
 - `docs/architecture/audits/NEXUSAI_FOUR_CORE_CHECKPOINT_AND_MODEL_INVENTORY.md`
+- `docs/architecture/audits/NEXUSAI_FINAL_COMPREHENSIVE_STABILIZATION_AND_AI_BRAIN_FORENSIC_REPORT.md`
+- `docs/architecture/audits/NEXUSAI_FINAL_ISSUE_RESOLUTION_AND_GITHUB_DELIVERY_REPORT.md`
+- `docs/architecture/audits/NEXUSAI_COMPLETE_GITHUB_BACKUP_AND_DOCUMENTATION_DELIVERY_REPORT.md`
+- `docs/roadmap/NEXUSAI_DEVELOPMENT_ROADMAP.md`
+- `docs/security/GITHUB_BACKUP_AND_SECRET_POLICY.md`
+- `docs/development/AGENT_RECOVERY_CHECKLIST.md`
 - `docs/architecture/NEXUSAI_FOUR_CORE_SYSTEM_ARCHITECTURE.md`
 - `docs/architecture/NEXUSAI_FOUR_CORE_OPERATIONS_AND_INFERENCE.md`
 - `docs/architecture/NEXUSAI_FOUR_CORE_RELEASE_REPORT.md`
