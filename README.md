@@ -31,8 +31,9 @@
 - [13. Development & Contributing](#13-development--contributing)
 - [14. Known Limitations](#14-known-limitations)
 - [15. Roadmap](#15-roadmap)
-- [16. Documentation Index](#16-documentation-index)
-- [17. License & Credits](#17-license--credits)
+- [16. Future Architecture Roadmap](#16-future-architecture-roadmap)
+- [17. Documentation Index](#17-documentation-index)
+- [18. License & Credits](#18-license--credits)
 - [বাংলা briefly — Project Overview](#বাংলায়-সংক্ষিপ্ত-পরিচিতি)
 
 ---
@@ -374,6 +375,160 @@ python packages/ai-core/tests/four_core/test_generation_repairs.py
 
 ---
 
+## 18. Future Architecture Roadmap
+
+NexusAI is designed for long-term evolution: **build the architecture once, then improve and replace models without rebuilding the entire system.**
+
+### Multi-Model Architecture
+
+**Current Foundation (VERIFIED):**
+- Model registry with SHA-256 validation (`model_registry.py`)
+- Language detection and intent routing (`model_router.py`)
+- Specialist routing (Core-02 reasoning, Core-03 math, Core-04 knowledge)
+- Fallback mechanism (Core-01 primary, Medium legacy)
+
+**Planned Enhancements:**
+- Standardized model interface (`NexusAIModel`)
+- Dynamic model loading/unloading (lazy loading, resource-aware)
+- Capability-based routing (task → capability → model)
+- Multi-level fallback chain (specialist → primary → generic → legacy)
+- Future model families (Nexus 1-4 conceptual planning)
+
+**Key Principle:** Adding NexusAI Model 2, 3, 4, or later models must not require rebuilding the Live Chat or Voice interface.
+
+### Unified Conversation Engine
+
+**Current State (PARTIALLY VERIFIED):**
+- ConversationContext.tsx (React context)
+- ConversationManager (TypeScript)
+- Database-based conversation storage (Neon PostgreSQL)
+- In-memory context for session-only history
+
+**Planned Unified Engine:**
+- Single engine for text and voice input
+- Persistent context across sessions (database migration to local)
+- Streaming response support (future)
+- Cancellation and error handling
+- No duplicate conversation systems
+
+**Flow:** Text/ASR → Unified Engine → Model Router → Neural Model → Text/TTS Response
+
+### Live Voice Architecture
+
+**Current Status (VERIFIED NOT EXISTENT):**
+- No ASR model
+- No TTS model
+- No audio processing components
+
+**Planned Pipeline:**
+```
+Microphone → Audio Input → ASR → Text → NexusAI Conversation Engine
+→ Model Router → Generated Response → TTS → Speaker
+```
+
+**Independent Development (NON-NEGOTIABLE):**
+- No external ASR APIs (Google, OpenAI, etc.)
+- No external TTS APIs (ElevenLabs, etc.)
+- No cloud speech services
+- NexusAI-owned models only
+- Local inference
+
+**Phases:**
+1. ASR research and prototype (CTC-based, ~50M params)
+2. TTS research and prototype (Tacotron 2, ~50M params)
+3. Audio processing engine (VAD, segmentation, streaming)
+4. Voice session manager
+5. Live voice integration (Homepage + Chat)
+
+**Hardware Requirements:** 32GB RAM, RTX 3080 GPU, 200GB storage (not feasible on current 8GB RAM)
+
+### Multiple Voice System
+
+**Planned Capabilities:**
+- Multiple voice profiles (Bengali, English, bilingual)
+- Voice selection in Settings
+- Speaking speed and pitch adjustment
+- Future custom voice creation (with consent)
+
+**Architecture:**
+- Voice profile registry (independent of reasoning model)
+- TTS model separate from Core models
+- Changing TTS model does not require Core replacement
+
+### 2050-Style UI Architecture
+
+**Planned Visual Experience:**
+- Futuristic cosmic environment
+- Central energy sphere
+- Thousands of rotating galaxies (GPU instancing)
+- Particle layers with nebula lighting
+- Five animation states (IDLE, LISTENING, THINKING, SPEAKING, INTERRUPTION)
+- Audio-reactive visual effects
+
+**Technology:** WebGL + Three.js (primary), Canvas 2D (fallback)
+**Adaptive Quality:** Low/Medium/High levels for different hardware
+**Performance Priority:** Audio processing and AI inference over decorative rendering
+
+### Implementation Phases
+
+**Phase 0: Stabilization** (1-2 weeks)
+- Verify Homepage, Chat, New Chat functionality
+- Storage cleanup (20GB free)
+- Browser verification
+
+**Phase 1: Multi-Model Foundation** (4-6 weeks)
+- Standardized model interface
+- Dynamic loading/unloading
+- Capability-based routing
+
+**Phase 2: Unified Conversation Engine** (4-6 weeks)
+- Unified text+voice engine
+- Persistent context
+- Cancellation support
+
+**Phase 3: Model Improvements** (8-12 weeks, requires hardware upgrade)
+- Core-01 Run4/Run5 SFT
+- Core-02/03/04 retraining
+- Dataset V5 construction
+- Core-05 implementation
+
+**Phase 4: ASR Research & Prototype** (8-12 weeks, requires 32GB RAM + RTX 3080)
+- ASR architecture research
+- Dataset acquisition (500-1000 hours speech)
+- ASR prototype (CTC-based)
+
+**Phase 5: TTS Research & Prototype** (8-12 weeks, requires 32GB RAM + RTX 3080)
+- TTS architecture research
+- Dataset acquisition (20-50 hours speech)
+- TTS prototype (Tacotron 2)
+
+**Phase 6: Live Voice Integration** (6-8 weeks)
+- Audio processing engine
+- Voice session manager
+- ASR/TTS integration
+
+**Phase 7: Voice Profile System** (4-6 weeks)
+- Voice profile registry
+- Predefined voices
+- Settings UI
+
+**Phase 8: 2050 Universe Visuals** (6-8 weeks)
+- Universe renderer (Three.js)
+- Five animation states
+- Audio-visual reactivity
+
+**Phase 9: Testing & Validation** (4-6 weeks)
+- Performance benchmarks
+- Security audit
+- Browser compatibility
+
+**Total Timeline:** 40-60 weeks (10-15 months) with parallelization
+**Hardware Upgrade Required:** 32GB RAM + RTX 3080 GPU (~$850-1100) for Phases 3-5
+
+**Full Audit:** `docs/architecture/audits/NEXUSAI_FUTURE_READY_MULTI_MODEL_ARCHITECTURE_AUDIT.md`
+
+---
+
 ## 16. Documentation Index
 
 - `docs/architecture/audits/NEXUSAI_FOUR_CORE_COMPLETE_FORENSIC_AUDIT.md`
@@ -385,6 +540,18 @@ python packages/ai-core/tests/four_core/test_generation_repairs.py
 - `docs/architecture/audits/NEXUSAI_FINAL_COMPREHENSIVE_STABILIZATION_AND_AI_BRAIN_FORENSIC_REPORT.md`
 - `docs/architecture/audits/NEXUSAI_FINAL_ISSUE_RESOLUTION_AND_GITHUB_DELIVERY_REPORT.md`
 - `docs/architecture/audits/NEXUSAI_COMPLETE_GITHUB_BACKUP_AND_DOCUMENTATION_DELIVERY_REPORT.md`
+- `docs/architecture/audits/NEXUSAI_FUTURE_READY_MULTI_MODEL_ARCHITECTURE_AUDIT.md` — Multi-model, live voice, 2050 UI blueprint
+- `docs/architecture/audits/NEXUSAI_LOCAL_FIRST_INDEPENDENT_AI_BRAIN_FORENSIC_AUDIT.md` — Local hardware audit and feasibility
+- `docs/architecture/audits/NEXUSAI_LIVE_VOICE_2050_UNIVERSE_FINAL_FORENSIC_REPORT.md` — Voice and visual architecture
+- `docs/architecture/audits/NEXUSAI_FOUR_CORE_CAPABILITY_FORENSIC_AUDIT.md` — Core-01 through Core-04 capabilities
+- `docs/architecture/voice/NEXUSAI_LIVE_VOICE_MASTER_ARCHITECTURE.md` — Live voice system architecture
+- `docs/architecture/voice/NEXUSAI_INDEPENDENT_SPEECH_MODEL_STRATEGY.md` — ASR/TTS development strategy
+- `docs/architecture/voice/NEXUSAI_2050_UNIVERSE_VISUAL_ARCHITECTURE.md` — 2050 visual experience
+- `docs/architecture/voice/NEXUSAI_LIVE_VOICE_SECURITY_AND_PRIVACY.md` — Voice security and privacy
+- `docs/architecture/voice/NEXUSAI_LIVE_VOICE_DEVELOPMENT_ROADMAP.md` — Voice development roadmap
+- `docs/architecture/voice/NEXUSAI_LIVE_VOICE_ARCHITECTURE_DECISIONS.md` — Voice architecture decisions
+- `docs/architecture/voice/NEXUSAI_LIVE_VOICE_HARDWARE_AND_COMPUTE_PLAN.md` — Hardware requirements
+- `docs/architecture/voice/NEXUSAI_LIVE_VOICE_TESTING_AND_ACCEPTANCE_PLAN.md` — Testing and acceptance
 - `docs/roadmap/NEXUSAI_DEVELOPMENT_ROADMAP.md`
 - `docs/security/GITHUB_BACKUP_AND_SECRET_POLICY.md`
 - `docs/development/AGENT_RECOVERY_CHECKLIST.md`
@@ -398,7 +565,7 @@ python packages/ai-core/tests/four_core/test_generation_repairs.py
 
 ---
 
-## 17. License & Credits
+## 18. License & Credits
 
 No `LICENSE` file exists in the repository — **no license is currently declared**; all rights remain with the project owner pending an explicit license decision. All architecture diagrams in this README were created for the NexusAI project. Third-party components (PyTorch, FastAPI, Next.js, SentencePiece, etc.) remain under their respective licenses.
 
